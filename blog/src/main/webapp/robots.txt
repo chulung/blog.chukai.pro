@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /markdown/examples
+Disallow: /admin
+Disallow: /dfs
+Disallow: /group1
+Disallow: /smelting

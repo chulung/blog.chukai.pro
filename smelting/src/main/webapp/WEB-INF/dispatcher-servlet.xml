@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<bean id="AuthorityAspect" class="com.wck.smelting.aop.AuthorityAspect"/>
+	<bean id="CacheAspect" class="com.wck.cache.aop.CacheAspect"/>
+	<!-- <mvc:annotation-driven /> -->
+	<!--注解说明 <context:annotation-config /> -->
+	<mvc:annotation-driven />
+	<context:component-scan base-package="com.wck.smelting.controller" />
+	<mvc:default-servlet-handler />
+	<!-- 文件上传表单的视图解析器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes 128k -->
+		<property name="maxUploadSize" value="132144" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".html" />
+		<property name="order" value="1" />
+	</bean>
+
+	<!-- 针对freemarker的视图配置 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".ftl" />
+		<property name="cache" value="true" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="requestContextAttribute" value="request" />
+		<property name="exposeSpringMacroHelpers" value="true" /> <!-- 如果你需要使用Spring 对 Velocity宏命令的支持, 将这个属性设为true -->
+		<property name="exposeRequestAttributes" value="true" />  <!-- ture为将请求属性作为变量暴露给FreeMarker模板使用 -->
+		<property name="exposeSessionAttributes" value="true" />  <!-- ture为将会话属性作为变量暴露给FreeMarker模板使用 -->
+		<property name="order" value="0" />
+	</bean>
+	<!-- 配置FreeMarkerConfigurer,配置freeMarker的模板路径 -->
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">1</prop> <!-- 检查模板是否更新的时间间隔，默认时间是5秒，此处设成不检查 -->
+				<prop key="default_encoding">UTF-8</prop> <!-- freemarker的默认编码 -->
+				<prop key="number_format">0.##</prop> <!-- freemarker数据格式化问题(即数值超过四位数时有逗号) -->
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop> <!-- 设置freemarker时间格式转换 -->
+				<prop key="classic_compatible">true</prop>
+				<prop key="template_exception_handler">ignore</prop>
+			</props>
+		</property>
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="DateTime" value-ref="dateTimeTemplate" />
+			</map>
+		</property>
+	</bean>
+	<!-- 自定义freemarker 日期解析tag -->
+	<bean id="dateTimeTemplate" class="com.wck.freemaker.template.DateTimeTemplate"></bean>
+	
+	<!-- 输出对象转JSON支持 -->
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/player/**" />
+			<mvc:mapping path="/team/**" />
+			<mvc:mapping path="/task/**" />
+			<mvc:exclude-mapping path="/player/signIn" />
+			<bean class="com.wck.smelting.interceptor.PlayerSignInInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>

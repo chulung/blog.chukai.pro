@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<!-- 引入配置文件 -->
+	<context:property-placeholder
+		location="file:${catalina.home}/conf/jdbc.properties" />
+	<!--创建jdbc数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${driver}" /><!-- 驱动 -->
+		<property name="url" value="${url}" />
+		<property name="username" value="${user}" />
+		<property name="password" value="${password}" />
+		<property name="initialSize" value="${initialSize}" /><!-- 初始链接数 -->
+		<property name="maxActive" value="${maxActive}" /><!-- 同一时间可以从池分配的最多连接数量。设置为0时表示无限制。 -->
+		<property name="maxIdle" value="${maxIdle}" /><!-- 池里不会被释放的最多空闲连接数量。设置为0时表示无限制。 -->
+		<property name="minIdle" value="${minIdle}" /> <!-- 在不新建连接的条件下，池中保持空闲的最少连接数。 -->
+		<property name="maxWait" value="${maxWait}" /><!-- 在抛出异常之前，池等待连接被回收的最长时间（当没有可用连接时）。设置为-1表示无限等待。 -->
+		<property name="testOnBorrow" value="${testOnBorrow}" /><!--表示从连接池中获取连接前是否运行validationQuery，true=运行[默认]，false=不运行； -->
+		<property name="removeAbandoned" value="${removeAbandoned}" />
+		<property name="validationQuery" value="${validationQuery}" />
+	</bean>
+	<bean id="session" factory-bean="sessionFactory" factory-method="openSession"
+		scope="singleton" />
+	<bean id="sessionFactory" class="com.wck.durable.factory.SessionFactoryLogProxy" />
+	<bean id="sessionNoLog" factory-bean="sessionFactoryNoLog"
+		factory-method="openSession" scope="singleton" />
+	<bean id="sessionFactoryNoLog" class="com.wck.durable.factory.SessionFactory" />
+
+</beans>
