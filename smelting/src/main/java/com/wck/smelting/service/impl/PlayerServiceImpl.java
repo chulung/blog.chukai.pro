@@ -31,19 +31,6 @@ public class PlayerServiceImpl extends BaseService implements PlayerService {
 			bean.setId(queryOne.getId());
 			bean.setSessionId(queryOne.getSessionId());
 			session.update(bean);
-		} else {
-			if (session.queryOne(new Player(player.getUserName(), null) )!= null) {
-				return null;
-			}
-			Player bean = new Player(player.getUserName(), player.getPassword());
-			bean.setAuthority(0);
-			bean.setTeamId(0);
-			bean.setPoint(0);
-			bean.setPosition("普通玩家");
-			Integer id = session.insert(bean);
-			if (id != null) {
-				return this.signIn(player);
-			}
 		}
 		return queryOne;
 	}
@@ -65,12 +52,10 @@ public class PlayerServiceImpl extends BaseService implements PlayerService {
 
 	@Override
 	public List<Player> getPlayersByTeamId(Integer id) {
-		if (id==null) {
+		if (id == null) {
 			return Collections.emptyList();
 		}
-		return this.session.queryList("select userName,point from player where teamId=?", Player.class,
-				id);
+		return this.session.queryList("select userName,point from player where teamId=?", Player.class, id);
 	}
-	
 
 }

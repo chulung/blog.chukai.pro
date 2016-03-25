@@ -3,7 +3,6 @@
 <div class="container">
   <div class="row">
 	 <div class="panel panel-primary">
-	 	<div class="alert alert-info" role="alert">如果你没有战队，可以选择一个加入，或者，new一个！</div>
 		  <!-- Default panel contents -->
 		  <div class="panel-heading">战队列表</div>
 		  		<div class="panel-body">
@@ -26,9 +25,6 @@
 		  	</tbody>
 		  </table>
 		    </div>
-		     <div class="panel-footer">
-	        <button id="btn-receive" type="button" class="btn btn-info">new Team()</button>
-		  </div>
 	 </div>
   </div>
 </div>

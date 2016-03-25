@@ -37,9 +37,11 @@
 								<thead>
 									<th></th>
 									<th></th>
-									<th>战队/第${team_index+1}名</th>
+									<th></th>
+									<th>第${team_index+1}名</th>
 									<th>玩家</th>
 									<th>积分</th>
+									<th></th>
 									<th></th>
 									<th></th>
 								</thead>
@@ -49,11 +51,13 @@
 											<#if player_index=0>
 											<td rowspan="${team.players?size}"></td>
 											<td rowspan="${team.players?size}"></td>
+											<td rowspan="${team.players?size}"></td>
 											<td rowspan="${team.players?size}"> ${team.teamName}(${team.totalPoint})</td>
 											</#if>
 											<td>${player.userName}</td>
 											<td>${player.point}</td>
 											<#if player_index=0>
+											<td rowspan="${team.players?size}"></td>
 											<td rowspan="${team.players?size}"></td>
 											<td rowspan="${team.players?size}"></td>
 											</#if>

@@ -9,7 +9,7 @@
 <meta name="description" content="熔炼">
 <meta name="author" content="初">
 <meta content="${base_keywords}" name="keywords">
-<title>熔炼果冻豆-${base_title}</title>
+<title>熔炼二区-${base_title}</title>
 <link rel="shortcut icon" href="${staticsPath}/global/images/favicon.ico"	type="image/x-icon" />
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -29,6 +29,7 @@
       <li class="<#if pageName!='player'>no</#if>active" role="presentation" class=""><a href="/smelting/player" ><span class="glyphicon glyphicon-user" aria-hidden="true"></span>玩家</a></li>
       <li class="<#if pageName!='team'>no</#if>active" role="presentation" class=""><a href="/smelting/team" ><span class="glyphicon glyphicon-tower" aria-hidden="true"></span>战队</a></li>
       <li class="<#if pageName!='shop'>no</#if>active" role="presentation" class=""><a href="#" ><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>积分商城</a></li>
+      <li class="<#if pageName!='command'>no</#if>active" role="presentation" class=""><a href="/smelting/command" ><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>指令</a></li>
     </ul>
   </div>
 </div>

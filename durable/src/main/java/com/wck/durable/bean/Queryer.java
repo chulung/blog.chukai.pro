@@ -4,7 +4,7 @@ public class Queryer<T> {
 
 	private T bean;
 	private String orderBy = "";
-	private Integer pageSize;
+	private Integer pageSize=100;
 	private Integer page;
 
 	private Queryer(T bean) {

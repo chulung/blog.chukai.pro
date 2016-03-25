@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
 	  <form id="sginInForm" action="/smelting/player/signIn" method="post">
-				<div class="alert alert-info" role="alert">如果你没有注册，输入名字和口令将为你自动注册账号</div>
+				<div class="alert alert-info" role="alert">默认口令为12345</div>
 			  <div class="form-group">
 			    <label for="inputUserName">姓名:</label>
 			    <input name="userName" type="text" class="form-control" id="inputUserName" placeholder="你的名字" maxlength="10"  vlalue="${player.userName!''}/>
