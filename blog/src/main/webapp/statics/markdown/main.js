@@ -3,7 +3,7 @@ $(function() {
 	editor = editormd("editor-div", {
 		width : "90%",
 		height : 740,
-		path : staticsPath+'/markdown/lib/',
+		path : baseStaticsPath+'/markdown/lib/',
 		theme : "dark",
 		previewTheme : "",// 预览主题
 		editorTheme : "eclipse",// 代码主题
