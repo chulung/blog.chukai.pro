@@ -1,5 +1,9 @@
 $(function() {
 	$('.btn-command').click(function() {
+		$(!confirm("点击确定发送指令")){
+			return;
+		}
+		
 		$.ajax({
 			url : '/smelting/command/execute/' + $(this).data('command'),
 			dataType : 'json',

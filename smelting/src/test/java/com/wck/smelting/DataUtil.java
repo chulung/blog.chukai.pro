@@ -3,7 +3,6 @@ package com.wck.smelting;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -15,7 +14,7 @@ import com.wck.smelting.service.BaseService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-test.xml" })
 public class DataUtil extends BaseService {
-	@Test
+//	@Test
 	public void test() {
 		List<Player> list = this.session.queryList(new Player());
 		for (Player player : list) {
