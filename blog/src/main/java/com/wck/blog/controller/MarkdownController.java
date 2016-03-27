@@ -4,8 +4,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wck.blog.bean.BaseController;
-
 /**
  * markdown 编辑器
  * @author ChuKai

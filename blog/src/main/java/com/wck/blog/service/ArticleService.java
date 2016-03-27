@@ -21,7 +21,7 @@ public interface ArticleService {
 
 	List<ArticleType> findAllArticleTypes();
 
-	Integer findArticleDraftIdByArticleIdAndVersion(ArticleDraft article);
+	Integer findArticleDraftIdByArticleId(ArticleDraft article);
 
 	void insert(ArticleDraft articleDraft);
 
@@ -29,5 +29,5 @@ public interface ArticleService {
 
 	ArticleDraft findArticleDraft(ArticleDraft articleDraft);
 
-	void delete(Integer id);
+	void deleteArticleDraft(Integer id);
 }

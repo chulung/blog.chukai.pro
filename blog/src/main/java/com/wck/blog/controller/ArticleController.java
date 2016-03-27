@@ -10,14 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wck.blog.bean.Article;
 import com.wck.blog.bean.ArticleDraft;
-import com.wck.blog.bean.BaseController;
 import com.wck.blog.service.ArticleService;
 import com.wck.durable.bean.PageIn;
 
@@ -59,10 +57,9 @@ public class ArticleController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/articleDraft/{id}", method = RequestMethod.GET)
-	public @ResponseBody ArticleDraft getArticleDraft(@PathVariable Integer id,@RequestParam(required=false)Integer version) {
+	public @ResponseBody ArticleDraft getArticleDraft(@PathVariable Integer id) {
 		ArticleDraft articleDraft=new ArticleDraft();
 		articleDraft.setId(id);
-		articleDraft.setVersion(version);
 		return this.articleService.findArticleDraft(articleDraft);
 	}
 	
@@ -93,8 +90,8 @@ public class ArticleController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/articleDraft/{id}", method = RequestMethod.DELETE)
-	public @ResponseBody Map<String, Object> postArticle(@PathVariable Integer id) {
-		this.articleService.delete(id);
+	public @ResponseBody Map<String, Object> deleteArticleDraft(@PathVariable Integer id) {
+		this.articleService.deleteArticleDraft(id);
 		return successMap();
 	}
 	/**
