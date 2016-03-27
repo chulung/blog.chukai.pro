@@ -90,7 +90,7 @@ public class Blog extends BaseBean {
 	}
 
 	private static String generatingSummary(String context) {
-		String replaceAll = context.replaceAll("</?[a-zA-z0-9]+>", "");
+		String replaceAll = context.replaceAll("</?.*?>", "");
 		return replaceAll.length() > 120 ? replaceAll.substring(0, 120) + "..." : replaceAll;
 	}
 

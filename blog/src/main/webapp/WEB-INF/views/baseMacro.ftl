@@ -36,10 +36,10 @@
 	          	关于 <span class="caret"></span>
 	        </a>
 	        <ul class="dropdown-menu">
-	          <li><a href="#">我</a></li>
+	          <li><a href="/aboutMe">我</a></li>
 	          <li><a href="#">关于本站</a></li>
 	          <li class="divider" role="separator"></li>
-	          <li><a href="https://github.com/wenchukai/blog" rel="external nofollow" target="_blank">本站源码</a></li>
+	          <li><a href="https://github.com/wenchukai/wenchukai.com" rel="external nofollow" target="_blank">本站源码</a></li>
 	        </ul>
 	      </li>
 	    </ul>

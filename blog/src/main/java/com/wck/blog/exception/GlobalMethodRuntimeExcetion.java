@@ -18,6 +18,9 @@ public class GlobalMethodRuntimeExcetion extends RuntimeException {
 	public GlobalMethodRuntimeExcetion() {
 	}
 
+	public GlobalMethodRuntimeExcetion(String message) {
+		this(-1,message);
+	}
 	public GlobalMethodRuntimeExcetion(int code, String message) {
 		super(message);
 		this.setCode(code);

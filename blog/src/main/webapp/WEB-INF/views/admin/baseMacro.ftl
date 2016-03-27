@@ -19,7 +19,7 @@
     -->
     
     <!-- styles -->
-    <link href="${baseStaticsPath}/admin/css/styles.css" rel="stylesheet"/>
+    <link href="${staticsPath}/admin/css/styles.css" rel="stylesheet"/>
     <#list basecss as c>
 	<link href="${staticsPath}${c}"  rel="stylesheet"/>
 	</#list>
@@ -31,7 +31,7 @@
 
 				<#nested>
     <script>
-    	var baseStaticsPath="${baseStaticsPath}";
+    	var staticsPath="${staticsPath}";
     </script>				
     <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -41,9 +41,9 @@
     <script src="${staticsPath}/global/js/bootstrap.min.js"></script>
     <script src="${staticsPath}/global/js/jquery-ui.min.js"></script>
      -->
-    <script src="${baseStaticsPath}/admin/js/custom.js"></script>
+    <script src="${staticsPath}/admin/js/custom.js"></script>
 <#list basejs as j>
-<script src="${staticsPath}${j}"></script>
+<script src="<#if !j?ends_with('?')>${staticsPath}<#else>/statics</#if>${j}"></script>
 </#list>
 </html>
 </#macro> 

@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wck.blog.annotation.Authority;
 import com.wck.blog.bean.ArticleDraft;
-import com.wck.blog.bean.BaseController;
 import com.wck.blog.bean.User;
 import com.wck.blog.enumerate.AuthorityEnum;
 import com.wck.blog.service.ArticleService;
@@ -89,8 +88,7 @@ public class AdminController extends BaseController {
 	public ModelAndView editors(@ModelAttribute ArticleDraft articleDraft) {
 		return modelAndView("/admin/editors").addObject("articleTypes", articleService.findAllArticleTypes())
 				.addObject("articleDraftId", articleDraft.getId() == null
-						? articleService.findArticleDraftIdByArticleIdAndVersion(articleDraft) : articleDraft.getId())
-				.addObject("version", articleDraft.getVersion());
+						? articleService.findArticleDraftIdByArticleId(articleDraft) : articleDraft.getId());
 	}
 
 	/**

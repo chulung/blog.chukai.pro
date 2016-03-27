@@ -12,6 +12,7 @@ import com.wck.blog.bean.ArticleDraft;
 import com.wck.blog.bean.ArticleType;
 import com.wck.blog.bean.User;
 import com.wck.blog.enumerate.PublishStatusEnum;
+import com.wck.blog.exception.GlobalMethodRuntimeExcetion;
 import com.wck.blog.service.ArticleService;
 import com.wck.blog.util.WebSessionSupport;
 import com.wck.cache.annotation.Cache;
@@ -33,25 +34,27 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		User user = this.webSessionSupport.getCurUser().get();
 		// 备份老版本
 		session.execute("insert into ArticleDraftHistory select * from ArticleDraft where id=?", articleDraft.getId());
-		articleDraft.setArticleId(session
-				.queryOne("select articleId from ArticleDraft where id=?", ArticleDraft.class, articleDraft.getId())
+		ArticleDraft oldDraft = session
+				.queryOne("select articleId,version from ArticleDraft where id=?", ArticleDraft.class, articleDraft.getId());
+		articleDraft.setArticleId(oldDraft
 				.getArticleId());
 		articleDraft.setUpdateTime(LocalDateTime.now());
 		articleDraft.setMender(user.getNickName());
-		articleDraft.setVersion(articleDraft.getVersion() + 1);
-		articleDraft.setAuthor(user.getNickName());
-		articleDraft.setIsDelete(0);
-		articleDraft.setUserId(this.webSessionSupport.getCurUserId().get());
-		articleDraft.setCreateTime(LocalDateTime.now());
+		articleDraft.setVersion(oldDraft.getVersion() + 1);
 		// 判断是否发布文章
 		if (PublishStatusEnum.PUBLISH.getCode().equals(articleDraft.getIsPublish())) {
 			Article article = Article.of(articleDraft);
-			if (!(article.getId() == null ? (session.insert(article) != null) : session.update(article))) {
-				throw new RuntimeException("新建或修改文章失败");
+			if (article.getId() == null ) {
+				article.setAuthor(user.getNickName());
+				article.setCreateTime(LocalDateTime.now());
+				Integer aId=session.insert(article);
+				articleDraft.setArticleId(aId);
+			}else{
+				session.update(article);
 			}
 		}
 		if (!session.update(articleDraft)) {
-			throw new RuntimeException("修改草稿失败");
+			throw new GlobalMethodRuntimeExcetion("修改草稿失败");
 		}
 		return true;
 	}
@@ -69,9 +72,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	}
 
 	@Override
-	public Integer findArticleDraftIdByArticleIdAndVersion(ArticleDraft articleDraft) {
-		ArticleDraft queryOne = session.queryOne("select id from ArticleDraft where articleId=? and version =?",
-				ArticleDraft.class, articleDraft.getArticleId(), articleDraft.getVersion());
+	public Integer findArticleDraftIdByArticleId(ArticleDraft articleDraft) {
+		ArticleDraft queryOne = session.queryOne("select id from ArticleDraft where articleId=? ",
+				ArticleDraft.class, articleDraft.getArticleId());
 		return queryOne != null ? queryOne.getId() : null;
 	}
 
@@ -114,16 +117,15 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 	@Override
 	@Transaction
-	public void delete(Integer id) {
+	public void deleteArticleDraft(Integer id) {
 		ArticleDraft articleDraft = session
-				.queryOne("select id,articleId,version,isPublish from ArticleDraft where id=?", ArticleDraft.class, id);
+				.queryOne("select id,articleId,isPublish from ArticleDraft where id=?", ArticleDraft.class, id);
 		if (articleDraft != null) {
 			if (PublishStatusEnum.PUBLISH.getCode().equals(articleDraft.getIsPublish())) {
-				session.execute("update Article set isdelete=1 where id=? and version=?", articleDraft.getArticleId(),
-						articleDraft.getVersion());
+				session.execute("update Article set isdelete=1 where id=? ", articleDraft.getArticleId());
 			}
-			session.execute("update ArticleDraft set isdelete=1 where id=? and version=?", articleDraft.getId(),
-					articleDraft.getVersion());
+			session.execute("update ArticleDraft set isdelete=1 where id=? ", articleDraft.getId());
 		}
+		throw new GlobalMethodRuntimeExcetion("草稿不存在,id="+id);
 	}
 }

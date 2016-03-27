@@ -1,5 +1,5 @@
 <#include "WEB-INF/views/admin/pageMacro.ftl">     
-<@indexPage mianJs=["/markdown/editormd.js","/admin/js/edit.js","/admin/js/main.js"] miancss=["/markdown/css/editormd.css"]>
+<@indexPage mianJs=["/markdown/editormd.js","/admin/js/edit.js?"] miancss=["/markdown/css/editormd.css"]>
 		<div class="col-md-12">
 	        <div class="content-box-large">
 	          <div class="panel-heading">
@@ -20,7 +20,7 @@
 		            <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
 		          </div>
 	      	  </div>
-	          <div  id="editor-div"  class="panel-body" data-articledraftid="${articleDraftId}" data-version="${version}">
+	          <div  id="editor-div"  class="panel-body" data-articledraftid="${articleDraftId}">
 	          </div>
       		</div>
 		</div>

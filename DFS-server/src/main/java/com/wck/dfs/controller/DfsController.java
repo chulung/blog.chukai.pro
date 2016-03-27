@@ -43,7 +43,7 @@ public class DfsController extends BaseController {
 		try {
 			StorePath path = storageClient.uploadFile(file.getInputStream(), file.getSize(),
 					fileName.substring(fileName.lastIndexOf('.') + 1), metaDataSet);
-			return successMap().addAttribute("message", "上传成功").addAttribute("url", path.getFullPath());
+			return successMap().addAttribute("message", "上传成功").addAttribute("url","/"+ path.getFullPath());
 		} catch (Exception e) {
 			logger.error("文件上传失败", e);
 			return errorMap();

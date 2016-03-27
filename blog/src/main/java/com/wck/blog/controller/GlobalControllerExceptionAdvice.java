@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
  *
  */
 
-import com.wck.blog.bean.BaseController;
 import com.wck.blog.exception.GlobalMethodRuntimeExcetion;
 
 @ControllerAdvice

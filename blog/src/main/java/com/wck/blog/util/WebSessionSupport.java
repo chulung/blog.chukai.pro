@@ -33,26 +33,14 @@ public class WebSessionSupport {
 	/**
 	 * 判断当前用户是否登陆
 	 * 
-	 * @return
-	 */
-	public boolean isSignIn() {
-		return isSignIn(getCurSessionId());
-	}
-
-	/**
-	 * 判断当前用户是否登陆
-	 * 
 	 * @param sessionId
 	 *            cookie中的sessionId
 	 * @return
 	 */
-	public boolean isSignIn(String sessionId) {
-		if (sessionId == null) {
-			return false;
-		}
+	public boolean isSignIn() {
 		Optional<User> curUser = this.getCurUser();
 		curUser.ifPresent(u -> {
-			expandSignIn(sessionId, u);
+			expandSignIn(this.getCurSessionId(), u);
 		});
 		return curUser.isPresent();
 	}
@@ -66,7 +54,7 @@ public class WebSessionSupport {
 		HttpServletRequest httpServletRequest = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 				.getRequest();
 		Cookie[] cookies = httpServletRequest.getCookies();
-		if (cookies==null) {
+		if (cookies == null) {
 			return null;
 		}
 		for (Cookie cookie : cookies) {
@@ -115,6 +103,8 @@ public class WebSessionSupport {
 
 	/**
 	 * 用户每次请求重新刷新30分钟登陆有效期
+	 * 
+	 * @param sessionId
 	 * 
 	 * @param sessionId
 	 * @param user
