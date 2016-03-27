@@ -37,7 +37,7 @@ public class BlogController extends BaseController {
 	 * 
 	 * @return
 	 */
-//	@Cache(key = "blog-index", timeToLive = 30)
+	@Cache(key = "blog-index", timeToLive = 30)
 	@RequestMapping(value = { "/", "/index.html", "/blog" }, method = RequestMethod.GET)
 	public ModelAndView getIndex() {
 		return getBlogPage(1, null);
