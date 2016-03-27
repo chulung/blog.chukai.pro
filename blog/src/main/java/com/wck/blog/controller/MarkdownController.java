@@ -19,7 +19,7 @@ public class MarkdownController extends BaseController{
 	 */
 	@RequestMapping(value={"","/","index.html"})
 	public ModelAndView getIndex() {
-		return modelAndView("markdown").addObject("typeId", 4);
+		return modelAndView("markdown").addObject("typeId", 0);
 	}
 
 }

@@ -26,10 +26,16 @@ public class BlogServiceImpl extends BaseService implements BlogService {
 
 	public List<Blog> findNewBlog(Optional<Integer> page, Integer typeId) {
 		Article bean = new Article();
-		bean.setTypeId(typeId);
-		bean.setIsDelete(0);
-		return convertToBlog(session
-				.queryList(Queryer.of(bean).orderBy("CreateTime").desc().page(page.orElse(1)).pageSize(PAGE_SIZE)));
+		Queryer<Article> q = Queryer.of(bean).orderBy("CreateTime").desc().page(page.orElse(1))
+				.pageSize(PAGE_SIZE);
+		if (typeId == null) {
+			return convertToBlog(this.session.queryList("select * from article where isdelete=0 and typeId!=4 "
+					+ q.getOrderByString() + q.pagingString(), Article.class));
+		} else {
+			bean.setTypeId(typeId);
+			bean.setIsDelete(0);
+			return convertToBlog(session.queryList(q));
+		}
 	}
 
 	@Override
