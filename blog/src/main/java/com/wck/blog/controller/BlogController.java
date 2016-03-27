@@ -16,6 +16,7 @@ import com.wck.blog.bean.Article;
 import com.wck.blog.dto.CommonInfo;
 import com.wck.blog.service.ArticleService;
 import com.wck.blog.service.BlogService;
+import com.wck.cache.annotation.Cache;
 
 /**
  * 博客首页Controller
@@ -36,7 +37,7 @@ public class BlogController extends BaseController {
 	 * 
 	 * @return
 	 */
-	// @Cache(key = "blog-index", timeToLive = 30)
+	@Cache(key = "blog-index", timeToLive = 30)
 	@RequestMapping(value = { "/", "/index.html", "/blog" }, method = RequestMethod.GET)
 	public ModelAndView getIndex() {
 		return getBlogPage(1, null);
@@ -99,10 +100,10 @@ public class BlogController extends BaseController {
 	public ModelAndView about() {
 		Article article = articleService.findArticleById(20);
 		return modelAndView("about")
-				.addObject("article",
-						String.format(article.getContext(),
-								String.valueOf((Instant.now().getEpochSecond()
-										- Instant.parse("2015-06-15T09:00:00.00Z").getEpochSecond()) / 31536000.0), "魔都"))
+				.addObject("article", String.format(article.getContext(),
+						String.valueOf((Instant.now().getEpochSecond()
+								- Instant.parse("2015-06-15T09:00:00.00Z").getEpochSecond()) / 31536000.0),
+						"魔都"))
 				.addObject("typeId", 5);
 	}
 }
