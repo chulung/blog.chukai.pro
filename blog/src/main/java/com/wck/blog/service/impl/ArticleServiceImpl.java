@@ -45,6 +45,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		if (PublishStatusEnum.PUBLISH.getCode().equals(articleDraft.getIsPublish())) {
 			Article article = Article.of(articleDraft);
 			if (article.getId() == null ) {
+				article.setUserId(user.getId());
 				article.setAuthor(user.getNickName());
 				article.setCreateTime(LocalDateTime.now());
 				Integer aId=session.insert(article);

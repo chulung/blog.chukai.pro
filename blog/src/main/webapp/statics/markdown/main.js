@@ -3,7 +3,7 @@ $(function() {
 	editor = editormd("editor-div", {
 		width : "90%",
 		height : 740,
-		path : staticsPath+'/markdown/lib/',
+		path : staticsPath + '/markdown/lib/',
 		theme : "dark",
 		previewTheme : "",// 预览主题
 		editorTheme : "eclipse",// 代码主题
@@ -27,6 +27,17 @@ $(function() {
 		imageUploadURL : "/dfs/file",
 		toolbar : true,
 		onload : function() {
+			var context = window.localStorage.autoSaveContext;
+			if (context) {
+				editor.setMarkdown(context);
+			}else{
+				editor.setMarkdown("#Hello World\n欢迎使用本站的markdown编辑器;<br>\n点击工具栏右上角的<i unselectable=\"on\" name=\"help\" class=\"fa fa-question-circle\"></i>查看语法和快捷键说明。<br>\n每10秒自动保存，基于html5的本地存储。<br>");
+			}
+			
+			setInterval(function() {
+				window.localStorage.autoSaveContext = editor.getMarkdown();
+				console.log("autoSave");
+			}, 10000);
 		}
 	});
 

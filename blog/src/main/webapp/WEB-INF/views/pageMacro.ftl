@@ -13,7 +13,9 @@
 		<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
 			<div class="sidebar-module sidebar-module-inset">
 				<h4>Hi</h4>
-				<p>欢迎来到我的博客</p>
+				<p>欢迎来到我的博客。</p>
+				<p>不会前端的后端工程师不是好的架构师。</p>
+				<p>PHP是最好的语言。</p>
 			</div>
 			<#-- <div class="sidebar-module">
 				<h4>标签</h4>

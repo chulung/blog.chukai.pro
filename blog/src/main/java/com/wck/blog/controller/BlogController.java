@@ -1,5 +1,6 @@
 package com.wck.blog.controller;
 
+import java.time.Instant;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wck.blog.bean.Article;
 import com.wck.blog.dto.CommonInfo;
+import com.wck.blog.service.ArticleService;
 import com.wck.blog.service.BlogService;
 
 /**
@@ -25,13 +28,15 @@ import com.wck.blog.service.BlogService;
 public class BlogController extends BaseController {
 	@Autowired
 	private BlogService blogService;
+	@Autowired
+	private ArticleService articleService;
 
 	/**
 	 * 博客首页
 	 * 
 	 * @return
 	 */
-//	@Cache(key = "blog-index", timeToLive = 30)
+	// @Cache(key = "blog-index", timeToLive = 30)
 	@RequestMapping(value = { "/", "/index.html", "/blog" }, method = RequestMethod.GET)
 	public ModelAndView getIndex() {
 		return getBlogPage(1, null);
@@ -89,9 +94,15 @@ public class BlogController extends BaseController {
 	public ModelAndView getReprint() {
 		return getBlogPage(1, 3);
 	}
-	
-	@RequestMapping("/aboutme")
-	public ModelAndView aboutMe(){
-		return modelAndView("aboutMe");
+
+	@RequestMapping("/about")
+	public ModelAndView about() {
+		Article article = articleService.findArticleById(20);
+		return modelAndView("about")
+				.addObject("article",
+						String.format(article.getContext(),
+								String.valueOf((Instant.now().getEpochSecond()
+										- Instant.parse("2015-06-15T09:00:00.00Z").getEpochSecond()) / 31536000.0), "魔都"))
+				.addObject("typeId", 5);
 	}
 }

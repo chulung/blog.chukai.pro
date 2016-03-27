@@ -31,13 +31,12 @@
 	      <li <#if typeId=2> class="active" </#if>  role="presentation"><a href="/essaies.html">随笔</a></li>
 	      <li <#if typeId=3> class="active" </#if>  role="presentation"><a href="/reprint.html">他山之石</a></li>
 	      <li <#if typeId=4> class="active" </#if>  role="presentation"><a href="/markdown">Markdown</a></li>
-	      <li class="dropdown" role="presentation">
+	      <li class="dropdown <#if typeId=5> active</#if>" role="presentation">
 	       	<a aria-expanded="false" aria-haspopup="true" role="button" href="#" data-toggle="dropdown" class="dropdown-toggle">
 	          	关于 <span class="caret"></span>
 	        </a>
 	        <ul class="dropdown-menu">
-	          <li><a href="/aboutMe">我</a></li>
-	          <li><a href="#">关于本站</a></li>
+	          <li><a href="/about">初</a></li>
 	          <li class="divider" role="separator"></li>
 	          <li><a href="https://github.com/wenchukai/wenchukai.com" rel="external nofollow" target="_blank">本站源码</a></li>
 	        </ul>
@@ -69,7 +68,7 @@
 -->
 <script src="${staticsPath}/global/js/global.js"></script>
 <#list base_js as j>
-<script src="${staticsPath}${j}"></script>
+<script src="<#if !j?ends_with('?')>${staticsPath}<#else>/statics</#if>${j}"></script>
 </#list>
 </html>
 </#macro> 

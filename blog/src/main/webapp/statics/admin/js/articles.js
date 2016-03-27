@@ -26,8 +26,7 @@ function ajaxData(page) {
 						$('<th>').append(
 								$('<a>').html('编辑').attr(
 										'href',
-										'/admin/editors?articleId=' + item.id
-												+ "&version=" + item.version))
+										'/admin/editors?articleId=' + item.id))
 								.appendTo($tr);
 					});
 

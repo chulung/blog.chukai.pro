@@ -41,7 +41,7 @@ public class DfsController extends BaseController {
 		metaDataSet.add(new MateData("createDate", DateUtil.parseDate(new Date())));
 		String fileName = file.getOriginalFilename();
 		try {
-			StorePath path = storageClient.uploadFile(file.getInputStream(), file.getSize(),
+			StorePath path = storageClient.uploadImageAndCrtThumbImage(file.getInputStream(), file.getSize(),
 					fileName.substring(fileName.lastIndexOf('.') + 1), metaDataSet);
 			return successMap().addAttribute("message", "上传成功").addAttribute("url","/"+ path.getFullPath());
 		} catch (Exception e) {

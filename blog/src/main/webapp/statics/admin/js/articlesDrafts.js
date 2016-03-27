@@ -21,7 +21,7 @@ function ajaxData(page){
 				$('<th>').html(item.mender).appendTo($tr);
 				$('<th>').html(item.isPublish==1?"已发布":"未发布").appendTo($tr);
 				$('<th>').addClass('version').html(item.version).appendTo($tr);
-				$('<th>').append($('<a>').html('编辑').attr('href','/admin/editors?id='+item.id+"&version="+item.version)).appendTo($tr);
+				$('<th>').append($('<a>').html('编辑').attr('href','/admin/editors?id='+item.id)).appendTo($tr);
 				$('<th>').append($('<a>').html('删除').attr('href','javascript:;').click(function(){
 					if(confirm("确认删除")){
 						$.ajax({
