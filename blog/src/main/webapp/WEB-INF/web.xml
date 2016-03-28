@@ -35,7 +35,7 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>CommonFilter</filter-name>
-		<filter-class>com.wck.blog.filter.CommonFilter</filter-class>
+		<filter-class>com.wenchukai.blog.filter.CommonFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>CommonFilter</filter-name>
@@ -85,7 +85,7 @@
 	<!-- 静态文件 交给default servlet 重写servlet以拦截请求信息 -->
 	<servlet>
 		<servlet-name>expandDefaultServlet</servlet-name>
-		<servlet-class>com.wck.tracker.servlets.ExpandDefaultServlet</servlet-class>
+		<servlet-class>com.wenchukai.tracker.servlets.ExpandDefaultServlet</servlet-class>
 		<init-param>
 			<param-name>debug</param-name>
 			<param-value>0</param-value>

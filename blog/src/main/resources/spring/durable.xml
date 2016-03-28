@@ -28,9 +28,9 @@
 	</bean>
 	<bean id="session" factory-bean="sessionFactory" factory-method="openSession"
 		scope="singleton" />
-	<bean id="sessionFactory" class="com.wck.durable.factory.SessionFactoryLogProxy" />
+	<bean id="sessionFactory" class="com.wenchukai.durable.factory.SessionFactoryLogProxy" />
 	<bean id="sessionNoLog" factory-bean="sessionFactoryNoLog"
 		factory-method="openSession" scope="singleton" />
-	<bean id="sessionFactoryNoLog" class="com.wck.durable.factory.SessionFactory" />
+	<bean id="sessionFactoryNoLog" class="com.wenchukai.durable.factory.SessionFactory" />
 
 </beans>

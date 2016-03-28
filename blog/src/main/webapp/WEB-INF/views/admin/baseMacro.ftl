@@ -13,15 +13,10 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="http://apps.bdimg.com/libs/jqueryui/1.9.2/themes/trontastic/jquery-ui.css" rel="stylesheet"/>
     
-    <#--
-    <link href="${staticsPath}/global/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="${staticsPath}/global/css/jquery-ui.css" rel="stylesheet"/>
-    -->
-    
     <!-- styles -->
     <link href="${staticsPath}/admin/css/styles.css" rel="stylesheet"/>
     <#list basecss as c>
-	<link href="${staticsPath}${c}"  rel="stylesheet"/>
+	<link href="<#if !j?ends_with('?')>${staticsPath}<#else>/statics</#if>${c}"  rel="stylesheet"/>
 	</#list>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

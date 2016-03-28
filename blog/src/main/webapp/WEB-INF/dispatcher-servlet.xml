@@ -14,12 +14,12 @@
         http://www.springframework.org/schema/tx 
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	<bean id="AuthorityAspect" class="com.wck.blog.aop.AuthorityAspect"/>
-	<bean id="CacheAspect" class="com.wck.cache.aop.CacheAspect"/>
+	<bean id="AuthorityAspect" class="com.wenchukai.blog.aop.AuthorityAspect"/>
+	<bean id="CacheAspect" class="com.wenchukai.cache.aop.CacheAspect"/>
 	<!-- <mvc:annotation-driven /> -->
 	<!--注解说明 <context:annotation-config /> -->
 	<mvc:annotation-driven />
-	<context:component-scan base-package="com.wck.blog.controller" />
+	<context:component-scan base-package="com.wenchukai.blog.controller" />
 	<mvc:default-servlet-handler />
 	<!-- 文件上传表单的视图解析器 -->
 	<bean id="multipartResolver"
@@ -79,7 +79,7 @@
 		</property>
 	</bean>
 	<!-- 自定义freemarker 日期解析tag -->
-	<bean id="dateTimeTemplate" class="com.wck.freemaker.template.DateTimeTemplate"></bean>
+	<bean id="dateTimeTemplate" class="com.wenchukai.freemaker.template.DateTimeTemplate"></bean>
 	
 	<!-- 输出对象转JSON支持 -->
 	<bean id="mappingJacksonHttpMessageConverter"
@@ -102,12 +102,12 @@
 		<mvc:interceptor>
 			<!-- 默认所有的请求都进行拦截 -->
 			<mvc:mapping path="/**" />
-			<bean class="com.wck.blog.interceptor.TrackerInterceptor"></bean>
+			<bean class="com.wenchukai.blog.interceptor.TrackerInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**" />
 			<mvc:exclude-mapping path="/admin/signIn" />
-			<bean class="com.wck.blog.interceptor.AdminSignInInterceptor"></bean>
+			<bean class="com.wenchukai.blog.interceptor.AdminSignInInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 </beans>

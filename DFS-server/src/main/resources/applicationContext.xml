@@ -10,7 +10,7 @@
      http://www.springframework.org/schema/aop 
      http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 	<context:component-scan base-package="com.github.tobato" />
-	<context:component-scan base-package="com.wck.dfs" />
+	<context:component-scan base-package="com.wenchukai.dfs" />
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
