@@ -3,7 +3,12 @@ package com.wenchukai.blog.model;
 import java.util.Date;
 
 public class ArticleType extends BaseModel {
-    private Integer id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2144165591405801290L;
+
+	private Integer id;
 
     private String typeName;
 

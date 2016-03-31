@@ -14,8 +14,8 @@ import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
 import org.apache.ibatis.type.MappedTypes;
 
-@MappedTypes({ LocalDateTime.class })
-@MappedJdbcTypes({ JdbcType.TIMESTAMP })
+@MappedJdbcTypes(value = { JdbcType.TIMESTAMP }, includeNullJdbcType = true)
+@MappedTypes(java.time.LocalDateTime.class)
 public class LocalDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> {
 
 	@Override

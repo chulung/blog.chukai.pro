@@ -6,7 +6,6 @@ import java.util.Optional;
 import com.github.pagehelper.PageInfo;
 import com.wenchukai.blog.dto.Blog;
 import com.wenchukai.blog.dto.CommonInfo;
-import com.wenchukai.blog.model.Article;
 
 public interface BlogService {
 	/**

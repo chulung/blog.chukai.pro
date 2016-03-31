@@ -1,6 +1,6 @@
-package com.wenchukai.blog.service;
+package com.wenchukai.tracker.service;
 
-import com.wenchukai.tracker.bean.VisitorInfo;
+import com.wenchukai.tracker.model.VisitorInfo;
 
 public interface VisitorInfoService {
 

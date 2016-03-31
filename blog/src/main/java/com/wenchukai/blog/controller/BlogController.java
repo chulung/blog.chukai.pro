@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageInfo;
+import com.wenchukai.blog.dto.Blog;
 import com.wenchukai.blog.dto.CommonInfo;
 import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.service.ArticleService;
@@ -37,7 +39,7 @@ public class BlogController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@Cache(key = "blog-index", timeToLive = 30)
+//	@Cache(key = "blog-index", timeToLive = 30)
 	@RequestMapping(value = { "/", "/index.html", "/blog" }, method = RequestMethod.GET)
 	public ModelAndView getIndex() {
 		return getBlogPage(1, null);
@@ -74,10 +76,10 @@ public class BlogController extends BaseController {
 	@RequestMapping(value = "/blog/page/{page}", method = RequestMethod.GET)
 	public ModelAndView getBlogPage(@PathVariable Integer page, @RequestParam(required = false) Integer typeId) {
 		Optional<Integer> ofNullable = Optional.ofNullable(page);
-		int pageCount = blogService.getBlogPageCount(typeId);
-		return modelAndView("index").addObject("blogs", blogService.findNewBlog(ofNullable, typeId))
+		PageInfo<Blog> pageInfo = blogService.selectBySelectiveForBlog(ofNullable, typeId);
+		return modelAndView("index").addObject("blogs", pageInfo.getList())
 				.addObject("page", ofNullable.orElse(1)).addObject("prePage", page > 1 ? page - 1 : null)
-				.addObject("nextPage", page < pageCount ? page + 1 : null).addObject("typeId", typeId);
+				.addObject("nextPage", page < pageInfo.getTotal() ? page + 1 : null).addObject("typeId", typeId);
 
 	}
 

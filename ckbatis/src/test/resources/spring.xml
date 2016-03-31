@@ -17,13 +17,11 @@
 		<jdbc:script location="classpath:database-schema-bar.sql" />
 	</jdbc:embedded-database>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	<!-- 数据源 -->
+		<!-- 数据源 -->
 		<property name="dataSource" ref="dataSourceBar" />
 	</bean>
-
 	<!-- 扫描加载mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.wenchukai.**.mapper" />
 	</bean>
-
 </beans>

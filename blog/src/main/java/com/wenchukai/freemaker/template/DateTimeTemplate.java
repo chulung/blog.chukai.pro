@@ -17,9 +17,9 @@ public class DateTimeTemplate implements TemplateDirectiveModel {
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body)
 			throws TemplateException, IOException {
 		Object paramValue = params.get("time");
-		String date = paramValue.toString();
+		String date = paramValue==null?"":paramValue.toString();
 		Writer out = env.getOut();
-		out.write(date.replace("T", " "));
+		out.write(date.replace('T', ' '));
 		out.flush();
 	}
 

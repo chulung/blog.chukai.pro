@@ -1,7 +1,8 @@
 package com.wenchukai.blog.mapper;
 
-import com.wenchukai.blog.model.User;
 import java.util.List;
+
+import com.wenchukai.blog.model.User;
 
 public interface UserMapper {
     int insert(User record);

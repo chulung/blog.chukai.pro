@@ -1,19 +1,34 @@
-package com.wenchukai.blog.model;
+package com.wenchukai.tracker.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
+import com.wenchukai.blog.model.BaseModel;
 
 public class VisitorInfo extends BaseModel {
-    private Integer id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3076762908203898932L;
+
+	private Integer id;
 
     private String ip;
 
     private String userAgent;
 
-    private Date accessTime;
+    private LocalDateTime accessTime;
 
     private String accessUrl;
 
-    public Integer getId() {
+    public VisitorInfo(String ip, String userAgent, LocalDateTime accessTime, String accessUrl) {
+		super();
+		this.ip = ip;
+		this.userAgent = userAgent;
+		this.accessTime = accessTime;
+		this.accessUrl = accessUrl;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -37,11 +52,11 @@ public class VisitorInfo extends BaseModel {
         this.userAgent = userAgent == null ? null : userAgent.trim();
     }
 
-    public Date getAccessTime() {
+    public LocalDateTime getAccessTime() {
         return accessTime;
     }
 
-    public void setAccessTime(Date accessTime) {
+    public void setAccessTime(LocalDateTime accessTime) {
         this.accessTime = accessTime;
     }
 

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.Page;
@@ -26,6 +27,7 @@ import com.wenchukai.util.NumberUtil;
 @Service
 public class BlogServiceImpl extends BaseService implements BlogService {
 	private static final int PAGE_SIZE = 10;
+	@Autowired
 	private ArticleMapper articleMapper;
 
 	public PageInfo<Blog> selectBySelectiveForBlog(Optional<Integer> startPage, Integer typeId) {

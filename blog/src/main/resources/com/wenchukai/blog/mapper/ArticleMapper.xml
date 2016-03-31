@@ -4,8 +4,10 @@
 	<resultMap id="BaseResultMap" type="com.wenchukai.blog.model.Article">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
-		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"
+			typeHandler="com.wenchukai.ckbatis.typehandler.LocalDateTimeTypeHandler" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" 
+			typeHandler="com.wenchukai.ckbatis.typehandler.LocalDateTimeTypeHandler" />
 		<result column="author" property="author" jdbcType="VARCHAR" />
 		<result column="user_Id" property="userId" jdbcType="INTEGER" />
 		<result column="mender" property="mender" jdbcType="VARCHAR" />
@@ -66,10 +68,10 @@
 				#{title,jdbcType=VARCHAR},
 			</if>
 			<if test="createTime != null">
-				#{createTime,jdbcType=TIMESTAMP},
+				#{createTime,jdbcType=TIMESTAMP,typeHandler=com.wenchukai.ckbatis.typehandler.LocalDateTimeTypeHandler},
 			</if>
 			<if test="updateTime != null">
-				#{updateTime,jdbcType=TIMESTAMP},
+				#{updateTime,jdbcType=TIMESTAMP,typeHandler=com.wenchukai.ckbatis.typehandler.LocalDateTimeTypeHandler},
 			</if>
 			<if test="author != null">
 				#{author,jdbcType=VARCHAR},
@@ -105,9 +107,9 @@
 		article
 		set title = #{title,jdbcType=VARCHAR},
 		create_time =
-		#{createTime,jdbcType=TIMESTAMP},
+		#{createTime,jdbcType=TIMESTAMP,typeHandler=com.wenchukai.ckbatis.typehandler.LocalDateTimeTypeHandler},
 		update_time =
-		#{updateTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP,typeHandler=com.wenchukai.ckbatis.typehandler.LocalDateTimeTypeHandler},
 		author = #{author,jdbcType=VARCHAR},
 		user_Id = #{userId,jdbcType=INTEGER},
 		mender =
@@ -121,7 +123,7 @@
 		context =
 		#{context,jdbcType=LONGVARCHAR}
 		where id = #{id,jdbcType=INTEGER}
-	</update>
+	</update> 
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select id, title, create_time, update_time, author,
@@ -156,12 +158,12 @@
 		article
 		where type_id!=4
 		<if test="typeId != null">
-			and type_id= #{typeId,jdbcType=INTEGER},
+			and type_id= #{typeId,jdbcType=INTEGER}
 		</if>
 		<if test="createTimeStart != null and createTimeEnd!=null">
 			and create_time between
-			#{createTimeStart,jdbcType=TIMESTAMP} and
-			#{createTimeEnd,jdbcType=TIMESTAMP}
+			#{createTimeStart,jdbcType=TIMESTAMP,typeHandler=com.wenchukai.ckbatis.typehandler.LocalDateTimeTypeHandler} and
+			#{createTimeEnd,jdbcType=TIMESTAMP,typeHandler=com.wenchukai.ckbatis.typehandler.LocalDateTimeTypeHandler}
 		</if>
 	</select>
 </mapper>

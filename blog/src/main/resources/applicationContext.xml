@@ -12,7 +12,6 @@
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<bean id="AuthorityAspect" class="com.wenchukai.blog.aop.AuthorityAspect"/>
 	<bean id="CacheAspect" class="com.wenchukai.cache.aop.CacheAspect"/>
-	<bean id="TranscationAspect" class="com.wenchukai.durable.transaction.aop.TranscationAspect"/>
 	<!-- 使用annotation注解方式配置 -->
 		<context:property-placeholder
 		location="file:${catalina.home}/conf/jdbc.properties" />

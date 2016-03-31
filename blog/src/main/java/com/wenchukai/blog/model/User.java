@@ -1,7 +1,12 @@
 package com.wenchukai.blog.model;
 
 public class User extends BaseModel {
-    private Integer id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6451695282340873011L;
+
+	private Integer id;
 
     private String userName;
 

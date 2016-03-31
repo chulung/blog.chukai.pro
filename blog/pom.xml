@@ -50,6 +50,11 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${aspect.version}</version>
@@ -95,11 +100,6 @@
 			<groupId>org.apache.geronimo.ext.tomcat</groupId>
 			<artifactId>catalina</artifactId>
 			<version>7.0.39.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.commonjava.googlecode.markdown4j</groupId>
-			<artifactId>markdown4j</artifactId>
-			<version>2.2-cj-1.0</version>
 		</dependency>
 		<!-- tomcat已自带 scope设为provided -->
 		<dependency>

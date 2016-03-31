@@ -1,6 +1,6 @@
 package com.wenchukai.tracker;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.concurrent.LinkedTransferQueue;
 import java.util.concurrent.TransferQueue;
 
@@ -11,8 +11,8 @@ import org.apache.catalina.Globals;
 import org.springframework.stereotype.Component;
 
 import com.wenchukai.bean.BaseComponent;
-import com.wenchukai.blog.service.VisitorInfoService;
-import com.wenchukai.tracker.bean.VisitorInfo;
+import com.wenchukai.tracker.model.VisitorInfo;
+import com.wenchukai.tracker.service.VisitorInfoService;
 import com.wenchukai.util.NetUtil;
 import com.wenchukai.util.StringUtil;
 
@@ -49,7 +49,7 @@ public class Tracker extends BaseComponent {
 		try {
 			String userAgent = request.getHeader("User-Agent");
 			String ip = NetUtil.getIpAddr(request);
-			Date accessTime = new Date();
+			LocalDateTime accessTime = LocalDateTime.now();
 			String accessUrl = request.getRequestURL().toString()
 					+ (StringUtil.isEmpty(request.getQueryString()) ? "" : ("?" + request.getQueryString()));
 			accessUrl = request.getAttribute(Globals.DISPATCHER_REQUEST_PATH_ATTR).toString();

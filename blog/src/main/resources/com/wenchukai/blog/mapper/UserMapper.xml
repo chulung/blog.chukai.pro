@@ -29,18 +29,17 @@
 	</insert>
 	<update id="updateByPrimaryKey" parameterType="com.wenchukai.blog.model.User">
 		update user
-		set
-		user_name = #{userName,jdbcType=VARCHAR},
-		password =
-		#{password,jdbcType=VARCHAR},
-		nick_Name = #{nickName,jdbcType=VARCHAR},
-		authority = #{authority,jdbcType=INTEGER},
-		session_Id =
-		#{sessionId,jdbcType=VARCHAR},
-		remember_Login =
-		#{rememberLogin,jdbcType=INTEGER}
-		
-		where id = #{id,jdbcType=INTEGER}
+		<set>
+			<if test="sessionId">
+				session_id =
+				#{sessionId,jdbcType=VARCHAR},
+			</if>
+			<if test="rememberLogin">
+				remember_Login =
+				#{rememberLogin,jdbcType=INTEGER}
+			</if>
+		</set>
+	where id = #{id,jdbcType=INTEGER}
 	</update>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">

@@ -1,7 +1,8 @@
 package com.wenchukai.blog.mapper;
 
-import com.wenchukai.blog.model.ArticleType;
 import java.util.List;
+
+import com.wenchukai.blog.model.ArticleType;
 
 public interface ArticleTypeMapper {
     int insert(ArticleType record);

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.wenchukai.blog.dto.PageIn;
@@ -43,7 +44,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	}
 
 	@Override
-	// @Transaction
+	@Transactional
 	public boolean update(ArticleDraft articleDraft) {
 		User user = this.webSessionSupport.getCurUser().get();
 		// 备份老版本
@@ -91,6 +92,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public void insert(ArticleDraft articleDraft) {
 		User user = this.webSessionSupport.getCurUser().get();
 		articleDraft.setUpdateTime(LocalDateTime.now());
@@ -125,6 +127,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteArticleDraft(Integer id) {
 		ArticleDraft articleDraft = this.articleDraftMapper.selectByPrimaryKey(id);
 		if (articleDraft != null) {
