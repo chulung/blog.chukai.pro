@@ -19,8 +19,4 @@ public class PageIn {
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
-	@Override
-	public String toString() {
-		return "limit "+page+","+pageSize;
-	}
 }

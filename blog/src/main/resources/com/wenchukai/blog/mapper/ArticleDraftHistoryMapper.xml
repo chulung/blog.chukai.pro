@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenchukai.blog.mapper.ArticleDraftHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.wenchukai.blog.model.ArticleDraftHistory" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="article_Id" property="articleId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="mender" property="mender" jdbcType="VARCHAR" />
+    <result column="is_publish" property="isPublish" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="chang_log" property="changLog" jdbcType="VARCHAR" />
+    <result column="context" property="context" jdbcType="LONGVARCHAR" />
+    <result column="html_context" property="htmlContext" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.wenchukai.blog.model.ArticleDraftHistory" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into article_draft_history (id, article_Id, title, 
+      create_time, update_time, author, 
+      user_id, mender, is_publish, 
+      type_id, is_delete, version, 
+      chang_log, context, html_context
+      )
+    values (#{id,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{author,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{mender,jdbcType=VARCHAR}, #{isPublish,jdbcType=INTEGER}, 
+      #{typeId,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, 
+      #{changLog,jdbcType=VARCHAR}, #{context,jdbcType=LONGVARCHAR}, #{htmlContext,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertToArticleDraftHistory" >
+  	insert into article_draft_history select * from article_draft where id=#{id}
+  </insert>
+
+</mapper>

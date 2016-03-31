@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wenchukai.blog.annotation.Authority;
-import com.wenchukai.blog.bean.ArticleDraft;
-import com.wenchukai.blog.bean.User;
 import com.wenchukai.blog.enumerate.AuthorityEnum;
+import com.wenchukai.blog.model.ArticleDraft;
+import com.wenchukai.blog.model.User;
 import com.wenchukai.blog.service.ArticleService;
 import com.wenchukai.blog.service.UserService;
 
@@ -117,8 +117,11 @@ public class AdminController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/logout")
-	public ModelAndView logout() {
+	public ModelAndView logout(HttpServletResponse response) {
 		webSessionSupport.logout();
+		Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, "");
+		cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie
+		response.addCookie(cookie);
 		return modelAndView("/admin/signIn");
 	}
 }

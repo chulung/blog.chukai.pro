@@ -1,15 +1,20 @@
 package com.wenchukai.blog.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Article extends BaseModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1692088776366835421L;
+
 	private Integer id;
 
 	private String title;
 
-	private Date createTime;
+	private LocalDateTime createTime;
 
-	private Date updateTime;
+	private LocalDateTime updateTime;
 
 	private String author;
 
@@ -23,11 +28,30 @@ public class Article extends BaseModel {
 
 	private Integer version;
 
-	private Integer isdelete;
+	private Integer isDelete;
 
 	private String changLog;
 
 	private String context;
+	
+	private LocalDateTime createTimeStart;
+	private LocalDateTime createTimeEnd;
+
+	public LocalDateTime getCreateTimeStart() {
+		return createTimeStart;
+	}
+
+	public void setCreateTimeStart(LocalDateTime createTimeStart) {
+		this.createTimeStart = createTimeStart;
+	}
+
+	public LocalDateTime getCreateTimeEnd() {
+		return createTimeEnd;
+	}
+
+	public void setCreateTimeEnd(LocalDateTime createTimeEnd) {
+		this.createTimeEnd = createTimeEnd;
+	}
 
 	public Integer getId() {
 		return id;
@@ -45,19 +69,19 @@ public class Article extends BaseModel {
 		this.title = title == null ? null : title.trim();
 	}
 
-	public Date getCreateTime() {
+	public LocalDateTime getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(LocalDateTime createTime) {
 		this.createTime = createTime;
 	}
 
-	public Date getUpdateTime() {
+	public LocalDateTime getUpdateTime() {
 		return updateTime;
 	}
 
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(LocalDateTime updateTime) {
 		this.updateTime = updateTime;
 	}
 
@@ -109,12 +133,12 @@ public class Article extends BaseModel {
 		this.version = version;
 	}
 
-	public Integer getIsdelete() {
-		return isdelete;
+	public Integer getIsDelete() {
+		return isDelete;
 	}
 
-	public void setIsdelete(Integer isdelete) {
-		this.isdelete = isdelete;
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
 	}
 
 	public String getChangLog() {
@@ -133,13 +157,14 @@ public class Article extends BaseModel {
 		this.context = context == null ? null : context.trim();
 	}
 
+
 	public static Article of(ArticleDraft articleDraft) {
 		Article article = new Article();
 		article.setId(articleDraft.getArticleId());
 		article.setContext(articleDraft.getHtmlContext());
 		article.setUpdateTime(articleDraft.getUpdateTime());
 		article.setAuthor(articleDraft.getAuthor());
-		article.setIsdelete(articleDraft.getIsDelete());
+		article.setIsDelete(articleDraft.getIsDelete());
 		article.setMender(articleDraft.getMender());
 		article.setTitle(articleDraft.getTitle());
 		article.setUserId(articleDraft.getUserId());
@@ -147,5 +172,5 @@ public class Article extends BaseModel {
 		article.setTypeId(articleDraft.getTypeId());
 		article.setVersion(articleDraft.getVersion());
 		return article;
-	}
+}
 }

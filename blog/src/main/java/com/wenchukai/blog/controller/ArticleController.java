@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wenchukai.blog.bean.Article;
-import com.wenchukai.blog.bean.ArticleDraft;
+import com.wenchukai.blog.dto.PageIn;
+import com.wenchukai.blog.model.Article;
+import com.wenchukai.blog.model.ArticleDraft;
 import com.wenchukai.blog.service.ArticleService;
-import com.wenchukai.durable.bean.PageIn;
 
 /**
  * 基于rest风格的文章,草稿WS
@@ -42,7 +42,7 @@ public class ArticleController extends BaseController {
 		return modelAndView("article").addObject("article", article).addObject("typeId", article.getTypeId());
 	}
 	/**
-	 * 查询文章list
+	 * 查询文章list  
 	 * @param pageIn
 	 * @return
 	 */
@@ -58,9 +58,7 @@ public class ArticleController extends BaseController {
 	 */
 	@RequestMapping(value = "/articleDraft/{id}", method = RequestMethod.GET)
 	public @ResponseBody ArticleDraft getArticleDraft(@PathVariable Integer id) {
-		ArticleDraft articleDraft=new ArticleDraft();
-		articleDraft.setId(id);
-		return this.articleService.findArticleDraft(articleDraft);
+		return this.articleService.findArticleDraft(id);
 	}
 	
 	/**

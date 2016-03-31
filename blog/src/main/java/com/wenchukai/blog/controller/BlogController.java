@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wenchukai.blog.bean.Article;
 import com.wenchukai.blog.dto.CommonInfo;
+import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.service.ArticleService;
 import com.wenchukai.blog.service.BlogService;
 import com.wenchukai.cache.annotation.Cache;

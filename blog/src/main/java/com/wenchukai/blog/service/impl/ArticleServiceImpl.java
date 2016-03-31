@@ -1,7 +1,6 @@
 package com.wenchukai.blog.service.impl;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,16 +8,16 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.wenchukai.blog.dto.PageIn;
 import com.wenchukai.blog.enumerate.PublishStatusEnum;
 import com.wenchukai.blog.exception.GlobalMethodRuntimeExcetion;
 import com.wenchukai.blog.mapper.ArticleDraftHistoryMapper;
 import com.wenchukai.blog.mapper.ArticleDraftMapper;
 import com.wenchukai.blog.mapper.ArticleMapper;
+import com.wenchukai.blog.mapper.ArticleTypeMapper;
 import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.model.ArticleDraft;
-import com.wenchukai.blog.model.ArticleDraftHistory;
-import com.wenchukai.blog.model.ArticleDraftWithBLOBs;
 import com.wenchukai.blog.model.ArticleType;
 import com.wenchukai.blog.model.User;
 import com.wenchukai.blog.service.ArticleService;
@@ -36,6 +35,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	private ArticleDraftHistoryMapper articleDraftHistoryMapper;
 	@Autowired
 	private ArticleDraftMapper articleDraftMapper;
+	@Autowired
+	private ArticleTypeMapper articleTypeMapper;
 
 	public Article findArticleById(Integer id) {
 		return articleMapper.selectByPrimaryKey(id);
@@ -46,10 +47,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	public boolean update(ArticleDraft articleDraft) {
 		User user = this.webSessionSupport.getCurUser().get();
 		// 备份老版本
-		ArticleDraft oldDraft = articleDraftMapper.selectByPrimaryKey(articleDraft.getId());
-		articleDraftHistoryMapper.insert(oldDraft);
+		articleDraftHistoryMapper.insertToArticleDraftHistory(articleDraft.getId());
+		ArticleDraft oldDraft = this.articleDraftMapper.selectByPrimaryKey(articleDraft.getId());
 		articleDraft.setArticleId(oldDraft.getArticleId());
-		articleDraft.setUpdateTime(new Date());
+		articleDraft.setUpdateTime(LocalDateTime.now());
 		articleDraft.setMender(user.getNickName());
 		articleDraft.setVersion(oldDraft.getVersion() + 1);
 		// 判断是否发布文章
@@ -59,13 +60,13 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 				article.setUserId(user.getId());
 				article.setAuthor(user.getNickName());
 				article.setCreateTime(LocalDateTime.now());
-				Integer aId = session.insert(article);
+				Integer aId = articleMapper.insertSelective(article);
 				articleDraft.setArticleId(aId);
 			} else {
-				session.update(article);
+				articleMapper.updateByPrimaryKeySelective(article);
 			}
 		}
-		if (!session.update(articleDraft)) {
+		if (!(articleDraftMapper.updateByPrimaryKeySelective(articleDraft) == 1)) {
 			throw new GlobalMethodRuntimeExcetion("修改草稿失败");
 		}
 		return true;
@@ -74,24 +75,22 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	@Cache(key = "findAllArticleTypes", timeToLive = 30)
 	@Override
 	public List<ArticleType> findAllArticleTypes() {
-		return session.queryList(new ArticleType());
+		return articleTypeMapper.selectAll();
 	}
 
 	@Override
 	public List<Article> findArticlesListByAjax(PageIn pageIn) {
-		return session.queryList("select id,title,createTime,updateTime,author,version from Article " + pageIn,
-				Article.class);
+		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
+		return this.articleMapper.selectTileList();
 	}
 
 	@Override
 	public Integer findArticleDraftIdByArticleId(ArticleDraft articleDraft) {
-		ArticleDraft queryOne = session.queryOne("select id from ArticleDraft where articleId=? ", ArticleDraft.class,
-				articleDraft.getArticleId());
+		ArticleDraft queryOne = articleDraftMapper.selectByPrimaryKey(articleDraft.getId());
 		return queryOne != null ? queryOne.getId() : null;
 	}
 
 	@Override
-	@Transaction
 	public void insert(ArticleDraft articleDraft) {
 		User user = this.webSessionSupport.getCurUser().get();
 		articleDraft.setUpdateTime(LocalDateTime.now());
@@ -104,39 +103,39 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		if (PublishStatusEnum.PUBLISH.getCode().equals(articleDraft.getIsPublish())) {
 			Article article = Article.of(articleDraft);
 			Integer key = null;
-			if ((key = session.insert(article)) == null) {
+			if ((key = articleMapper.insertSelective(article)) == null) {
 				throw new RuntimeException("插入文章失败");
 			}
 			articleDraft.setArticleId(key.intValue());
 		}
-		if (session.insert(articleDraft) == null) {
+		if (this.articleDraftMapper.insertSelective(articleDraft) == null) {
 			throw new RuntimeException("插入草稿失败");
 		}
 	}
 
 	@Override
 	public List<ArticleDraft> findArticleDraftsListByAjax(PageIn pageIn) {
-		return session.queryList(
-				"select id,articleId,title,createTime,updateTime,author,mender,isPublish,version from ArticleDraft where isdelete=0 "
-						+ pageIn,
-				ArticleDraft.class);
+		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
+		return this.articleDraftMapper.selectTileList();
 	}
 
 	@Override
-	public ArticleDraft findArticleDraft(ArticleDraft articleDraft) {
-		return this.session.queryOne(articleDraft);
+	public ArticleDraft findArticleDraft(Integer id) {
+		return this.articleDraftMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
-	@Transaction
 	public void deleteArticleDraft(Integer id) {
-		ArticleDraft articleDraft = session.queryOne("select id,articleId,isPublish from ArticleDraft where id=?",
-				ArticleDraft.class, id);
+		ArticleDraft articleDraft = this.articleDraftMapper.selectByPrimaryKey(id);
 		if (articleDraft != null) {
 			if (PublishStatusEnum.PUBLISH.getCode().equals(articleDraft.getIsPublish())) {
-				session.execute("update Article set isdelete=1 where id=? ", articleDraft.getArticleId());
+				Article record = new Article();
+				record.setId(articleDraft.getArticleId());
+				record.setIsDelete(1);
 			}
-			session.execute("update ArticleDraft set isdelete=1 where id=? ", articleDraft.getId());
+			ArticleDraft record = new ArticleDraft();
+			record.setId(id);
+			record.setIsDelete(1);
 		}
 		throw new GlobalMethodRuntimeExcetion("草稿不存在,id=" + id);
 	}

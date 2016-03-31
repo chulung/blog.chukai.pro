@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenchukai.blog.mapper.ArticleMapper">
+	<resultMap id="BaseResultMap" type="com.wenchukai.blog.model.Article">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="author" property="author" jdbcType="VARCHAR" />
+		<result column="user_Id" property="userId" jdbcType="INTEGER" />
+		<result column="mender" property="mender" jdbcType="VARCHAR" />
+		<result column="type_id" property="typeId" jdbcType="INTEGER" />
+		<result column="derivation_Url" property="derivationUrl"
+			jdbcType="VARCHAR" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+		<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+		<result column="chang_log" property="changLog" jdbcType="VARCHAR" />
+		<result column="context" property="context" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<insert id="insertSelective" parameterType="com.wenchukai.blog.model.Article">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into article
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="title != null">
+				title,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="author != null">
+				author,
+			</if>
+			<if test="userId != null">
+				user_Id,
+			</if>
+			<if test="mender != null">
+				mender,
+			</if>
+			<if test="typeId != null">
+				type_id,
+			</if>
+			<if test="derivationUrl != null">
+				derivation_Url,
+			</if>
+			<if test="version != null">
+				version,
+			</if>
+			<if test="isDelete != null">
+				is_delete,
+			</if>
+			<if test="changLog != null">
+				chang_log,
+			</if>
+			<if test="context != null">
+				context,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="author != null">
+				#{author,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="mender != null">
+				#{mender,jdbcType=VARCHAR},
+			</if>
+			<if test="typeId != null">
+				#{typeId,jdbcType=INTEGER},
+			</if>
+			<if test="derivationUrl != null">
+				#{derivationUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=INTEGER},
+			</if>
+			<if test="isdelete != null">
+				#{is_delete,jdbcType=INTEGER},
+			</if>
+			<if test="changLog != null">
+				#{changLog,jdbcType=VARCHAR},
+			</if>
+			<if test="context != null">
+				#{context,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.wenchukai.blog.model.Article">
+		update
+		article
+		set title = #{title,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		author = #{author,jdbcType=VARCHAR},
+		user_Id = #{userId,jdbcType=INTEGER},
+		mender =
+		#{mender,jdbcType=VARCHAR},
+		type_id = #{typeId,jdbcType=INTEGER},
+		derivation_Url = #{derivationUrl,jdbcType=VARCHAR},
+		version =
+		#{version,jdbcType=INTEGER},
+		is_delete = #{isDelete,jdbcType=INTEGER},
+		chang_log = #{changLog,jdbcType=VARCHAR},
+		context =
+		#{context,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, title, create_time, update_time, author,
+		user_Id, mender,
+		type_id, derivation_Url,
+		version, is_delete, chang_log,
+		context
+		from article
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectTileList" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, title, create_time, update_time, author,
+		version
+		from article
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, title, create_time,
+		update_time, author, user_Id, mender,
+		type_id, derivation_Url,
+		version,
+		is_delete, chang_log, context
+		from article
+	</select>
+	<select id="selectBySelectiveForBlog" resultMap="BaseResultMap">
+		select id, title, create_time,
+		update_time, author, user_Id, mender,
+		type_id, derivation_Url,
+		version,
+		is_delete, chang_log, context
+		from
+		article
+		where type_id!=4
+		<if test="typeId != null">
+			and type_id= #{typeId,jdbcType=INTEGER},
+		</if>
+		<if test="createTimeStart != null and createTimeEnd!=null">
+			and create_time between
+			#{createTimeStart,jdbcType=TIMESTAMP} and
+			#{createTimeEnd,jdbcType=TIMESTAMP}
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenchukai.blog.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.wenchukai.blog.model.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="nick_Name" property="nickName" jdbcType="VARCHAR" />
+		<result column="authority" property="authority" jdbcType="INTEGER" />
+		<result column="session_Id" property="sessionId" jdbcType="VARCHAR" />
+		<result column="remember_Login" property="rememberLogin"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<insert id="insert" parameterType="com.wenchukai.blog.model.User">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into user (id, user_name, password,
+		nick_Name, authority,
+		session_Id,
+		remember_Login)
+		values (#{id,jdbcType=INTEGER},
+		#{userName,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{nickName,jdbcType=VARCHAR}, #{authority,jdbcType=INTEGER},
+		#{sessionId,jdbcType=VARCHAR},
+		#{rememberLogin,jdbcType=INTEGER})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.wenchukai.blog.model.User">
+		update user
+		set
+		user_name = #{userName,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
+		nick_Name = #{nickName,jdbcType=VARCHAR},
+		authority = #{authority,jdbcType=INTEGER},
+		session_Id =
+		#{sessionId,jdbcType=VARCHAR},
+		remember_Login =
+		#{rememberLogin,jdbcType=INTEGER}
+		
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, user_name, password, nick_Name, authority,
+		session_Id,
+		remember_Login
+		from user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, user_name, password,
+		nick_Name, authority, session_Id,
+		remember_Login
+		from user
+	</select>
+	<select id="selectOneBySelective" resultMap="BaseResultMap">
+		select id, user_name, password, nick_Name, authority, session_Id,
+		remember_Login
+		from user
+		<where>
+			<if test="id !=null">
+				id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="sessionId !=null">
+				session_Id = #{sessionId,jdbcType=VARCHAR}
+			</if>
+			<if test="rememberLogin !=null">
+				remember_Login = #{rememberLogin,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+</mapper>

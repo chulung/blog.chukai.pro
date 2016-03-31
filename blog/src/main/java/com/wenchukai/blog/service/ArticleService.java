@@ -27,7 +27,7 @@ public interface ArticleService {
 
 	List<ArticleDraft> findArticleDraftsListByAjax(PageIn pageIn);
 
-	ArticleDraft findArticleDraft(ArticleDraft articleDraft);
+	ArticleDraft findArticleDraft(Integer id);
 
 	void deleteArticleDraft(Integer id);
 }

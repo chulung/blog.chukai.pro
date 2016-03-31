@@ -14,7 +14,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.wenchukai.blog.enumerate.AuthorityEnum;
 import com.wenchukai.blog.mapper.UserMapper;
 import com.wenchukai.blog.model.User;
-import com.wenchukai.blog.model.UserExample;
 import com.wenchukai.cache.CCache;
 
 /**
@@ -78,9 +77,10 @@ public class WebSessionSupport {
 			user = cCache.get(getSessionCacheKey(sessionId));
 			if (user == null) {
 				// 缓存未登录则判断是否为记住登录信息的用户
-				UserExample userExample = new UserExample();
-				userExample.createCriteria().andSessionIdEqualTo(sessionId).andRememberLoginEqualTo(1);
-				user = userMapper.selectByExample(userExample).get(0);
+				user = new User();
+				user.setSessionId(sessionId);
+				user.setRememberLogin(1);
+				user = userMapper.selectOneBySelective(user);
 			}
 		}
 		return Optional.ofNullable(user);
@@ -154,12 +154,6 @@ public class WebSessionSupport {
 			return;
 		}
 		this.cCache.remove(getSessionCacheKey(sessionId));
-		User record=new User();
-		record.setRememberLogin(0);
-		record.setSessionId("");
-		UserExample example=new UserExample();
-		example.createCriteria().andSessionIdEqualTo(sessionId);
-		this.userMapper.updateByExampleSelective(record, example);
 	}
 
 	public Integer getCurUserAuthority() {

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD MApper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wenchukai.ckbatis.mapper.BarMapper">
+	<select id="executeBar" resultType="string">
+		select name from Bar  where id='1'
+	</select>
+</mapper>

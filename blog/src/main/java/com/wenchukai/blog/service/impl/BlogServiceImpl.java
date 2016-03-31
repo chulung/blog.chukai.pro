@@ -1,6 +1,6 @@
 package com.wenchukai.blog.service.impl;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -11,39 +11,33 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.wenchukai.blog.bean.Article;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wenchukai.blog.dto.ArticleFiling;
 import com.wenchukai.blog.dto.Blog;
 import com.wenchukai.blog.dto.CommonInfo;
+import com.wenchukai.blog.mapper.ArticleMapper;
+import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.service.BlogService;
 import com.wenchukai.cache.annotation.Cache;
-import com.wenchukai.durable.bean.Queryer;
 import com.wenchukai.util.NumberUtil;
 
 @Service
 public class BlogServiceImpl extends BaseService implements BlogService {
 	private static final int PAGE_SIZE = 10;
+	private ArticleMapper articleMapper;
 
-	public List<Blog> findNewBlog(Optional<Integer> page, Integer typeId) {
-		Article bean = new Article();
-		Queryer<Article> q = Queryer.of(bean).orderBy("CreateTime").desc().page(page.orElse(1))
-				.pageSize(PAGE_SIZE);
-		if (typeId == null) {
-			return convertToBlog(this.session.queryList("select * from article where isdelete=0 and typeId!=4 "
-					+ q.getOrderByString() + q.pagingString(), Article.class));
-		} else {
-			bean.setTypeId(typeId);
-			bean.setIsDelete(0);
-			return convertToBlog(session.queryList(q));
-		}
-	}
-
-	@Override
-	public int getBlogPageCount(Integer typeId) {
+	public PageInfo<Blog> selectBySelectiveForBlog(Optional<Integer> startPage, Integer typeId) {
 		Article bean = new Article();
 		bean.setTypeId(typeId);
 		bean.setIsDelete(0);
-		return (int) Math.ceil(this.session.count(Queryer.of(bean)) / Double.valueOf(PAGE_SIZE));
+		PageHelper.startPage(startPage.get(), PAGE_SIZE);
+		Page<Article> page = (Page<Article>) articleMapper.selectBySelectiveForBlog(bean);
+		PageInfo<Blog> info = new PageInfo<Blog>();
+		info.setList(convertToBlog(page));
+		info.setTotal(page.getTotal());
+		return info;
 	}
 
 	@Override
@@ -51,16 +45,10 @@ public class BlogServiceImpl extends BaseService implements BlogService {
 		if (NumberUtil.isRangeNotIn(year, 2014, 2993) && NumberUtil.isRangeNotIn(month, 1, 12)) {
 			return Collections.emptyList();
 		}
-		LocalDate start = LocalDate.of(year, month, 1);
-		LocalDate end = LocalDate.of(year, month, 1).plus(1, ChronoUnit.MONTHS);
-		return convertToBlog(session.queryList("select * from Article where typeId=1 and createTime between ? and ?",
-				Article.class, start, end));
-	}
-
-	private List<Blog> convertToBlog(List<Article> articles) {
-		return articles.stream().map(a -> {
-			return Blog.valueOf(a);
-		}).collect(Collectors.toList());
+		Article bean = new Article();
+		bean.setCreateTimeStart(LocalDateTime.of(year, month, 1, 0, 0));
+		bean.setCreateTimeEnd(LocalDateTime.of(year, month, 1, 0, 0).plus(1, ChronoUnit.MONTHS));
+		return convertToBlog(articleMapper.selectBySelectiveForBlog(bean));
 	}
 
 	@Override
@@ -69,8 +57,8 @@ public class BlogServiceImpl extends BaseService implements BlogService {
 		// 归档信息
 		List<ArticleFiling> list = new ArrayList<ArticleFiling>();
 		Article bean = new Article();
-		bean.setTypeId(1);
-		session.queryList(Queryer.of(bean)).stream().parallel().map(article -> article.getCreateTime())
+		bean.setIsDelete(0);
+		articleMapper.selectBySelectiveForBlog(bean).stream().parallel().map(article -> article.getCreateTime())
 				.map(localDate -> YearMonth.of(localDate.getYear(), localDate.getMonthValue()))
 				.collect(Collectors.groupingByConcurrent(yearMonth -> yearMonth, Collectors.counting()))
 				.forEach((k, v) -> {
@@ -80,5 +68,11 @@ public class BlogServiceImpl extends BaseService implements BlogService {
 			return o2.compareTo(o1);
 		});
 		return new CommonInfo(list);
+	}
+
+	public static List<Blog> convertToBlog(List<Article> articles) {
+		return articles.stream().map(a -> {
+			return Blog.valueOf(a);
+		}).collect(Collectors.toList());
 	}
 }
