@@ -11,10 +11,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.wenchukai.blog.bean.User;
 import com.wenchukai.blog.enumerate.AuthorityEnum;
+import com.wenchukai.blog.mapper.UserMapper;
+import com.wenchukai.blog.model.User;
+import com.wenchukai.blog.model.UserExample;
 import com.wenchukai.cache.CCache;
-import com.wenchukai.durable.core.Session;
 
 /**
  * web 会话 请求支持
@@ -28,7 +29,7 @@ public class WebSessionSupport {
 	@Resource
 	private CCache cCache;
 	@Resource
-	private Session session;
+	private UserMapper userMapper;
 
 	/**
 	 * 判断当前用户是否登陆
@@ -77,10 +78,9 @@ public class WebSessionSupport {
 			user = cCache.get(getSessionCacheKey(sessionId));
 			if (user == null) {
 				// 缓存未登录则判断是否为记住登录信息的用户
-				User user2 = new User();
-				user2.setSessionId(sessionId);
-				user2.setRememberLogin(1);
-				user = session.queryOne(user2);
+				UserExample userExample = new UserExample();
+				userExample.createCriteria().andSessionIdEqualTo(sessionId).andRememberLoginEqualTo(1);
+				user = userMapper.selectByExample(userExample).get(0);
 			}
 		}
 		return Optional.ofNullable(user);
@@ -154,7 +154,12 @@ public class WebSessionSupport {
 			return;
 		}
 		this.cCache.remove(getSessionCacheKey(sessionId));
-		session.execute("update user set sessionId=? and rememberLogin=? where sessionId=?", "", 0, sessionId);
+		User record=new User();
+		record.setRememberLogin(0);
+		record.setSessionId("");
+		UserExample example=new UserExample();
+		example.createCriteria().andSessionIdEqualTo(sessionId);
+		this.userMapper.updateByExampleSelective(record, example);
 	}
 
 	public Integer getCurUserAuthority() {

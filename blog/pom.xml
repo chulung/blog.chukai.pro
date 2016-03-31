@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.wenchukai</groupId>
-			<artifactId>durable</artifactId>
+			<artifactId>ckbatis</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>

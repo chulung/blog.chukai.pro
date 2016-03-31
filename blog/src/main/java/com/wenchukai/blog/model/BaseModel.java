@@ -1,4 +1,4 @@
-package com.wenchukai.blog.bean;
+package com.wenchukai.blog.model;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 import com.wenchukai.util.DateUtil;
 
-public class BaseBean implements Serializable{
+public class BaseModel implements Serializable{
 	/**
 	 * 
 	 */

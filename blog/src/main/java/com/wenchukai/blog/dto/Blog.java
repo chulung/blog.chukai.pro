@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wenchukai.blog.bean.Article;
-import com.wenchukai.blog.bean.BaseBean;
+import com.wenchukai.blog.bean.BaseModel;
 
 /**
  * 共用的blog dto
@@ -12,7 +12,7 @@ import com.wenchukai.blog.bean.BaseBean;
  * @author ChuKai
  *
  */
-public class Blog extends BaseBean {
+public class Blog extends BaseModel {
 	/**
 	 * 
 	 */

@@ -7,6 +7,9 @@
         <dependent-module archiveName="common-module-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common-module/common-module">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="fastdfs-client-1.25.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fastdfs_client/fastdfs_client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="dfs"/>
         <property name="java-output-path" value="/dfs/target/classes"/>
     </wb-module>

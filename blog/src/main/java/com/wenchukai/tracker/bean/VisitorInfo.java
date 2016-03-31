@@ -4,9 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Id;
 
-import com.wenchukai.blog.bean.BaseBean;
+import com.wenchukai.blog.bean.BaseModel;
 
-public class VisitorInfo extends BaseBean{
+public class VisitorInfo extends BaseModel{
 	/**
 	 * 
 	 */
