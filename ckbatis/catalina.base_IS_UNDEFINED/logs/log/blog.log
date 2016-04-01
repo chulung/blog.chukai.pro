@@ -1,178 +1,40 @@
-2016-04-01 00:50:40 [ main ] - [ INFO  ] [
+2016-04-01 12:30:53 [ main ] - [ INFO  ] [
 				o.s.t.c.support.DefaultTestContextBootstrapper : 259 ] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-2016-04-01 00:50:40 [ main ] - [ INFO  ] [
+2016-04-01 12:30:53 [ main ] - [ INFO  ] [
 				o.s.t.c.support.DefaultTestContextBootstrapper : 207 ] - Could not instantiate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [javax/servlet/ServletContext]
-2016-04-01 00:50:40 [ main ] - [ INFO  ] [
-				o.s.t.c.support.DefaultTestContextBootstrapper : 185 ] - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2f0a87b3, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@319b92f3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@fcd6521, org.springframework.test.context.transaction.TransactionalTestExecutionListener@27d415d9, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5c18298f]
-2016-04-01 00:50:40 [ main ] - [ INFO  ] [
+2016-04-01 12:30:53 [ main ] - [ INFO  ] [
+				o.s.t.c.support.DefaultTestContextBootstrapper : 185 ] - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@df27fae, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@24a35978, org.springframework.test.context.support.DirtiesContextTestExecutionListener@16f7c8c1, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2f0a87b3, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@319b92f3]
+2016-04-01 12:30:53 [ main ] - [ INFO  ] [
 				o.s.beans.factory.xml.XmlBeanDefinitionReader : 317 ] - Loading XML bean definitions from class path resource [spring.xml]
-2016-04-01 00:50:40 [ main ] - [ INFO  ] [
-				o.s.beans.factory.xml.XmlBeanDefinitionReader : 317 ] - Loading XML bean definitions from class path resource [mybatis-config.xml]
-2016-04-01 00:50:40 [ main ] - [ ERROR ] [
-				o.springframework.test.context.TestContextManager : 231 ] - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@319b92f3] to prepare test instance [com.wenchukai.ckbatis.dao.BarDaoTest@470f1802]
-java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:228) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:230) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:249) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:193) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252) [surefire-junit4-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141) [surefire-junit4-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112) [surefire-junit4-2.12.4.jar:2.12.4]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_73]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_73]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_73]
-	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_73]
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189) [surefire-api-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165) [surefire-booter-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85) [surefire-booter-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115) [surefire-booter-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75) [surefire-booter-2.12.4.jar:2.12.4]
-Caused by: org.springframework.beans.factory.parsing.BeanDefinitionParsingException: Configuration problem: Failed to import bean definitions from URL location [classpath:/mybatis-config.xml]
-Offending resource: class path resource [spring.xml]; nested exception is org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from class path resource [mybatis-config.xml]; nested exception is java.io.FileNotFoundException: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.beans.factory.parsing.FailFastProblemReporter.error(FailFastProblemReporter.java:70) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:85) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:76) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.importBeanDefinitionResource(DefaultBeanDefinitionDocumentReader.java:229) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseDefaultElement(DefaultBeanDefinitionDocumentReader.java:180) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:165) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.doRegisterBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:138) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.registerBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:94) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.registerBeanDefinitions(XmlBeanDefinitionReader.java:508) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:392) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:336) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:304) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:181) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:217) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:188) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:252) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadBeanDefinitions(AbstractGenericContextLoader.java:253) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:122) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:109) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:261) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	... 31 common frames omitted
-Caused by: org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from class path resource [mybatis-config.xml]; nested exception is java.io.FileNotFoundException: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:344) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:304) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:181) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:217) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.importBeanDefinitionResource(DefaultBeanDefinitionDocumentReader.java:223) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	... 50 common frames omitted
-Caused by: java.io.FileNotFoundException: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:172) ~[spring-core-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:330) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	... 54 common frames omitted
-2016-04-01 00:50:40 [ main ] - [ INFO  ] [
-				o.s.beans.factory.xml.XmlBeanDefinitionReader : 317 ] - Loading XML bean definitions from class path resource [spring.xml]
-2016-04-01 00:50:40 [ main ] - [ INFO  ] [
-				o.s.beans.factory.xml.XmlBeanDefinitionReader : 317 ] - Loading XML bean definitions from class path resource [mybatis-config.xml]
-2016-04-01 00:50:40 [ main ] - [ ERROR ] [
-				o.springframework.test.context.TestContextManager : 231 ] - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@319b92f3] to prepare test instance [com.wenchukai.ckbatis.dao.BarDaoTest@708f5957]
-java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:228) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:230) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:249) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:193) [spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252) [surefire-junit4-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141) [surefire-junit4-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112) [surefire-junit4-2.12.4.jar:2.12.4]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_73]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_73]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_73]
-	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_73]
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189) [surefire-api-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165) [surefire-booter-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85) [surefire-booter-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115) [surefire-booter-2.12.4.jar:2.12.4]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75) [surefire-booter-2.12.4.jar:2.12.4]
-Caused by: org.springframework.beans.factory.parsing.BeanDefinitionParsingException: Configuration problem: Failed to import bean definitions from URL location [classpath:/mybatis-config.xml]
-Offending resource: class path resource [spring.xml]; nested exception is org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from class path resource [mybatis-config.xml]; nested exception is java.io.FileNotFoundException: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.beans.factory.parsing.FailFastProblemReporter.error(FailFastProblemReporter.java:70) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:85) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.parsing.ReaderContext.error(ReaderContext.java:76) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.importBeanDefinitionResource(DefaultBeanDefinitionDocumentReader.java:229) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseDefaultElement(DefaultBeanDefinitionDocumentReader.java:180) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:165) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.doRegisterBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:138) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.registerBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:94) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.registerBeanDefinitions(XmlBeanDefinitionReader.java:508) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:392) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:336) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:304) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:181) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:217) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:188) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:252) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadBeanDefinitions(AbstractGenericContextLoader.java:253) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:122) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:109) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:261) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116) ~[spring-test-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	... 31 common frames omitted
-Caused by: org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from class path resource [mybatis-config.xml]; nested exception is java.io.FileNotFoundException: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:344) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:304) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:181) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:217) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.importBeanDefinitionResource(DefaultBeanDefinitionDocumentReader.java:223) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	... 50 common frames omitted
-Caused by: java.io.FileNotFoundException: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:172) ~[spring-core-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:330) ~[spring-beans-4.2.3.RELEASE.jar:4.2.3.RELEASE]
-	... 54 common frames omitted
-2016-04-01 00:51:15 [ main ] - [ INFO  ] [
-				o.s.t.c.support.DefaultTestContextBootstrapper : 259 ] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-2016-04-01 00:51:15 [ main ] - [ INFO  ] [
-				o.s.t.c.support.DefaultTestContextBootstrapper : 207 ] - Could not instantiate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [javax/servlet/ServletContext]
-2016-04-01 00:51:15 [ main ] - [ INFO  ] [
-				o.s.t.c.support.DefaultTestContextBootstrapper : 185 ] - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2f0a87b3, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@319b92f3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@fcd6521, org.springframework.test.context.transaction.TransactionalTestExecutionListener@27d415d9, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5c18298f]
-2016-04-01 00:51:15 [ main ] - [ INFO  ] [
-				o.s.beans.factory.xml.XmlBeanDefinitionReader : 317 ] - Loading XML bean definitions from class path resource [spring.xml]
-2016-04-01 00:51:15 [ main ] - [ INFO  ] [
-				o.s.context.support.GenericApplicationContext : 577 ] - Refreshing org.springframework.context.support.GenericApplicationContext@2bea5ab4: startup date [Fri Apr 01 00:51:15 CST 2016]; root of context hierarchy
-2016-04-01 00:51:15 [ main ] - [ INFO  ] [
+2016-04-01 12:30:53 [ main ] - [ INFO  ] [
+				o.s.context.support.GenericApplicationContext : 577 ] - Refreshing org.springframework.context.support.GenericApplicationContext@6c9f5c0d: startup date [Fri Apr 01 12:30:53 CST 2016]; root of context hierarchy
+2016-04-01 12:30:53 [ main ] - [ INFO  ] [
 				o.s.j.datasource.embedded.EmbeddedDatabaseFactory : 185 ] - Starting embedded database: url='jdbc:hsqldb:mem:dataSourceBar', username='sa'
-2016-04-01 00:51:15 [ main ] - [ INFO  ] [
+2016-04-01 12:30:53 [ main ] - [ INFO  ] [
 				o.springframework.jdbc.datasource.init.ScriptUtils : 443 ] - Executing SQL script from class path resource [database-schema-bar.sql]
-2016-04-01 00:51:15 [ main ] - [ INFO  ] [
+2016-04-01 12:30:53 [ main ] - [ INFO  ] [
 				o.springframework.jdbc.datasource.init.ScriptUtils : 502 ] - Executed SQL script from class path resource [database-schema-bar.sql] in 3 ms.
-2016-04-01 00:51:15 [ Thread-0 ] - [ INFO  ] [
-				o.s.context.support.GenericApplicationContext : 957 ] - Closing org.springframework.context.support.GenericApplicationContext@2bea5ab4: startup date [Fri Apr 01 00:51:15 CST 2016]; root of context hierarchy
-2016-04-01 00:51:15 [ Thread-0 ] - [ INFO  ] [
+2016-04-01 12:30:54 [ Thread-0 ] - [ INFO  ] [
+				o.s.context.support.GenericApplicationContext : 957 ] - Closing org.springframework.context.support.GenericApplicationContext@6c9f5c0d: startup date [Fri Apr 01 12:30:53 CST 2016]; root of context hierarchy
+2016-04-01 12:30:54 [ Thread-0 ] - [ INFO  ] [
+				o.s.j.datasource.embedded.EmbeddedDatabaseFactory : 217 ] - Shutting down embedded database: url='jdbc:hsqldb:mem:dataSourceBar'
+2016-04-01 12:31:15 [ main ] - [ INFO  ] [
+				o.s.t.c.support.DefaultTestContextBootstrapper : 259 ] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2016-04-01 12:31:15 [ main ] - [ INFO  ] [
+				o.s.t.c.support.DefaultTestContextBootstrapper : 207 ] - Could not instantiate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [javax/servlet/ServletContext]
+2016-04-01 12:31:15 [ main ] - [ INFO  ] [
+				o.s.t.c.support.DefaultTestContextBootstrapper : 185 ] - Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@16f7c8c1, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@2f0a87b3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@319b92f3, org.springframework.test.context.transaction.TransactionalTestExecutionListener@fcd6521, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@27d415d9]
+2016-04-01 12:31:15 [ main ] - [ INFO  ] [
+				o.s.beans.factory.xml.XmlBeanDefinitionReader : 317 ] - Loading XML bean definitions from class path resource [spring.xml]
+2016-04-01 12:31:15 [ main ] - [ INFO  ] [
+				o.s.context.support.GenericApplicationContext : 577 ] - Refreshing org.springframework.context.support.GenericApplicationContext@76b10754: startup date [Fri Apr 01 12:31:15 CST 2016]; root of context hierarchy
+2016-04-01 12:31:15 [ main ] - [ INFO  ] [
+				o.s.j.datasource.embedded.EmbeddedDatabaseFactory : 185 ] - Starting embedded database: url='jdbc:hsqldb:mem:dataSourceBar', username='sa'
+2016-04-01 12:31:16 [ main ] - [ INFO  ] [
+				o.springframework.jdbc.datasource.init.ScriptUtils : 443 ] - Executing SQL script from class path resource [database-schema-bar.sql]
+2016-04-01 12:31:16 [ main ] - [ INFO  ] [
+				o.springframework.jdbc.datasource.init.ScriptUtils : 502 ] - Executed SQL script from class path resource [database-schema-bar.sql] in 3 ms.
+2016-04-01 12:31:16 [ Thread-0 ] - [ INFO  ] [
+				o.s.context.support.GenericApplicationContext : 957 ] - Closing org.springframework.context.support.GenericApplicationContext@76b10754: startup date [Fri Apr 01 12:31:15 CST 2016]; root of context hierarchy
+2016-04-01 12:31:16 [ Thread-0 ] - [ INFO  ] [
 				o.s.j.datasource.embedded.EmbeddedDatabaseFactory : 217 ] - Shutting down embedded database: url='jdbc:hsqldb:mem:dataSourceBar'

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenchukai.blog.mapper.ConfigMapper">
+	<resultMap id="BaseResultMap" type="com.wenchukai.blog.model.Config">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="key" property="key" jdbcType="VARCHAR" />
+		<result column="value" property="value" jdbcType="VARCHAR" />
+		<result column="comment" property="comment" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, key, value, comment
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from config
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<insert id="insertSelective" parameterType="com.wenchukai.blog.model.Config">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="key != null">
+				key,
+			</if>
+			<if test="value != null">
+				value,
+			</if>
+			<if test="comment != null">
+				comment,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=INTEGER},
+			<if test="key != null">
+				#{key,jdbcType=VARCHAR},
+			</if>
+			<if test="value != null">
+				#{value,jdbcType=VARCHAR},
+			</if>
+			<if test="comment != null">
+				#{comment,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.wenchukai.blog.model.Config">
+		update config
+		<set>
+			<if test="key != null">
+				key = #{key,jdbcType=VARCHAR},
+			</if>
+			<if test="value != null">
+				value = #{value,jdbcType=VARCHAR},
+			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.wenchukai.blog.model.Config">
+		update config
+		set key = #{key,jdbcType=VARCHAR},
+		value = #{value,jdbcType=VARCHAR},
+		comment = #{comment,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

@@ -18,7 +18,6 @@ import com.wenchukai.blog.dto.CommonInfo;
 import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.service.ArticleService;
 import com.wenchukai.blog.service.BlogService;
-import com.wenchukai.cache.annotation.Cache;
 
 /**
  * 博客首页Controller

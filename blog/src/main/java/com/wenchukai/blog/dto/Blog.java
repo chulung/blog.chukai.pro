@@ -3,8 +3,8 @@ package com.wenchukai.blog.dto;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.wenchukai.bean.BaseModel;
 import com.wenchukai.blog.model.Article;
-import com.wenchukai.blog.model.BaseModel;
 
 /**
  * 共用的blog dto

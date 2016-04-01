@@ -1,5 +1,7 @@
 package com.wenchukai.blog.model;
 
+import com.wenchukai.bean.BaseModel;
+
 public class User extends BaseModel {
     /**
 	 * 

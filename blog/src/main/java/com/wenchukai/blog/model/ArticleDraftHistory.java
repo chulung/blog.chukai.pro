@@ -2,6 +2,8 @@ package com.wenchukai.blog.model;
 
 import java.util.Date;
 
+import com.wenchukai.bean.BaseModel;
+
 public class ArticleDraftHistory extends BaseModel {
     /**
 	 * 

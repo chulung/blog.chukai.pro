@@ -2,7 +2,7 @@ package com.wenchukai.tracker.model;
 
 import java.time.LocalDateTime;
 
-import com.wenchukai.blog.model.BaseModel;
+import com.wenchukai.bean.BaseModel;
 
 public class VisitorInfo extends BaseModel {
     /**

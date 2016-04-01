@@ -1,4 +1,4 @@
-package com.wenchukai.blog.model;
+package com.wenchukai.bean;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;

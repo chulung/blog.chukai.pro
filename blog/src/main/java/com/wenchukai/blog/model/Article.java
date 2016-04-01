@@ -2,6 +2,8 @@ package com.wenchukai.blog.model;
 
 import java.time.LocalDateTime;
 
+import com.wenchukai.bean.BaseModel;
+
 public class Article extends BaseModel {
 	/**
 	 * 

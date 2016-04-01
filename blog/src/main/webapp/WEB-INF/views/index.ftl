@@ -1,17 +1,14 @@
 <#include "WEB-INF/views/pageMacro.ftl">     
 <@page title="首页" js=["/blog/js/common.js"]>
 	<#list blogs as blog>
-		<div class="blog-post">
+		<div class="blog-post list_item">
 			<h3 class="blog-post-title"><span class="ico ico_type_${blog.typeId}"></span><a href="/article/${blog.id}">${blog.title}</a></h3>
-			<p class="blog-post-meta"><@DateTime time=blog.createTime/>,${blog.author}</p>
-			<article>${blog.summary}</article>
-			<#--
-			<div>
-			<a>评论(${blog.commentCount})</a>	<a>回复</a>
-				<div>
-				</div>
-			</div>
-			-->
+			<article class="summary">${blog.summary}</article>
+			<div class="article_manage">
+		        <span class="link_postdate"><@DateTime time=blog.createTime/></span>
+		        <span title="阅读次数" class="link_view"><a title="阅读次数" href="/article/${blog.id}">阅读</a>(0)</span>
+		        <span title="评论次数" class="link_comments"><a title="评论次数" href="article/${blog.id}#comments">评论</a>(0)</span>
+	    	</div>
 		</div>
 	</#list>
 	<nav>

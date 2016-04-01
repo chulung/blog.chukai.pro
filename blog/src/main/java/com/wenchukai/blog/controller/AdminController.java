@@ -16,6 +16,7 @@ import com.wenchukai.blog.model.ArticleDraft;
 import com.wenchukai.blog.model.User;
 import com.wenchukai.blog.service.ArticleService;
 import com.wenchukai.blog.service.UserService;
+import com.wenchukai.blog.util.WebSessionSupport;
 
 /**
  * admin后台
@@ -32,6 +33,8 @@ public class AdminController extends BaseController {
 
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private WebSessionSupport webSessionSupport;
 
 	/**
 	 * 首页
