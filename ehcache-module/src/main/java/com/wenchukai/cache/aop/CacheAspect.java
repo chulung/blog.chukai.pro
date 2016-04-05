@@ -10,7 +10,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
-import com.wenchukai.bean.BaseComponent;
+import com.wenchukai.base.BaseComponent;
 import com.wenchukai.cache.CCache;
 import com.wenchukai.cache.annotation.Cache;
 import com.wenchukai.cache.annotation.ClearCacheAfter;

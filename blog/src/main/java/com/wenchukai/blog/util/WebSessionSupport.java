@@ -4,20 +4,17 @@ import java.util.Optional;
 import java.util.UUID;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.wenchukai.blog.enumerate.AuthorityEnum;
 import com.wenchukai.blog.mapper.UserMapper;
 import com.wenchukai.blog.model.User;
 import com.wenchukai.cache.CCache;
+import com.wenchukai.util.NetUtil;
 
 /**
- * web 会话 请求支持
+ * web 会话 请求支持，用于登陆拦截
  * 
  * @author ChuKai
  *
@@ -51,18 +48,7 @@ public class WebSessionSupport {
 	 * @return
 	 */
 	public String getCurSessionId() {
-		HttpServletRequest httpServletRequest = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
-				.getRequest();
-		Cookie[] cookies = httpServletRequest.getCookies();
-		if (cookies == null) {
-			return null;
-		}
-		for (Cookie cookie : cookies) {
-			if (SESSION_ID.equals(cookie.getName())) {
-				return cookie.getValue();
-			}
-		}
-		return null;
+		return NetUtil.getCookieValue(SESSION_ID);
 	}
 
 	/**
@@ -80,7 +66,7 @@ public class WebSessionSupport {
 				user = new User();
 				user.setSessionId(sessionId);
 				user.setRememberLogin(1);
-				user = userMapper.selectOneBySelective(user);
+				user = userMapper.selectOne(user);
 			}
 		}
 		return Optional.ofNullable(user);

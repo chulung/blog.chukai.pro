@@ -2,14 +2,17 @@ package com.wenchukai.blog.model;
 
 import java.time.LocalDateTime;
 
-import com.wenchukai.bean.BaseModel;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import com.wenchukai.base.BaseModel;
 
 public class Article extends BaseModel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1692088776366835421L;
-
+	@Id
 	private Integer id;
 
 	private String title;
@@ -36,8 +39,28 @@ public class Article extends BaseModel {
 
 	private String context;
 	
+	@Transient
 	private LocalDateTime createTimeStart;
+	@Transient
 	private LocalDateTime createTimeEnd;
+	private Integer commentCount;
+	private Integer visitCount;
+
+	public Integer getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(Integer commentCount) {
+		this.commentCount = commentCount;
+	}
+
+	public Integer getVisitCount() {
+		return visitCount;
+	}
+
+	public void setVisitCount(Integer visitCount) {
+		this.visitCount = visitCount;
+	}
 
 	public LocalDateTime getCreateTimeStart() {
 		return createTimeStart;
@@ -159,7 +182,6 @@ public class Article extends BaseModel {
 		this.context = context == null ? null : context.trim();
 	}
 
-
 	public static Article of(ArticleDraft articleDraft) {
 		Article article = new Article();
 		article.setId(articleDraft.getArticleId());
@@ -174,5 +196,5 @@ public class Article extends BaseModel {
 		article.setTypeId(articleDraft.getTypeId());
 		article.setVersion(articleDraft.getVersion());
 		return article;
-}
+	}
 }

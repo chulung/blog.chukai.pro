@@ -80,7 +80,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	}
 
 	@Override
-	public List<Article> findArticlesListByAjax(PageIn pageIn) {
+	public List<Article> findArticleTitleList(PageIn pageIn) {
 		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
 		return this.articleMapper.selectTileList();
 	}
@@ -104,13 +104,13 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		articleDraft.setCreateTime(LocalDateTime.now());
 		if (PublishStatusEnum.PUBLISH.getCode().equals(articleDraft.getIsPublish())) {
 			Article article = Article.of(articleDraft);
-			Integer key = null;
-			if ((key = articleMapper.insertSelective(article)) == null) {
+			int key = 0;
+			if ((key = articleMapper.insertSelective(article)) <= 0) {
 				throw new RuntimeException("插入文章失败");
 			}
-			articleDraft.setArticleId(key.intValue());
+			articleDraft.setArticleId(key);
 		}
-		if (this.articleDraftMapper.insertSelective(articleDraft) == null) {
+		if (this.articleDraftMapper.insertSelective(articleDraft) > 0) {
 			throw new RuntimeException("插入草稿失败");
 		}
 	}

@@ -1,8 +1,7 @@
 package com.wenchukai.blog.mapper;
 
 import com.wenchukai.blog.model.Config;
+import com.wenchukai.ckbatis.mapper.BaseMapper;
 
-public interface ConfigMapper {
-    int insertSelective(Config record);
-    Config selectByPrimaryKey(Integer id);
+public interface ConfigMapper extends BaseMapper<Config>{
 }

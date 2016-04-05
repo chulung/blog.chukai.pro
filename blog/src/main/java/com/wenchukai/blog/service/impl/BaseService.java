@@ -1,6 +1,6 @@
 package com.wenchukai.blog.service.impl;
 
-import com.wenchukai.bean.BaseComponent;
+import com.wenchukai.base.BaseComponent;
 import com.wenchukai.util.StringUtil;
 
 public abstract class BaseService extends BaseComponent {

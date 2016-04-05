@@ -7,18 +7,17 @@ import java.util.concurrent.TransferQueue;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.catalina.Globals;
 import org.springframework.stereotype.Component;
 
-import com.wenchukai.bean.BaseComponent;
+import com.wenchukai.base.BaseComponent;
+import com.wenchukai.tracker.common.Constant;
 import com.wenchukai.tracker.model.VisitorInfo;
 import com.wenchukai.tracker.service.VisitorInfoService;
 import com.wenchukai.util.NetUtil;
-import com.wenchukai.util.StringUtil;
 
 @Component
 public class Tracker extends BaseComponent {
-	
+
 	private TransferQueue<VisitorInfo> visitorInfos = new LinkedTransferQueue<VisitorInfo>();
 	public static Tracker TRACKER;
 	@Resource
@@ -29,7 +28,7 @@ public class Tracker extends BaseComponent {
 		this.logger.info("traker  start");
 		new Thread(() -> {
 			try {
-				Thread.sleep(1000L);
+				Thread.sleep(10000);
 				while (true) {
 					this.visitorInfoService.insertVisitorInfo(this.visitorInfos.take());
 				}
@@ -47,13 +46,9 @@ public class Tracker extends BaseComponent {
 
 	public void putClientInfo(HttpServletRequest request) {
 		try {
-			String userAgent = request.getHeader("User-Agent");
-			String ip = NetUtil.getIpAddr(request);
-			LocalDateTime accessTime = LocalDateTime.now();
-			String accessUrl = request.getRequestURL().toString()
-					+ (StringUtil.isEmpty(request.getQueryString()) ? "" : ("?" + request.getQueryString()));
-			accessUrl = request.getAttribute(Globals.DISPATCHER_REQUEST_PATH_ATTR).toString();
-			visitorInfos.put(new VisitorInfo(ip, userAgent, accessTime, accessUrl));
+			visitorInfos.put(new VisitorInfo(NetUtil.getIpAddr(request), request.getHeader("User-Agent"),
+					LocalDateTime.now(), NetUtil.getAccessUrl(request), request.getServerName(),
+					NetUtil.getCookieValue(Constant.TUID)));
 		} catch (InterruptedException e) {
 			this.errorLog(e);
 		}

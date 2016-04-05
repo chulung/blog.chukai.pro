@@ -1,16 +1,24 @@
-$(".dropdown-toggle").on("click", function(e) {
-	$('.dropdown-toggle').dropdown();
-	$(".dropdown-menu").slideDown();
-});
-$('.dropdown-menu').mouseleave(function() {
-	$(".dropdown-menu").slideUp();
-});
-$("html,body").on("click", function(e) {
-	anp(e);
-});
-$(".nav-pills").children("li").on("click", function(e) {
-	$(".nav-pills").children("li").removeClass("active");
-	$(this).addClass("active");
+$(function() {
+
+	$(".dropdown-toggle").on("click", function(e) {
+		$('.dropdown-toggle').dropdown();
+		$(".dropdown-menu").slideDown();
+	});
+	$('.dropdown-menu').mouseleave(function() {
+		$(".dropdown-menu").slideUp();
+	});
+	$("html,body").on("click", function(e) {
+		anp(e);
+	});
+	$(".nav-pills").children("li").on("click", function(e) {
+		$(".nav-pills").children("li").removeClass("active");
+		$(this).addClass("active");
+	});
+	$.ajax({
+		url:"/tracker/userTracker",
+		data:{"referer":document.referer,"href":window.location.href},
+		type:"post"
+		});
 });
 var chickCount = 0;
 function anp(e) {
