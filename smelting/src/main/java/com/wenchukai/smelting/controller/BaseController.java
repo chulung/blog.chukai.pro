@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wenchukai.bean.BaseComponent;
+import com.wenchukai.base.BaseComponent;
 import com.wenchukai.smelting.util.WebSessionSupport;
 
 public class BaseController extends BaseComponent {

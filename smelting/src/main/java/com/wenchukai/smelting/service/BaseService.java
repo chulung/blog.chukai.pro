@@ -2,7 +2,7 @@ package com.wenchukai.smelting.service;
 
 import javax.annotation.Resource;
 
-import com.wenchukai.bean.BaseComponent;
+import com.wenchukai.base.BaseComponent;
 import com.wenchukai.durable.core.Session;
 import com.wenchukai.smelting.util.WebSessionSupport;
 import com.wenchukai.util.StringUtil;

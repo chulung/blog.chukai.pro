@@ -1,17 +1,7 @@
 package com.wenchukai.blog.mapper;
 
-import java.util.List;
-
 import com.wenchukai.blog.model.User;
+import com.wenchukai.ckbatis.mapper.BaseMapper;
 
-public interface UserMapper {
-    int insert(User record);
-
-    User selectByPrimaryKey(Integer id);
-
-    List<User> selectAll();
-
-    int updateByPrimaryKey(User record);
-
-	User selectOneBySelective(User record);
+public interface UserMapper extends BaseMapper<User> {
 }

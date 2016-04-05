@@ -15,7 +15,7 @@ import com.wenchukai.blog.model.ArticleType;
 public interface ArticleService {
 	Article findArticleById(Integer id);
 
-	List<Article> findArticlesListByAjax(PageIn pageIn);
+	List<Article> findArticleTitleList(PageIn pageIn);
 
 	boolean update(ArticleDraft articleDraft);
 

@@ -7,6 +7,8 @@
 		<result column="value" property="value" jdbcType="VARCHAR" />
 		<result column="comment" property="comment" jdbcType="VARCHAR" />
 	</resultMap>
+<<<<<<< HEAD
+=======
 	<sql id="Base_Column_List">
 		id, key, value, comment
 	</sql>
@@ -70,4 +72,5 @@
 		comment = #{comment,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
+>>>>>>> 2a7b14c6b39311582ab03e272a9c9a00c5a1c56c
 </mapper>

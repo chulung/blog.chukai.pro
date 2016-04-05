@@ -82,17 +82,17 @@ public class BlogController extends BaseController {
 
 	}
 
-	@RequestMapping("/articles.html")
+	@RequestMapping("/articles")
 	public ModelAndView getArticles() {
 		return getBlogPage(1, 1);
 	}
 
-	@RequestMapping("/essaies.html")
+	@RequestMapping("/essaies")
 	public ModelAndView getEssaies() {
 		return getBlogPage(1, 2);
 	}
 
-	@RequestMapping("/reprint.html")
+	@RequestMapping("/reprint")
 	public ModelAndView getReprint() {
 		return getBlogPage(1, 3);
 	}

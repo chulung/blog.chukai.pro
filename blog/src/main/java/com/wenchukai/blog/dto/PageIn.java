@@ -13,10 +13,10 @@ public class PageIn {
 	}
 
 	public int getPageSize() {
-		return pageSize;
+		return pageSize <= 0 ? 1 : page;
 	}
 
 	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
+		this.pageSize = pageSize <= 0 ? 20 : pageSize;
 	}
 }

@@ -21,6 +21,7 @@ import com.wenchukai.blog.service.ArticleService;
 
 /**
  * 基于rest风格的文章,草稿WS
+ * 
  * @author ChuKai
  *
  */
@@ -29,9 +30,10 @@ import com.wenchukai.blog.service.ArticleService;
 public class ArticleController extends BaseController {
 	@Autowired
 	private ArticleService articleService;
-	
+
 	/**
 	 * 根据id查询文章
+	 * 
 	 * @param id
 	 * @param request
 	 * @return
@@ -41,18 +43,21 @@ public class ArticleController extends BaseController {
 		Article article = articleService.findArticleById(id);
 		return modelAndView("article").addObject("article", article).addObject("typeId", article.getTypeId());
 	}
+
 	/**
-	 * 查询文章list  
+	 * 查询文章标题信息list
+	 * 
 	 * @param pageIn
 	 * @return
 	 */
-	@RequestMapping(value = "/articles", method = RequestMethod.GET)
+	@RequestMapping(value = "/article", method = RequestMethod.GET)
 	public @ResponseBody List<Article> getArticles(@ModelAttribute PageIn pageIn) {
-		return articleService.findArticlesListByAjax(pageIn);
+		return articleService.findArticleTitleList(pageIn);
 	}
-	
+
 	/**
 	 * 根据id查询草稿
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -60,9 +65,10 @@ public class ArticleController extends BaseController {
 	public @ResponseBody ArticleDraft getArticleDraft(@PathVariable Integer id) {
 		return this.articleService.findArticleDraft(id);
 	}
-	
+
 	/**
 	 * 保存修改草稿
+	 * 
 	 * @param articleDraft
 	 * @return
 	 */
@@ -71,9 +77,10 @@ public class ArticleController extends BaseController {
 		this.articleService.update(articleDraft);
 		return successMap();
 	}
-	
+
 	/**
 	 * 保存新建草稿
+	 * 
 	 * @param articleDraft
 	 * @return
 	 */
@@ -82,8 +89,10 @@ public class ArticleController extends BaseController {
 		this.articleService.insert(articleDraft);
 		return successMap();
 	}
+
 	/**
 	 * 删除草稿
+	 * 
 	 * @param articleDraft
 	 * @return
 	 */
@@ -92,13 +101,15 @@ public class ArticleController extends BaseController {
 		this.articleService.deleteArticleDraft(id);
 		return successMap();
 	}
+
 	/**
 	 * 分页查询草稿
+	 * 
 	 * @param pageIn
 	 * @return
 	 */
-	@RequestMapping(value = "/articleDrafts",method=RequestMethod.GET)
-	public @ResponseBody List<ArticleDraft> getArticleDrafts(@ModelAttribute PageIn pageIn){
+	@RequestMapping(value = "/articleDrafts", method = RequestMethod.GET)
+	public @ResponseBody List<ArticleDraft> getArticleDrafts(@ModelAttribute PageIn pageIn) {
 		return articleService.findArticleDraftsListByAjax(pageIn);
 	}
 }

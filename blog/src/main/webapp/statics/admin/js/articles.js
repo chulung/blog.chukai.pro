@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 function ajaxData(page) {
 	$.ajax({
-		url : '/articles',
+		url : '/article',
 		type : 'get',
 		data : {
 			'page' : page,

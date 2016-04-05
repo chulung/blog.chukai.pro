@@ -1,8 +1,10 @@
 package com.wenchukai.blog.model;
 
-import java.util.Date;
 
-import com.wenchukai.bean.BaseModel;
+import java.time.LocalDateTime;
+
+import com.wenchukai.base.BaseModel;
+
 
 public class Comments extends BaseModel {
     /**
@@ -18,7 +20,7 @@ public class Comments extends BaseModel {
 
     private String comment;
 
-    private Date createTime;
+    private LocalDateTime createTime;
 
     private String userName;
 
@@ -56,11 +58,11 @@ public class Comments extends BaseModel {
         this.comment = comment == null ? null : comment.trim();
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 

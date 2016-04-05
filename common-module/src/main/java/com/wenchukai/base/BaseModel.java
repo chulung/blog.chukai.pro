@@ -1,4 +1,4 @@
-package com.wenchukai.bean;
+package com.wenchukai.base;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;

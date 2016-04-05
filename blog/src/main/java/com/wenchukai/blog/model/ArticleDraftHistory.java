@@ -1,8 +1,9 @@
 package com.wenchukai.blog.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-import com.wenchukai.bean.BaseModel;
+import com.wenchukai.base.BaseModel;
+
 
 public class ArticleDraftHistory extends BaseModel {
     /**
@@ -16,9 +17,9 @@ public class ArticleDraftHistory extends BaseModel {
 
     private String title;
 
-    private Date createTime;
+    private LocalDateTime createTime;
 
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     private String author;
 
@@ -64,19 +65,19 @@ public class ArticleDraftHistory extends BaseModel {
         this.title = title == null ? null : title.trim();
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
 

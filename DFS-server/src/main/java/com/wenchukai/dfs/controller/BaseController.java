@@ -2,7 +2,7 @@ package com.wenchukai.dfs.controller;
 
 import org.springframework.ui.ModelMap;
 
-import com.wenchukai.bean.BaseComponent;
+import com.wenchukai.base.BaseComponent;
 
 public class BaseController extends BaseComponent {
 

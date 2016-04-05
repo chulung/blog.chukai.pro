@@ -11,6 +11,8 @@
 		<result column="user_name" property="userName" jdbcType="VARCHAR" />
 		<result column="email" property="email" jdbcType="VARCHAR" />
 	</resultMap>
+<<<<<<< HEAD
+=======
 	<sql id="Base_Column_List">
 		id, article_id, reply_id, comment, create_time, user_name,
 		email
@@ -108,4 +110,5 @@
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
+>>>>>>> 2a7b14c6b39311582ab03e272a9c9a00c5a1c56c
 </mapper>

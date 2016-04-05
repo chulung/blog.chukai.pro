@@ -53,7 +53,13 @@
 		</property>
 	</bean>
 	<!-- 扫描加载mapper -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.wenchukai.**.mapper" />
+		<property name="markerInterface" value="com.wenchukai.ckbatis.mapper.BaseMapper" />
+		<property name="properties">
+			<value>
+				IDENTITY= SELECT LAST_INSERT_ID()
+			</value>
+		</property>
 	</bean>
 </beans>

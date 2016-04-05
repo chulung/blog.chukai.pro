@@ -2,7 +2,7 @@ package com.wenchukai.cache;
 
 import org.springframework.stereotype.Component;
 
-import com.wenchukai.bean.BaseComponent;
+import com.wenchukai.base.BaseComponent;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;

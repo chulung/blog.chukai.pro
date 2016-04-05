@@ -22,7 +22,7 @@ public class UserServiceImpl extends BaseService implements UserService {
 		if (checkExistBlank(user) && checkExistBlank(user.getUserName(), user.getPassword())) {
 			return null;
 		}
-		user = userMapper.selectOneBySelective(user);
+		user = userMapper.selectOne(user);
 		if (user != null) {
 			// 回写sessionId
 			user.setSessionId(webSessionSupport.signIn(user));
@@ -30,7 +30,7 @@ public class UserServiceImpl extends BaseService implements UserService {
 			bean.setId(user.getId());
 			bean.setSessionId(user.getSessionId());
 			bean.setRememberLogin(user.getRememberLogin());
-			userMapper.updateByPrimaryKey(bean);
+			userMapper.updateByPrimaryKeySelective(bean);
 		}
 		return user;
 	}

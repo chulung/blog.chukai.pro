@@ -1,8 +1,7 @@
 package com.wenchukai.tracker.mapper;
 
+import com.wenchukai.ckbatis.mapper.BaseMapper;
 import com.wenchukai.tracker.model.VisitorInfo;
 
-public interface VisitorInfoMapper {
-    int insert(VisitorInfo record);
-
+public interface VisitorInfoMapper extends BaseMapper<VisitorInfo>{
 }

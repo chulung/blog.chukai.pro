@@ -1,6 +1,7 @@
 package com.wenchukai.blog.model;
 
-import com.wenchukai.bean.BaseModel;
+import com.wenchukai.base.BaseModel;
+
 
 public class Config extends BaseModel {
     /**

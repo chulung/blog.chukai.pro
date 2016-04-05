@@ -8,30 +8,4 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
-  <insert id="insert" parameterType="com.wenchukai.blog.model.ArticleType" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into article_type (id, type_name, create_time, 
-      update_time, user_id)
-    values (#{id,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.wenchukai.blog.model.ArticleType" >
-    update article_type
-    set type_name = #{typeName,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      user_id = #{userId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, type_name, create_time, update_time, user_id
-    from article_type
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select id, type_name, create_time, update_time, user_id
-    from article_type
-  </select>
 </mapper>

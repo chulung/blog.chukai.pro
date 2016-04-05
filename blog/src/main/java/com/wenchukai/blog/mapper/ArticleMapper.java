@@ -3,20 +3,10 @@ package com.wenchukai.blog.mapper;
 import java.util.List;
 
 import com.wenchukai.blog.model.Article;
+import com.wenchukai.ckbatis.mapper.BaseMapper;
 
-public interface ArticleMapper {
-	Integer insertSelective(Article record);
-
-	Article selectByPrimaryKey(Integer id);
-
-	List<Article> selectAll();
-
-	int updateByPrimaryKeySelective(Article record);
-
+public interface ArticleMapper extends BaseMapper<Article>{
 	List<Article> selectTileList();
-
-	List<Article> selectBySelective(Article record);
-
 	List<Article> selectBySelectiveForBlog(Article record);
 
 }
