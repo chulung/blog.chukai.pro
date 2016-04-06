@@ -58,13 +58,13 @@ public class Comments extends BaseModel {
 		this.comment = comment == null ? null : comment.trim();
 	}
 
-	public LocalDateTime getCreateTime() {
-		return createTime;
-	}
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
 
-	public void setCreateTime(LocalDateTime createTime) {
-		this.createTime = createTime;
-	}
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
 
 	public String getUserName() {
 		return userName;

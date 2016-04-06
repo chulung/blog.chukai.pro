@@ -66,21 +66,21 @@ public class ArticleDraftHistory extends BaseModel {
 		this.title = title == null ? null : title.trim();
 	}
 
-	public LocalDateTime getCreateTime() {
-		return createTime;
-	}
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
 
-	public void setCreateTime(LocalDateTime createTime) {
-		this.createTime = createTime;
-	}
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
 
-	public LocalDateTime getUpdateTime() {
-		return updateTime;
-	}
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
 
-	public void setUpdateTime(LocalDateTime updateTime) {
-		this.updateTime = updateTime;
-	}
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
 
 	public String getAuthor() {
 		return author;

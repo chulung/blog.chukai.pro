@@ -16,9 +16,9 @@ public class ArticleType extends BaseModel {
 
 	private String typeName;
 
-	private LocalDateTime createTime;
+    private LocalDateTime createTime;
 
-	private LocalDateTime updateTime;
+    private LocalDateTime updateTime;
 
 	private Integer userId;
 
@@ -38,21 +38,21 @@ public class ArticleType extends BaseModel {
 		this.typeName = typeName == null ? null : typeName.trim();
 	}
 
-	public LocalDateTime getCreateTime() {
-		return createTime;
-	}
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
 
-	public void setCreateTime(LocalDateTime createTime) {
-		this.createTime = createTime;
-	}
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
 
-	public LocalDateTime getUpdateTime() {
-		return updateTime;
-	}
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
 
-	public void setUpdateTime(LocalDateTime updateTime) {
-		this.updateTime = updateTime;
-	}
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
 
 	public Integer getUserId() {
 		return userId;
