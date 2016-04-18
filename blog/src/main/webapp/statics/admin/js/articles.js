@@ -8,7 +8,7 @@ function ajaxData(page) {
 		type : 'get',
 		data : {
 			'page' : page,
-			'pageSize' : '10'
+			'pageSize' : '20'
 		},
 		dataType : 'json',
 		success : function(data) {

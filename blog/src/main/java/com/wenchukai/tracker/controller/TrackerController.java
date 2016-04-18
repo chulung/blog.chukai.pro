@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wenchukai.blog.controller.BaseController;
+import com.wenchukai.common.base.BaseController;
 import com.wenchukai.tracker.model.UserTracker;
 import com.wenchukai.tracker.service.VisitorInfoService;
 

@@ -2,9 +2,11 @@ package com.wenchukai.blog.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.wenchukai.base.BaseModel;
+import com.wenchukai.common.base.BaseModel;
 
 public class Comments extends BaseModel {
 	/**
@@ -12,6 +14,7 @@ public class Comments extends BaseModel {
 	 */
 	private static final long serialVersionUID = -8033788015527222581L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private Integer articleId;
@@ -58,13 +61,13 @@ public class Comments extends BaseModel {
 		this.comment = comment == null ? null : comment.trim();
 	}
 
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
+	public LocalDateTime getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
+	public void setCreateTime(LocalDateTime createTime) {
+		this.createTime = createTime;
+	}
 
 	public String getUserName() {
 		return userName;

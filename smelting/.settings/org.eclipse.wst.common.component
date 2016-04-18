@@ -8,9 +8,6 @@
         <dependent-module archiveName="durable-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/durable/durable">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="common-module-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common-module/common-module">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="ehcache-module-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ehcache-module/ehcache-module">
             <dependency-type>uses</dependency-type>
         </dependent-module>

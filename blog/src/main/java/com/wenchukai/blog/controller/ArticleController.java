@@ -18,6 +18,7 @@ import com.wenchukai.blog.dto.PageIn;
 import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.model.ArticleDraft;
 import com.wenchukai.blog.service.ArticleService;
+import com.wenchukai.common.base.BaseController;
 
 /**
  * 基于rest风格的文章,草稿WS

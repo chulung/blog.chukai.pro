@@ -14,14 +14,13 @@
         http://www.springframework.org/schema/tx 
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	<bean id="AuthorityAspect" class="com.wenchukai.blog.aop.AuthorityAspect"/>
-	<bean id="CacheAspect" class="com.wenchukai.cache.aop.CacheAspect"/>
+	<!-- 只扫描 Controller -->
+	<context:component-scan base-package="com.wenchukai.**.controller" />
+
 	<!-- <mvc:annotation-driven /> -->
 	<!--注解说明 <context:annotation-config /> -->
 	<mvc:annotation-driven />
-	<context:component-scan base-package="com.wenchukai.**.controller" />
 	<mvc:default-servlet-handler />
-
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
@@ -74,7 +73,7 @@
 	</bean>
 	<!-- 自定义freemarker 日期解析tag -->
 	<bean id="dateTimeTemplate" class="com.wenchukai.freemaker.template.DateTimeTemplate"></bean>
-	
+
 	<!-- 输出对象转JSON支持 -->
 	<bean id="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -91,12 +90,12 @@
 				<ref bean="mappingJacksonHttpMessageConverter" />
 			</list>
 		</property>
-	</bean>
+	</bean>	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<!-- 默认所有的请求都进行拦截 -->
 			<mvc:mapping path="/**" />
-			<bean class="com.wenchukai.blog.interceptor.TrackerInterceptor"></bean>
+			<bean class="com.wenchukai.tracker.interceptor.GlobalTrackerInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**" />

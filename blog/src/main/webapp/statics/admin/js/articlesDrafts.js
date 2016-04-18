@@ -6,7 +6,7 @@ function ajaxData(page){
 	$.ajax({
 		url:'/articleDrafts',
 		type:'get',
-		data:{'page':page,'pageSize':'10'},
+		data:{'page':page,'pageSize':'20'},
 		dataType:'json',
 		success:function(data){
 			$tbody=$('#articleTable').find('tbody');

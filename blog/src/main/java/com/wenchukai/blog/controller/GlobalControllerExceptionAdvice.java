@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
  */
 
 import com.wenchukai.blog.exception.GlobalMethodRuntimeExcetion;
+import com.wenchukai.common.base.BaseController;
 
 @ControllerAdvice
 public class GlobalControllerExceptionAdvice extends BaseController {

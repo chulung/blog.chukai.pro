@@ -11,7 +11,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import com.wenchukai.blog.annotation.Authority;
 import com.wenchukai.blog.enumerate.AuthorityEnum;
 import com.wenchukai.blog.exception.GlobalMethodRuntimeExcetion;
-import com.wenchukai.blog.util.WebSessionSupport;
+import com.wenchukai.blog.session.WebSessionSupport;
 
 /**
  * 权限控制

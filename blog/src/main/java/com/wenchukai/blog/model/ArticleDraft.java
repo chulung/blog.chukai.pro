@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Id;
 
-import com.wenchukai.base.BaseModel;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wenchukai.common.base.BaseModel;
+import com.wenchukai.jackson.databind.LocalDateTimeSerializer;
 
 public class ArticleDraft extends BaseModel {
 	/**
@@ -66,6 +68,7 @@ public class ArticleDraft extends BaseModel {
 		this.title = title == null ? null : title.trim();
 	}
 
+	@JsonSerialize(using=LocalDateTimeSerializer.class)
 	public LocalDateTime getCreateTime() {
 		return createTime;
 	}
@@ -74,6 +77,7 @@ public class ArticleDraft extends BaseModel {
 		this.createTime = createTime;
 	}
 
+	@JsonSerialize(using=LocalDateTimeSerializer.class)
 	public LocalDateTime getUpdateTime() {
 		return updateTime;
 	}

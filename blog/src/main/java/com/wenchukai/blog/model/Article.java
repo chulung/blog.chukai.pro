@@ -2,17 +2,23 @@ package com.wenchukai.blog.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import com.wenchukai.base.BaseModel;
+import org.apache.commons.lang3.StringEscapeUtils;
+
+import com.wenchukai.common.base.BaseModel;
 
 public class Article extends BaseModel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1692088776366835421L;
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String title;
@@ -38,7 +44,7 @@ public class Article extends BaseModel {
 	private String changLog;
 
 	private String context;
-	
+
 	@Transient
 	private LocalDateTime createTimeStart;
 	@Transient
@@ -185,7 +191,7 @@ public class Article extends BaseModel {
 	public static Article of(ArticleDraft articleDraft) {
 		Article article = new Article();
 		article.setId(articleDraft.getArticleId());
-		article.setContext(articleDraft.getHtmlContext());
+		article.setContext(StringEscapeUtils.unescapeHtml4(articleDraft.getHtmlContext()));
 		article.setUpdateTime(articleDraft.getUpdateTime());
 		article.setAuthor(articleDraft.getAuthor());
 		article.setIsDelete(articleDraft.getIsDelete());

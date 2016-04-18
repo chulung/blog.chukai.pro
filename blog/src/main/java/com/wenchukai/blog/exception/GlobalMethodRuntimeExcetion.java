@@ -25,7 +25,6 @@ public class GlobalMethodRuntimeExcetion extends RuntimeException {
 		super(message);
 		this.setCode(code);
 	}
-
 	public int getCode() {
 		return code;
 	}

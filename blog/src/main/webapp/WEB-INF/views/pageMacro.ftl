@@ -1,6 +1,6 @@
 <#macro page title js=[] css=[] keywords=""> 
 <#include "WEB-INF/views/baseMacro.ftl">     
-<@base base_title=title base_js=js base_css=css base_keywords="个人博客,java,初">
+<@base base_title=title mainjs='main' base_css=css base_keywords="个人博客,java,初">
 <div class="container">
 	<div class="blog-header">
 		<h1 class="blog-title">初的博客</h1>

@@ -22,7 +22,7 @@ import com.wenchukai.blog.mapper.ArticleMapper;
 import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.service.BlogService;
 import com.wenchukai.cache.annotation.Cache;
-import com.wenchukai.util.NumberUtil;
+import com.wenchukai.common.util.NumberUtil;
 
 @Service
 public class BlogServiceImpl extends BaseService implements BlogService {

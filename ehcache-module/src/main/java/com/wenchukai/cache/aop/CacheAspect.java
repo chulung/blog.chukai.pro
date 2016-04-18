@@ -9,8 +9,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.wenchukai.base.BaseComponent;
 import com.wenchukai.cache.CCache;
 import com.wenchukai.cache.annotation.Cache;
 import com.wenchukai.cache.annotation.ClearCacheAfter;
@@ -22,7 +23,9 @@ import com.wenchukai.cache.annotation.ClearCacheAfter;
  *
  */
 @Aspect
-public class CacheAspect extends BaseComponent {
+public class CacheAspect {
+
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Resource
 	private CCache ccache;
 	private boolean disabled = false;

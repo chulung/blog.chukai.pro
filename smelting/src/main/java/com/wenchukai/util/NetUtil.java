@@ -1,6 +1,10 @@
 package com.wenchukai.util;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 public class NetUtil {
 
@@ -24,5 +28,35 @@ public class NetUtil {
 			}
 		}
 		return ipAddress;
+	}
+
+	public static String getCookieValue(String name) {
+		Cookie cookie = getCookie(name);
+		return cookie == null ? null : cookie.getValue();
+	}
+
+	private static Cookie getCookie(String name) {
+		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder
+				.getRequestAttributes();
+		if (servletRequestAttributes == null) {
+			return null;
+		}
+		HttpServletRequest request = servletRequestAttributes.getRequest();
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (int i = 0; i < cookies.length; i++) {
+				Cookie cookie = cookies[i];
+				if (name.equals(cookie.getName())) {
+					return cookie;
+				}
+			}
+		}
+		return null;
+	}
+
+	public static String getAccessUrl(HttpServletRequest request) {
+		return new StringBuffer(request.getRequestURL().toString())
+				.append(StringUtil.isNotBlank(request.getQueryString()) ? ("?" + request.getQueryString()) : "")
+				.toString();
 	}
 }

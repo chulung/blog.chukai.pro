@@ -8,5 +8,6 @@ import com.wenchukai.ckbatis.mapper.BaseMapper;
 public interface ArticleMapper extends BaseMapper<Article>{
 	List<Article> selectTileList();
 	List<Article> selectBySelectiveForBlog(Article record);
+	int incrementVisitCount(Integer articleId);
 
 }

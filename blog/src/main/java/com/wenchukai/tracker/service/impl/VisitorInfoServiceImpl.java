@@ -1,16 +1,18 @@
 package com.wenchukai.tracker.service.impl;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wenchukai.blog.mapper.ArticleMapper;
+import com.wenchukai.common.util.NetUtil;
 import com.wenchukai.tracker.common.Constant;
 import com.wenchukai.tracker.mapper.UserTrackerMapper;
 import com.wenchukai.tracker.mapper.VisitorInfoMapper;
 import com.wenchukai.tracker.model.UserTracker;
 import com.wenchukai.tracker.model.VisitorInfo;
 import com.wenchukai.tracker.service.VisitorInfoService;
-import com.wenchukai.util.NetUtil;
 
 @Service
 public class VisitorInfoServiceImpl implements VisitorInfoService {
@@ -35,14 +37,16 @@ public class VisitorInfoServiceImpl implements VisitorInfoService {
 			articleVisitor.setParamsString(href.substring(indexOf));
 			articleVisitor.setHref((href = href.substring(0, indexOf)));
 		}
+		articleVisitor.setCreateTime(LocalDateTime.now());
 		userTrackerMapper.insertSelective(articleVisitor);
-		if (href.matches("^/article/\\d+$")) {
+		if (href.matches(".*/article/\\d+$")) {
 			Integer articleId = Integer.valueOf(href.substring(href.lastIndexOf('/') + 1));
 			UserTracker record = new UserTracker();
 			record.setTuid(NetUtil.getCookieValue(Constant.TUID));
 			record.setHref(href);
 			if (userTrackerMapper.selectCount(record) <= 1) {
-
+				//自增阅读次数
+				articleMapper.incrementVisitCount(articleId);
 			}
 		}
 	}

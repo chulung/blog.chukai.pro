@@ -1,5 +1,5 @@
 <#compress>
-<#macro base base_title base_js=[] base_css=[] base_keywords=""> 
+<#macro base base_title mainjs="" base_css=[] base_keywords=""> 
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -10,14 +10,14 @@
 <meta name="author" content="初">
 <meta content="${base_keywords}" name="keywords">
 <title>初的博客-${base_title}</title>
-<link rel="shortcut icon" href="${staticsPath}/global/images/favicon.ico"	type="image/x-icon" />
+<link rel="shortcut icon" href="${staticsPath}/blog/images/favicon.ico"	type="image/x-icon" />
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <#--
 <link rel="stylesheet"
 	href="${staticsPath}/global/css/bootstrap.min.css">
 -->
-<link rel="stylesheet" href="/statics/blog/css/blog.css">
+<link rel="stylesheet" href="${staticsPath}/blog/css/blog.css">
 <link rel="stylesheet" href="${staticsPath}/blog/css/global.css">
 <#list base_css as c>
 <link rel="stylesheet" href="${staticsPath}${c}">
@@ -51,6 +51,7 @@
 	</footer>
 </body>
 <script>var staticsPath="${staticsPath}"</script>
+<script>var module="${moduleName}"</script>
 <script>
 	var _hmt = _hmt || [];
 	(function() {
@@ -60,16 +61,7 @@
 		s.parentNode.insertBefore(hm, s);
 	})();
 </script>
-<script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<#--
-<script src="${staticsPath}/global/js/jquery.min.js"></script>
-<script src="${staticsPath}/global/js/bootstrap.min.js"></script>
--->
-<script src="${staticsPath}/global/js/global.js"></script>
-<#list base_js as j>
-<script src="<#if !j?ends_with('?')>${staticsPath}<#else>/statics</#if>${j}"></script>
-</#list>
+<script data-main='/statics/blog/js/${mainjs}.js' src="http://apps.bdimg.com/libs/require.js/2.1.9/require.min.js"></script>
 </html>
 </#macro> 
 </#compress>

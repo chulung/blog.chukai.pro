@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Id;
 
-import com.wenchukai.base.BaseModel;
+import com.wenchukai.common.base.BaseModel;
 
 public class ArticleDraftHistory extends BaseModel {
 	/**

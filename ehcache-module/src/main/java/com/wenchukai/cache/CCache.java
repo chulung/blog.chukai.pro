@@ -1,15 +1,16 @@
 package com.wenchukai.cache;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
-import com.wenchukai.base.BaseComponent;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 
 @Component
-public class CCache extends BaseComponent {
+public class CCache  {
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	private static CCache cCache;
 	private Cache cache;
 

@@ -16,7 +16,8 @@ import com.wenchukai.blog.model.ArticleDraft;
 import com.wenchukai.blog.model.User;
 import com.wenchukai.blog.service.ArticleService;
 import com.wenchukai.blog.service.UserService;
-import com.wenchukai.blog.util.WebSessionSupport;
+import com.wenchukai.blog.session.WebSessionSupport;
+import com.wenchukai.common.base.BaseController;
 
 /**
  * admin后台

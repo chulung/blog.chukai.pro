@@ -2,7 +2,7 @@ package com.wenchukai.blog.model;
 
 import javax.persistence.Id;
 
-import com.wenchukai.base.BaseModel;
+import com.wenchukai.common.base.BaseModel;
 
 public class User extends BaseModel {
 	/**

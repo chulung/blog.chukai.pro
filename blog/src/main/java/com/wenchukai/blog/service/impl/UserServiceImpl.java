@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.wenchukai.blog.mapper.UserMapper;
 import com.wenchukai.blog.model.User;
 import com.wenchukai.blog.service.UserService;
-import com.wenchukai.blog.util.WebSessionSupport;
+import com.wenchukai.blog.session.WebSessionSupport;
 
 @Service
 public class UserServiceImpl extends BaseService implements UserService {
@@ -19,9 +19,7 @@ public class UserServiceImpl extends BaseService implements UserService {
 
 	@Override
 	public User signInAdmin(User user) {
-		if (checkExistBlank(user) && checkExistBlank(user.getUserName(), user.getPassword())) {
-			return null;
-		}
+		checkExistBlank(user.getUserName(), user.getPassword());
 		user = userMapper.selectOne(user);
 		if (user != null) {
 			// 回写sessionId

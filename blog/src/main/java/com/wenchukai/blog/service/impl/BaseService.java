@@ -1,16 +1,17 @@
 package com.wenchukai.blog.service.impl;
 
-import com.wenchukai.base.BaseComponent;
-import com.wenchukai.util.StringUtil;
+import com.wenchukai.blog.exception.GlobalMethodRuntimeExcetion;
+import com.wenchukai.common.base.BaseComponent;
+import com.wenchukai.common.util.StringUtils;
 
 public abstract class BaseService extends BaseComponent {
 
-	protected boolean checkExistBlank(Object ... params) {
+	protected void checkExistBlank(Object... params) {
 		for (Object param : params) {
-			if (param == null ? true : param instanceof String ? StringUtil.isBlank(param.toString()) : false) {
-				return true;
+			if (param == null ? true : param instanceof String ? StringUtils.isBlank(param.toString()) : false) {
+				logger.error(StringUtils.join(params, ','));
+				throw new GlobalMethodRuntimeExcetion("必填参数为空");
 			}
 		}
-		return false;
 	}
 }

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.wenchukai.blog.util.WebSessionSupport;
+import com.wenchukai.blog.session.WebSessionSupport;
 
 /**
  * admin登录拦截器

@@ -21,7 +21,7 @@ public class LocalDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> {
 	@Override
 	public void setNonNullParameter(PreparedStatement ps, int i, LocalDateTime parameter, JdbcType jdbcType)
 			throws SQLException {
-		ps.setDate(i, new Date(Date.from(parameter.atZone(ZoneId.systemDefault()).toInstant()).getTime()));
+		ps.setTimestamp(i, new Timestamp(Date.from(parameter.atZone(ZoneId.systemDefault()).toInstant()).getTime()));
 	}
 
 	@Override

@@ -3,8 +3,8 @@ package com.wenchukai.blog.dto;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.wenchukai.base.BaseModel;
 import com.wenchukai.blog.model.Article;
+import com.wenchukai.common.base.BaseModel;
 /**
  * 共用的blog dto
  * 
@@ -24,16 +24,9 @@ public class Blog extends BaseModel {
 	private LocalDateTime createTime;
 	private Integer typeId;
 	private String title;
-	private int commentCount;
+	private Integer visitCount;
+	private Integer commentCount;
 
-	public Blog(Integer id, String author, String summary, LocalDateTime createTime, String title, Integer typeId) {
-		this.id = id;
-		this.author = author;
-		this.summary = summary;
-		this.createTime = createTime;
-		this.title = title;
-		this.typeId = typeId;
-	}
 
 	public Integer getTypeId() {
 		return typeId;
@@ -84,8 +77,16 @@ public class Blog extends BaseModel {
 	}
 
 	public static Blog valueOf(Article article) {
-		return new Blog(article.getId(), article.getAuthor(), generatingSummary(article.getContext()),
-				article.getCreateTime(), article.getTitle(), article.getTypeId());
+		Blog blog=new Blog();
+		blog.id=article.getId();
+		blog.author=article.getAuthor();
+		blog.summary=generatingSummary(article.getContext());
+		blog.createTime=article.getCreateTime();
+		blog.title=article.getTitle();
+		blog.typeId=article.getTypeId();
+		blog.commentCount=article.getCommentCount();
+		blog.visitCount=article.getVisitCount();
+		return blog;
 	}
 
 	private static String generatingSummary(String context) {
@@ -107,6 +108,14 @@ public class Blog extends BaseModel {
 
 	public void setCommentCount(int commentCount) {
 		this.commentCount = commentCount;
+	}
+
+	public Integer getVisitCount() {
+		return visitCount;
+	}
+
+	public void setVisitCount(Integer visitCount) {
+		this.visitCount = visitCount;
 	}
 
 }

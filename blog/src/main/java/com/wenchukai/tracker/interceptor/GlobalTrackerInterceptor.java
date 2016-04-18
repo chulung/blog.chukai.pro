@@ -2,6 +2,7 @@ package com.wenchukai.tracker.interceptor;
 
 import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,10 +20,13 @@ import com.wenchukai.tracker.common.Constant;
  */
 public class GlobalTrackerInterceptor extends HandlerInterceptorAdapter {
 
+	@Resource
+	private Tracker tracker;
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		Tracker.track(request);
+		tracker.track(request);
 		validateSessionId((HttpServletRequest) request, (HttpServletResponse) response);
 		return super.preHandle(request, response, handler);
 	}

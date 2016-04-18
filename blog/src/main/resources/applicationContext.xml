@@ -2,20 +2,34 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-4.0.xsd
      http://www.springframework.org/schema/aop 
-     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+           http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd ">
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>file:${catalina.home}/conf/fastdfs.properties</value>
+				<value>file:${catalina.home}/conf/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<import resource="classpath*:/mybatis/*.xml" />
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	<bean id="AuthorityAspect" class="com.wenchukai.blog.aop.AuthorityAspect"/>
-	<bean id="CacheAspect" class="com.wenchukai.cache.aop.CacheAspect"/>
-	<!-- 使用annotation注解方式配置 -->
-		<context:property-placeholder
-		location="file:${catalina.home}/conf/jdbc.properties" />
-	<import resource="classpath*:/spring/*.xml" />
-	<context:component-scan base-package="com.wenchukai" />
+	<bean id="AuthorityAspect" class="com.wenchukai.blog.aop.AuthorityAspect" />
+	<bean id="CacheAspect" class="com.wenchukai.cache.aop.CacheAspect" />
+	<context:component-scan base-package="com.github.tobato" />
+	<!-- 不扫描Controller,在dispatcher-servlet中扫描 -->
+	<context:component-scan base-package="com.wenchukai">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
 
 </beans>

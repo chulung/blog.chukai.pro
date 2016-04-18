@@ -5,7 +5,7 @@ public class PageIn {
 	private int pageSize;
 
 	public int getPage() {
-		return page;
+		return page<= 0 ? 1 : page;
 	}
 
 	public void setPage(int page) {
@@ -13,7 +13,7 @@ public class PageIn {
 	}
 
 	public int getPageSize() {
-		return pageSize <= 0 ? 1 : page;
+		return pageSize <= 0 ? 20 : pageSize;
 	}
 
 	public void setPageSize(int pageSize) {

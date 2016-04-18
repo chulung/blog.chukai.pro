@@ -18,9 +18,8 @@
 		<result column="context" property="context" jdbcType="LONGVARCHAR" />
 		<result column="html_context" property="htmlContext" jdbcType="LONGVARCHAR" />
 	</resultMap>
-	<select id="selectTileList" resultMap="BaseResultMap"
-		parameterType="java.lang.Integer">
-		select id, title, create_time, update_time, author,
+	<select id="selectTileList" resultMap="BaseResultMap">
+		select id, title, create_time, update_time, author,is_publish,
 		version
 		from article_draft
 	</select>

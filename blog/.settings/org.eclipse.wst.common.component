@@ -7,10 +7,13 @@
         <dependent-module archiveName="ckbatis-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ckbatis/ckbatis">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="common-module-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common-module/common-module">
+        <dependent-module archiveName="metackblog-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/MetaCKblog/MetaCKblog">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="ehcache-module-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ehcache-module/ehcache-module">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="fastdfs-client-1.25.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fastdfs_client/fastdfs_client">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="blog"/>

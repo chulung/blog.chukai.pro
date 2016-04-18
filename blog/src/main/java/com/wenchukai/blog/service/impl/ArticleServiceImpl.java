@@ -22,7 +22,7 @@ import com.wenchukai.blog.model.ArticleDraft;
 import com.wenchukai.blog.model.ArticleType;
 import com.wenchukai.blog.model.User;
 import com.wenchukai.blog.service.ArticleService;
-import com.wenchukai.blog.util.WebSessionSupport;
+import com.wenchukai.blog.session.WebSessionSupport;
 import com.wenchukai.cache.annotation.Cache;
 
 @Service
@@ -87,7 +87,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 	@Override
 	public Integer findArticleDraftIdByArticleId(ArticleDraft articleDraft) {
-		ArticleDraft queryOne = articleDraftMapper.selectByPrimaryKey(articleDraft.getId());
+		if (articleDraft.getArticleId() == null) {
+			return null;
+		}
+		ArticleDraft queryOne = articleDraftMapper.selectOne(articleDraft);
 		return queryOne != null ? queryOne.getId() : null;
 	}
 
@@ -110,7 +113,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			}
 			articleDraft.setArticleId(key);
 		}
-		if (this.articleDraftMapper.insertSelective(articleDraft) > 0) {
+		if (this.articleDraftMapper.insertSelective(articleDraft) <= 0) {
 			throw new RuntimeException("插入草稿失败");
 		}
 	}
