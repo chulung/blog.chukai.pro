@@ -17,7 +17,6 @@ define([ "jquery", "bootstrap" ], function($, bootstrap) {
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				// 错误方法增强处理
 				fn.error && fn.error(XMLHttpRequest, textStatus, errorThrown);
-				alert("系统异常")
 			},
 			success : function(data, textStatus) {
 				// 成功回调方法增强处理

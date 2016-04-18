@@ -18,10 +18,13 @@
 			<list>
 				<value>file:${catalina.home}/conf/fastdfs.properties</value>
 				<value>file:${catalina.home}/conf/jdbc.properties</value>
+				<value>file:${catalina.home}/conf/metackblog.properties</value>
 			</list>
 		</property>
+		<property name="fileEncoding" value="UTF-8"></property>
 	</bean>
-	<import resource="classpath*:/mybatis/*.xml" />
+	<import resource="classpath:mybatis.xml" />
+	<import resource="classpath:metackblog.xml" />
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<bean id="AuthorityAspect" class="com.wenchukai.blog.aop.AuthorityAspect" />
 	<bean id="CacheAspect" class="com.wenchukai.cache.aop.CacheAspect" />

@@ -3,6 +3,16 @@
  */
 requirejs([ "jquery", 'formValidation_bootstrap' ], function($) {
 	boundSubmitComments();
+	$.ajax({
+		url : '/comments/list/'+$("input[name='articleId']").val(),
+		type : 'get',
+		dataType : 'json',
+		success : function(data) {
+			if (data.success == 1 ) {
+				console.log(data);
+			}
+		}
+	});
 });
 // 提交评论
 function boundSubmitComments() {
@@ -56,7 +66,6 @@ function boundSubmitComments() {
 				}
 			}
 		}).on('success.form.fv', function(e) {
-
 			e.preventDefault();// 不执行默认表单提交动作
 			$.ajax({
 				url : '/comments',

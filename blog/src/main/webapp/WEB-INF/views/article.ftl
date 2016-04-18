@@ -9,7 +9,12 @@
 	<div class="panel panel-info">
 	  <div class="panel-heading">查看评论</div>
 	  <div class="panel-body">
-	   <li></li>
+	    <ul  class="list-group">
+		   <li class="list-group-item ">
+		   	 <div class="list-group-item-heading"><a name="">#1</a><span>101512</span><span>101512</span><div><a>回复</></div></div>
+		     <p class="list-group-item-text">...</p>
+		   </li>
+		</ul >
 	  </div>
 	</div>
 		<div class="panel panel-primary" id="comments">

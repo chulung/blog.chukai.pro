@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.wenchukai.common.base.BaseModel;
+import com.wenchukai.jackson.databind.LocalDateTimeSerializer;
 
 public class Comments extends BaseModel {
 	/**
@@ -23,11 +25,18 @@ public class Comments extends BaseModel {
 
 	private String comment;
 
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	private LocalDateTime createTime;
 
 	private String userName;
 
 	private String email;
+
+	public Comments() {
+	}
+	public Comments(Integer articleId) {
+		this.articleId = articleId;
+	}
 
 	public Integer getId() {
 		return id;
