@@ -61,8 +61,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 				article.setUserId(user.getId());
 				article.setAuthor(user.getNickName());
 				article.setCreateTime(LocalDateTime.now());
-				Integer aId = articleMapper.insertSelective(article);
-				articleDraft.setArticleId(aId);
+				articleMapper.insertSelective(article);
+				articleDraft.setArticleId(article.getId());
 			} else {
 				articleMapper.updateByPrimaryKeySelective(article);
 			}
@@ -80,7 +80,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	}
 
 	@Override
-	public List<Article> findArticleTitleList(PageIn pageIn) {
+	public List<Article> findArticleTitleList(PageIn<Article> pageIn) {
 		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
 		return this.articleMapper.selectTileList();
 	}
@@ -119,7 +119,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	}
 
 	@Override
-	public List<ArticleDraft> findArticleDraftsListByAjax(PageIn pageIn) {
+	public List<ArticleDraft> findArticleDraftsListByAjax(PageIn<ArticleDraft> pageIn) {
 		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
 		return this.articleDraftMapper.selectTileList();
 	}

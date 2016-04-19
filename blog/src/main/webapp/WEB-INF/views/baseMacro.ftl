@@ -17,8 +17,7 @@
 <link rel="stylesheet"
 	href="${staticsPath}/global/css/bootstrap.min.css">
 -->
-<link rel="stylesheet" href="${staticsPath}/blog/css/blog.css">
-<link rel="stylesheet" href="${staticsPath}/blog/css/global.css">
+<link rel="stylesheet" href="/statics/blog/css/blog.css">
 <#list base_css as c>
 <link rel="stylesheet" href="${staticsPath}${c}">
 </#list>

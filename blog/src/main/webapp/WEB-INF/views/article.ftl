@@ -8,11 +8,18 @@
 	</div>
 	<div class="panel panel-info">
 	  <div class="panel-heading">查看评论</div>
-	  <div class="panel-body">
+	  <div class="panel-body comments-body ">
 	    <ul  class="list-group">
-		   <li class="list-group-item ">
-		   	 <div class="list-group-item-heading"><a name="">#1</a><span>101512</span><span>101512</span><div><a>回复</></div></div>
-		     <p class="list-group-item-text">...</p>
+		   <li class="list-group-item comments-li none">
+		   	 <div class="list-group-item-heading">
+			   	 <a name="" class="floor"></a>
+			   	 <span class="date"></span>
+			   	 <span class="name"></span>
+			   	 <#--<div class="reply-div">
+			   	 	<a>回复</a>
+			   	 </div>-->
+		   	 </div>
+		     <div class="list-group-item-text"></div>
 		   </li>
 		</ul >
 	  </div>
@@ -24,11 +31,11 @@
 			  <input type="hidden" name="articleId" value="${article.id}">
 			  <div class="form-group">
 			    <label for="inputUserName">名字</label>
-			    <input type="text" class="form-control" id="inputUserName" name="userName" >
+			    <input type="text" class="form-control" id="inputUserName" name="userName" maxlength="10" >
 			  </div>
 			  <div class="form-group">
 			    <label for="inputEmail1">邮箱</label>
-			    <input type="email" class="form-control" id="inputEmail1" name="email" placeholder="不公开，待本站邮件系统开通后用于回复提醒">
+			    <input type="email" class="form-control" id="inputEmail1" name="email" placeholder="不公开，待本站邮件系统开通后用于回复提醒" maxlength="50" >
 			  </div>
 			  <div class="form-group">
 			    <label for="inputComments">评论内容</label>

@@ -52,7 +52,7 @@ public class ArticleController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/article", method = RequestMethod.GET)
-	public @ResponseBody List<Article> getArticles(@ModelAttribute PageIn pageIn) {
+	public @ResponseBody List<Article> getArticles(@ModelAttribute PageIn<Article> pageIn) {
 		return articleService.findArticleTitleList(pageIn);
 	}
 
@@ -110,7 +110,7 @@ public class ArticleController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/articleDrafts", method = RequestMethod.GET)
-	public @ResponseBody List<ArticleDraft> getArticleDrafts(@ModelAttribute PageIn pageIn) {
+	public @ResponseBody List<ArticleDraft> getArticleDrafts(@ModelAttribute PageIn<ArticleDraft> pageIn) {
 		return articleService.findArticleDraftsListByAjax(pageIn);
 	}
 }

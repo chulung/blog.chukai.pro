@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OrderBy;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.wenchukai.common.base.BaseModel;
@@ -25,7 +26,9 @@ public class Comments extends BaseModel {
 
 	private String comment;
 
+	//按时间倒序
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@OrderBy("DESC")
 	private LocalDateTime createTime;
 
 	private String userName;

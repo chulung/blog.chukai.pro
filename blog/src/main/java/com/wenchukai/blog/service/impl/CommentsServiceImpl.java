@@ -23,14 +23,17 @@ public class CommentsServiceImpl extends BaseService implements CommentsService 
 	public boolean postComments(Comments comments) {
 		checkExistBlank(comments.getArticleId(), comments.getEmail(), comments.getUserName());
 		comments.setCreateTime(LocalDateTime.now());
-		return commentsMapper.insertSelective(comments) > 1;
+		commentsMapper.insertSelective(comments);
+		return comments.getId() != null;// 插入成功后会自动注入id
 	}
 
 	@Override
 	public PaginationResult<Comments> listComments(PageIn<Comments> pageIn) {
 		checkExistBlank(pageIn.getRecord().getArticleId());
-		PageHelper.startPage(pageIn.getPage(), pageIn.getPage());
+		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
 		Page<Comments> page = (Page<Comments>) commentsMapper.select(pageIn.getRecord());
+		//防暴露email
+		page.stream().forEach(p -> p.setEmail(null));
 		return PaginationResult.of(page);
 	}
 

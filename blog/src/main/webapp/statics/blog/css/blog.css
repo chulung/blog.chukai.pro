@@ -180,13 +180,21 @@ img {
 	max-width: 617px;
 }
 
+.none {
+	display: none;
+}
+
 .article_manage {
 	color: #999;
 	font: 12px/24px Arial;
 	padding: 5px 0;
 	text-align: right;
 }
-.summary{ text-indent:2em;}
+
+.summary {
+	text-indent: 2em;
+}
+
 .article_manage span {
 	margin: 0 5px;
 }
@@ -194,16 +202,33 @@ img {
 .article_manage .link_postdate {
 	margin: 0 5px 0 0;
 }
+
 .article_manage .link_view {
-    background: rgba(0, 0, 0, 0) url("../images/ico_view.png") no-repeat scroll left center;
-    padding: 0 0 0 14px;
+	background: rgba(0, 0, 0, 0) url("../images/ico_view.png") no-repeat
+		scroll left center;
+	padding: 0 0 0 14px;
 }
+
 .article_manage .link_comments {
-    background: rgba(0, 0, 0, 0) url("../images/ico_comm.png") no-repeat scroll left center;
-    padding: 0 0 0 14px;
+	background: rgba(0, 0, 0, 0) url("../images/ico_comm.png") no-repeat
+		scroll left center;
+	padding: 0 0 0 14px;
 }
+
 .list_item {
-    background: rgba(0, 0, 0, 0) url("../images/line_1.gif") repeat-x scroll center bottom;
-    clear: both;
-    display: block;
+	background: rgba(0, 0, 0, 0) url("../images/line_1.gif") repeat-x scroll
+		center bottom;
+	clear: both;
+	display: block;
+}
+
+.comments-body .list-group-item-text {
+	word-wrap:break-word;
+}
+.comments-body .reply-div {
+	float: right;
+}
+
+.comments-body .date, .comments-body .name {
+	margin-left: 10px;
 }

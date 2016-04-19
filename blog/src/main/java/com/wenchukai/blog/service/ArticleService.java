@@ -15,7 +15,7 @@ import com.wenchukai.blog.model.ArticleType;
 public interface ArticleService {
 	Article findArticleById(Integer id);
 
-	List<Article> findArticleTitleList(PageIn pageIn);
+	List<Article> findArticleTitleList(PageIn<Article> pageIn);
 
 	boolean update(ArticleDraft articleDraft);
 
@@ -25,9 +25,11 @@ public interface ArticleService {
 
 	void insert(ArticleDraft articleDraft);
 
-	List<ArticleDraft> findArticleDraftsListByAjax(PageIn pageIn);
+	List<ArticleDraft> findArticleDraftsListByAjax(PageIn<ArticleDraft> pageIn);
 
 	ArticleDraft findArticleDraft(Integer id);
 
 	void deleteArticleDraft(Integer id);
+
+
 }

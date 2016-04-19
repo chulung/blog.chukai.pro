@@ -4,13 +4,19 @@
 requirejs([ "jquery", 'formValidation_bootstrap' ], function($) {
 	boundSubmitComments();
 	$.ajax({
-		url : '/comments/list/'+$("input[name='articleId']").val(),
+		url : '/comments/list/' + $("input[name='articleId']").val(),
 		type : 'get',
 		dataType : 'json',
 		success : function(data) {
-			if (data.success == 1 ) {
-				console.log(data);
-			}
+			$comments = $(".list-group-item.comments-li.none")
+			$.each(data.list, function(i, item) {
+				$nCom = $comments.clone().removeClass("none");
+				$nCom.find(".floor").attr({'name':item.id,'href':'#'+item.id}).html("#"+(++i));
+				$nCom.find(".date").html(item.createTime);
+				$nCom.find(".name").html(item.userName);
+				$nCom.find(".list-group-item-text").html(item.comment);
+				$comments.before($nCom);
+			});
 		}
 	});
 });
@@ -35,7 +41,7 @@ function boundSubmitComments() {
 						},
 						stringLength : {
 							max : 10,
-							message : 'Cannot exceed 512 characters'
+							message : '不超过10个字'
 						}
 					}
 				},
@@ -71,7 +77,7 @@ function boundSubmitComments() {
 				url : '/comments',
 				type : 'post',
 				dataType : 'json',
-				data:$(e.target).serialize(),
+				data : $(e.target).serialize(),
 				success : function(data) {
 					data.success == 1 && window.location.reload();
 				}
