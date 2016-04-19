@@ -50,7 +50,6 @@
                 <ul class="nav">
                     <!-- Main menu -->
                     <li class="current"><a href="/admin"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
-                    <li><a href="/admin/articles"><i class="glyphicon glyphicon-list"></i> 文章</a></li>
                     <li><a href="/admin/articleDrafts"><i class="glyphicon glyphicon-list"></i> 草稿</a></li>
                     <li><a href="/admin/editors"><i class="glyphicon glyphicon-pencil"></i> Markdown</a></li>
                     <li class="submenu">

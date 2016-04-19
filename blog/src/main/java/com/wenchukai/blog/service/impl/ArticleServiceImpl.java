@@ -11,15 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.wenchukai.blog.dto.PageIn;
+import com.wenchukai.blog.enumerate.DictionaryTypeEnum;
 import com.wenchukai.blog.enumerate.PublishStatusEnum;
 import com.wenchukai.blog.exception.GlobalMethodRuntimeExcetion;
 import com.wenchukai.blog.mapper.ArticleDraftHistoryMapper;
 import com.wenchukai.blog.mapper.ArticleDraftMapper;
 import com.wenchukai.blog.mapper.ArticleMapper;
-import com.wenchukai.blog.mapper.ArticleTypeMapper;
+import com.wenchukai.blog.mapper.DictionaryMapper;
 import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.model.ArticleDraft;
-import com.wenchukai.blog.model.ArticleType;
+import com.wenchukai.blog.model.Dictionary;
 import com.wenchukai.blog.model.User;
 import com.wenchukai.blog.service.ArticleService;
 import com.wenchukai.blog.session.WebSessionSupport;
@@ -37,7 +38,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	@Autowired
 	private ArticleDraftMapper articleDraftMapper;
 	@Autowired
-	private ArticleTypeMapper articleTypeMapper;
+	private DictionaryMapper dictionaryMapper;
 
 	public Article findArticleById(Integer id) {
 		return articleMapper.selectByPrimaryKey(id);
@@ -55,7 +56,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		articleDraft.setMender(user.getNickName());
 		articleDraft.setVersion(oldDraft.getVersion() + 1);
 		// 判断是否发布文章
-		if (PublishStatusEnum.PUBLISH.getCode().equals(articleDraft.getIsPublish())) {
+		if (PublishStatusEnum.PUBLISHED.getCode().equals(articleDraft.getIsPublish())) {
 			Article article = Article.of(articleDraft);
 			if (article.getId() == null) {
 				article.setUserId(user.getId());
@@ -75,8 +76,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 	@Cache(key = "findAllArticleTypes", timeToLive = 30)
 	@Override
-	public List<ArticleType> findAllArticleTypes() {
-		return articleTypeMapper.selectAll();
+	public List<Dictionary> findAllArticleTypes() {
+		Dictionary record = new Dictionary();
+		record.setDictType(DictionaryTypeEnum.ARTICLE_TYPE);
+		return dictionaryMapper.select(record);
 	}
 
 	@Override
@@ -105,7 +108,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		articleDraft.setIsDelete(0);
 		articleDraft.setUserId(this.webSessionSupport.getCurUserId().get());
 		articleDraft.setCreateTime(LocalDateTime.now());
-		if (PublishStatusEnum.PUBLISH.getCode().equals(articleDraft.getIsPublish())) {
+		if (PublishStatusEnum.PUBLISHED.getCode().equals(articleDraft.getIsPublish())) {
 			Article article = Article.of(articleDraft);
 			int key = 0;
 			if ((key = articleMapper.insertSelective(article)) <= 0) {
@@ -134,7 +137,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	public void deleteArticleDraft(Integer id) {
 		ArticleDraft articleDraft = this.articleDraftMapper.selectByPrimaryKey(id);
 		if (articleDraft != null) {
-			if (PublishStatusEnum.PUBLISH.getCode().equals(articleDraft.getIsPublish())) {
+			if (PublishStatusEnum.PUBLISHED.getCode().equals(articleDraft.getIsPublish())) {
 				Article record = new Article();
 				record.setId(articleDraft.getArticleId());
 				record.setIsDelete(1);

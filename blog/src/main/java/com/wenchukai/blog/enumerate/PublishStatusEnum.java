@@ -1,7 +1,7 @@
 package com.wenchukai.blog.enumerate;
 
 public enum PublishStatusEnum {
-	PUBLISH(1, "发布"), NOT_PUBLISH(0, "未发布");
+	PUBLISHED(1, "发布"), UNPUBLISHED(0, "未发布");
 	private Integer code;
 	private String dedcription;
 

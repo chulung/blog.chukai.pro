@@ -26,7 +26,7 @@ function saveBtnInit() {
 				"typeId" : $('#typeId').val(),
 				"context" : editor.getMarkdown(),
 				"htmlContext" : editor.getHTML(),
-				"isPublish" : $("#isPublish").is(":checked") ? 1 : 0
+				"isPublish" : $("#isPublish").is(":checked") ? "PUBLISHED" : "UNPUBLISHED"
 			},
 			dataType : "json",
 			success : function(data) {
@@ -80,29 +80,22 @@ function editInit() {
 					dataType : "json",
 					success : function(data) {
 						editor.setMarkdown(data.context);
-						$('#isPublish').val(data.isPublish);
+						$('#isPublish').prop("checked",data.isPublish=='PUBLISHED');
 						$('#title').val(data.title)
+						$('#articleType').val(data.articleType);
 					}
 				});
 			} else {
-				var context = window.localStorage.autoSaveContext;
-				var isPublish = window.localStorage.autoSaveIsPublish;
-				var title = window.localStorage.autoSaveTitle;
-				if (context) {
-					editor.setMarkdown(context);
-				}
-				if (isPublish) {
-					$('#isPublish').prop("checked", true);
-				}
-				if (title) {
-					$('#title').val(title);
-				}
-			}
+				editor.setMarkdown(window.localStorage.autoSaveContext||"");
+				$('#isPublish').prop("checked", !!window.localStorage.autoSaveIsPublish);
+				$('#title').val(window.localStorage.autoSaveTitle||"");
+				$('#articleType').val(window.localStorage.autoSaveArticleType||"1");
 			setInterval(function() {
 				window.localStorage.autoSaveContext = editor.getMarkdown();
 				window.localStorage.autoSaveIsPublish = $("#isPublish").is(
 						":checked") ? 1 : '';
 				window.localStorage.autoSaveTitle = $('#title').val();
+				window.localStorage.autoSaveArticleType = $('#articleType').val();
 				console.log("autoSave");
 			}, 10000);
 		}

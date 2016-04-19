@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wenchukai.blog.enumerate.PublishStatusEnum;
 import com.wenchukai.common.base.BaseModel;
 import com.wenchukai.jackson.databind.LocalDateTimeSerializer;
 
@@ -30,7 +31,7 @@ public class ArticleDraft extends BaseModel {
 
 	private String mender;
 
-	private Integer isPublish;
+	private PublishStatusEnum isPublish;
 
 	private Integer typeId;
 
@@ -110,11 +111,11 @@ public class ArticleDraft extends BaseModel {
 		this.mender = mender == null ? null : mender.trim();
 	}
 
-	public Integer getIsPublish() {
+	public PublishStatusEnum getIsPublish() {
 		return isPublish;
 	}
 
-	public void setIsPublish(Integer isPublish) {
+	public void setIsPublish(PublishStatusEnum isPublish) {
 		this.isPublish = isPublish;
 	}
 

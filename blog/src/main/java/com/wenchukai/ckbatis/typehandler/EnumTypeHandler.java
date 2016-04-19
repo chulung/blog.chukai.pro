@@ -9,13 +9,18 @@ import java.util.Map;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.MappedTypes;
 
 import com.wenchukai.ckbatis.enums.ValuedEnum;
+import com.wenchukai.log.enumerate.LogLevel;
+import com.wenchukai.log.enumerate.LogType;
 
-public class EnumTypeHandler<E extends Enum<E>> extends BaseTypeHandler<E> {
+@MappedTypes(value={LogLevel.class,LogType.class})
+public class EnumTypeHandler<E extends Enum<E> & ValuedEnum<E>> extends  BaseTypeHandler<E> {
 	private Class<E> type;
 	private Map<Integer, E> map = new HashMap<>();
-
+	public EnumTypeHandler() {
+	}
 	public EnumTypeHandler(Class<E> type) {
 		if (type == null) {
 			throw new IllegalArgumentException("Type argument cannot be null");
@@ -26,14 +31,14 @@ public class EnumTypeHandler<E extends Enum<E>> extends BaseTypeHandler<E> {
 			throw new IllegalArgumentException(type.getSimpleName() + " does not represent an enum type.");
 		}
 		for (E e : enums) {
-			ValuedEnum valuedEnum = (ValuedEnum) e;
+			ValuedEnum<E> valuedEnum = (ValuedEnum<E>) e;
 			map.put(valuedEnum.getValue(), e);
 		}
 	}
 
 	@Override
 	public void setNonNullParameter(PreparedStatement ps, int i, E parameter, JdbcType jdbcType) throws SQLException {
-		ValuedEnum valuedEnum = (ValuedEnum) parameter;
+		ValuedEnum<E> valuedEnum = (ValuedEnum<E>) parameter;
 		ps.setInt(i, valuedEnum.getValue());
 	}
 

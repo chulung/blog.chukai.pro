@@ -5,7 +5,7 @@ import java.util.List;
 import com.wenchukai.blog.dto.PageIn;
 import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.model.ArticleDraft;
-import com.wenchukai.blog.model.ArticleType;
+import com.wenchukai.blog.model.Dictionary;
 
 /**
  * 
@@ -19,7 +19,7 @@ public interface ArticleService {
 
 	boolean update(ArticleDraft articleDraft);
 
-	List<ArticleType> findAllArticleTypes();
+	List<Dictionary> findAllArticleTypes();
 
 	Integer findArticleDraftIdByArticleId(ArticleDraft article);
 

@@ -8,9 +8,9 @@
 		          		<lable>标题<lable>
 		          		<input id="title" class="title" type="text"/> 
 		          		<input id="isPublish" type="checkBox" checked>发布</input>
-						<select id="typeId">
+						<select id="articleType">
 						<#list articleTypes as type>
-							<option value="${type.id}">${type.typeName}</option>
+							<option value="${type.dictValue}">${type.dictDesc}</option>
 						</#list>
 						</select>
 						<button id="btn-save">保存</button>
