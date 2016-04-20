@@ -51,15 +51,6 @@
 </body>
 <script>var staticsPath="${staticsPath}"</script>
 <script>var module="${moduleName}"</script>
-<script>
-	var _hmt = _hmt || [];
-	(function() {
-		var hm = document.createElement("script");
-		hm.src = "//hm.baidu.com/hm.js?9c90c90a297f59a582c2f66fec1affa3";
-		var s = document.getElementsByTagName("script")[0];
-		s.parentNode.insertBefore(hm, s);
-	})();
-</script>
 <script data-main='/statics/blog/js/${mainjs}.js' src="http://apps.bdimg.com/libs/require.js/2.1.9/require.min.js"></script>
 </html>
 </#macro> 

@@ -18,6 +18,7 @@ import com.wenchukai.blog.mapper.ArticleDraftHistoryMapper;
 import com.wenchukai.blog.mapper.ArticleDraftMapper;
 import com.wenchukai.blog.mapper.ArticleMapper;
 import com.wenchukai.blog.mapper.DictionaryMapper;
+import com.wenchukai.blog.mapper.MetaWeBlogLogMapper;
 import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.model.ArticleDraft;
 import com.wenchukai.blog.model.Dictionary;
@@ -25,6 +26,7 @@ import com.wenchukai.blog.model.User;
 import com.wenchukai.blog.service.ArticleService;
 import com.wenchukai.blog.session.WebSessionSupport;
 import com.wenchukai.cache.annotation.Cache;
+import com.wenchukai.metackblog.MetaWeblog;
 
 @Service
 public class ArticleServiceImpl extends BaseService implements ArticleService {
@@ -39,6 +41,13 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	private ArticleDraftMapper articleDraftMapper;
 	@Autowired
 	private DictionaryMapper dictionaryMapper;
+	@Autowired
+	private MetaWeBlogLogMapper metaWeBlogLogMapper;
+	/**
+	 * cnblog的metaweblog接口
+	 */
+	@Resource(name="cnblogMetaWeblog")
+	private MetaWeblog cnblogMetaWeblog;
 
 	public Article findArticleById(Integer id) {
 		return articleMapper.selectByPrimaryKey(id);
