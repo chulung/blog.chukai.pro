@@ -25,6 +25,16 @@ public class Task extends BaseBean {
 	private Integer taskType;
 	@Ignore
 	private List<TaskRecive> taskRecives;
+	@Ignore
+	private boolean isEnd;
+
+	public boolean getIsEnd() {
+		return isEnd;
+	}
+
+	public void setEnd(boolean isEnd) {
+		this.isEnd = isEnd;
+	}
 
 	public Task(Integer id) {
 		this.id = id;

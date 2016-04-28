@@ -36,9 +36,11 @@
 			</tr>
 		  </table>
 		  </div>
+		  <#if !task.isEnd>
 		  <div class="panel-footer">
 	        <button id="btn-receive" type="button" class="btn btn-success" data-taskid="${task.id}">领取</button>
 		  </div>
+		  </#if>
 		  </#if>
 	 </div>
   </div>

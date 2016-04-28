@@ -1,7 +1,6 @@
 package com.wenchukai.smelting.service.impl;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +30,7 @@ public class TaskServiceImpl extends BaseService implements TaskService {
 
 		Task queryOne = this.session.queryOne(new Task(id));
 		queryOne.setTaskRecives(this.session.queryList(new TaskRecive(queryOne.getId())));
+		queryOne.setEnd( LocalDateTime.now().isAfter(queryOne.getEndTime()));
 		return queryOne;
 	}
 

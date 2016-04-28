@@ -4,14 +4,31 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Id;
 
-public class MetaWeBlogLog {
+import com.wenchukai.blog.enumerate.SiteEnum;
+
+public class MetaCKBlogLog {
 	@Id
 	private Integer id;
 
 	private String postId;
 	private Integer articleId;
 	private LocalDateTime lastestPostTime;
-	private String site;
+	private SiteEnum site;
+
+	public MetaCKBlogLog() {
+	}
+
+	public MetaCKBlogLog(String postId, Integer articleId, LocalDateTime lastestPostTime, SiteEnum site) {
+		super();
+		this.postId = postId;
+		this.articleId = articleId;
+		this.lastestPostTime = lastestPostTime;
+		this.site = site;
+	}
+
+	public MetaCKBlogLog(Integer articleId) {
+		this.articleId = articleId;
+	}
 
 	public Integer getId() {
 		return id;
@@ -45,11 +62,11 @@ public class MetaWeBlogLog {
 		this.lastestPostTime = lastestPostTime;
 	}
 
-	public String getSite() {
+	public SiteEnum getSite() {
 		return site;
 	}
 
-	public void setSite(String site) {
+	public void setSite(SiteEnum site) {
 		this.site = site;
 	}
 

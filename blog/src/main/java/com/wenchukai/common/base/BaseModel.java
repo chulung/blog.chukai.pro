@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Date;
 
-import com.wenchukai.common.util.DateFormatUtils;
+import com.wenchukai.common.util.DateUtils;
 
 public class BaseModel implements Serializable {
 	/**
@@ -30,7 +30,7 @@ public class BaseModel implements Serializable {
 				Method getMethod = this.getClass().getMethod(getterMethod, (Class[]) null);
 				Object fieldValue = getMethod.invoke(this, (Object[]) null);
 				if (fieldValue != null && fieldValue instanceof Date) {
-					fieldValue = DateFormatUtils.format((Date) fieldValue);
+					fieldValue = DateUtils.format((Date) fieldValue);
 				}
 				propBuffer.append(fieldName).append(":").append(fieldValue).append(", ");
 			} catch (Exception e) {

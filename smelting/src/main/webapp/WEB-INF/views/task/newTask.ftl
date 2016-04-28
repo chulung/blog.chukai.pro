@@ -4,8 +4,8 @@
   	 <div class="panel panel-primary">
 			<!-- Default panel contents -->
 			<div class="panel-heading">新增任务</div>
-			<div class="panel-body">
 	        <form id="installationForm" action="/smelting/task" method="post">
+			<div class="panel-body">
 	          <div class="form-group">
 	            <label for="recipient-name" class="control-label">任务名:</label>
 	            <input type="text" class="form-control" id="recipient-name" name="taskName">

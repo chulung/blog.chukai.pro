@@ -16,6 +16,6 @@
 	</bean>
 	<context:component-scan base-package="com.wenchukai.metackblog" />
 	<bean id="cnblogMetaWeblog" class="com.wenchukai.metackblog.MetaWeblog">
-		<property name="config" ref="cnblogConfig"></property>
+		<property name="configInfo" ref="cnblogConfig"></property>
 	</bean>
 </beans>

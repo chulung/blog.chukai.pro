@@ -17,7 +17,7 @@ import com.github.tobato.fastdfs.domain.MateData;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.wenchukai.common.base.BaseController;
-import com.wenchukai.common.util.DateFormatUtils;
+import com.wenchukai.common.util.DateUtils;
 
 @RequestMapping("/")
 @RestController
@@ -39,7 +39,7 @@ public class DfsController extends BaseController {
 		}
 		Set<MateData> metaDataSet = new HashSet<MateData>();
 		metaDataSet.add(new MateData("creator", "system"));
-		metaDataSet.add(new MateData("createDate", DateFormatUtils.format(new Date())));
+		metaDataSet.add(new MateData("createDate", DateUtils.format(new Date())));
 		String fileName = file.getOriginalFilename();
 		try {
 			StorePath path = storageClient.uploadImageAndCrtThumbImage(file.getInputStream(), file.getSize(),

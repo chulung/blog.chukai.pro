@@ -46,7 +46,7 @@ public class PlayerServiceImpl extends BaseService implements PlayerService {
 	@Cache(key = "topThree", timeToLive = 3)
 	@Override
 	public List<Player> getTopThreePlayer() {
-		return session.queryList("select p.userName,p.point,p.teamName from player p order by p.point limit 0,3",
+		return session.queryList("select p.userName,p.point,p.teamName from player p order by p.point desc limit 0,3",
 				Player.class);
 	}
 

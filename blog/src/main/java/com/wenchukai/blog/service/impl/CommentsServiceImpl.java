@@ -24,6 +24,7 @@ public class CommentsServiceImpl extends BaseService implements CommentsService 
 		checkExistBlank(comments.getArticleId(), comments.getEmail(), comments.getUserName());
 		comments.setCreateTime(LocalDateTime.now());
 		commentsMapper.insertSelective(comments);
+		commentsMapper.recalcCommentsCountForArticle(comments.getArticleId());
 		return comments.getId() != null;// 插入成功后会自动注入id
 	}
 

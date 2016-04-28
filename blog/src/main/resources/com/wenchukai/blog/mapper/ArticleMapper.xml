@@ -21,6 +21,9 @@
 		<result column="visit_count" property="visitCount" jdbcType="INTEGER" />
 		<result column="comment_count" property="commentCount" jdbcType="INTEGER" />
 	</resultMap>
+	<select id="selectAllArticleId">
+		select id from article 
+	</select>
 	<select id="selectTileList" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select id, title, create_time, update_time, author,
@@ -35,7 +38,7 @@
 		is_delete, chang_log, context,visit_count,comment_count
 		from
 		article
-		where type_id!=4
+		where type_id!=4 and is_publish ='PUBLISHED'
 		<if test="typeId != null">
 			and type_id= #{typeId,jdbcType=INTEGER}
 		</if>

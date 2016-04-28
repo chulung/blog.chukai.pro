@@ -1,32 +1,39 @@
 package com.wenchukai.blog.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.xmlrpc.XmlRpcException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
+import com.wenchukai.blog.constant.Constants;
 import com.wenchukai.blog.dto.PageIn;
 import com.wenchukai.blog.enumerate.DictionaryTypeEnum;
 import com.wenchukai.blog.enumerate.PublishStatusEnum;
+import com.wenchukai.blog.enumerate.SiteEnum;
 import com.wenchukai.blog.exception.GlobalMethodRuntimeExcetion;
 import com.wenchukai.blog.mapper.ArticleDraftHistoryMapper;
 import com.wenchukai.blog.mapper.ArticleDraftMapper;
 import com.wenchukai.blog.mapper.ArticleMapper;
 import com.wenchukai.blog.mapper.DictionaryMapper;
-import com.wenchukai.blog.mapper.MetaWeBlogLogMapper;
+import com.wenchukai.blog.mapper.MetaCKBlogLogMapper;
 import com.wenchukai.blog.model.Article;
 import com.wenchukai.blog.model.ArticleDraft;
 import com.wenchukai.blog.model.Dictionary;
+import com.wenchukai.blog.model.MetaCKBlogLog;
 import com.wenchukai.blog.model.User;
 import com.wenchukai.blog.service.ArticleService;
 import com.wenchukai.blog.session.WebSessionSupport;
 import com.wenchukai.cache.annotation.Cache;
+import com.wenchukai.common.util.DateUtils;
 import com.wenchukai.metackblog.MetaWeblog;
+import com.wenchukai.metackblog.struct.Post;
 
 @Service
 public class ArticleServiceImpl extends BaseService implements ArticleService {
@@ -42,11 +49,11 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	@Autowired
 	private DictionaryMapper dictionaryMapper;
 	@Autowired
-	private MetaWeBlogLogMapper metaWeBlogLogMapper;
+	private MetaCKBlogLogMapper metaWeBlogLogMapper;
 	/**
-	 * cnblog的metaweblog接口
+	 * 博客园的metaweblog接口
 	 */
-	@Resource(name="cnblogMetaWeblog")
+	@Resource(name = "cnblogMetaWeblog")
 	private MetaWeblog cnblogMetaWeblog;
 
 	public Article findArticleById(Integer id) {
@@ -156,5 +163,46 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			record.setIsDelete(1);
 		}
 		throw new GlobalMethodRuntimeExcetion("草稿不存在,id=" + id);
+	}
+
+	/**
+	 * 推送博客文章至其他网站
+	 * 
+	 * @param article
+	 * @return
+	 */
+	public boolean pushArticle(Article article) {
+		MetaCKBlogLog metaCKBlogLog = this.metaWeBlogLogMapper.selectOne(new MetaCKBlogLog(article.getId()));
+		Post post = new Post();
+		post.setTitle(article.getTitle());
+		post.setDateCreated(new Date());
+		post.setDescription(article.getContext()
+				+ String.format(Constants.METACKBLOG_COMMENTS, DateUtils.format(LocalDateTime.now()), article.getId()));
+		if (metaCKBlogLog != null) {
+			post.setPostid(metaCKBlogLog.getPostId());
+			try {
+				// 发送编辑请求
+				cnblogMetaWeblog.editPost(post, true);
+				MetaCKBlogLog record = new MetaCKBlogLog();
+				record.setId(metaCKBlogLog.getId());
+				record.setLastestPostTime(LocalDateTime.now());
+				metaWeBlogLogMapper.updateByPrimaryKeySelective(record);
+			} catch (XmlRpcException e) {
+				logger.error("", e);
+			}
+
+		} else {
+			try {
+				// 发送新建博客请求
+				String postId = cnblogMetaWeblog.newPost(article.getId().toString(), post, true);
+				MetaCKBlogLog record = new MetaCKBlogLog(postId, article.getId(), LocalDateTime.now(),
+						SiteEnum.CNBLOGS);
+				metaWeBlogLogMapper.insertSelective(record);
+			} catch (XmlRpcException e) {
+				logger.error("", e);
+			}
+		}
+		return true;
+
 	}
 }

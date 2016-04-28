@@ -5,44 +5,49 @@ $(function() {
 })
 var saving = false;
 function saveBtnInit() {
-	$('#btn-save').click(function() {
-		if (saving) {
-			alert("正在保存中");
-			return;
-		}
-		saving = true;
-		var title = $('#title').val();
-		if ($.trim(title) == '') {
-			alert('请输入标题');
-			return;
-		}
-		var draftId = $('#editor-div').data('articledraftid');
-		$.ajax({
-			type : draftId ? "PUT" : "POST",
-			url : "/articleDraft",
-			data : {
-				"id" : draftId,
-				"title" : title,
-				"typeId" : $('#typeId').val(),
-				"context" : editor.getMarkdown(),
-				"htmlContext" : editor.getHTML(),
-				"isPublish" : $("#isPublish").is(":checked") ? "PUBLISHED" : "UNPUBLISHED"
-			},
-			dataType : "json",
-			success : function(data) {
-				if (data.success = 1) {
-					alert('保存成功');
-				}
-			},
-			error : function() {
-				alert("服务器异常");
-			},
-			complete : function(jqXHR, textStatus) {
-				saving = false;
-			}
+	$('#btn-save')
+			.click(
+					function() {
+						if (saving) {
+							alert("正在保存中");
+							return;
+						}
+						saving = true;
+						var title = $('#title').val();
+						if ($.trim(title) == '') {
+							alert('请输入标题');
+							return;
+						}
+						var draftId = $('#editor-div').data('articledraftid');
+						$
+								.ajax({
+									type : draftId ? "PUT" : "POST",
+									url : "/articleDraft",
+									data : {
+										"id" : draftId,
+										"title" : title,
+										"typeId" : $('#typeId').val(),
+										"context" : editor.getMarkdown(),
+										"htmlContext" : editor.getHTML(),
+										"isPublish" : $("#isPublish").is(
+												":checked") ? "PUBLISHED"
+												: "UNPUBLISHED"
+									},
+									dataType : "json",
+									success : function(data) {
+										if (data.success = 1) {
+											alert('保存成功');
+										}
+									},
+									error : function() {
+										alert("服务器异常");
+									},
+									complete : function(jqXHR, textStatus) {
+										saving = false;
+									}
 
-		});
-	});
+								});
+					});
 }
 function editInit() {
 	editor = editormd("editor-div", {
@@ -80,24 +85,29 @@ function editInit() {
 					dataType : "json",
 					success : function(data) {
 						editor.setMarkdown(data.context);
-						$('#isPublish').prop("checked",data.isPublish=='PUBLISHED');
+						$('#isPublish').prop("checked",
+								data.isPublish == 'PUBLISHED');
 						$('#title').val(data.title)
 						$('#articleType').val(data.articleType);
 					}
 				});
 			} else {
-				editor.setMarkdown(window.localStorage.autoSaveContext||"");
-				$('#isPublish').prop("checked", !!window.localStorage.autoSaveIsPublish);
-				$('#title').val(window.localStorage.autoSaveTitle||"");
-				$('#articleType').val(window.localStorage.autoSaveArticleType||"1");
-			setInterval(function() {
-				window.localStorage.autoSaveContext = editor.getMarkdown();
-				window.localStorage.autoSaveIsPublish = $("#isPublish").is(
-						":checked") ? 1 : '';
-				window.localStorage.autoSaveTitle = $('#title').val();
-				window.localStorage.autoSaveArticleType = $('#articleType').val();
-				console.log("autoSave");
-			}, 10000);
+				editor.setMarkdown(window.localStorage.autoSaveContext || "");
+				$('#isPublish').prop("checked",
+						!!window.localStorage.autoSaveIsPublish);
+				$('#title').val(window.localStorage.autoSaveTitle || "");
+				$('#articleType').val(
+						window.localStorage.autoSaveArticleType || "1");
+				setInterval(function() {
+					window.localStorage.autoSaveContext = editor.getMarkdown();
+					window.localStorage.autoSaveIsPublish = $("#isPublish").is(
+							":checked") ? 1 : '';
+					window.localStorage.autoSaveTitle = $('#title').val();
+					window.localStorage.autoSaveArticleType = $('#articleType')
+							.val();
+					console.log("autoSave");
+				}, 10000);
+			}
 		}
 	});
 }

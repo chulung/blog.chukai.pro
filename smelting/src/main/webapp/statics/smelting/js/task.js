@@ -2,7 +2,7 @@ $(function() {
 	$('#btn-receive').click(function() {
 		var type = $('#taskType').html();
 		if (type) {
-			if (confirm("确认领取" + type + ":" + $("#taskName").val() + "?")) {
+			if (confirm("确认领取" + type + ":" + $("#taskName").html() + "?")) {
 				$.ajax({
 					url : "/smelting/task/receive",
 					type : "post",

@@ -3,7 +3,7 @@ package com.wenchukai.log.enumerate;
 import com.wenchukai.ckbatis.enums.ValuedEnum;
 
 public enum LogType implements ValuedEnum<LogType> {
-	CRON_JOB_LOG(0, "定时器日志");
+	CRON_JOB_LOG(0, "定时器日志"),META_CK_BLOG_LOG(1,"metackblog推送日志");
 
 	private int value;
 	private String desc;
