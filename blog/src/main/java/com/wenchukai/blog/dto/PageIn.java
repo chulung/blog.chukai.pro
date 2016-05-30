@@ -5,6 +5,9 @@ public class PageIn<T> {
 	private int pageSize;
 	private T record;
 
+	public PageIn() {
+	}
+
 	public PageIn(int page, int pageSize, T record) {
 		super();
 		this.page = page;

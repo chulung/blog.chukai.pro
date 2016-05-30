@@ -144,6 +144,14 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatis-spring.version}</version>
 		</dependency>
+
+		<!-- markdown解析 http://mvnrepository.com/artifact/org.pegdown/pegdown -->
+		<dependency>
+			<groupId>org.pegdown</groupId>
+			<artifactId>pegdown</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+
 		<!-- tomcat已自带 scope设为provided -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

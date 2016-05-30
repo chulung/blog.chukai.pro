@@ -1,4 +1,6 @@
+//由于markdown配置路径有点不同，所以单独配置一份
 requirejs.config({
+	//github静态分离路径
 	baseUrl : "http://wenchukai.github.io/statics/markdown/lib/",
 	paths : {
 		jquery : "http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
@@ -13,6 +15,7 @@ requirejs.config({
 		editormd : "../editormd.amd" // Using Editor.md amd version for
 	// Require.js
 	},
+	//手动声明依赖部分
 	shim : {
 		jqueryflowchart : [ "jquery" ]
 	},
@@ -69,6 +72,7 @@ require(
 							editor
 									.setMarkdown(window.localStorage.autoSaveContext
 											|| "#Hello World\n欢迎使用本站的markdown编辑器;<br>\n点击工具栏右上角的<i unselectable=\"on\" name=\"help\" class=\"fa fa-question-circle\"></i>查看语法和快捷键说明。<br>\n每10秒自动保存，基于html5的本地存储。<br>");
+							//每隔10秒自动存储至本地
 							setInterval(function() {
 								window.localStorage.autoSaveContext = editor
 										.getMarkdown();

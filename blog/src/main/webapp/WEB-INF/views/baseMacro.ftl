@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="初龙的博客">
+<meta name="description" content="初的博客">
 <meta name="author" content="初">
 <meta content="${base_keywords}" name="keywords">
 <title>初的博客-${base_title}</title>
