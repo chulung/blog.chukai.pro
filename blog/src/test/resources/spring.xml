@@ -22,6 +22,6 @@
 	</bean>
 	<!-- 扫描加载mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.wenchukai.**.mapper" />
+		<property name="basePackage" value="com.chulung.**.mapper" />
 	</bean>
 </beans>

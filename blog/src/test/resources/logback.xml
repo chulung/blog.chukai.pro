@@ -55,13 +55,13 @@
 	<logger name="org.aspectj" >
 		<level value="info" />
 	</logger>
-	<logger name="com.wenchukai" >
+	<logger name="com.chulung" >
 		<level value="info" />
 	</logger>
-	<logger name="com.wenchukai.cache" >
+	<logger name="com.chulung.cache" >
 		<level value="info" />
 	</logger>
-	<logger name="com.wenchukai.durable" >
+	<logger name="com.chulung.durable" >
 		<level value="error" />
 	</logger>
 	<logger name="org.springframework.web.servlet.DispatcherServlet" >

@@ -32,7 +32,7 @@
 			<div class="sidebar-module">
 				<h4>链接</h4>
 				<ol class="list-unstyled">
-					<li><a href="https://github.com/wenchukai" rel="external nofollow" target="_blank">GitHub</a></li>
+					<li><a href="https://github.com/chulung" rel="external nofollow" target="_blank">GitHub</a></li>
 				</ol>
 			</div>
 		</div>

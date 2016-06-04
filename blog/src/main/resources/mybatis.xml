@@ -48,14 +48,14 @@
 		</property>
 		<property name="typeHandlers">
 			<array>
-				<bean class="com.wenchukai.ckbatis.typehandler.LocalDateTimeTypeHandler"></bean>
+				<bean class="com.chulung.ckbatis.typehandler.LocalDateTimeTypeHandler"></bean>
 			</array>
 		</property>
 	</bean>
 	<!-- 扫描加载mapper -->
 	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.wenchukai.**.mapper" />
-		<property name="markerInterface" value="com.wenchukai.ckbatis.mapper.BaseMapper" />
+		<property name="basePackage" value="com.chulung.**.mapper" />
+		<property name="markerInterface" value="com.chulung.ckbatis.mapper.BaseMapper" />
 		<property name="properties">
 			<value>
 				IDENTITY= SELECT LAST_INSERT_ID()

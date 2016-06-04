@@ -2,7 +2,7 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
 	<!-- 缓存配置 -->
-	<cache name="cache" eternal="false" maxElementsInMemory="1000"
+	<cache name="session" eternal="false" maxElementsInMemory="1000"
 		overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
-		timeToLiveSeconds="300" memoryStoreEvictionPolicy="LRU" />
+		timeToLiveSeconds="3000" memoryStoreEvictionPolicy="LRU" />
 </ehcache>   

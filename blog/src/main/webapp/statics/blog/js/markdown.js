@@ -1,7 +1,7 @@
 //由于markdown配置路径有点不同，所以单独配置一份
 requirejs.config({
 	//github静态分离路径
-	baseUrl : "http://wenchukai.github.io/statics/markdown/lib/",
+	baseUrl : "http://chulung.github.io/statics/markdown/lib/",
 	paths : {
 		jquery : "http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
 		marked : "marked.min",
@@ -41,7 +41,7 @@ require(
 					{
 						width : "90%",
 						height : 740,
-						path : 'http://wenchukai.github.io/statics/markdown/lib/',
+						path : 'http://chulung.github.io/statics/markdown/lib/',
 						theme : "dark",
 						previewTheme : "",// 预览主题
 						editorTheme : "eclipse",// 代码主题

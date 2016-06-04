@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chulung.tracker.mapper.VisitorInfoMapper">
+	<resultMap id="BaseResultMap" type="com.chulung.tracker.model.VisitorInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="ip" property="ip" jdbcType="VARCHAR" />
+		<result column="user_Agent" property="userAgent" jdbcType="VARCHAR" />
+		<result column="access_Time" property="accessTime" jdbcType="TIMESTAMP" typeHandler="com.chulung.ckbatis.typehandler.LocalDateTimeTypeHandler" />
+		<result column="access_Url" property="accessUrl" jdbcType="VARCHAR" />
+	</resultMap>
+	<insert id="insert" parameterType="com.chulung.tracker.model.VisitorInfo">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into visitor_info ( ip, user_Agent,
+		access_Time, access_Url)
+		values ( #{ip,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR},
+		#{accessTime,jdbcType=TIMESTAMP,typeHandler=com.chulung.ckbatis.typehandler.LocalDateTimeTypeHandler}, #{accessUrl,jdbcType=VARCHAR})
+	</insert>
+</mapper>

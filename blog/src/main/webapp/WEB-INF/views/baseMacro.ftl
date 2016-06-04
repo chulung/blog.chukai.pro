@@ -37,7 +37,7 @@
 	        <ul class="dropdown-menu">
 	          <li><a href="/about">初</a></li>
 	          <li class="divider" role="separator"></li>
-	          <li><a href="https://github.com/wenchukai/wenchukai.com" rel="external nofollow" target="_blank">本站源码</a></li>
+	          <li><a href="https://github.com/chulung/chulung.com" rel="external nofollow" target="_blank">本站源码</a></li>
 	        </ul>
 	      </li>
 	    </ul>

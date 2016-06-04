@@ -9,13 +9,13 @@
         http://www.springframework.org/schema/context/spring-context-4.0.xsd
      http://www.springframework.org/schema/aop 
      http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
-	<bean id="cnblogConfig" class="com.wenchukai.metackblog.config.ConfigInfo">
+	<bean id="cnblogConfig" class="com.chulung.metackblog.config.ConfigInfo">
 		<property name="userName" value="${cnblog.username}"></property>
 		<property name="password" value="${cnblog.password}"></property>
 		<property name="serverUrl" value="${cnblog.serverurl}"></property>
 	</bean>
-	<context:component-scan base-package="com.wenchukai.metackblog" />
-	<bean id="cnblogMetaWeblog" class="com.wenchukai.metackblog.MetaWeblog">
+	<context:component-scan base-package="com.chulung.metackblog" />
+	<bean id="cnblogMetaWeblog" class="com.chulung.metackblog.MetaWeblog">
 		<property name="configInfo" ref="cnblogConfig"></property>
 	</bean>
 </beans>

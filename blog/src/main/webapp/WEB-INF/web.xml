@@ -35,7 +35,7 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>EscapeFilter</filter-name>
-		<filter-class>com.wenchukai.blog.filter.EscapeFilter</filter-class>
+		<filter-class>com.chulung.blog.filter.EscapeFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>EscapeFilter</filter-name>
