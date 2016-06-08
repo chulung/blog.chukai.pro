@@ -9,8 +9,6 @@ import javax.persistence.Transient;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
-import com.chulung.common.base.BaseModel;
-
 public class Article extends BaseModel {
 	/**
 	 * 
@@ -28,8 +26,6 @@ public class Article extends BaseModel {
 	private LocalDateTime updateTime;
 
 	private String author;
-
-	private Integer userId;
 
 	private String mender;
 
@@ -124,14 +120,6 @@ public class Article extends BaseModel {
 		this.author = author == null ? null : author.trim();
 	}
 
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
 	public String getMender() {
 		return mender;
 	}
@@ -197,7 +185,6 @@ public class Article extends BaseModel {
 		article.setIsDelete(articleDraft.getIsDelete());
 		article.setMender(articleDraft.getMender());
 		article.setTitle(articleDraft.getTitle());
-		article.setUserId(articleDraft.getUserId());
 		article.setCreateTime(articleDraft.getCreateTime());
 		article.setTypeId(articleDraft.getTypeId());
 		article.setVersion(articleDraft.getVersion());

@@ -2,8 +2,6 @@ package com.chulung.blog.model;
 
 import javax.persistence.Id;
 
-import com.chulung.common.base.BaseModel;
-
 public class Config extends BaseModel {
 	/**
 	 * 

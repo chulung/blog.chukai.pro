@@ -2,8 +2,8 @@ package com.chulung.blog.model;
 
 import java.util.List;
 
-import com.github.pagehelper.Page;
 import com.chulung.blog.dto.PageIn;
+import com.github.pagehelper.Page;
 
 public class PaginationResult<T> {
 	private List<T> list;

@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.pagehelper.PageInfo;
 import com.chulung.blog.dto.Blog;
 import com.chulung.blog.dto.CommonInfo;
 import com.chulung.blog.model.Article;
 import com.chulung.blog.service.ArticleService;
 import com.chulung.blog.service.BlogService;
-import com.chulung.common.base.BaseController;
+import com.github.pagehelper.PageInfo;
 
 /**
  * 博客首页Controller

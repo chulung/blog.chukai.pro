@@ -1,7 +1,6 @@
 package com.chulung.blog.mapper;
 
 import com.chulung.blog.model.Comments;
-import com.chulung.ckbatis.mapper.BaseMapper;
 
 public interface CommentsMapper extends BaseMapper<Comments>{
 	/**

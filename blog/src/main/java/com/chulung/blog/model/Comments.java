@@ -7,9 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OrderBy;
 
+import com.chulung.blog.jackson.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.chulung.common.base.BaseModel;
-import com.chulung.jackson.databind.LocalDateTimeSerializer;
 
 public class Comments extends BaseModel {
 	/**

@@ -14,7 +14,6 @@ import com.chulung.blog.dto.PageIn;
 import com.chulung.blog.model.Comments;
 import com.chulung.blog.model.PaginationResult;
 import com.chulung.blog.service.CommentsService;
-import com.chulung.common.base.BaseController;
 
 /**
  * 评论

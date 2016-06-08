@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Id;
 
-import com.chulung.common.base.BaseModel;
-
 public class ArticleDraftHistory extends BaseModel {
 	/**
 	 * 
@@ -23,9 +21,7 @@ public class ArticleDraftHistory extends BaseModel {
 	private LocalDateTime updateTime;
 
 	private String author;
-
-	private Integer userId;
-
+	
 	private String mender;
 
 	private Integer isPublish;
@@ -66,21 +62,21 @@ public class ArticleDraftHistory extends BaseModel {
 		this.title = title == null ? null : title.trim();
 	}
 
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
+	public LocalDateTime getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
+	public void setCreateTime(LocalDateTime createTime) {
+		this.createTime = createTime;
+	}
 
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
+	public LocalDateTime getUpdateTime() {
+		return updateTime;
+	}
 
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
+	public void setUpdateTime(LocalDateTime updateTime) {
+		this.updateTime = updateTime;
+	}
 
 	public String getAuthor() {
 		return author;
@@ -88,14 +84,6 @@ public class ArticleDraftHistory extends BaseModel {
 
 	public void setAuthor(String author) {
 		this.author = author == null ? null : author.trim();
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
 	}
 
 	public String getMender() {

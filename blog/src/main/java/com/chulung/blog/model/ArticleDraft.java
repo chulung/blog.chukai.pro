@@ -4,10 +4,9 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.chulung.blog.enumerate.PublishStatusEnum;
-import com.chulung.common.base.BaseModel;
-import com.chulung.jackson.databind.LocalDateTimeSerializer;
+import com.chulung.blog.jackson.databind.LocalDateTimeSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class ArticleDraft extends BaseModel {
 	/**
@@ -26,8 +25,6 @@ public class ArticleDraft extends BaseModel {
 	private LocalDateTime updateTime;
 
 	private String author;
-
-	private Integer userId;
 
 	private String mender;
 
@@ -69,7 +66,7 @@ public class ArticleDraft extends BaseModel {
 		this.title = title == null ? null : title.trim();
 	}
 
-	@JsonSerialize(using=LocalDateTimeSerializer.class)
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	public LocalDateTime getCreateTime() {
 		return createTime;
 	}
@@ -78,7 +75,7 @@ public class ArticleDraft extends BaseModel {
 		this.createTime = createTime;
 	}
 
-	@JsonSerialize(using=LocalDateTimeSerializer.class)
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	public LocalDateTime getUpdateTime() {
 		return updateTime;
 	}
@@ -93,14 +90,6 @@ public class ArticleDraft extends BaseModel {
 
 	public void setAuthor(String author) {
 		this.author = author == null ? null : author.trim();
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
 	}
 
 	public String getMender() {

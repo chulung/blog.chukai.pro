@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.chulung.blog.model.Article;
 import com.chulung.blog.service.ArticleService;
-import com.chulung.common.base.BaseController;
 
 /**
  * 基于rest风格的文章,草稿WS

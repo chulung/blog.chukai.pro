@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.chulung.blog.annotation.Authority;
+import com.chulung.blog.authentication.annotation.Authority;
 import com.chulung.blog.dto.PageIn;
 import com.chulung.blog.enumerate.AuthorityEnum;
 import com.chulung.blog.model.ArticleDraft;
@@ -23,7 +23,6 @@ import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
 import com.chulung.blog.service.UserService;
 import com.chulung.blog.session.WebSessionSupport;
-import com.chulung.common.base.BaseController;
 
 /**
  * admin后台

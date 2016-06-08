@@ -6,10 +6,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="初的博客">
-<meta name="author" content="初">
+<meta name="description" content="Chu Lung's blog">
+<meta name="author" content="Chu Lung">
 <meta content="${base_keywords}" name="keywords">
-<title>初的博客-${base_title}</title>
+<title>Chu Lung's blog-${base_title}</title>
 <link rel="shortcut icon" href="${staticsPath}/blog/images/favicon.ico"	type="image/x-icon" />
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -35,7 +35,7 @@
 	          	关于 <span class="caret"></span>
 	        </a>
 	        <ul class="dropdown-menu">
-	          <li><a href="/about">初</a></li>
+	          <li><a href="/about">Chu Lung</a></li>
 	          <li class="divider" role="separator"></li>
 	          <li><a href="https://github.com/chulung/chulung.com" rel="external nofollow" target="_blank">本站源码</a></li>
 	        </ul>
@@ -44,7 +44,7 @@
 	</div>
 	<#nested>
 	<footer class="blog-footer">
-		<p>© 2015-2016 初</p>
+		<p>© 2015-2016 Chu Lung</p>
 		<p><a href="#">返回顶部</a></p>
 		<p>湘ICP备15017845号</p>
 	</footer>

@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import javax.persistence.Id;
 
 import com.chulung.blog.enumerate.DictionaryTypeEnum;
-import com.chulung.common.base.BaseModel;
 
 public class Dictionary extends BaseModel {
 	/**

@@ -2,9 +2,9 @@ package com.chulung.blog.dto;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.chulung.blog.model.Article;
-import com.chulung.common.base.BaseModel;
+import com.chulung.blog.model.BaseModel;
+import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 共用的blog dto
  * 

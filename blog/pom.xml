@@ -45,7 +45,7 @@
 
 		<dependency>
 			<groupId>com.chulung</groupId>
-			<artifactId>metackblog</artifactId>
+			<artifactId>metaclblog</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

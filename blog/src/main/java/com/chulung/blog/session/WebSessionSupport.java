@@ -8,10 +8,10 @@ import javax.annotation.Resource;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Component;
 
+import com.chulung.blog.common.util.NetUtil;
 import com.chulung.blog.enumerate.AuthorityEnum;
 import com.chulung.blog.mapper.UserMapper;
 import com.chulung.blog.model.User;
-import com.chulung.common.util.NetUtil;
 
 /**
  * web 会话 请求支持，用于登陆拦截
