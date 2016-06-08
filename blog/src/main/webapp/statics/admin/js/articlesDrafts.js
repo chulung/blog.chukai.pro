@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 function ajaxData(page) {
 	$.ajax({
-		url : '/admin/articleDrafts/list',
+		url : '/backend/articleDrafts/list',
 		type : 'get',
 		data : {
 			'page' : page,
@@ -29,7 +29,7 @@ function ajaxData(page) {
 								.appendTo($tr);
 						$('<th>').append(
 								$('<a>').html('编辑').attr('href',
-										'/admin/editors?id=' + item.id))
+										'/backend/editors?id=' + item.id))
 								.appendTo($tr);
 						$('<th>').append(
 								$('<a>').html('删除')
@@ -40,7 +40,7 @@ function ajaxData(page) {
 					function() {
 						if (confirm("确认删除")) {
 							$.ajax({
-								url : "/admin/articleDraft/"
+								url : "/backend/articleDraft/"
 										+ $(this).data("id"),
 								type : 'delete',
 								dataType : 'json',

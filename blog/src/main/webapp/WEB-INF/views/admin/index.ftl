@@ -1,4 +1,4 @@
-<#include "WEB-INF/views/admin/pageMacro.ftl">     
+<#include "WEB-INF/views/backend/pageMacro.ftl">     
 <@indexPage mianJs=[] miancss=[]>
 		  	<div class="row">
 		  		<div class="col-md-6">

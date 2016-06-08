@@ -5,10 +5,9 @@
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="article_Id" property="articleId" jdbcType="INTEGER" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
-		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" typeHandler="com.chulung.ckbatis.typehandler.LocalDateTimeTypeHandler"/>
-		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" typeHandler="com.chulung.ckbatis.typehandler.LocalDateTimeTypeHandler" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" typeHandler="com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler"/>
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" typeHandler="com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler" />
 		<result column="author" property="author" jdbcType="VARCHAR" />
-		<result column="user_id" property="userId" jdbcType="INTEGER" />
 		<result column="mender" property="mender" jdbcType="VARCHAR" />
 		<result column="is_publish" property="isPublish" jdbcType="INTEGER" />
 		<result column="type_id" property="typeId" jdbcType="INTEGER" />

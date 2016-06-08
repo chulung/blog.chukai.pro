@@ -1,6 +1,6 @@
 User-agent: *
 Disallow: /markdown/examples
-Disallow: /admin
+Disallow: /backend
 Disallow: /dfs
 Disallow: /group1
 Disallow: /smelting

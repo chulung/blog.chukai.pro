@@ -2,6 +2,8 @@ package com.chulung.blog.session;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import javax.annotation.Resource;
 
@@ -9,7 +11,6 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Component;
 
 import com.chulung.blog.common.util.NetUtil;
-import com.chulung.blog.enumerate.AuthorityEnum;
 import com.chulung.blog.mapper.UserMapper;
 import com.chulung.blog.model.User;
 
@@ -25,6 +26,8 @@ public class WebSessionSupport {
 	public final String SESSION_ID = "session_id";
 	@Resource
 	private UserMapper userMapper;
+
+	private ConcurrentMap<String, Object> cCache = new ConcurrentHashMap<String, Object>();
 
 	/**
 	 * 判断当前用户是否登陆
@@ -59,7 +62,7 @@ public class WebSessionSupport {
 		String sessionId = getCurSessionId();
 		User user = null;
 		if (sessionId != null) {
-//			user = cCache.get(getSessionCacheKey(sessionId));
+			user = (User) cCache.get(getSessionCacheKey(sessionId));
 			if (user == null) {
 				// 缓存未登录则判断是否为记住登录信息的用户
 				user = new User();
@@ -74,7 +77,7 @@ public class WebSessionSupport {
 	/**
 	 * 获取当前用户名
 	 * 
-	 * @re	``turn
+	 * @re ``turn
 	 */
 	public Optional<String> getCurUserName() {
 		Optional<User> curUser = this.getCurUser();
@@ -95,7 +98,7 @@ public class WebSessionSupport {
 	 * @param user
 	 */
 	private void expandSignIn(String sessionId, User user) {
-//		cCache.put(getSessionCacheKey(sessionId), user, 1800);
+		// cCache.put(getSessionCacheKey(sessionId), user, 1800);
 	}
 
 	/**
@@ -138,12 +141,7 @@ public class WebSessionSupport {
 		if (sessionId == null) {
 			return;
 		}
-//		this.cCache.remove(getSessionCacheKey(sessionId));
-	}
-
-	public Integer getCurUserAuthority() {
-		Optional<User> curUser = this.getCurUser();
-		return curUser.isPresent() ? curUser.get().getAuthority() : AuthorityEnum.VISITOR.getCode();
+		// this.cCache.remove(getSessionCacheKey(sessionId));
 	}
 
 }

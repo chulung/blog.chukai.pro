@@ -1,4 +1,4 @@
-package com.chulung.blog.freemaker.template;
+package com.chulung.freemaker.template;
 
 import java.io.IOException;
 import java.io.Writer;

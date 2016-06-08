@@ -9,11 +9,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.chulung.blog.session.WebSessionSupport;
 
 /**
- * admin登录拦截器
+ * backend登录拦截器
  * @author ChuKai
  *
  */
-public class AdminSignInInterceptor extends HandlerInterceptorAdapter {
+public class BackendInterceptor extends HandlerInterceptorAdapter {
 	@Resource
 	private WebSessionSupport webSessionSupport;
 
@@ -23,7 +23,7 @@ public class AdminSignInInterceptor extends HandlerInterceptorAdapter {
 		if (webSessionSupport.isSignIn()) {
 			return super.preHandle(request, response, handler);
 		} else {
-			response.sendRedirect("/admin/signIn");
+			response.sendRedirect("/backend/signIn");
 			return false;
 		}
 	}

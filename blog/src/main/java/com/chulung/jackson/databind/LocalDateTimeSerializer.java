@@ -1,4 +1,4 @@
-package com.chulung.blog.jackson.databind;
+package com.chulung.jackson.databind;
 
 import java.io.IOException;
 

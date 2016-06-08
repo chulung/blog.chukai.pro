@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.Id;
 
 import com.chulung.blog.enumerate.PublishStatusEnum;
-import com.chulung.blog.jackson.databind.LocalDateTimeSerializer;
+import com.chulung.jackson.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class ArticleDraft extends BaseModel {

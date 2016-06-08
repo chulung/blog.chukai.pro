@@ -7,7 +7,7 @@
 		<result column="reply_id" property="replyId" jdbcType="INTEGER" />
 		<result column="comment" property="comment" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"
-			typeHandler="com.chulung.ckbatis.typehandler.LocalDateTimeTypeHandler" />
+			typeHandler="com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler" />
 		<result column="user_name" property="userName" jdbcType="VARCHAR" />
 		<result column="email" property="email" jdbcType="VARCHAR" />
 	</resultMap>

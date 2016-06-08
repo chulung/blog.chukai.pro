@@ -1,5 +1,5 @@
 <#--扩展基本宏，用于后台页面，定义顶部导航，及左侧菜单栏，-->
-<#include "WEB-INF/views/admin/baseMacro.ftl">     
+<#include "WEB-INF/views/backend/baseMacro.ftl">     
 <#macro indexPage mianJs=[] miancss=[]> 
 <@page basejs=mianJs basecss=miancss>
   <body>
@@ -9,7 +9,7 @@
 	           <div class="col-md-5">
 	              <!-- Logo -->
 	              <div class="logo">
-	                 <h1><a href="/admin">初的博客 - 管理系统</a></h1>
+	                 <h1><a href="/backend">初的博客 - 管理系统</a></h1>
 	              </div>
 	           </div>
 	           <div class="col-md-5">
@@ -32,7 +32,7 @@
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
 	                        <ul class="dropdown-menu animated fadeInUp">
 	                          <li><a href="profile.html">Profile</a></li>
-	                          <li><a href="/admin/logout">Logout</a></li>
+	                          <li><a href="/backend/logout">Logout</a></li>
 	                        </ul>
 	                      </li>
 	                    </ul>
@@ -49,9 +49,9 @@
 		  	<div class="sidebar content-box" style="display: block;">
                 <ul class="nav">
                     <!-- Main menu -->
-                    <li class="current"><a href="/admin"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
-                    <li><a href="/admin/articleDrafts"><i class="glyphicon glyphicon-list"></i> 草稿</a></li>
-                    <li><a href="/admin/editors"><i class="glyphicon glyphicon-pencil"></i> Markdown</a></li>
+                    <li class="current"><a href="/backend"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    <li><a href="/backend/articleDrafts"><i class="glyphicon glyphicon-list"></i> 草稿</a></li>
+                    <li><a href="/backend/editors"><i class="glyphicon glyphicon-pencil"></i> Markdown</a></li>
                     <li class="submenu">
                          <a href="#">
                             <i class="glyphicon glyphicon-list"></i> Pages

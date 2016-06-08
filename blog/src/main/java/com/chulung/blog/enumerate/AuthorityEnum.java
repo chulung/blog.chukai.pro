@@ -2,7 +2,7 @@ package com.chulung.blog.enumerate;
 
 public enum AuthorityEnum {
 	/**超级管理员*/
-	SUPERADMIN(0, "超级管理员"),
+	SUPERbackend(0, "超级管理员"),
 	/**游客*/
 	VISITOR(1,"游客"),
 	/**普通用户*/

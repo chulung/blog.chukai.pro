@@ -39,6 +39,7 @@ public class GlobalControllerExceptionAdvice extends BaseController {
 
 	@ExceptionHandler(Exception.class)
 	public @ResponseBody ModelMap Excetion(Exception excetion) {
+		errorLog(excetion);
 		AppLog record = new AppLog(LogType.EXCEPTION, LogLevel.ERROR, excetion.toString(), LocalDateTime.now());
 		appLogMapper.insertSelective(record);
 		return new ModelMap().addAttribute("error", "500");

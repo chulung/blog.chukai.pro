@@ -50,7 +50,7 @@ $(function() {
     },
 	editable: true,
 	// US Holidays
-	events: '/statics/admin/js/China32Holidays.ics'
+	events: '/statics/backend/js/China32Holidays.ics'
 	
 	});
 });

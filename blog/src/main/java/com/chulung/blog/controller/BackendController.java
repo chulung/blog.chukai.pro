@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.chulung.blog.authentication.annotation.Authority;
 import com.chulung.blog.dto.PageIn;
-import com.chulung.blog.enumerate.AuthorityEnum;
 import com.chulung.blog.model.ArticleDraft;
 import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
@@ -25,15 +23,14 @@ import com.chulung.blog.service.UserService;
 import com.chulung.blog.session.WebSessionSupport;
 
 /**
- * admin后台
+ * backend后台
  * 
  * @author ChuKai
  *
  */
 @RestController
-@RequestMapping("/admin")
-@Authority
-public class AdminController extends BaseController {
+@RequestMapping("/backend")
+public class BackendController extends BaseController {
 	@Autowired
 	private UserService userService;
 
@@ -49,7 +46,7 @@ public class AdminController extends BaseController {
 	 */
 	@RequestMapping(value = { "", "/" })
 	public ModelAndView index() {
-		return modelAndView("/admin/index");
+		return modelAndView("/backend/index");
 	}
 
 	/**
@@ -57,13 +54,12 @@ public class AdminController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@Authority(authority = AuthorityEnum.VISITOR)
 	@RequestMapping(value = { "/signIn" }, method = RequestMethod.GET)
 	public ModelAndView signIn() {
 		if (webSessionSupport.isSignIn()) {
-			return new ModelAndView("redirect:/admin");
+			return new ModelAndView("redirect:/backend");
 		}
-		return modelAndView("/admin/signIn");
+		return modelAndView("/backend/signIn");
 	}
 
 	/**
@@ -73,18 +69,17 @@ public class AdminController extends BaseController {
 	 * @param response
 	 * @return
 	 */
-	@Authority(authority = AuthorityEnum.VISITOR)
 	@RequestMapping(value = { "/signIn" }, method = RequestMethod.POST)
 	public ModelAndView signIn(@ModelAttribute User user, HttpServletResponse response) {
-		User admin = userService.signInAdmin(user);
-		if (admin == null) {
-			return modelAndView("/admin/signIn").addObject("user", user);
+		User backend = userService.signInbackend(user);
+		if (backend == null) {
+			return modelAndView("/backend/signIn").addObject("user", user);
 		}
 		// 回写sessionId cookie
-		Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, admin.getSessionId());
+		Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, backend.getSessionId());
 		cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie
 		response.addCookie(cookie);
-		return new ModelAndView("redirect:/admin");
+		return new ModelAndView("redirect:/backend");
 	}
 
 	/**
@@ -95,7 +90,7 @@ public class AdminController extends BaseController {
 	 */
 	@RequestMapping("/editors")
 	public ModelAndView editors(@ModelAttribute ArticleDraft articleDraft) {
-		return modelAndView("/admin/editors").addObject("articleTypes", articleService.findAllArticleTypes())
+		return modelAndView("/backend/editors").addObject("articleTypes", articleService.findAllArticleTypes())
 				.addObject("articleDraftId", articleDraft.getId() == null
 						? articleService.findArticleDraftIdByArticleId(articleDraft) : articleDraft.getId());
 	}
@@ -107,7 +102,7 @@ public class AdminController extends BaseController {
 	 */
 	@RequestMapping("/articleDrafts")
 	public ModelAndView articlesDrafts() {
-		return modelAndView("/admin/articleDrafts");
+		return modelAndView("/backend/articleDrafts");
 	}
 
 	/**
@@ -179,6 +174,6 @@ public class AdminController extends BaseController {
 		Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, "");
 		cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie
 		response.addCookie(cookie);
-		return modelAndView("/admin/signIn");
+		return modelAndView("/backend/signIn");
 	}
 }

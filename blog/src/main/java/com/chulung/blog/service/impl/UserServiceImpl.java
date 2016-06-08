@@ -18,7 +18,7 @@ public class UserServiceImpl extends BaseService implements UserService {
 	private UserMapper userMapper;
 
 	@Override
-	public User signInAdmin(User user) {
+	public User signInbackend(User user) {
 		checkExistBlank(user.getUserName(), user.getPassword());
 		user = userMapper.selectOne(user);
 		if (user != null) {

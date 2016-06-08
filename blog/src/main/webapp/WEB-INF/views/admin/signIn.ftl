@@ -1,6 +1,6 @@
 <#--登陆页面只需引入基本宏-->
-<#include "WEB-INF/views/admin/baseMacro.ftl">   
-<@page basejs=["/admin/js/signin.js"] basecss=[]>
+<#include "WEB-INF/views/backend/baseMacro.ftl">   
+<@page basejs=["/backend/js/signin.js"] basecss=[]>
   <body class="login-bg">
   	<div class="header">
 	     <div class="container">
@@ -22,7 +22,7 @@
 			        <div class="box">
 			            <div class="content-wrap">
 			                <h6>Sign In</h6>
-			                <form action="/admin/signIn" method="post">
+			                <form action="/backend/signIn" method="post">
 			                <input class="form-control" type="text" name="userName" placeholder="User Name" value="${user.userName!''}">
 			                <input class="form-control" type="password" name="password" placeholder="Password" value="${user.password!''}">
 			                <input class="val0or1" type="checkbox" name="rememberLogin" value="${user.rememberLogin!'0'}" <#if user?? && user.rememberLogin=1>checked</#if> >记住登录状态</input>

@@ -1,5 +1,5 @@
-<#include "WEB-INF/views/admin/pageMacro.ftl">     
-<@indexPage mianJs=["/markdown/editormd.js","/admin/js/edit.js"] miancss=["/markdown/css/editormd.css"]>
+<#include "WEB-INF/views/backend/pageMacro.ftl">     
+<@indexPage mianJs=["/markdown/editormd.js","/backend/js/edit.js"] miancss=["/markdown/css/editormd.css"]>
 		<div class="col-md-12">
 	        <div class="content-box-large">
 	          <div class="panel-heading">

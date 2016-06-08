@@ -95,12 +95,12 @@
 		<mvc:interceptor>
 			<!-- 默认所有的请求都进行拦截 -->
 			<mvc:mapping path="/**" />
-			<bean class="com.chulung.tracker.interceptor.GlobalTrackerInterceptor"></bean>
+			<bean class="com.chulung.blog.interceptor.GlobalTrackerInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="/admin/**" />
-			<mvc:exclude-mapping path="/admin/signIn" />
-			<bean class="com.chulung.blog.interceptor.AdminSignInInterceptor"></bean>
+			<mvc:mapping path="/backend/**" />
+			<mvc:exclude-mapping path="/backend/signIn" />
+			<bean class="com.chulung.blog.interceptor.SignInInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 </beans>

@@ -16,8 +16,6 @@ public class User extends BaseModel {
 
 	private String nickName;
 
-	private Integer authority;
-
 	private String sessionId;
 
 	private Integer rememberLogin;
@@ -52,14 +50,6 @@ public class User extends BaseModel {
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName == null ? null : nickName.trim();
-	}
-
-	public Integer getAuthority() {
-		return authority;
-	}
-
-	public void setAuthority(Integer authority) {
-		this.authority = authority;
 	}
 
 	public String getSessionId() {

@@ -14,7 +14,7 @@
     <link href="http://apps.bdimg.com/libs/jqueryui/1.9.2/themes/trontastic/jquery-ui.css" rel="stylesheet"/>
     
     <!-- styles -->
-    <link href="${staticsPath}/admin/css/styles.css" rel="stylesheet"/>
+    <link href="${staticsPath}/backend/css/styles.css" rel="stylesheet"/>
     <#list basecss as c>
 	<link href="<#if !j?ends_with('?')>${staticsPath}<#else>/statics</#if>${c}"  rel="stylesheet"/>
 	</#list>
@@ -36,7 +36,7 @@
     <script src="${staticsPath}/global/js/bootstrap.min.js"></script>
     <script src="${staticsPath}/global/js/jquery-ui.min.js"></script>
      -->
-    <script src="${staticsPath}/admin/js/custom.js"></script>
+    <script src="${staticsPath}/backend/js/custom.js"></script>
 <#list basejs as j>
 <script src="<#if !j?ends_with('?')>${staticsPath}<#else>/statics</#if>${j}"></script>
 </#list>
