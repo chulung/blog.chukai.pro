@@ -9,7 +9,7 @@
 	           <div class="col-md-5">
 	              <!-- Logo -->
 	              <div class="logo">
-	                 <h1><a href="/backend">初的博客 - 管理系统</a></h1>
+	                 <h1><a href="/backend">Chu Lung's blog- 管理系统</a></h1>
 	              </div>
 	           </div>
 	           <div class="col-md-5">

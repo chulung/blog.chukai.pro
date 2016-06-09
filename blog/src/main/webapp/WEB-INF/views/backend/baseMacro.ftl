@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>初的博客 - 管理系统</title>
+    <title>Chu Lung's blog- 管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon"
 	href="${staticsPath}/global/images/favicon.ico"

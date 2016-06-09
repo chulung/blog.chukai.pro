@@ -1,5 +1,5 @@
 <#compress>
-<#macro page title > 
+<#macro page  > 
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>

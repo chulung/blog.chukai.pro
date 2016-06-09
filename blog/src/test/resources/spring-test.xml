@@ -9,19 +9,24 @@
        					http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd"
 	default-lazy-init="false">
 
-	<!-- <bean id="dataSource" class="org.hsqldb.jdbc.JDBCDataSource"> -->
-	<!-- <property name="url" value="jdbc:hsqldb:mem:autowire"/> -->
-	<!-- </bean> -->
 	<!-- 使用hsqldb 测试 -->
 	<jdbc:embedded-database id="dataSourceBar">
-		<jdbc:script location="classpath:database-schema-bar.sql" />
+		<jdbc:script location="classpath:hsqldb-testdata.sql" />
 	</jdbc:embedded-database>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 数据源 -->
 		<property name="dataSource" ref="dataSourceBar" />
+		<property name="typeHandlers">
+			<array>
+				<bean class="com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler"></bean>
+			</array>
+		</property>
 	</bean>
 	<!-- 扫描加载mapper -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<!-- 扫描加载mapper -->
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.chulung.**.mapper" />
+		<property name="markerInterface" value="com.chulung.blog.mapper.BaseMapper" />
 	</bean>
+	<context:component-scan base-package="com.chulung.ciki"></context:component-scan>
 </beans>
