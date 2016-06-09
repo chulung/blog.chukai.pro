@@ -13,14 +13,14 @@
 <link rel="shortcut icon" href="${staticsPath}/blog/images/favicon.ico"	type="image/x-icon" />
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<#--
-<link rel="stylesheet"
-	href="${staticsPath}/global/css/bootstrap.min.css">
--->
-<link rel="stylesheet" href="/statics/blog/css/blog.css">
+<link rel="stylesheet" href="${staticsPath}/blog/css/blog.css">
 <#list base_css as c>
 <link rel="stylesheet" href="${staticsPath}${c}">
 </#list>
+ <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body id="main-body" >
 	<div class="container">

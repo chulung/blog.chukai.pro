@@ -2,17 +2,17 @@ package com.chulung.blog.session;
 
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 import javax.annotation.Resource;
 
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Component;
 
-import com.chulung.blog.common.util.NetUtil;
 import com.chulung.blog.mapper.UserMapper;
 import com.chulung.blog.model.User;
+import com.chulung.cache.Cache;
+import com.chulung.cache.CacheBuilder;
+import com.chulung.common.util.NetUtil;
 
 /**
  * web 会话 请求支持，用于登陆拦截
@@ -27,7 +27,9 @@ public class WebSessionSupport {
 	@Resource
 	private UserMapper userMapper;
 
-	private ConcurrentMap<String, Object> cCache = new ConcurrentHashMap<String, Object>();
+	@SuppressWarnings("unchecked")
+	private Cache<String, User> cache = CacheBuilder.config(10).addLiveMillesCacheStrategy(30 * 60, true)
+			.generateCache();
 
 	/**
 	 * 判断当前用户是否登陆
@@ -37,11 +39,7 @@ public class WebSessionSupport {
 	 * @return
 	 */
 	public boolean isSignIn() {
-		Optional<User> curUser = this.getCurUser();
-		curUser.ifPresent(u -> {
-			expandSignIn(this.getCurSessionId(), u);
-		});
-		return curUser.isPresent();
+		return this.getCurUser().isPresent();
 	}
 
 	/**
@@ -62,12 +60,11 @@ public class WebSessionSupport {
 		String sessionId = getCurSessionId();
 		User user = null;
 		if (sessionId != null) {
-			user = (User) cCache.get(getSessionCacheKey(sessionId));
+			user = cache.get(getSessionCacheKey(sessionId));
 			if (user == null) {
-				// 缓存未登录则判断是否为记住登录信息的用户
+				// 缓存未登录则判断数据库
 				user = new User();
 				user.setSessionId(sessionId);
-				user.setRememberLogin(1);
 				user = userMapper.selectOne(user);
 			}
 		}
@@ -77,7 +74,7 @@ public class WebSessionSupport {
 	/**
 	 * 获取当前用户名
 	 * 
-	 * @re ``turn
+	 * @return
 	 */
 	public Optional<String> getCurUserName() {
 		Optional<User> curUser = this.getCurUser();
@@ -90,27 +87,13 @@ public class WebSessionSupport {
 	}
 
 	/**
-	 * 用户每次请求重新刷新30分钟登陆有效期
-	 * 
-	 * @param sessionId
-	 * 
-	 * @param sessionId
-	 * @param user
-	 */
-	private void expandSignIn(String sessionId, User user) {
-		// cCache.put(getSessionCacheKey(sessionId), user, 1800);
-	}
-
-	/**
 	 * 将用户信息缓存,表示登陆,返回生成的sessionId
 	 * 
 	 * @param user
 	 * @return
 	 */
 	public String signIn(User user) {
-		String gegenerateSessionId = gegenerateSessionId(user);
-		expandSignIn(gegenerateSessionId, user);
-		return gegenerateSessionId;
+		return gegenerateSessionId(user);
 	}
 
 	/**
@@ -141,7 +124,7 @@ public class WebSessionSupport {
 		if (sessionId == null) {
 			return;
 		}
-		// this.cCache.remove(getSessionCacheKey(sessionId));
+		this.cache.remove(getSessionCacheKey(sessionId));
 	}
 
 }

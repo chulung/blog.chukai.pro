@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Date;
 
-import com.chulung.blog.common.util.DateUtils;
+import com.chulung.common.util.DateUtils;
 
 public class BaseModel implements Serializable {
 	/**

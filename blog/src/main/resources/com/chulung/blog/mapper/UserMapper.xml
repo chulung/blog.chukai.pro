@@ -8,7 +8,5 @@
 		<result column="nick_Name" property="nickName" jdbcType="VARCHAR" />
 		<result column="authority" property="authority" jdbcType="INTEGER" />
 		<result column="session_Id" property="sessionId" jdbcType="VARCHAR" />
-		<result column="remember_Login" property="rememberLogin"
-			jdbcType="INTEGER" />
 	</resultMap>
 </mapper>

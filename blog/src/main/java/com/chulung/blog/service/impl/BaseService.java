@@ -1,8 +1,8 @@
 package com.chulung.blog.service.impl;
 
-import com.chulung.blog.common.util.StringUtil;
 import com.chulung.blog.exception.GlobalMethodRuntimeExcetion;
 import com.chulung.blog.model.BaseComponent;
+import com.chulung.common.util.StringUtil;
 
 public abstract class BaseService extends BaseComponent {
 

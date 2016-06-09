@@ -7,14 +7,10 @@
     <title>Chu Lung's blog- 管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon"
-	href="${staticsPath}/global/images/favicon.ico"
+	href="${staticsPath}/blog/images/favicon.ico"
 	type="image/x-icon" />
     <!-- Bootstrap -->
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="http://apps.bdimg.com/libs/jqueryui/1.9.2/themes/trontastic/jquery-ui.css" rel="stylesheet"/>
-    
-    <!-- styles -->
-    <link href="${staticsPath}/backend/css/styles.css" rel="stylesheet"/>
     <#list basecss as c>
 	<link href="<#if !j?ends_with('?')>${staticsPath}<#else>/statics</#if>${c}"  rel="stylesheet"/>
 	</#list>
@@ -30,13 +26,6 @@
     </script>				
     <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="http://apps.bdimg.com/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-     <#--
-    <script src="${staticsPath}/global/js/jquery.min.js"></script>
-    <script src="${staticsPath}/global/js/bootstrap.min.js"></script>
-    <script src="${staticsPath}/global/js/jquery-ui.min.js"></script>
-     -->
-    <script src="${staticsPath}/backend/js/custom.js"></script>
 <#list basejs as j>
 <script src="<#if !j?ends_with('?')>${staticsPath}<#else>/statics</#if>${j}"></script>
 </#list>

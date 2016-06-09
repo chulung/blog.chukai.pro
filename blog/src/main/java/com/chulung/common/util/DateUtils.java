@@ -1,4 +1,4 @@
-package com.chulung.blog.common.util;
+package com.chulung.common.util;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

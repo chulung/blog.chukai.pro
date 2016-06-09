@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
 
-import com.chulung.blog.common.util.NetUtil;
 import com.chulung.blog.constant.Constants;
 import com.chulung.blog.model.BaseComponent;
 import com.chulung.blog.model.VisitorInfo;
 import com.chulung.blog.service.VisitorInfoService;
+import com.chulung.common.util.NetUtil;
 
 @Component
 public class Tracker extends BaseComponent {

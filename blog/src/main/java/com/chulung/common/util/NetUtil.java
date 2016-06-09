@@ -1,4 +1,4 @@
-package com.chulung.blog.common.util;
+package com.chulung.common.util;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

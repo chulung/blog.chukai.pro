@@ -1,5 +1,5 @@
 <#include "WEB-INF/views/backend/pageMacro.ftl">     
-<@indexPage mianJs=["/backend/vendors/datatables/js/jquery.dataTables.min.js","/backend/vendors/datatables/dataTables.bootstrap.js","/backend/js/articlesDrafts.js"] miancss=[]>
+<@indexPage mianJs=["/backend/js/articlesDrafts.js"] miancss=[]>
 		  <div class="col-md-10">
   			<div class="content-box-large">
   				<div class="panel-heading">

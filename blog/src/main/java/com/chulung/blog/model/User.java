@@ -18,8 +18,6 @@ public class User extends BaseModel {
 
 	private String sessionId;
 
-	private Integer rememberLogin;
-
 	public Integer getId() {
 		return id;
 	}
@@ -60,11 +58,4 @@ public class User extends BaseModel {
 		this.sessionId = sessionId == null ? null : sessionId.trim();
 	}
 
-	public Integer getRememberLogin() {
-		return rememberLogin;
-	}
-
-	public void setRememberLogin(Integer rememberLogin) {
-		this.rememberLogin = rememberLogin;
-	}
 }

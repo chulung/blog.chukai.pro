@@ -23,7 +23,7 @@ function ajaxData(page) {
 						$('<th>').html(item.createTime).appendTo($tr);
 						$('<th>').html(item.updateTime).appendTo($tr);
 						$('<th>').html(item.mender).appendTo($tr);
-						$('<th>').html(item.isPublish == 1 ? "已发布" : "未发布")
+						$('<th>').html(item.isPublish == 'PUBLISHED' ? "已发布" : "未发布")
 								.appendTo($tr);
 						$('<th>').addClass('version').html(item.version)
 								.appendTo($tr);

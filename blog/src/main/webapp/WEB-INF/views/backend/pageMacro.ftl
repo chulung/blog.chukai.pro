@@ -52,17 +52,6 @@
                     <li class="current"><a href="/backend"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
                     <li><a href="/backend/articleDrafts"><i class="glyphicon glyphicon-list"></i> 草稿</a></li>
                     <li><a href="/backend/editors"><i class="glyphicon glyphicon-pencil"></i> Markdown</a></li>
-                    <li class="submenu">
-                         <a href="#">
-                            <i class="glyphicon glyphicon-list"></i> Pages
-                            <span class="caret pull-right"></span>
-                         </a>
-                         <!-- Sub menu -->
-                         <ul>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="signup.html">Signup</a></li>
-                        </ul>
-                    </li>
                 </ul>
              </div>
 		  </div>

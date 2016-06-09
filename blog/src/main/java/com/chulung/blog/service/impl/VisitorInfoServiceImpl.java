@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chulung.blog.common.util.NetUtil;
 import com.chulung.blog.constant.Constants;
 import com.chulung.blog.mapper.ArticleMapper;
 import com.chulung.blog.mapper.UserTrackerMapper;
@@ -13,6 +12,7 @@ import com.chulung.blog.mapper.VisitorInfoMapper;
 import com.chulung.blog.model.UserTracker;
 import com.chulung.blog.model.VisitorInfo;
 import com.chulung.blog.service.VisitorInfoService;
+import com.chulung.common.util.NetUtil;
 
 @Service
 public class VisitorInfoServiceImpl implements VisitorInfoService {

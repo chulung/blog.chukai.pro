@@ -158,7 +158,7 @@ public class BackendController extends BaseController {
 	 * @param pageIn
 	 * @return
 	 */
-	@RequestMapping(value = "/articleDrafts", method = RequestMethod.GET)
+	@RequestMapping(value = "/articleDrafts/list", method = RequestMethod.GET)
 	public @ResponseBody List<ArticleDraft> getArticleDrafts(@ModelAttribute PageIn<ArticleDraft> pageIn) {
 		return articleService.findArticleDraftsListByAjax(pageIn);
 	}

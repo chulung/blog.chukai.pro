@@ -3,8 +3,8 @@ package com.chulung.blog.controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.chulung.blog.common.util.StringUtil;
 import com.chulung.blog.model.BaseComponent;
+import com.chulung.common.util.StringUtil;
 
 /**
  * Controller基类
@@ -14,7 +14,7 @@ import com.chulung.blog.model.BaseComponent;
  */
 public abstract class BaseController extends BaseComponent {
 
-	private String staticsPath = "http://chulung.github.io/statics";
+	private String staticsPath = "/statics";
 
 	/**
 	 * 默认成功响应，用于json返回

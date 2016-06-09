@@ -19,6 +19,11 @@
 		<org.slf4j.version>1.7.12</org.slf4j.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>3.0.1</version>
+		</dependency>
 		<!-- http://mvnrepository.com/artifact/org.pegdown/pegdown 基于java的markdown解析器 -->
 		<dependency>
 			<groupId>org.pegdown</groupId>

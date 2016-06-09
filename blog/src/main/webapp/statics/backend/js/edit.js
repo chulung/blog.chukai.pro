@@ -22,7 +22,7 @@ function saveBtnInit() {
 						$
 								.ajax({
 									type : draftId ? "PUT" : "POST",
-									url : "/articleDraft",
+									url : "/backend/articleDraft",
 									data : {
 										"id" : draftId,
 										"title" : title,
@@ -45,7 +45,6 @@ function saveBtnInit() {
 									complete : function(jqXHR, textStatus) {
 										saving = false;
 									}
-
 								});
 					});
 }
@@ -81,14 +80,14 @@ function editInit() {
 			if (draftId) {
 				$.ajax({
 					type : "GET",
-					url : "/articleDraft/" + draftId,
+					url : "/backend/articleDraft/" + draftId,
 					dataType : "json",
 					success : function(data) {
 						editor.setMarkdown(data.context);
 						$('#isPublish').prop("checked",
 								data.isPublish == 'PUBLISHED');
 						$('#title').val(data.title)
-						$('#articleType').val(data.articleType);
+						$('#articleType').val(data.typeId);
 					}
 				});
 			} else {

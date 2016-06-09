@@ -27,7 +27,6 @@ public class UserServiceImpl extends BaseService implements UserService {
 			User bean = new User();
 			bean.setId(user.getId());
 			bean.setSessionId(user.getSessionId());
-			bean.setRememberLogin(user.getRememberLogin());
 			userMapper.updateByPrimaryKeySelective(bean);
 		}
 		return user;

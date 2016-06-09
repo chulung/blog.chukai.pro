@@ -1,4 +1,4 @@
-package com.chulung.blog.common.util;
+package com.chulung.common.util;
 
 
 public class StringUtil extends org.apache.commons.lang3.StringUtils {
