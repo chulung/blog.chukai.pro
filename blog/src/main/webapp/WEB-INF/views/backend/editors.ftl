@@ -1,5 +1,5 @@
 <#include "WEB-INF/views/backend/pageMacro.ftl">     
-<@indexPage mianJs=["/markdown/editormd.js","/backend/js/edit.js"] miancss=["/markdown/css/editormd.css"]>
+<@page mianJs=["/markdown/editormd.js","/backend/js/edit.js"] miancss=["/markdown/css/editormd.css"]>
 		<div class="col-md-12">
 	        <div class="content-box-large">
 	          <div class="panel-heading">
@@ -15,6 +15,7 @@
 						</select>
 						<button id="btn-save">保存</button>
 				  </div>
+				  <div >
 		          <div class="panel-options">
 		            <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
 		            <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
@@ -24,4 +25,4 @@
 	          </div>
       		</div>
 		</div>
-</@indexPage>
+</@page>

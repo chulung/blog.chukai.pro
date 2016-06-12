@@ -18,12 +18,12 @@ public class UserServiceImpl extends BaseService implements UserService {
 	private UserMapper userMapper;
 
 	@Override
-	public User signInbackend(User user) {
+	public User logInbackend(User user) {
 		checkExistBlank(user.getUserName(), user.getPassword());
 		user = userMapper.selectOne(user);
 		if (user != null) {
 			// 回写sessionId
-			user.setSessionId(webSessionSupport.signIn(user));
+			user.setSessionId(webSessionSupport.logIn(user));
 			User bean = new User();
 			bean.setId(user.getId());
 			bean.setSessionId(user.getSessionId());

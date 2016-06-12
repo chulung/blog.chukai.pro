@@ -1,7 +1,7 @@
 <#--扩展基本宏，用于后台页面，定义顶部导航，及左侧菜单栏，-->
 <#include "WEB-INF/views/backend/baseMacro.ftl">     
-<#macro indexPage mianJs=[] miancss=[]> 
-<@page basejs=mianJs basecss=miancss>
+<#macro page mianJs=[] miancss=[]> 
+<@base basejs=mianJs basecss=miancss>
   <body>
   	<div class="header">
 	     <div class="container">
@@ -72,5 +72,5 @@
          </div>
       </footer>
   </body>
-</@page>
+</@base>
 </#macro> 

@@ -1,6 +1,6 @@
 <#--最基本的后台模板宏，定义head 及css，js引入-->
 <#compress>
-<#macro page basejs=[] basecss=[]> 
+<#macro base basejs=[] basecss=[]> 
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -12,7 +12,7 @@
     <!-- Bootstrap -->
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <#list basecss as c>
-	<link href="<#if !j?ends_with('?')>${staticsPath}<#else>/statics</#if>${c}"  rel="stylesheet"/>
+	<link href="${staticsPath}/statics${c}"  rel="stylesheet"/>
 	</#list>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -27,7 +27,7 @@
     <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <#list basejs as j>
-<script src="<#if !j?ends_with('?')>${staticsPath}<#else>/statics</#if>${j}"></script>
+<script src="${staticsPath}${j}"></script>
 </#list>
 </html>
 </#macro> 

@@ -54,12 +54,12 @@ public class BackendController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = { "/signIn" }, method = RequestMethod.GET)
-	public ModelAndView signIn() {
-		if (webSessionSupport.isSignIn()) {
+	@RequestMapping(value = { "/logIn" }, method = RequestMethod.GET)
+	public ModelAndView logIn() {
+		if (webSessionSupport.islogIn()) {
 			return new ModelAndView("redirect:/backend");
 		}
-		return modelAndView("/backend/signIn");
+		return modelAndView("/backend/logIn");
 	}
 
 	/**
@@ -69,11 +69,11 @@ public class BackendController extends BaseController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = { "/signIn" }, method = RequestMethod.POST)
-	public ModelAndView signIn(@ModelAttribute User user, HttpServletResponse response) {
-		User backend = userService.signInbackend(user);
+	@RequestMapping(value = { "/logIn" }, method = RequestMethod.POST)
+	public ModelAndView logIn(@ModelAttribute User user, HttpServletResponse response) {
+		User backend = userService.logInbackend(user);
 		if (backend == null) {
-			return modelAndView("/backend/signIn").addObject("user", user);
+			return modelAndView("/backend/logIn").addObject("user", user);
 		}
 		// 回写sessionId cookie
 		Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, backend.getSessionId());
@@ -168,12 +168,12 @@ public class BackendController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/logout")
+	@RequestMapping("/logOut")
 	public ModelAndView logout(HttpServletResponse response) {
-		webSessionSupport.logout();
+		webSessionSupport.logOut();
 		Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, "");
 		cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie
 		response.addCookie(cookie);
-		return modelAndView("/backend/signIn");
+		return modelAndView("/backend/logIn");
 	}
 }

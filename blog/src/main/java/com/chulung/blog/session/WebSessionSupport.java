@@ -38,7 +38,7 @@ public class WebSessionSupport {
 	 *            cookie中的sessionId
 	 * @return
 	 */
-	public boolean isSignIn() {
+	public boolean islogIn() {
 		return this.getCurUser().isPresent();
 	}
 
@@ -92,7 +92,7 @@ public class WebSessionSupport {
 	 * @param user
 	 * @return
 	 */
-	public String signIn(User user) {
+	public String logIn(User user) {
 		return gegenerateSessionId(user);
 	}
 
@@ -119,7 +119,7 @@ public class WebSessionSupport {
 	/**
 	 * 注销,清空缓存及持久化的session
 	 */
-	public void logout() {
+	public void logOut() {
 		String sessionId = getCurSessionId();
 		if (sessionId == null) {
 			return;

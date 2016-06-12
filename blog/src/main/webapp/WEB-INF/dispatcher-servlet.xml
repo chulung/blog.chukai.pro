@@ -99,7 +99,7 @@
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/backend/**" />
-			<mvc:exclude-mapping path="/backend/signIn" />
+			<mvc:exclude-mapping path="/backend/logIn" />
 			<bean class="com.chulung.blog.interceptor.BackendInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

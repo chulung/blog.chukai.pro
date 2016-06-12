@@ -20,10 +20,10 @@ public class BackendInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if (webSessionSupport.isSignIn()) {
+		if (webSessionSupport.islogIn()) {
 			return super.preHandle(request, response, handler);
 		} else {
-			response.sendRedirect("/backend/signIn");
+			response.sendRedirect("/backend/logIn");
 			return false;
 		}
 	}

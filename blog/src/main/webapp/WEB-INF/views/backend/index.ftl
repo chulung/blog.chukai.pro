@@ -1,4 +1,4 @@
 <#include "WEB-INF/views/backend/pageMacro.ftl">     
-<@indexPage mianJs=[] miancss=[]>
+<@page mianJs=[] miancss=[]>
 		
-</@indexPage>
+</@page>
