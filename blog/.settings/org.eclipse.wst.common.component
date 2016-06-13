@@ -5,6 +5,9 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+        <dependent-module archiveName="metaclblog-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/metaclblog/metaclblog">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="fastdfs-client-1.25.2-cl-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/FastDFS_Client/FastDFS_Client">
             <dependency-type>uses</dependency-type>
         </dependent-module>

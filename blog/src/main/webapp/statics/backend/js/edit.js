@@ -50,7 +50,7 @@ function saveBtnInit() {
 }
 function editInit() {
 	editor = editormd("editor-div", {
-		width : "90%",
+		width : "100%",
 		height : 740,
 		path : staticsPath + '/markdown/lib/',
 		theme : "dark",
