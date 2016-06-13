@@ -1,7 +1,7 @@
 
 /**
- * 博客首页，依赖侧边栏sidebarInfo.js
+ * 博客首页
  */
-requirejs([ 'jquery', 'sidebarInfo' ], function($, sidebarInfo) {
-	sidebarInfo.init();
+requirejs([ 'jquery'], function($) {
+
 });

@@ -9,10 +9,10 @@
 <meta name="description" content="Chu Lung's blog">
 <meta name="author" content="Chu Lung">
 <meta content="${base_keywords}" name="keywords">
-<title>Chu Lung's blog-${base_title}</title>
+<title>${base_title}-Chu Lung's blog</title>
 <link rel="shortcut icon" href="${staticsPath}/blog/images/favicon.ico"	type="image/x-icon" />
 <link rel="stylesheet"
-	href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="${staticsPath}/blog/css/blog.css">
 <#list base_css as c>
 <link rel="stylesheet" href="${staticsPath}${c}">
@@ -51,7 +51,7 @@
 </body>
 <script>var staticsPath="${staticsPath}"</script>
 <script>var module="${moduleName}"</script>
-<script data-main='/statics/blog/js/${mainjs}.js' src="http://apps.bdimg.com/libs/require.js/2.1.9/require.min.js"></script>
+<script data-main='${staticsPath}/${mainjs}.js' src="https://apps.bdimg.com/libs/require.js/2.1.9/require.min.js"></script>
 </html>
 </#macro> 
 </#compress>

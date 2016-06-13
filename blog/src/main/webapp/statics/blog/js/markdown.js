@@ -1,9 +1,9 @@
 //由于markdown配置路径有点不同，所以单独配置一份
 requirejs.config({
 	//github静态分离路径
-	baseUrl : "http://chulung.github.io/statics/markdown/lib/",
+	baseUrl : "https://static.chulung.com/statics/markdown/lib/",
 	paths : {
-		jquery : "http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
+		jquery : "https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
 		marked : "marked.min",
 		prettify : "prettify.min",
 		raphael : "raphael.min",
@@ -11,8 +11,8 @@ requirejs.config({
 		flowchart : "flowchart.min",
 		jqueryflowchart : "jquery.flowchart.min",
 		sequenceDiagram : "sequence-diagram.min",
-		katex : "//cdn.bootcss.com/KaTeX/0.1.1/katex.min",
-		editormd : "../editormd.amd" // Using Editor.md amd version for
+		katex : "https://cdn.bootcss.com/KaTeX/0.1.1/katex.min",
+		editormd : "../editormd.amd.min" // Using Editor.md amd version for
 	// Require.js
 	},
 	//手动声明依赖部分
@@ -41,7 +41,7 @@ require(
 					{
 						width : "90%",
 						height : 740,
-						path : 'http://chulung.github.io/statics/markdown/lib/',
+						path : 'https://chulung.github.io/statics/markdown/lib/',
 						theme : "dark",
 						previewTheme : "",// 预览主题
 						editorTheme : "eclipse",// 代码主题

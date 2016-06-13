@@ -1,9 +1,9 @@
 <#macro page title js=[] css=[] keywords=""> 
 <#include "WEB-INF/views/baseMacro.ftl">     
-<@base base_title=title mainjs='main' base_css=css base_keywords="个人博客,Chu Lung">
+<@base base_title=title mainjs='/blog/js/main' base_css=css base_keywords="个人博客,Chu Lung">
 <div class="container">
 	<div class="blog-header">
-		<h1 class="blog-title">Chu Lung's blog</h1>
+		<h1 class="blog-title">Chu Lung's Blog</h1>
 		<p class="lead blog-description">唯爱、技术和美食三者不可辜负.</p>
 	</div>
 	<div class="row">

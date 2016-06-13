@@ -14,7 +14,7 @@ import com.chulung.common.util.StringUtil;
  */
 public abstract class BaseController extends BaseComponent {
 
-	private String staticsPath = "/statics";
+	private String staticsPath = "https://static.chulung.com/statics";
 
 	/**
 	 * 默认成功响应，用于json返回

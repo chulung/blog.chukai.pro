@@ -83,20 +83,16 @@
 		<welcome-file>/</welcome-file>
 	</welcome-file-list>
 	<!-- 静态文件 交给default servlet 重写servlet以拦截请求信息 -->
+	<filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>com.chulung.blog.filter.CorsFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/statics/*</url-pattern>
+	</filter-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
-		<url-pattern>*.jpg</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.js</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.css</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.bmp</url-pattern>
+		<url-pattern>/statics/*</url-pattern>
 	</servlet-mapping>
 </web-app>
