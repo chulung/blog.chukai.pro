@@ -1,6 +1,6 @@
 <#--最基本的后台模板宏，定义head 及css，js引入-->
 <#compress>
-<#macro base basejs=[] basecss=[]> 
+<#macro base basecss=[]> 
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -21,14 +21,6 @@
   </head>
 
 				<#nested>
-    <script>
-    	var staticsPath="${staticsPath}";
-    </script>				
-    <script src="https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<#list basejs as j>
-<script src="${staticsPath}${j}"></script>
-</#list>
 </html>
 </#macro> 
 </#compress>

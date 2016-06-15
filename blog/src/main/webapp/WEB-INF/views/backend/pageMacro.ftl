@@ -1,7 +1,7 @@
 <#--扩展基本宏，用于后台页面，定义顶部导航，及左侧菜单栏，-->
 <#include "WEB-INF/views/backend/baseMacro.ftl">     
-<#macro page mianJs=[] miancss=[]> 
-<@base basejs=mianJs basecss=miancss>
+<#macro page miancss=[]> 
+<@base basecss=miancss>
   <body>
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
