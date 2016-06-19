@@ -1,7 +1,7 @@
-define(['jquery','editormd.min'],function{
-	var exports={};
+define([ 'jquery', 'editormd.min' ], function() {
+	var exports = {};
 	var editor;
-	exports.editorInit=function () {
+	exports.editorInit = function() {
 		editor = editormd("editor-div", {
 			width : "100%",
 			height : 740,
@@ -44,28 +44,29 @@ define(['jquery','editormd.min'],function{
 						}
 					});
 				} else {
-					editor.setMarkdown(window.localStorage.autoSaveContext || "");
+					editor.setMarkdown(window.localStorage.autoSaveContext
+							|| "");
 					$('#isPublish').prop("checked",
 							!!window.localStorage.autoSaveIsPublish);
 					$('#title').val(window.localStorage.autoSaveTitle || "");
 					$('#articleType').val(
 							window.localStorage.autoSaveArticleType || "1");
 					setInterval(function() {
-						window.localStorage.autoSaveContext = editor.getMarkdown();
-						window.localStorage.autoSaveIsPublish = $("#isPublish").is(
-								":checked") ? 1 : '';
+						window.localStorage.autoSaveContext = editor
+								.getMarkdown();
+						window.localStorage.autoSaveIsPublish = $("#isPublish")
+								.is(":checked") ? 1 : '';
 						window.localStorage.autoSaveTitle = $('#title').val();
-						window.localStorage.autoSaveArticleType = $('#articleType')
-								.val();
+						window.localStorage.autoSaveArticleType = $(
+								'#articleType').val();
 						console.log("autoSave");
 					}, 10000);
 				}
 			}
 		});
 	}
-	exports.saveEvt=function () {
-		$('#btn-save')
-		.click(
+	exports.saveEvt = function() {
+		$('#btn-save').click(
 				function() {
 					if (saving) {
 						alert("正在保存中");
@@ -88,8 +89,8 @@ define(['jquery','editormd.min'],function{
 									"typeId" : $('#typeId').val(),
 									"context" : editor.getMarkdown(),
 									"htmlContext" : editor.getHTML(),
-									"isPublish" : $("#isPublish").is(
-											":checked") ? "PUBLISHED"
+									"isPublish" : $("#isPublish")
+											.is(":checked") ? "PUBLISHED"
 											: "UNPUBLISHED"
 								},
 								dataType : "json",
@@ -107,9 +108,21 @@ define(['jquery','editormd.min'],function{
 							});
 				});
 	}
-	exports.init=function(){
+	exports.init = function() {
 		editorInit();
 		saveEvt();
+		$("#typeId").change(function(){
+			if ($(this).val()==5) {
+				$.ajax({url:"/backend/ciki/category/list",
+						data:{'parentId':1},
+						type:"json",
+						success:function(data){
+							if (data.code=1) {
+								
+							}
+						}
+				});
+			}
+		});
 	}
 });
-

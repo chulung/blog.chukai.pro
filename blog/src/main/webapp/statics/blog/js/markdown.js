@@ -12,7 +12,7 @@ requirejs.config({
 		jqueryflowchart : "jquery.flowchart.min",
 		sequenceDiagram : "sequence-diagram.min",
 		katex : "https://cdn.bootcss.com/KaTeX/0.1.1/katex.min",
-		editormd : "../editormd.amd.min" // Using Editor.md amd version for
+		editormd : "../editormd.amd" // Using Editor.md amd version for
 	// Require.js
 	},
 	//手动声明依赖部分

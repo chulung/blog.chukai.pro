@@ -6,7 +6,7 @@ import com.chulung.blog.model.Article;
 import com.chulung.blog.model.BaseModel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 /**
- * 共用的blog dto
+ * 公用的blog dto
  * 
  * @author ChuKai
  *

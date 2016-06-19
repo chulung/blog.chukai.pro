@@ -9,11 +9,13 @@ public class Category {
 	@Id
 	private Integer id;
 	private Integer parentId;
+	private Integer articleId;
 	private String categoryName;
 	private String categoryType;
 	@Transient
 	private List<Category> categories;
-	private Integer articleId;
+	@Transient
+	private ArticleDraft articleDraft;
 
 	public Integer getId() {
 		return id;
@@ -61,6 +63,14 @@ public class Category {
 
 	public void setArticleId(Integer articleId) {
 		this.articleId = articleId;
+	}
+
+	public ArticleDraft getArticleDraft() {
+		return articleDraft;
+	}
+
+	public void setArticleDraft(ArticleDraft articleDraft) {
+		this.articleDraft = articleDraft;
 	}
 
 }

@@ -11,6 +11,10 @@
 							<option value="${type.dictValue}">${type.dictDesc}</option>
 						</#list>
 						</select>
+						<select >
+						</select >
+						<select >
+						</select >
 						<button id="btn-save">保存</button>
 				  </div>
 			</div>

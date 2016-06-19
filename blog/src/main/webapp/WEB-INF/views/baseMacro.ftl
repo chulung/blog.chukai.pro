@@ -51,7 +51,7 @@
 </body>
 <script>var staticsPath="${staticsPath}"</script>
 <script>var module="${moduleName}"</script>
-<script data-main='${staticsPath}/${mainjs}.js' src="https://apps.bdimg.com/libs/require.js/2.1.9/require.min.js"></script>
+<script data-main='${staticsPath}/${mainjs}.js?${.now}' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 </html>
 </#macro> 
 </#compress>

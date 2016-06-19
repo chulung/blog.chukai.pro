@@ -11,14 +11,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.chulung.blog.dto.PageIn;
 import com.chulung.blog.model.ArticleDraft;
+import com.chulung.blog.model.Category;
 import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
+import com.chulung.blog.service.CategoryService;
 import com.chulung.blog.service.UserService;
 import com.chulung.blog.session.WebSessionSupport;
 
@@ -38,6 +41,8 @@ public class BackendController extends BaseController {
 	private ArticleService articleService;
 	@Autowired
 	private WebSessionSupport webSessionSupport;
+	@Autowired
+	private CategoryService categoryService;
 
 	/**
 	 * 首页
@@ -160,7 +165,7 @@ public class BackendController extends BaseController {
 	 */
 	@RequestMapping(value = "/articleDrafts/list", method = RequestMethod.GET)
 	public @ResponseBody List<ArticleDraft> getArticleDrafts(@ModelAttribute PageIn<ArticleDraft> pageIn) {
-		return articleService.findArticleDraftsListByAjax(pageIn);
+		return articleService.findArticleDraftsList(pageIn);
 	}
 
 	/**
@@ -175,5 +180,10 @@ public class BackendController extends BaseController {
 		cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie
 		response.addCookie(cookie);
 		return modelAndView("/backend/logIn");
+	}
+
+	@RequestMapping("/ciki/category/list")
+	public @ResponseBody List<Category> listCategory(@RequestParam Integer parentId) {
+		return this.categoryService.getCategoryListByParentId(parentId);
 	}
 }

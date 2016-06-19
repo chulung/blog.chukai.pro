@@ -73,7 +73,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		articleDraft.setMender(user.getNickName());
 		articleDraft.setVersion(oldDraft.getVersion() + 1);
 		// 判断是否发布文章
-		if (PublishStatusEnum.PUBLISHED==articleDraft.getIsPublish()) {
+		if (PublishStatusEnum.PUBLISHED == articleDraft.getIsPublish()) {
 			Article article = Article.of(articleDraft);
 			if (article.getId() == null) {
 				article.setAuthor(user.getNickName());
@@ -90,7 +90,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		return true;
 	}
 
-	
 	@Override
 	public List<Dictionary> findAllArticleTypes() {
 		Dictionary record = new Dictionary();
@@ -123,7 +122,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		articleDraft.setAuthor(user.getNickName());
 		articleDraft.setIsDelete(0);
 		articleDraft.setCreateTime(LocalDateTime.now());
-		if (PublishStatusEnum.PUBLISHED==articleDraft.getIsPublish()) {
+		if (PublishStatusEnum.PUBLISHED == articleDraft.getIsPublish()) {
 			Article article = Article.of(articleDraft);
 			int key = 0;
 			if ((key = articleMapper.insertSelective(article)) <= 0) {
@@ -137,8 +136,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	}
 
 	@Override
-	public List<ArticleDraft> findArticleDraftsListByAjax(PageIn<ArticleDraft> pageIn) {
-		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
+	public List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn) {
+		if (pageIn != null) {
+			PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
+		}
 		return this.articleDraftMapper.selectTileList();
 	}
 
@@ -152,7 +153,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	public void deleteArticleDraft(Integer id) {
 		ArticleDraft articleDraft = this.articleDraftMapper.selectByPrimaryKey(id);
 		if (articleDraft != null) {
-			if (PublishStatusEnum.PUBLISHED==articleDraft.getIsPublish()) {
+			if (PublishStatusEnum.PUBLISHED == articleDraft.getIsPublish()) {
 				Article record = new Article();
 				record.setId(articleDraft.getArticleId());
 				record.setIsDelete(1);

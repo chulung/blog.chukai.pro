@@ -25,7 +25,7 @@ public interface ArticleService {
 
 	void insert(ArticleDraft articleDraft);
 
-	List<ArticleDraft> findArticleDraftsListByAjax(PageIn<ArticleDraft> pageIn);
+	List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn);
 
 	ArticleDraft findArticleDraft(Integer id);
 
