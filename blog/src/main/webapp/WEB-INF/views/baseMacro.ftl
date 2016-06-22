@@ -27,8 +27,9 @@
 		<ul class="nav nav-pills">
 	      <li <#if !typeId??> class="active" </#if> role="presentation"><a href="/">首页</a></li>
 	      <li <#if typeId=1> class="active" </#if>  role="presentation"><a href="/articles.html">文章</a></li>
-	      <li <#if typeId=2> class="active" </#if>  role="presentation"><a href="/essaies.html">随笔</a></li>
 	      <li <#if typeId=3> class="active" </#if>  role="presentation"><a href="/reprint.html">他山之石</a></li>
+	      <li <#if typeId=2> class="active" </#if>  role="presentation"><a href="/essaies.html">随笔</a></li>
+	      <li <#if typeId=5> class="active" </#if>  role="presentation"><a href="https://ciki.chulung.com">Ciki</a></li>
 	      <li <#if typeId=0> class="active" </#if>  role="presentation"><a href="/markdown">Markdown</a></li>
 	      <li class="dropdown <#if typeId=4> active</#if>" role="presentation">
 	       	<a aria-expanded="false" aria-haspopup="true" role="button" href="#" data-toggle="dropdown" class="dropdown-toggle">
@@ -51,7 +52,7 @@
 </body>
 <script>var staticsPath="${staticsPath}"</script>
 <script>var module="${moduleName}"</script>
-<script data-main='${staticsPath}/${mainjs}.js?${.now}' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script data-main='${staticsPath}/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 </html>
 </#macro> 
 </#compress>

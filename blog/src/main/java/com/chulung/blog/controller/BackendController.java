@@ -43,6 +43,8 @@ public class BackendController extends BaseController {
 	private WebSessionSupport webSessionSupport;
 	@Autowired
 	private CategoryService categoryService;
+	
+	
 
 	/**
 	 * 首页
@@ -64,7 +66,7 @@ public class BackendController extends BaseController {
 		if (webSessionSupport.islogIn()) {
 			return new ModelAndView("redirect:/backend");
 		}
-		return modelAndView("/backend/logIn");
+		return modelAndView("/backend/logIn","logIn");
 	}
 
 	/**
@@ -78,7 +80,7 @@ public class BackendController extends BaseController {
 	public ModelAndView logIn(@ModelAttribute User user, HttpServletResponse response) {
 		User backend = userService.logInbackend(user);
 		if (backend == null) {
-			return modelAndView("/backend/logIn").addObject("user", user);
+			return modelAndView("/backend/logIn","logIn").addObject("user", user);
 		}
 		// 回写sessionId cookie
 		Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, backend.getSessionId());
@@ -93,9 +95,9 @@ public class BackendController extends BaseController {
 	 * @param article
 	 * @return
 	 */
-	@RequestMapping("/editors")
-	public ModelAndView editors(@ModelAttribute ArticleDraft articleDraft) {
-		return modelAndView("/backend/editors").addObject("articleTypes", articleService.findAllArticleTypes())
+	@RequestMapping("/editor")
+	public ModelAndView editor(@ModelAttribute ArticleDraft articleDraft) {
+		return modelAndView("/backend/editor","editor").addObject("articleTypes", articleService.findAllArticleTypes())
 				.addObject("articleDraftId", articleDraft.getId() == null
 						? articleService.findArticleDraftIdByArticleId(articleDraft) : articleDraft.getId());
 	}

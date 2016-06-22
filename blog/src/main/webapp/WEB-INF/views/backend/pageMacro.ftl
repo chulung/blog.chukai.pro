@@ -1,7 +1,7 @@
 <#--扩展基本宏，用于后台页面，定义顶部导航，及左侧菜单栏，-->
 <#include "WEB-INF/views/backend/baseMacro.ftl">     
-<#macro page miancss=[]> 
-<@base basecss=miancss>
+<#macro page mainJs miancss=[]> 
+<@base baseJs=mainJs basecss=miancss>
   <body>
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
@@ -20,7 +20,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	         <li><a href="/backend/articleDrafts"><i class="glyphicon glyphicon-list"></i> 草稿</a></li>
-             <li><a href="/backend/editors"><i class="glyphicon glyphicon-pencil"></i> Markdown</a></li>
+             <li><a href="/backend/editor"><i class="glyphicon glyphicon-pencil"></i> Markdown</a></li>
 	      </ul>
 	      <form class="navbar-form navbar-right" role="search">
 	        <div class="form-group">

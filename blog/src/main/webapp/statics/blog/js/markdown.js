@@ -17,7 +17,8 @@ requirejs.config({
 	},
 	//手动声明依赖部分
 	shim : {
-		jqueryflowchart : [ "jquery" ]
+		jqueryflowchart : [ "jquery" ],
+		sequenceDiagram : [ "raphael" ]
 	},
 	waitSeconds : 30
 });

@@ -1,6 +1,6 @@
 <#--登陆页面只需引入基本宏-->
 <#include "WEB-INF/views/backend/baseMacro.ftl">   
-<@base basejs=[] basecss=[]>
+<@base  basecss=[]>
    <div class="container">
       <form action="/backend/logIn" method="post">
         <h2 >Chu Lung's Blog</h2>

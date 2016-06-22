@@ -15,7 +15,7 @@
 							<#assign categoryName=category.categoryName>
 							<#list category.categories as childCategory>
 							<li>
-								<a herf="/${categoryName}/${childCategory.categoryName}.html">${childCategory.categoryName}</a>
+								<a href="https://ciki.chulung.com/${categoryName}/${childCategory.categoryName}.html">${childCategory.categoryName}</a>
 							</li>
 							</#list>
 						</ul>
