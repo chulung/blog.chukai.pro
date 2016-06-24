@@ -10,6 +10,7 @@ import com.chulung.blog.session.WebSessionSupport;
 
 /**
  * backend登录拦截器
+ * 
  * @author ChuKai
  *
  */
@@ -23,7 +24,7 @@ public class BackendInterceptor extends HandlerInterceptorAdapter {
 		if (webSessionSupport.islogIn()) {
 			return super.preHandle(request, response, handler);
 		} else {
-			response.sendRedirect("/backend/logIn");
+			response.sendRedirect("/backend/logIn?reUrl=" + request.getRequestURL() + "?" + request.getQueryString());
 			return false;
 		}
 	}

@@ -64,10 +64,10 @@
 	<logger name="org.springframework.web.servlet.DispatcherServlet" >
 		<level value="info" />
 	</logger>
+	 -->
 	<logger name="com.chulung.blog.mapper" >
 		<level value="debug" />
 	</logger>
-	 -->
 	<logger name="org.springframework.scheduling" >
 		<level value="debug" />
 	</logger>

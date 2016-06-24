@@ -1,9 +1,10 @@
 //由于markdown配置路径有点不同，所以单独配置一份
 requirejs.config({
-	//github静态分离路径
+	// github静态分离路径
 	baseUrl : "https://static.chulung.com/statics/markdown/lib/",
 	paths : {
 		jquery : "https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
+		treeview:"https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min",
 		marked : "marked.min",
 		prettify : "prettify.min",
 		raphael : "raphael.min",
@@ -15,7 +16,7 @@ requirejs.config({
 		editormd : "../editormd.amd" // Using Editor.md amd version for
 	// Require.js
 	},
-	//手动声明依赖部分
+	// 手动声明依赖部分
 	shim : {
 		jqueryflowchart : [ "jquery" ],
 		sequenceDiagram : [ "raphael" ]
@@ -31,7 +32,7 @@ var deps = [ "editormd", "../plugins/link-dialog/link-dialog",
 		"../plugins/goto-line-dialog/goto-line-dialog",
 		"../plugins/help-dialog/help-dialog",
 		"../plugins/html-entities-dialog/html-entities-dialog",
-		"../plugins/preformatted-text-dialog/preformatted-text-dialog" ];
+		"../plugins/preformatted-text-dialog/preformatted-text-dialog","treeview" ];
 var editor;
 require(deps, function(editormd) {
 	editormd("editor-div", {
@@ -97,20 +98,37 @@ require(deps, function(editormd) {
 			}
 		}
 	});
-	$("#typeId").change(function() {
-		if ($(this).val() == 5) {
-			$.ajax({
-				url : "/backend/ciki/category/list",
-				data : {
-					'parentId' : 1
-				},
-				type : "json",
-				success : function(data) {
-					if (data.code = 1) {
-
-					}
+	var exports = {};
+	exports.loadCikiHeading = function(parentId, $select) {
+		$.ajax({
+			url : "/backend/ciki/list",
+			data : {
+				'parentId' : parentId
+			},
+			type : "get",
+			dataType : "json",
+			success : function(data) {
+				$select.empty();
+				if (data.code = 1) {
+					$.each(data.result,
+							function() {
+								$("<option>").data("parentid", this.parentId)
+										.val(this.id).html(this.title)
+										.appendTo($select);
+							});
+					$select.change(function() {
+						exports.loadCikiHeading($select.val(), $select
+								.siblings()[0]);
+					})
 				}
-			});
+			}
+		});
+	}
+	$("#slc-site").change(function() {
+		if ($(this).val() == "ciki") {
+			$("#div-blog").hide();
+			$("#div-ciki").show();
+			exports.loadCikiHeading(1, $("#slc-ciki-h1"));
 		}
 	});
 	$('#btn-save')

@@ -11,24 +11,24 @@ public class JsonResult<T> {
 		this.msg = msg;
 	}
 
-	public JsonResult<T> ofSuccess(String msg) {
+	public static <T> JsonResult<T> ofSuccess(String msg) {
 		return ofSuccess(null, msg);
 	}
 
-	public JsonResult<T> ofSuccess(T result) {
+	public static <T> JsonResult<T> ofSuccess(T result) {
 		return ofSuccess(result, null);
 	}
 
-	public JsonResult<T> ofSuccess(T result, String msg) {
-		return new JsonResult<>(1, result, msg);
+	public static <T> JsonResult<T> ofSuccess(T result, String msg) {
+		return new JsonResult<T>(1, result, msg);
 	}
 
-	public JsonResult<T> ofFailure(String msg) {
+	public static <T> JsonResult<T> ofFailure(String msg) {
 		return ofFailure(null, msg);
 	}
 
-	public JsonResult<T> ofFailure(T result, String msg) {
-		return new JsonResult<>(0, result, msg);
+	public static <T> JsonResult<T> ofFailure(T result, String msg) {
+		return new JsonResult<T>(0, result, msg);
 	}
 
 	public int getCode() {

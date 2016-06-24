@@ -2,3 +2,10 @@ body {
 	margin: 0 auto;
 	width: 90%;
 }
+
+.none{
+	display: none;
+}
+.editor .panel-title{
+	float: left;
+}

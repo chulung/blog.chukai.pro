@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.chulung.blog.dto.JsonResult;
 import com.chulung.blog.dto.PageIn;
 import com.chulung.blog.model.ArticleDraft;
-import com.chulung.blog.model.Category;
+import com.chulung.blog.model.Ciki;
 import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
-import com.chulung.blog.service.CategoryService;
+import com.chulung.blog.service.CikiService;
 import com.chulung.blog.service.UserService;
 import com.chulung.blog.session.WebSessionSupport;
 
@@ -42,9 +43,7 @@ public class BackendController extends BaseController {
 	@Autowired
 	private WebSessionSupport webSessionSupport;
 	@Autowired
-	private CategoryService categoryService;
-	
-	
+	private CikiService categoryService;
 
 	/**
 	 * 首页
@@ -66,7 +65,7 @@ public class BackendController extends BaseController {
 		if (webSessionSupport.islogIn()) {
 			return new ModelAndView("redirect:/backend");
 		}
-		return modelAndView("/backend/logIn","logIn");
+		return modelAndView("/backend/logIn", "logIn");
 	}
 
 	/**
@@ -77,16 +76,17 @@ public class BackendController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = { "/logIn" }, method = RequestMethod.POST)
-	public ModelAndView logIn(@ModelAttribute User user, HttpServletResponse response) {
+	public ModelAndView logIn(@ModelAttribute User user, @RequestParam(required = false) String reUrl,
+			HttpServletResponse response) {
 		User backend = userService.logInbackend(user);
 		if (backend == null) {
-			return modelAndView("/backend/logIn","logIn").addObject("user", user);
+			return modelAndView("/backend/logIn", "logIn").addObject("user", user);
 		}
 		// 回写sessionId cookie
 		Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, backend.getSessionId());
 		cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie
 		response.addCookie(cookie);
-		return new ModelAndView("redirect:/backend");
+		return new ModelAndView("redirect:" + reUrl != null ? reUrl : "/backend");
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class BackendController extends BaseController {
 	 */
 	@RequestMapping("/editor")
 	public ModelAndView editor(@ModelAttribute ArticleDraft articleDraft) {
-		return modelAndView("/backend/editor","editor").addObject("articleTypes", articleService.findAllArticleTypes())
+		return modelAndView("/backend/editor", "editor").addObject("articleTypes", articleService.findAllArticleTypes())
 				.addObject("articleDraftId", articleDraft.getId() == null
 						? articleService.findArticleDraftIdByArticleId(articleDraft) : articleDraft.getId());
 	}
@@ -184,8 +184,8 @@ public class BackendController extends BaseController {
 		return modelAndView("/backend/logIn");
 	}
 
-	@RequestMapping("/ciki/category/list")
-	public @ResponseBody List<Category> listCategory(@RequestParam Integer parentId) {
-		return this.categoryService.getCategoryListByParentId(parentId);
+	@RequestMapping("/ciki/list")
+	public @ResponseBody JsonResult<List<Ciki>> listCategory(@RequestParam Integer parentId) {
+		return JsonResult.ofSuccess(this.categoryService.getCikiTitelListByParentId(parentId));
 	}
 }
