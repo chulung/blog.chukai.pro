@@ -1,10 +1,5 @@
 package com.chulung.ciki.processor;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-import java.net.URISyntaxException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

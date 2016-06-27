@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.chulung.blog.dto.Blog;
 import com.chulung.blog.dto.CommonInfo;
 import com.chulung.blog.model.Article;
 import com.chulung.blog.service.ArticleService;
-import com.chulung.blog.service.BlogService;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -28,8 +26,6 @@ import com.github.pagehelper.PageInfo;
 @Controller
 @RequestMapping(value = { "/" })
 public class BlogIndexController extends BaseController {
-	@Autowired
-	private BlogService blogService;
 	@Autowired
 	private ArticleService articleService;
 
@@ -51,7 +47,7 @@ public class BlogIndexController extends BaseController {
 	 */
 	@RequestMapping(value = { "/sidebarInfo" }, method = RequestMethod.GET)
 	public @ResponseBody CommonInfo getCommonInfo() {
-		return this.blogService.getCommonInfo();
+		return this.articleService.getCommonInfo();
 	}
 
 	/**
@@ -63,7 +59,7 @@ public class BlogIndexController extends BaseController {
 	 */
 	@RequestMapping(value = "/monthFilings/{year}-{month}")
 	public @ResponseBody ModelAndView getMonthFilings(@PathVariable Integer year, @PathVariable Integer month) {
-		return modelAndView().addObject("blogs", blogService.getBlogsByYearMonth(year, month));
+		return modelAndView().addObject("blogs", articleService.getBlogsByYearMonth(year, month));
 	}
 
 	/**
@@ -75,7 +71,7 @@ public class BlogIndexController extends BaseController {
 	@RequestMapping(value = "/blog/page/{page}", method = RequestMethod.GET)
 	public ModelAndView getBlogPage(@PathVariable Integer page, @RequestParam(required = false) Integer typeId) {
 		Optional<Integer> ofNullable = Optional.ofNullable(page);
-		PageInfo<Blog> pageInfo = blogService.selectBySelectiveForBlog(ofNullable, typeId);
+		PageInfo<Article> pageInfo = articleService.selectBySelectiveForBlog(ofNullable, typeId);
 		return modelAndView().addObject("blogs", pageInfo.getList()).addObject("page", ofNullable.orElse(1))
 				.addObject("prePage", page > 1 ? page - 1 : null)
 				.addObject("nextPage", page < pageInfo.getTotal() ? page + 1 : null).addObject("typeId", typeId);

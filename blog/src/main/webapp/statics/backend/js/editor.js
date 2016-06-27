@@ -1,28 +1,31 @@
 //由于markdown配置路径有点不同，所以单独配置一份
-requirejs.config({
-	// github静态分离路径
-	baseUrl : "https://static.chulung.com/statics/markdown/lib/",
-	paths : {
-		jquery : "https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
-		treeview:"https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min",
-		marked : "marked.min",
-		prettify : "prettify.min",
-		raphael : "raphael.min",
-		underscore : "underscore.min",
-		flowchart : "flowchart.min",
-		jqueryflowchart : "jquery.flowchart.min",
-		sequenceDiagram : "sequence-diagram.min",
-		katex : "https://cdn.bootcss.com/KaTeX/0.1.1/katex.min",
-		editormd : "../editormd.amd" // Using Editor.md amd version for
-	// Require.js
-	},
-	// 手动声明依赖部分
-	shim : {
-		jqueryflowchart : [ "jquery" ],
-		sequenceDiagram : [ "raphael" ]
-	},
-	waitSeconds : 30
-});
+requirejs
+		.config({
+			// github静态分离路径
+			baseUrl : "https://static.chulung.com/statics/markdown/lib/",
+			paths : {
+				jquery : "https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
+				treeview : "https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min",
+				marked : "marked.min",
+				prettify : "prettify.min",
+				raphael : "raphael.min",
+				underscore : "underscore.min",
+				flowchart : "flowchart.min",
+				jqueryflowchart : "jquery.flowchart.min",
+				sequenceDiagram : "sequence-diagram.min",
+				katex : "https://cdn.bootcss.com/KaTeX/0.1.1/katex.min",
+				editormd : "../editormd.amd" // Using Editor.md amd version
+			// for
+			// Require.js
+			},
+			// 手动声明依赖部分
+			shim : {
+				jqueryflowchart : [ "jquery" ],
+				treeview : [ "jquery" ],
+				sequenceDiagram : [ "raphael" ]
+			},
+			waitSeconds : 30
+		});
 var deps = [ "editormd", "../plugins/link-dialog/link-dialog",
 		"../plugins/reference-link-dialog/reference-link-dialog",
 		"../plugins/image-dialog/image-dialog",
@@ -32,7 +35,8 @@ var deps = [ "editormd", "../plugins/link-dialog/link-dialog",
 		"../plugins/goto-line-dialog/goto-line-dialog",
 		"../plugins/help-dialog/help-dialog",
 		"../plugins/html-entities-dialog/html-entities-dialog",
-		"../plugins/preformatted-text-dialog/preformatted-text-dialog","treeview" ];
+		"../plugins/preformatted-text-dialog/preformatted-text-dialog",
+		"treeview" ];
 var editor;
 require(deps, function(editormd) {
 	editormd("editor-div", {
@@ -53,6 +57,7 @@ require(deps, function(editormd) {
 		// toolbar : false, //关闭工具栏
 		// previewCodeHighlight : false, // 关闭预览 HTML
 		// 的代码块高亮，默认开启
+		toolbarAutoFixed : false,// 工具栏浮动
 		emoji : true,
 		taskList : true,
 		tocm : true, // Using [TOCM]
@@ -65,21 +70,6 @@ require(deps, function(editormd) {
 		toolbar : true,
 		onload : function() {
 			editor = this;
-			var draftId = $('#editor-div').data('articledraftid');
-			if (draftId) {
-				$.ajax({
-					type : "GET",
-					url : "/backend/articleDraft/" + draftId,
-					dataType : "json",
-					success : function(data) {
-						editor.setMarkdown(data.context);
-						$('#isPublish').prop("checked",
-								data.isPublish == 'PUBLISHED');
-						$('#title').val(data.title)
-						$('#articleType').val(data.typeId);
-					}
-				});
-			} else {
 				editor.setMarkdown(window.localStorage.autoSaveContext || "");
 				$('#isPublish').prop("checked",
 						!!window.localStorage.autoSaveIsPublish);
@@ -95,42 +85,36 @@ require(deps, function(editormd) {
 							.val();
 					console.log("autoSave");
 				}, 10000);
+		}
+	});
+	$.getJSON("/backend/category/list", function(rt) {
+		if (rt.code = 1) {
+			var exportTitel = function(nodes) {
+				$.each(nodes, function() {
+					this.text = "<span data-id='"
+							+ this.id + "' data-type='" + this.type + "'>"
+							+ this.text + "</span>";
+					if (this.nodes) {
+						exportTitel(this.nodes);
+					}
+				})
+				return nodes;
 			}
+			$("#editor-tree").treeview({
+				data : exportTitel(rt.result),
+				onNodeSelected : function(event, data) {
+					$.getJSON("/backend/articleDraft/"+$(data.text).data("id"), function(rt) {
+						editor.setMarkdown(rt.context);
+						$('#isPublish').prop("checked",
+								rt.isPublish == 'PUBLISHED');
+						$('#title').val(rt.title)
+						$('#articleType').val(rt.typeId);
+					});
+				}
+			})
 		}
 	});
 	var exports = {};
-	exports.loadCikiHeading = function(parentId, $select) {
-		$.ajax({
-			url : "/backend/ciki/list",
-			data : {
-				'parentId' : parentId
-			},
-			type : "get",
-			dataType : "json",
-			success : function(data) {
-				$select.empty();
-				if (data.code = 1) {
-					$.each(data.result,
-							function() {
-								$("<option>").data("parentid", this.parentId)
-										.val(this.id).html(this.title)
-										.appendTo($select);
-							});
-					$select.change(function() {
-						exports.loadCikiHeading($select.val(), $select
-								.siblings()[0]);
-					})
-				}
-			}
-		});
-	}
-	$("#slc-site").change(function() {
-		if ($(this).val() == "ciki") {
-			$("#div-blog").hide();
-			$("#div-ciki").show();
-			exports.loadCikiHeading(1, $("#slc-ciki-h1"));
-		}
-	});
 	$('#btn-save')
 			.click(
 					function() {

@@ -2,10 +2,7 @@ package com.chulung.blog.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
@@ -16,7 +13,6 @@ public class Article extends BaseModel {
 	private static final long serialVersionUID = -1692088776366835421L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String title;
@@ -40,11 +36,6 @@ public class Article extends BaseModel {
 	private String changLog;
 
 	private String context;
-
-	@Transient
-	private LocalDateTime createTimeStart;
-	@Transient
-	private LocalDateTime createTimeEnd;
 	private Integer commentCount;
 	private Integer visitCount;
 
@@ -62,22 +53,6 @@ public class Article extends BaseModel {
 
 	public void setVisitCount(Integer visitCount) {
 		this.visitCount = visitCount;
-	}
-
-	public LocalDateTime getCreateTimeStart() {
-		return createTimeStart;
-	}
-
-	public void setCreateTimeStart(LocalDateTime createTimeStart) {
-		this.createTimeStart = createTimeStart;
-	}
-
-	public LocalDateTime getCreateTimeEnd() {
-		return createTimeEnd;
-	}
-
-	public void setCreateTimeEnd(LocalDateTime createTimeEnd) {
-		this.createTimeEnd = createTimeEnd;
 	}
 
 	public Integer getId() {

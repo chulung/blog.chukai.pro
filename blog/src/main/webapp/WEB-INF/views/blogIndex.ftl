@@ -3,7 +3,7 @@
 	<#list blogs as blog>
 		<div class="blog-post list_item">
 			<h3 class="blog-post-title"><span class="ico ico_type_${blog.typeId}"></span><a href="/article/${blog.id}">${blog.title}</a></h3>
-			<article class="summary">${blog.summary}</article>
+			<article class="summary">${blog.context}</article>
 			<div class="article_manage">
 		        <span class="link_postdate"><@DateTime time=blog.createTime/></span>
 		        <span title="阅读次数" class="link_view"><a title="阅读次数" href="/article/${blog.id}">阅读</a>(${blog.visitCount})</span>

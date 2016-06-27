@@ -17,12 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.chulung.blog.dto.JsonResult;
-import com.chulung.blog.dto.PageIn;
+import com.chulung.blog.dto.TreeNode;
 import com.chulung.blog.model.ArticleDraft;
-import com.chulung.blog.model.Ciki;
 import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
-import com.chulung.blog.service.CikiService;
 import com.chulung.blog.service.UserService;
 import com.chulung.blog.session.WebSessionSupport;
 
@@ -42,8 +40,6 @@ public class BackendController extends BaseController {
 	private ArticleService articleService;
 	@Autowired
 	private WebSessionSupport webSessionSupport;
-	@Autowired
-	private CikiService categoryService;
 
 	/**
 	 * 首页
@@ -97,9 +93,8 @@ public class BackendController extends BaseController {
 	 */
 	@RequestMapping("/editor")
 	public ModelAndView editor(@ModelAttribute ArticleDraft articleDraft) {
-		return modelAndView("/backend/editor", "editor").addObject("articleTypes", articleService.findAllArticleTypes())
-				.addObject("articleDraftId", articleDraft.getId() == null
-						? articleService.findArticleDraftIdByArticleId(articleDraft) : articleDraft.getId());
+		return modelAndView("/backend/editor", "editor").addObject("articleTypes",
+				articleService.findAllArticleTypes());
 	}
 
 	/**
@@ -160,17 +155,6 @@ public class BackendController extends BaseController {
 	}
 
 	/**
-	 * 分页查询草稿
-	 * 
-	 * @param pageIn
-	 * @return
-	 */
-	@RequestMapping(value = "/articleDrafts/list", method = RequestMethod.GET)
-	public @ResponseBody List<ArticleDraft> getArticleDrafts(@ModelAttribute PageIn<ArticleDraft> pageIn) {
-		return articleService.findArticleDraftsList(pageIn);
-	}
-
-	/**
 	 * 注销
 	 * 
 	 * @return
@@ -184,8 +168,8 @@ public class BackendController extends BaseController {
 		return modelAndView("/backend/logIn");
 	}
 
-	@RequestMapping("/ciki/list")
-	public @ResponseBody JsonResult<List<Ciki>> listCategory(@RequestParam Integer parentId) {
-		return JsonResult.ofSuccess(this.categoryService.getCikiTitelListByParentId(parentId));
+	@RequestMapping("/category/list")
+	public @ResponseBody JsonResult<List<TreeNode>> listCategory() {
+		return JsonResult.ofSuccess(this.articleService.getCategoryTreeNode());
 	}
 }

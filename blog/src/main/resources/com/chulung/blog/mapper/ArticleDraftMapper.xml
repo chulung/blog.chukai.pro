@@ -17,9 +17,14 @@
 		<result column="context" property="context" jdbcType="LONGVARCHAR" />
 		<result column="html_context" property="htmlContext" jdbcType="LONGVARCHAR" />
 	</resultMap>
-	<select id="selectTileList" resultMap="BaseResultMap">
+	<select id="selectTileList" resultMap="BaseResultMap" parameterType="com.chulung.blog.model.ArticleDraft">
 		select id, title, create_time, update_time, author,is_publish,
 		version
-		from article_draft
+		from article_draft  
+		<where >
+			<if test="typeId != null">
+				 type_id= #{typeId,jdbcType=INTEGER}
+			</if>
+		</where>
 	</select>
 </mapper>
