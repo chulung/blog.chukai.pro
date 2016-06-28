@@ -102,14 +102,23 @@ require(deps, function(editormd) {
 			}
 			$("#editor-tree").treeview({
 				data : exportTitel(rt.result),
-				onNodeSelected : function(event, data) {
-					$.getJSON("/backend/articleDraft/"+$(data.text).data("id"), function(rt) {
-						editor.setMarkdown(rt.context);
-						$('#isPublish').prop("checked",
-								rt.isPublish == 'PUBLISHED');
-						$('#title').val(rt.title)
-						$('#articleType').val(rt.typeId);
-					});
+				onNodeSelected : function(event, node) {
+					var type=$(node.text).data("type");
+					console.log(type!="ARTICLE");
+					if (type=="CIKI_CATE" || type=="BLOG_CATE") {
+						$("#lb-cate").text("新建"+$($("#editor-tree").treeview("getParent",node).text).text()+"-"+$(node.text).text());
+					}
+					if (type=="ARTICLE" || type=="CIKI_TEXT") {
+						$("#lb-cate").text("编辑"+$($("#editor-tree").treeview("getParent",node).text).text()+"-"+$(node.text).text());
+						$.getJSON("/backend/articleDraft/"+$(node.text).data("id"), function(rt) {
+							editor.setMarkdown(rt.context);
+							$("#lb-cate").val($(node))
+							$('#isPublish').prop("checked",
+									rt.isPublish == 'PUBLISHED');
+							$('#title').val(rt.title)
+							$('#articleType').val(rt.typeId);
+						});
+					}
 				}
 			})
 		}

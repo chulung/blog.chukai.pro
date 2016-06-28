@@ -83,9 +83,9 @@ public class BlogIndexController extends BaseController {
 		return getBlogPage(1, 1);
 	}
 
-	@RequestMapping("/essaies")
+	@RequestMapping("/chatter")
 	public ModelAndView getEssaies() {
-		return getBlogPage(1, 2);
+		return modelAndView("chatter").addObject("typeId", 2);
 	}
 
 	@RequestMapping("/reprint")

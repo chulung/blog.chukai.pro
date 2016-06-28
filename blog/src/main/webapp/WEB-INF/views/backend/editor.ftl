@@ -6,18 +6,14 @@
 	<div class="panel panel-default">
 		<div class="panel-heading editor">
 		  	  <div id="div-blog" class="panel-title">
-					<select id="typeId">
-					<#list articleTypes as type>
-						<option value="${type.dictValue}">${type.dictDesc}</option>
-					</#list>
-					</select>
-		      		<lable>标题<lable>
+		      		<lable id="lb-cate"></lable>
+		      		<lable>标题</lable>
 		      		<input id="title" class="title" type="text"/> 
 		      		<input id="isPublish" type="checkBox" checked>发布</input>
 			  </div>
-			  </div><button id="btn-save">保存</button></div>
-			  <div  id="editor-div"  class="panel-body" ></div>
+			  <div><button id="btn-save">保存</button></div>
 		</div>
+		<div  id="editor-div"  class="panel-body" ></div>
 	 </div>
 </div>
 </@page>

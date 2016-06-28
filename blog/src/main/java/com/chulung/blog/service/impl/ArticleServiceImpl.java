@@ -206,9 +206,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	}
 
 	private TreeNode getArticleTreeNode() {
-		TreeNode treeNode = new TreeNode(null, "blog", TreeNodeTypeEnum.BLOG);
+		TreeNode treeNode = new TreeNode(null, "Blog", TreeNodeTypeEnum.BLOG);
 		treeNode.setNodes(this.findAllArticleTypes().parallelStream().map(a -> {
-			TreeNode t = new TreeNode(Integer.valueOf(a.getDictValue()), a.getDictDesc(), TreeNodeTypeEnum.BLOG_TYPE);
+			TreeNode t = new TreeNode(Integer.valueOf(a.getDictValue()), a.getDictDesc(), TreeNodeTypeEnum.BLOG_CATE);
 			ArticleDraft record = new ArticleDraft();
 			record.setTypeId(Integer.valueOf(a.getDictValue()));
 			t.setNodes(this.articleDraftMapper.selectTileList(record).parallelStream().map(at -> {
@@ -225,7 +225,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		return this.cikiMapper.getCikiTitelListByParentId(record).parallelStream().map(c -> {
 			TreeNode node = new TreeNode(c.getId(), c.getTitle());
 			if (c.getType() == 0) {
-				node.setType(TreeNodeTypeEnum.CIKI_CATE);
+				node.setType(c.getId() == 0 ? TreeNodeTypeEnum.CIKI : TreeNodeTypeEnum.CIKI_CATE);
 				node.setNodes(this.getCikiTreeNodeByParentId(c.getId()));
 			} else {
 				node.setType(TreeNodeTypeEnum.CIKI_TEXT);

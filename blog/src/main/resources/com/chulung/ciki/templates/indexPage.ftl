@@ -5,7 +5,7 @@
 		<div class="header"><h2>Ciki - Chu Lung's wiki</h2>
 		<div>
 		<div class="ciki">
-			<#list cikis as ciki>
+			<#list cikis?if_exists as ciki>
 				<div class="ciki-item">
 					<div class="ciki-name">
 						<h2 id="${ciki.id}" >${ciki.cikiName}</h2>

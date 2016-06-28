@@ -28,7 +28,7 @@
 	      <li <#if !typeId??> class="active" </#if> role="presentation"><a href="/">首页</a></li>
 	      <li <#if typeId=1> class="active" </#if>  role="presentation"><a href="/articles.html">文章</a></li>
 	      <li <#if typeId=3> class="active" </#if>  role="presentation"><a href="/reprint.html">他山之石</a></li>
-	      <li <#if typeId=2> class="active" </#if>  role="presentation"><a href="/essaies.html">随笔</a></li>
+	      <li <#if typeId=2> class="active" </#if>  role="presentation"><a href="/chatter.html">碎碎念</a></li>
 	      <li <#if typeId=5> class="active" </#if>  role="presentation"><a href="https://ciki.chulung.com">Ciki</a></li>
 	      <li <#if typeId=0> class="active" </#if>  role="presentation"><a href="/markdown">Markdown</a></li>
 	      <li class="dropdown <#if typeId=4> active</#if>" role="presentation">
