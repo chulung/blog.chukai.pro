@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -20,21 +19,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.chulung.blog.dto.ArticleDto;
 import com.chulung.blog.dto.ArticleFiling;
 import com.chulung.blog.dto.CommonInfo;
-import com.chulung.blog.dto.TreeNode;
 import com.chulung.blog.enumerate.DictionaryTypeEnum;
 import com.chulung.blog.enumerate.PublishStatusEnum;
 import com.chulung.blog.enumerate.SiteEnum;
-import com.chulung.blog.enumerate.TreeNodeTypeEnum;
 import com.chulung.blog.exception.GlobalMethodRuntimeExcetion;
 import com.chulung.blog.mapper.ArticleDraftHistoryMapper;
 import com.chulung.blog.mapper.ArticleDraftMapper;
 import com.chulung.blog.mapper.ArticleMapper;
-import com.chulung.blog.mapper.CikiMapper;
 import com.chulung.blog.mapper.DictionaryMapper;
 import com.chulung.blog.mapper.MetaCLBlogLogMapper;
 import com.chulung.blog.model.Article;
 import com.chulung.blog.model.ArticleDraft;
-import com.chulung.blog.model.Ciki;
 import com.chulung.blog.model.Dictionary;
 import com.chulung.blog.model.MetaCLBlogLog;
 import com.chulung.blog.model.User;
@@ -66,8 +61,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	private DictionaryMapper dictionaryMapper;
 	@Autowired
 	private MetaCLBlogLogMapper metaWeBlogLogMapper;
-	@Autowired
-	private CikiMapper cikiMapper;
 	/**
 	 * 博客园的metaweblog接口
 	 */
@@ -200,41 +193,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 	}
 
-	@Override
-	public List<TreeNode> getCategoryTreeNode() {
-		return Arrays.asList(this.getArticleTreeNode(), getCikiTreeNodeByParentId(0).get(0));
-	}
-
-	private TreeNode getArticleTreeNode() {
-		TreeNode treeNode = new TreeNode(null, "blog", TreeNodeTypeEnum.BLOG);
-		treeNode.setNodes(this.findAllArticleTypes().parallelStream().map(a -> {
-			TreeNode t = new TreeNode(Integer.valueOf(a.getDictValue()), a.getDictDesc(), TreeNodeTypeEnum.BLOG_TYPE);
-			ArticleDraft record = new ArticleDraft();
-			record.setTypeId(Integer.valueOf(a.getDictValue()));
-			t.setNodes(this.articleDraftMapper.selectTileList(record).parallelStream().map(at -> {
-				return new TreeNode(at.getId(), at.getTitle(), TreeNodeTypeEnum.ARTICLE);
-			}).collect(Collectors.toList()));
-			return t;
-		}).collect(Collectors.toList()));
-		return treeNode;
-	}
-
-	private List<TreeNode> getCikiTreeNodeByParentId(Integer parentId) {
-		Ciki record = new Ciki();
-		record.setParentId(parentId);
-		return this.cikiMapper.getCikiTitelListByParentId(record).parallelStream().map(c -> {
-			TreeNode node = new TreeNode(c.getId(), c.getTitle());
-			if (c.getType() == 0) {
-				node.setType(TreeNodeTypeEnum.CIKI_CATE);
-				node.setNodes(this.getCikiTreeNodeByParentId(c.getId()));
-			} else {
-				node.setType(TreeNodeTypeEnum.CIKI_TEXT);
-			}
-			return node;
-		}).collect(Collectors.toList());
-	}
-
-	private static String generatingSummary(String context) {
+	private String generatingSummary(String context) {
 		String replaceAll = context.replaceAll("</?.*?>", "");
 		return replaceAll.length() > 120 ? replaceAll.substring(0, 120) + "..." : replaceAll;
 	}
@@ -280,7 +239,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		return new CommonInfo(list);
 	}
 
-	public static List<Article> convertToSummary(List<Article> articles) {
+	public List<Article> convertToSummary(List<Article> articles) {
 		return articles.stream().map(a -> {
 			a.setContext(generatingSummary(a.getContext()));
 			return a;

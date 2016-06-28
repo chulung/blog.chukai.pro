@@ -23,7 +23,7 @@
 
 				<#nested>
 	<script>var staticsPath="${staticsPath}"</script>
-	<script>var module="${moduleName}"</script>
+	<script>var module="${moduleName!''}"</script>
 	<script data-main='${staticsPath}/backend/js/${baseJs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 </html>
 </#macro> 

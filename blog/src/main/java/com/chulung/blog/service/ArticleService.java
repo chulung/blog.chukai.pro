@@ -28,8 +28,6 @@ public interface ArticleService {
 
 	void deleteArticleDraft(Integer id);
 
-	List<TreeNode> getCategoryTreeNode();
-
 	/**
 	 * 查询最新的博客,用于首页显示
 	 * 

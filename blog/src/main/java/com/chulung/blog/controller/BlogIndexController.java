@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.chulung.blog.dto.CommonInfo;
 import com.chulung.blog.model.Article;
 import com.chulung.blog.service.ArticleService;
+import com.chulung.blog.service.ChatterService;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -28,6 +29,8 @@ import com.github.pagehelper.PageInfo;
 public class BlogIndexController extends BaseController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private ChatterService chatterService;
 
 	/**
 	 * 博客首页
@@ -83,12 +86,12 @@ public class BlogIndexController extends BaseController {
 		return getBlogPage(1, 1);
 	}
 
-	@RequestMapping("/essaies")
-	public ModelAndView getEssaies() {
-		return getBlogPage(1, 2);
+	@RequestMapping("/chatters")
+	public ModelAndView getChatters() {
+		return modelAndView("chatter").addObject("chatterDtos", this.chatterService.getchatterList()).addObject("typeId", 2);
 	}
 
-	@RequestMapping("/reprint")
+	@RequestMapping("/reprints")
 	public ModelAndView getReprint() {
 		return getBlogPage(1, 3);
 	}

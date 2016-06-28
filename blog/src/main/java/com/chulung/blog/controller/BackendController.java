@@ -21,6 +21,7 @@ import com.chulung.blog.dto.TreeNode;
 import com.chulung.blog.model.ArticleDraft;
 import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
+import com.chulung.blog.service.CikiService;
 import com.chulung.blog.service.UserService;
 import com.chulung.blog.session.WebSessionSupport;
 
@@ -40,6 +41,9 @@ public class BackendController extends BaseController {
 	private ArticleService articleService;
 	@Autowired
 	private WebSessionSupport webSessionSupport;
+
+	@Autowired
+	private CikiService cikiService;
 
 	/**
 	 * 首页
@@ -91,10 +95,9 @@ public class BackendController extends BaseController {
 	 * @param article
 	 * @return
 	 */
-	@RequestMapping("/editor")
+	@RequestMapping("/ciki")
 	public ModelAndView editor(@ModelAttribute ArticleDraft articleDraft) {
-		return modelAndView("/backend/editor", "editor").addObject("articleTypes",
-				articleService.findAllArticleTypes());
+		return modelAndView("/backend/ciki", "ciki");
 	}
 
 	/**
@@ -168,8 +171,8 @@ public class BackendController extends BaseController {
 		return modelAndView("/backend/logIn");
 	}
 
-	@RequestMapping("/category/list")
+	@RequestMapping("/ciki/category/list")
 	public @ResponseBody JsonResult<List<TreeNode>> listCategory() {
-		return JsonResult.ofSuccess(this.articleService.getCategoryTreeNode());
+		return JsonResult.ofSuccess(this.cikiService.getCategoryTreeNode());
 	}
 }

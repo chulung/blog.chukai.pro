@@ -13,14 +13,14 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">Brand</a>
+	      <a class="navbar-brand" href="/backend">HOME</a>
 	    </div>
 	
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	         <li><a href="/backend/articleDrafts"><i class="glyphicon glyphicon-list"></i> 草稿</a></li>
-             <li><a href="/backend/editor"><i class="glyphicon glyphicon-pencil"></i> Markdown</a></li>
+	         <li><a href="/backend/articleDrafts"><i class="glyphicon glyphicon-list"></i>草稿</a></li>
+             <li><a href="/backend/ciki"><i class="glyphicon glyphicon-pencil"></i>Ciki</a></li>
 	      </ul>
 	      <form class="navbar-form navbar-right" role="search">
 	        <div class="form-group">

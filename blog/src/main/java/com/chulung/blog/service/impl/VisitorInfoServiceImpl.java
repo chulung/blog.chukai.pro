@@ -13,6 +13,7 @@ import com.chulung.blog.model.UserTracker;
 import com.chulung.blog.model.VisitorInfo;
 import com.chulung.blog.service.VisitorInfoService;
 import com.chulung.common.util.NetUtil;
+import com.chulung.common.util.StringUtil;
 
 @Service
 public class VisitorInfoServiceImpl implements VisitorInfoService {
@@ -32,6 +33,9 @@ public class VisitorInfoServiceImpl implements VisitorInfoService {
 	public void insertUserTracker(UserTracker articleVisitor) {
 		articleVisitor.setTuid(NetUtil.getCookieValue(Constants.TUID));
 		String href = articleVisitor.getHref();
+		if (StringUtil.isBlank(href)) {
+			return;
+		}
 		int indexOf = href.indexOf('?');
 		if (indexOf > 0) {
 			articleVisitor.setParamsString(href.substring(indexOf));

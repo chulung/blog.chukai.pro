@@ -3,6 +3,7 @@ package com.chulung.blog.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +17,9 @@ public class TrackerController extends BaseController {
 	private VisitorInfoService visitorInfoService;
 
 	@RequestMapping("/userTracker")
-	public void postUserTracker(UserTracker userTracker, HttpServletRequest request) {
+	public ModelMap postUserTracker(UserTracker userTracker, HttpServletRequest request) {
 		visitorInfoService.insertUserTracker(userTracker);
+		return successMap();
 	}
 
 }

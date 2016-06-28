@@ -35,8 +35,8 @@ var deps = [ "editormd", "../plugins/link-dialog/link-dialog",
 		"../plugins/goto-line-dialog/goto-line-dialog",
 		"../plugins/help-dialog/help-dialog",
 		"../plugins/html-entities-dialog/html-entities-dialog",
-		"../plugins/preformatted-text-dialog/preformatted-text-dialog",
-		"treeview" ];
+		"../plugins/preformatted-text-dialog/preformatted-text-dialog"];
+module && (deps[deps.length]=module);
 var editor;
 require(deps, function(editormd) {
 	editormd("editor-div", {
@@ -87,33 +87,7 @@ require(deps, function(editormd) {
 				}, 10000);
 		}
 	});
-	$.getJSON("/backend/category/list", function(rt) {
-		if (rt.code = 1) {
-			var exportTitel = function(nodes) {
-				$.each(nodes, function() {
-					this.text = "<span data-id='"
-							+ this.id + "' data-type='" + this.type + "'>"
-							+ this.text + "</span>";
-					if (this.nodes) {
-						exportTitel(this.nodes);
-					}
-				})
-				return nodes;
-			}
-			$("#editor-tree").treeview({
-				data : exportTitel(rt.result),
-				onNodeSelected : function(event, data) {
-					$.getJSON("/backend/articleDraft/"+$(data.text).data("id"), function(rt) {
-						editor.setMarkdown(rt.context);
-						$('#isPublish').prop("checked",
-								rt.isPublish == 'PUBLISHED');
-						$('#title').val(rt.title)
-						$('#articleType').val(rt.typeId);
-					});
-				}
-			})
-		}
-	});
+
 	var exports = {};
 	$('#btn-save')
 			.click(
