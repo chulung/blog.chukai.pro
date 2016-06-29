@@ -87,7 +87,6 @@ require(deps, function(editormd) {
 				}, 10000);
 		}
 	});
-
 	var exports = {};
 	$('#btn-save')
 			.click(
