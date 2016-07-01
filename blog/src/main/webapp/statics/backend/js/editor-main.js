@@ -5,6 +5,7 @@ requirejs
 			baseUrl : "https://static.chulung.com/statics/markdown/lib/",
 			paths : {
 				jquery : "https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
+				bootstrap : 'https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min',
 				treeview : "https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min",
 				marked : "marked.min",
 				prettify : "prettify.min",
@@ -14,7 +15,9 @@ requirejs
 				jqueryflowchart : "jquery.flowchart.min",
 				sequenceDiagram : "sequence-diagram.min",
 				katex : "https://cdn.bootcss.com/KaTeX/0.1.1/katex.min",
-				editormd : "../editormd.amd" // Using Editor.md amd version
+				editormd : "../editormd.amd", // Using Editor.md amd version
+				ciki : "../../backend/js/ciki",
+				contextMenu : "https://cdn.bootcss.com/bootstrap-contextmenu/0.3.4/bootstrap-contextmenu"
 			// for
 			// Require.js
 			},
@@ -22,7 +25,8 @@ requirejs
 			shim : {
 				jqueryflowchart : [ "jquery" ],
 				treeview : [ "jquery" ],
-				sequenceDiagram : [ "raphael" ]
+				sequenceDiagram : [ "raphael" ],
+				contextMenu:["jquery"]
 			},
 			waitSeconds : 30
 		});
@@ -35,8 +39,8 @@ var deps = [ "editormd", "../plugins/link-dialog/link-dialog",
 		"../plugins/goto-line-dialog/goto-line-dialog",
 		"../plugins/help-dialog/help-dialog",
 		"../plugins/html-entities-dialog/html-entities-dialog",
-		"../plugins/preformatted-text-dialog/preformatted-text-dialog"];
-module && (deps[deps.length]=module);
+		"../plugins/preformatted-text-dialog/preformatted-text-dialog" ];
+module && (deps[deps.length] = module);
 var editor;
 require(deps, function(editormd) {
 	editormd("editor-div", {
@@ -70,21 +74,21 @@ require(deps, function(editormd) {
 		toolbar : true,
 		onload : function() {
 			editor = this;
-				editor.setMarkdown(window.localStorage.autoSaveContext || "");
-				$('#isPublish').prop("checked",
-						!!window.localStorage.autoSaveIsPublish);
-				$('#title').val(window.localStorage.autoSaveTitle || "");
-				$('#articleType').val(
-						window.localStorage.autoSaveArticleType || "1");
-				setInterval(function() {
-					window.localStorage.autoSaveContext = editor.getMarkdown();
-					window.localStorage.autoSaveIsPublish = $("#isPublish").is(
-							":checked") ? 1 : '';
-					window.localStorage.autoSaveTitle = $('#title').val();
-					window.localStorage.autoSaveArticleType = $('#articleType')
-							.val();
-					console.log("autoSave");
-				}, 10000);
+			editor.setMarkdown(window.localStorage.autoSaveContext || "");
+			$('#isPublish').prop("checked",
+					!!window.localStorage.autoSaveIsPublish);
+			$('#title').val(window.localStorage.autoSaveTitle || "");
+			$('#articleType').val(
+					window.localStorage.autoSaveArticleType || "1");
+			setInterval(function() {
+				window.localStorage.autoSaveContext = editor.getMarkdown();
+				window.localStorage.autoSaveIsPublish = $("#isPublish").is(
+						":checked") ? 1 : '';
+				window.localStorage.autoSaveTitle = $('#title').val();
+				window.localStorage.autoSaveArticleType = $('#articleType')
+						.val();
+				console.log("autoSave");
+			}, 10000);
 		}
 	});
 	var exports = {};

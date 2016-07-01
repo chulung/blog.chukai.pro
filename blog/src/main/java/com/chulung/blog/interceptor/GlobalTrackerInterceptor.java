@@ -26,7 +26,7 @@ public class GlobalTrackerInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		tracker.track(request);
+//		tracker.track(request);
 		validateSessionId((HttpServletRequest) request, (HttpServletResponse) response);
 		return super.preHandle(request, response, handler);
 	}

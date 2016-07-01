@@ -64,13 +64,13 @@
 	<logger name="org.springframework.web.servlet.DispatcherServlet" >
 		<level value="info" />
 	</logger>
-	 -->
 	<logger name="com.chulung.blog.mapper" >
 		<level value="debug" />
 	</logger>
 	<logger name="org.springframework.scheduling" >
 		<level value="debug" />
 	</logger>
+	 -->
 	<!-- root与logger是父子关系，没有特别定义则默认为root，任何一个类只会和一个logger对应， 要么是定义的logger，要么是root，判断的关键在于找到这个logger，然后判断这个logger的appender和level。 -->
 	<root level="error">
 		<appender-ref ref="stdout" />

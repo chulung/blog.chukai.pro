@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.chulung.blog.dto.JsonResult;
 import com.chulung.blog.dto.TreeNode;
 import com.chulung.blog.model.ArticleDraft;
+import com.chulung.blog.model.Ciki;
 import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
 import com.chulung.blog.service.CikiService;
@@ -169,6 +170,11 @@ public class BackendController extends BaseController {
 		cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie
 		response.addCookie(cookie);
 		return modelAndView("/backend/logIn");
+	}
+
+	@RequestMapping(value = "/ciki/{id}", method = RequestMethod.GET)
+	public JsonResult<Ciki> getCiki(@PathVariable Integer id) {
+		return this.cikiService.getCikiById(id);
 	}
 
 	@RequestMapping("/ciki/category/list")

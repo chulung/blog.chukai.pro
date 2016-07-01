@@ -31,10 +31,7 @@
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-
-	<div class="row">
 	  	<#nested>
-	</div>
     <footer>
          <div class="container">
          
