@@ -4,16 +4,17 @@
 	<resultMap id="BaseResultMap" type="com.chulung.blog.model.Ciki">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="en_index" property="enIndex" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"
 			typeHandler="com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler" />
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" 
 			typeHandler="com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler" />
-		<result column="type" property="type" jdbcType="INTEGER" />
-		<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+		<result column="cate_level" property="cateLevel" jdbcType="VARCHAR" />
+		<result column="is_delete" property="isDelete" jdbcType="CHAR" />
 		<result column="markdown" property="markdown" jdbcType="LONGVARCHAR" />
 	</resultMap>
 	
 	<select id="getCikiTitelListByParentId" resultMap="BaseResultMap" parameterType="com.chulung.blog.model.Ciki">
-		select id,title,type from ciki where parent_id =#{parentId}
+		select id,title,cate_level from ciki where parent_id =#{parentId}
 	</select>
 </mapper>

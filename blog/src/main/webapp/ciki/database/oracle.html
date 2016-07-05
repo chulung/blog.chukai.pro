@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ciki-Chu Lung">
+<meta name="author" content="Chu Lung">
+<meta content="Ciki,Chu Lung's wiki" name="keywords">
+<title>Ciki-Chu Lung's wiki</title>
+<link rel="shortcut icon" href="//chulung.github.io/statics/blog/images/favicon.ico"	type="image/x-icon" />
+<link rel="stylesheet"
+	href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <link href="https://static.chulung.com/statics/ciki/css/ciki.css" rel="stylesheet"/>
+</head>
+<div class="container">
+	<div class="row">
+		<div class="page-header"><h2><a href="/">Ciki</a> » <a href="/#database">database</a> » Oracle</h2>
+		<div class="panel  panel-primary">
+		  <div class="panel-body">
+		 		<h1>安装&amp;卸载</h1>
+<h2>windows下Oracle11g卸载</h2>
+<p>1.关闭oracle所有的服务。可以在windows的服务管理器中关闭；</p>
+<p>2.打开注册表：regedit 打开路径：  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\  删除该路径下的所有以oracle开始的服务名称，这个键是标识Oracle在windows下注册的各种服务！</p>
+<p>3.打开注册表，找到路径：  HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE  删除该oracle目录，该目录下注册着Oracle数据库的软件安装信息。</p>
+<p>4.删除注册的oracle事件日志，打开注册表  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Application  删除注册表的以oracle开头的所有项目。</p>
+<p>5.删除环境变量path中关于oracle的内容。  鼠标右键右单击“我的电脑--&gt;属性--&gt;高级--&gt;环境变量--&gt;PATH 变量。  删除Oracle在该值中的内容。注意:path中记录着一堆操作系统的目录，在windows中各个目录之间使用分号（;）隔开的，删除时注意。  建议：删除PATH环境变量中关于Oracle的值时，将该值全部拷贝到文本编辑器中，找到对应的Oracle的值，删除后，再拷贝修改的串，粘贴到PATH环境变量中，这样相对而言比较安全。</p>
+<p>6.重新启动操作系统。  以上1~5个步骤操作完毕后，重新启动操作系统。</p>
+<p>7.重启操作系统后各种Oracle相关的进程都不会加载了。这时删除Oracle_Home下的所有数据。（Oracle_Home指Oracle程序的安装目录）</p>
+<p>8.删除C:\Program Files下oracle目录。  （该目录视Oracle安装所在路径而定）</p>
+<p>9.删除开始菜单下oracle项，如：  C:\Documents and Settings\All Users\「开始」菜单\程序\Oracle - Ora10g  不同的安装这个目录稍有不同。  如果不删除开始菜单下的Oracle相关菜单目录，没关系，这个不影响再次安装Oracle.当再次安装Oracle时，该菜单会被替换。</p>
+<p>至此，Windows平台下Oracle就彻底卸载了。</p>
+		  </div>
+		  </div>
+	</div>
+</div>
+</html>

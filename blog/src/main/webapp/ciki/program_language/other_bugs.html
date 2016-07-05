@@ -1,5 +1,3 @@
-<#compress>
-<#macro page  > 
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -17,9 +15,16 @@
 </head>
 <div class="container">
 	<div class="row">
-		<#nested>
+		<div class="page-header"><h2><a href="/">Ciki</a> » <a href="/#program_language">编程语言</a> » 其他异常&坑</h2>
+		<div class="panel  panel-primary">
+		  <div class="panel-body">
+		 		<h1>cookie</h1>
+<ul>
+  <li>ajax请求无法上传cookie</li>
+</ul>
+<p>cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie</p>
+		  </div>
+		  </div>
 	</div>
 </div>
 </html>
-</#macro>
-</#compress>

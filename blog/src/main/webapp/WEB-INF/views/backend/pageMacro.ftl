@@ -20,7 +20,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	         <li><a href="/backend/articleDrafts"><i class="glyphicon glyphicon-list"></i>草稿</a></li>
-             <li><a href="/backend/ciki"><i class="glyphicon glyphicon-pencil"></i>Ciki</a></li>
+             <li><a href="/backend/cikiEditor"><i class="glyphicon glyphicon-pencil"></i>Ciki</a></li>
 	      </ul>
 	      <form class="navbar-form navbar-right" role="search">
 	        <div class="form-group">

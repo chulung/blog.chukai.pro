@@ -87,7 +87,7 @@ public class BackendController extends BaseController {
 		Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, backend.getSessionId());
 		cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie
 		response.addCookie(cookie);
-		return new ModelAndView("redirect:" + reUrl != null ? reUrl : "/backend");
+		return new ModelAndView("redirect:" + (reUrl != null ? reUrl : "/backend"));
 	}
 
 	/**
@@ -96,9 +96,9 @@ public class BackendController extends BaseController {
 	 * @param article
 	 * @return
 	 */
-	@RequestMapping("/ciki")
+	@RequestMapping("/cikiEditor")
 	public ModelAndView editor(@ModelAttribute ArticleDraft articleDraft) {
-		return modelAndView("/backend/ciki", "ciki");
+		return modelAndView("/backend/cikiEditor", "cikiEditor");
 	}
 
 	/**
@@ -175,6 +175,19 @@ public class BackendController extends BaseController {
 	@RequestMapping(value = "/ciki/{id}", method = RequestMethod.GET)
 	public JsonResult<Ciki> getCiki(@PathVariable Integer id) {
 		return this.cikiService.getCikiById(id);
+	}
+
+	@RequestMapping(value = "/ciki", method = RequestMethod.POST)
+	public @ResponseBody JsonResult<?> postCiki(@ModelAttribute Ciki ciki) {
+		this.cikiService.addCiki(ciki);
+		return JsonResult.ofSuccess(null);
+
+	}
+	@RequestMapping(value = "/ciki", method = RequestMethod.PUT)
+	public @ResponseBody JsonResult<?> putCiki(@ModelAttribute Ciki ciki) {
+		this.cikiService.updateCiki(ciki);
+		return JsonResult.ofSuccess(null);
+		
 	}
 
 	@RequestMapping("/ciki/category/list")

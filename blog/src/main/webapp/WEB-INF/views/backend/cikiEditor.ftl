@@ -4,11 +4,11 @@
 	<div id="editor-tree" class="col-md-2"></div>
 	<div class="col-md-10">
 		<div class="panel panel-default">
-			<div class="panel-heading editor">
-			  	  <div id="div-blog" class="panel-title">
+			<div class="panel-heading editor none">
+			  	  <div  class="panel-title">
 			      		<lable id="lb-cate"></lable>
 				  </div>
-				  <div><button id="btn-save">保存</button></div>
+				  <div ><button id="btn-save" class="btn btn-primary">保存</button></div>
 			</div>
 			<div  id="editor-div"  class="panel-body" ></div>
 		 </div>
@@ -24,23 +24,23 @@
 <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="标题目录">
   <div class="modal-dialog modal-sm">
       <div class="modal-content">
-
+         <form id="form-ciki" action="/backend/ciki" method="post">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
           <h4 class="modal-title" id="mySmallModalLabel">Title</h4>
         </div>
         <div class="modal-body">
-         <form action="/backend/ciki" method="post">
           <div class="form-group">
             <input type="hidden" class="form-control" name="id">
-            <input type="text" class="form-control" name="title">
+            <input type="text" class="form-control" name="title" placeholder="title" >
+            <input type="text" class="form-control" name="enIndex" placeholder="enIndex">
           </div>
-         </form>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">提交</button>
+        <button id="submit-ciki" type="button" class="btn btn-primary" >提交</button>
       </div>
+         </form>
       </div><!-- /.modal-content -->
     </div>
 </div>

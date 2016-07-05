@@ -12,4 +12,8 @@ public interface CikiService {
 
 	JsonResult<Ciki> getCikiById(Integer id);
 
+	void addCiki(Ciki ciki);
+
+	void updateCiki(Ciki ciki);
+
 }

@@ -1,5 +1,3 @@
-<#compress>
-<#macro page  > 
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -17,9 +15,14 @@
 </head>
 <div class="container">
 	<div class="row">
-		<#nested>
+		<div class="page-header"><h2><a href="/">Ciki</a> » <a href="/#database">database</a> » SQL</h2>
+		<div class="panel  panel-primary">
+		  <div class="panel-body">
+		 		<h2>Oracle</h2>
+<p>聚合函数 分组排序取每组前几条</p>
+<p>select id, lottery_id, lottery_date,RANK() OVER(PARTITION BY inshop_lottery_date.lottery_id ORDER BY lottery_date) rank from user_data2.inshop_lottery_date where lottery_id in(2802,2799,2784) and lottery_date &gt;= to_date('2016-06-09 00:00:00','yyyy-mm-dd hh24:mi:ss')</p>
+		  </div>
+		  </div>
 	</div>
 </div>
 </html>
-</#macro>
-</#compress>

@@ -2,6 +2,7 @@ package com.chulung.ciki.processor;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.pegdown.PegDownProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.chulung.test.BaseTest;
@@ -19,5 +20,5 @@ public class TemplateProcessorTest extends BaseTest {
 	public void testProcessor() throws Exception {
 		templateProcessor.processor();
 	}
-
+	
 }

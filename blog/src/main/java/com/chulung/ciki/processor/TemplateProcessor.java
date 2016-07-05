@@ -16,6 +16,7 @@ import org.pegdown.PegDownProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.chulung.blog.enumerate.CateLevelEnum;
 import com.chulung.blog.mapper.CikiMapper;
 import com.chulung.blog.model.BaseComponent;
 import com.chulung.blog.model.Ciki;
@@ -34,15 +35,23 @@ public class TemplateProcessor extends BaseComponent {
 	private CikiMapper cikiMapper;
 	private Configuration cfg = new Configuration(new Version("2.3.23"));
 	private PegDownProcessor downProcessor = new PegDownProcessor();
-
 	public TemplateProcessor() throws IOException {
 		cfg.setDirectoryForTemplateLoading(new File(getClass().getResource("/com/chulung/ciki/templates/").getPath()));
 		cfg.setDefaultEncoding("UTF-8");
 		cfg.setNumberFormat("#");
+		new Thread(()->{
+			try {
+				Thread.sleep(1000);
+				this.processor();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}).start();;
 	}
 
 	public void processor() throws Exception {
-		generateCiki(this.getCikisByParentId(0));
+		logger.info("starting processor...");
+		generateCiki(this.getCikisByParentId(1));
 	}
 
 	private void generateCiki(List<Ciki> cikis) throws Exception {
@@ -54,15 +63,17 @@ public class TemplateProcessor extends BaseComponent {
 		hashMap.put("cikis", cikis);
 		printTemplate(hashMap, "indexPage.ftl", file.getPath() + "/index.html");
 		cikis.forEach(c -> {
-			File file2 = new File(file.getPath() + "/" + c.getTitle());
+			File file2 = new File(file.getPath() + "/" + c.getEnIndex());
 			file2.mkdir();
 			c.getCikis().forEach(a -> {
-				if (a.getType() == 1) {
+				if (a.getCateLevel()==CateLevelEnum.ITEM) {
 					try {
 						HashMap<String, Object> hashMap2 = new HashMap<String, Object>();
-						hashMap2.put("article", a);
-						hashMap2.put("html", downProcessor.markdownToHtml(a.getMarkdown()));
-						printTemplate(hashMap2, "contextPage.ftl", file2.getPath() + "/" + a.getTitle() + ".html");
+						hashMap2.put("cateIndex", c.getEnIndex());
+						hashMap2.put("cate", c.getTitle());
+						hashMap2.put("ciki", a);
+						hashMap2.put("html",a.getMarkdown()==null?"": downProcessor.markdownToHtml(a.getMarkdown()));
+						printTemplate(hashMap2, "contextPage.ftl", file2.getPath() + "/" + a.getEnIndex() + ".html");
 					} catch (Exception e) {
 						this.errorLog(e);
 					}

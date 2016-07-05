@@ -1,5 +1,6 @@
 package com.chulung.blog.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,15 +10,18 @@ import org.springframework.stereotype.Service;
 
 import com.chulung.blog.dto.JsonResult;
 import com.chulung.blog.dto.TreeNode;
-import com.chulung.blog.enumerate.TreeNodeTypeEnum;
+import com.chulung.blog.enumerate.CateLevelEnum;
 import com.chulung.blog.mapper.CikiMapper;
 import com.chulung.blog.model.Ciki;
 import com.chulung.blog.service.CikiService;
+import com.chulung.ciki.processor.TemplateProcessor;
 
 @Service
-public class CikiServiceImpl implements CikiService {
+public class CikiServiceImpl extends BaseService implements CikiService {
 	@Autowired
 	private CikiMapper cikiMapper;
+	@Autowired
+	private TemplateProcessor templateProcessor;
 
 	@Override
 	public List<TreeNode> getCategoryTreeNode() {
@@ -29,23 +33,49 @@ public class CikiServiceImpl implements CikiService {
 		record.setParentId(parentId);
 		return this.cikiMapper.getCikiTitelListByParentId(record).parallelStream().map(c -> {
 			TreeNode node = new TreeNode(c.getId(), c.getTitle());
-			if (c.getType() == 0) {
-				node.setType(c.getId() == 1 ? TreeNodeTypeEnum.CIKI : TreeNodeTypeEnum.CIKI_CATE);
+			if (c.getCateLevel() != CateLevelEnum.ITEM) {
 				node.setNodes(this.getCikiTreeNodeByParentId(c.getId()));
-			} else {
-				node.setType(TreeNodeTypeEnum.CIKI_TEXT);
 			}
+			node.setCateLevel(c.getCateLevel());
 			return node;
 		}).collect(Collectors.toList());
 	}
 
 	@Override
 	public JsonResult<Ciki> getCikiById(Integer id) {
-		Ciki record=new Ciki();
+		Ciki record = new Ciki();
 		record.setId(id);
-		record.setType(1);
 		Ciki ciki = this.cikiMapper.selectOne(record);
 		return ciki == null ? JsonResult.ofFailure("文章不存在") : JsonResult.ofSuccess(ciki);
 	}
 
+	@Override
+	public void addCiki(Ciki ciki) {
+		checkExistBlank(ciki);
+		checkExistBlank(ciki.getId(), ciki.getTitle());
+		ciki.setParentId(ciki.getId());
+		ciki.setId(null);
+		Ciki record = this.cikiMapper.selectByPrimaryKey(ciki.getParentId());
+		if (record == null || record.getCateLevel() == CateLevelEnum.ITEM) {
+			return;
+		}
+		ciki.setCateLevel(record.getCateLevel() == CateLevelEnum.L1 ? CateLevelEnum.L2 : CateLevelEnum.ITEM);
+		ciki.setCreateTime(LocalDateTime.now());
+		ciki.setUpdateTime(LocalDateTime.now());
+		this.cikiMapper.insertSelective(ciki);
+	}
+
+	@Override
+	public void updateCiki(Ciki ciki) {
+		checkExistBlank(ciki.getId());
+		ciki.setUpdateTime(LocalDateTime.now());
+		if (this.cikiMapper.updateByPrimaryKeySelective(ciki)==1) {
+			try {
+				this.templateProcessor.processor();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 }

@@ -1,7 +1,7 @@
 //由于markdown配置路径有点不同，所以单独配置一份
 requirejs
 		.config({
-			// github静态分离路径
+			// 静态分离路径
 			baseUrl : "https://static.chulung.com/statics/markdown/lib/",
 			paths : {
 				jquery : "https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
@@ -23,10 +23,11 @@ requirejs
 			},
 			// 手动声明依赖部分
 			shim : {
+				bootstrap : [ "jquery" ],
 				jqueryflowchart : [ "jquery" ],
-				treeview : [ "jquery" ],
+				treeview : [ "jquery","bootstrap" ],
 				sequenceDiagram : [ "raphael" ],
-				contextMenu:["jquery"]
+				contextMenu:["jquery","bootstrap"]
 			},
 			waitSeconds : 30
 		});
@@ -46,7 +47,7 @@ require(deps, function(editormd) {
 	editormd("editor-div", {
 		width : "100%",
 		height : 740,
-		path : 'https://chulung.github.io/statics/markdown/lib/',
+		path : 'https://static.chulung.com/statics/markdown/lib/',
 		theme : "dark",
 		previewTheme : "",// 预览主题
 		editorTheme : "eclipse",// 代码主题
@@ -90,48 +91,6 @@ require(deps, function(editormd) {
 				console.log("autoSave");
 			}, 10000);
 		}
+
 	});
-	var exports = {};
-	$('#btn-save')
-			.click(
-					function() {
-						if (saving) {
-							alert("正在保存中");
-							return;
-						}
-						saving = true;
-						var title = $('#title').val();
-						if ($.trim(title) == '') {
-							alert('请输入标题');
-							return;
-						}
-						var draftId = $('#editor-div').data('articledraftid');
-						$
-								.ajax({
-									type : draftId ? "PUT" : "POST",
-									url : "/backend/articleDraft",
-									data : {
-										"id" : draftId,
-										"title" : title,
-										"typeId" : $('#typeId').val(),
-										"context" : editor.getMarkdown(),
-										"htmlContext" : editor.getHTML(),
-										"isPublish" : $("#isPublish").is(
-												":checked") ? "PUBLISHED"
-												: "UNPUBLISHED"
-									},
-									dataType : "json",
-									success : function(data) {
-										if (data.success = 1) {
-											alert('保存成功');
-										}
-									},
-									error : function() {
-										alert("服务器异常");
-									},
-									complete : function(jqXHR, textStatus) {
-										saving = false;
-									}
-								});
-					});
 });

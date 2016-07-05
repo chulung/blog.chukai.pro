@@ -2,19 +2,19 @@ package com.chulung.blog.dto;
 
 import java.util.List;
 
-import com.chulung.blog.enumerate.TreeNodeTypeEnum;
+import com.chulung.blog.enumerate.CateLevelEnum;
 
 public class TreeNode {
 	private Integer id;
 	private String text;
-	private TreeNodeTypeEnum type;
+	private CateLevelEnum cateLevel;
 	private List<TreeNode> nodes;
 
-	public TreeNode(Integer id, String text, TreeNodeTypeEnum i) {
+	public TreeNode(Integer id, String text, CateLevelEnum cateLevel) {
 		super();
 		this.id = id;
 		this.text = text;
-		this.type = i;
+		this.cateLevel = cateLevel;
 	}
 
 	public TreeNode(Integer id, String text) {
@@ -38,12 +38,12 @@ public class TreeNode {
 		this.text = text;
 	}
 
-	public TreeNodeTypeEnum getType() {
-		return type;
+	public CateLevelEnum getCateLevel() {
+		return cateLevel;
 	}
 
-	public void setType(TreeNodeTypeEnum type) {
-		this.type = type;
+	public void setCateLevel(CateLevelEnum cateLevel) {
+		this.cateLevel = cateLevel;
 	}
 
 	public List<TreeNode> getNodes() {

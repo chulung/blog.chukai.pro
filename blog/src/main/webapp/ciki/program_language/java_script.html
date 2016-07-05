@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ciki-Chu Lung">
+<meta name="author" content="Chu Lung">
+<meta content="Ciki,Chu Lung's wiki" name="keywords">
+<title>Ciki-Chu Lung's wiki</title>
+<link rel="shortcut icon" href="//chulung.github.io/statics/blog/images/favicon.ico"	type="image/x-icon" />
+<link rel="stylesheet"
+	href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <link href="https://static.chulung.com/statics/ciki/css/ciki.css" rel="stylesheet"/>
+</head>
+<div class="container">
+	<div class="row">
+		<div class="page-header"><h2><a href="/">Ciki</a> » <a href="/#program_language">编程语言</a> » JavaScript</h2>
+		<div class="panel  panel-primary">
+		  <div class="panel-body">
+		 		<h1>jquery</h1>
+<h1>异常问题Q&amp;D&amp;A</h1>
+<h2>jquery 问题</h2>
+<ol>
+  <li>
+  <p>Q:IE、Chrome input file 文件名丢失问题 D:input file标签时，使用$.clone方法进行复制时发现文件名丢失。 A:由于浏览器安全考虑无法完整克隆元素完整信息 ：<a href="http://stackoverflow.com/questions/415483/clone-a-file-input-element-in-javascript">stackoverflow</a></p></li>
+  <li>
+  <p>Q:$.data()方法取boolean值 D:标签<code>&lt;a data-is=&quot;false&quot;/&gt;;</code>使用<code>$.data(&quot;is&quot;)==&quot;fasle&quot;</code>判断错误。 A:<code>typeof($.data(&quot;is&quot;))</code>为boolean,不是字符串，所以需写成if($.data("is"))。</p></li>
+</ol>
+<h2>ajaxfileupload问题</h2>
+<ol>
+  <li>Q:ajaxfileupload返回json带<code>&lt;pre&gt;</code>
+    <p>D:文件正常提交，后台接收正常，action中返回json正常，用火狐查看，响应的值也是正常的,但是，ajax调用js中，就是不走success的方法。经过调查，是因为返回的json中，带有<code>&lt;pre&gt;</code>标签。 A:ajaxfileupload.js文件，uploadHttpData中<code>eval( “data = ” + data );</code>修改为<code>data = jQuery.parseJSON(jQuery(data).text());</code></p>
+  </li>
+</ol>
+		  </div>
+		  </div>
+	</div>
+</div>
+</html>
