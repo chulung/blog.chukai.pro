@@ -12,6 +12,7 @@ public class PageIn<T> {
 		super();
 		this.page = page;
 		this.pageSize = pageSize;
+		this.record=record;
 	}
 
 	public int getPage() {
