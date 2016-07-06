@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.chulung.blog.dto.CommonInfo;
+import com.chulung.blog.dto.PageIn;
 import com.chulung.blog.model.Article;
 import com.chulung.blog.model.ArticleDraft;
 import com.chulung.blog.model.Dictionary;
@@ -39,4 +40,6 @@ public interface ArticleService {
 	CommonInfo getCommonInfo();
 
 	List<Article> getBlogsByYearMonth(Integer year, Integer month);
+
+	List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn);
 }

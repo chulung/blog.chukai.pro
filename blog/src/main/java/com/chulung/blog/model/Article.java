@@ -6,6 +6,8 @@ import javax.persistence.Id;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
+import com.chulung.blog.enumerate.IsDeleteEnum;
+
 public class Article extends BaseModel {
 	/**
 	 * 
@@ -23,17 +25,13 @@ public class Article extends BaseModel {
 
 	private String author;
 
-	private String mender;
-
 	private Integer typeId;
 
 	private String derivationUrl;
 
 	private Integer version;
 
-	private Integer isDelete;
-
-	private String changLog;
+	private IsDeleteEnum isDelete;
 
 	private String context;
 	private Integer commentCount;
@@ -95,14 +93,6 @@ public class Article extends BaseModel {
 		this.author = author == null ? null : author.trim();
 	}
 
-	public String getMender() {
-		return mender;
-	}
-
-	public void setMender(String mender) {
-		this.mender = mender == null ? null : mender.trim();
-	}
-
 	public Integer getTypeId() {
 		return typeId;
 	}
@@ -127,21 +117,14 @@ public class Article extends BaseModel {
 		this.version = version;
 	}
 
-	public Integer getIsDelete() {
+	public IsDeleteEnum getIsDelete() {
 		return isDelete;
 	}
 
-	public void setIsDelete(Integer isDelete) {
+	public void setIsDelete(IsDeleteEnum isDelete) {
 		this.isDelete = isDelete;
 	}
 
-	public String getChangLog() {
-		return changLog;
-	}
-
-	public void setChangLog(String changLog) {
-		this.changLog = changLog == null ? null : changLog.trim();
-	}
 
 	public String getContext() {
 		return context;
@@ -158,7 +141,6 @@ public class Article extends BaseModel {
 		article.setUpdateTime(articleDraft.getUpdateTime());
 		article.setAuthor(articleDraft.getAuthor());
 		article.setIsDelete(articleDraft.getIsDelete());
-		article.setMender(articleDraft.getMender());
 		article.setTitle(articleDraft.getTitle());
 		article.setCreateTime(articleDraft.getCreateTime());
 		article.setTypeId(articleDraft.getTypeId());

@@ -1,7 +1,7 @@
 package com.chulung.blog.enumerate;
 
 public enum PublishStatusEnum {
-	PUBLISHED(1, "发布"), UNPUBLISHED(0, "未发布");
+	Y(1, "发布"), N(0, "未发布");
 	private Integer code;
 	private String dedcription;
 

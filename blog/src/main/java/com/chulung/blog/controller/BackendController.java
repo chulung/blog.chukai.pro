@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.chulung.blog.dto.JsonResult;
+import com.chulung.blog.dto.PageIn;
 import com.chulung.blog.dto.TreeNode;
 import com.chulung.blog.model.ArticleDraft;
 import com.chulung.blog.model.Ciki;
@@ -97,8 +98,23 @@ public class BackendController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/cikiEditor")
-	public ModelAndView editor(@ModelAttribute ArticleDraft articleDraft) {
+	public ModelAndView cikiEditor() {
 		return modelAndView("/backend/cikiEditor", "cikiEditor");
+	}
+
+	/**
+	 * cikiEditor
+	 * 
+	 * @param id
+	 * 
+	 * @param article
+	 * @return
+	 */
+	@RequestMapping("/articleEditor")
+	public ModelAndView articleEditor(@RequestParam(required = false) Integer id) {
+		return modelAndView("/backend/articleEditor", "articleEditor")
+				.addObject("articleDraftId", id)
+				.addObject("articleTypes", this.articleService.findAllArticleTypes());
 	}
 
 	/**
@@ -108,7 +124,17 @@ public class BackendController extends BaseController {
 	 */
 	@RequestMapping("/articleDrafts")
 	public ModelAndView articlesDrafts() {
-		return modelAndView("/backend/articleDrafts");
+		return modelAndView("/backend/articleDrafts", "articlesDrafts");
+	}
+
+	/**
+	 * 草稿列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/articleDrafts/list")
+	public JsonResult<List<ArticleDraft>> getArticlesDrafts(@ModelAttribute PageIn<ArticleDraft> pageIn) {
+		return JsonResult.ofSuccess(this.articleService.findArticleDraftsList(pageIn));
 	}
 
 	/**
@@ -183,11 +209,12 @@ public class BackendController extends BaseController {
 		return JsonResult.ofSuccess(null);
 
 	}
+
 	@RequestMapping(value = "/ciki", method = RequestMethod.PUT)
 	public @ResponseBody JsonResult<?> putCiki(@ModelAttribute Ciki ciki) {
 		this.cikiService.updateCiki(ciki);
 		return JsonResult.ofSuccess(null);
-		
+
 	}
 
 	@RequestMapping("/ciki/category/list")

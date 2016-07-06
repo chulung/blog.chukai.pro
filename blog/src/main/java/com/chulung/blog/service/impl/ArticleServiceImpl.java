@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 
 import org.apache.xmlrpc.XmlRpcException;
+import org.pegdown.PegDownProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +20,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.chulung.blog.dto.ArticleDto;
 import com.chulung.blog.dto.ArticleFiling;
 import com.chulung.blog.dto.CommonInfo;
+import com.chulung.blog.dto.PageIn;
 import com.chulung.blog.enumerate.DictionaryTypeEnum;
+import com.chulung.blog.enumerate.IsDeleteEnum;
 import com.chulung.blog.enumerate.PublishStatusEnum;
 import com.chulung.blog.enumerate.SiteEnum;
 import com.chulung.blog.exception.GlobalMethodRuntimeExcetion;
@@ -61,6 +64,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	private DictionaryMapper dictionaryMapper;
 	@Autowired
 	private MetaCLBlogLogMapper metaWeBlogLogMapper;
+	private PegDownProcessor downProcessor = new PegDownProcessor();
 	/**
 	 * 博客园的metaweblog接口
 	 */
@@ -80,10 +84,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		ArticleDraft oldDraft = this.articleDraftMapper.selectByPrimaryKey(articleDraft.getId());
 		articleDraft.setArticleId(oldDraft.getArticleId());
 		articleDraft.setUpdateTime(LocalDateTime.now());
-		articleDraft.setMender(user.getNickName());
 		articleDraft.setVersion(oldDraft.getVersion() + 1);
+		articleDraft.setHtmlContext(downProcessor.markdownToHtml(articleDraft.getContext()));
 		// 判断是否发布文章
-		if (PublishStatusEnum.PUBLISHED == articleDraft.getIsPublish()) {
+		if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
 			Article article = Article.of(articleDraft);
 			if (article.getId() == null) {
 				article.setAuthor(user.getNickName());
@@ -112,12 +116,12 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	public void insert(ArticleDraft articleDraft) {
 		User user = this.webSessionSupport.getCurUser().get();
 		articleDraft.setUpdateTime(LocalDateTime.now());
-		articleDraft.setMender(user.getNickName());
 		articleDraft.setVersion(1);
 		articleDraft.setAuthor(user.getNickName());
-		articleDraft.setIsDelete(0);
+		articleDraft.setIsDelete(IsDeleteEnum.N);
 		articleDraft.setCreateTime(LocalDateTime.now());
-		if (PublishStatusEnum.PUBLISHED == articleDraft.getIsPublish()) {
+		articleDraft.setHtmlContext(downProcessor.markdownToHtml(articleDraft.getContext()));
+		if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
 			Article article = Article.of(articleDraft);
 			int key = 0;
 			if ((key = articleMapper.insertSelective(article)) <= 0) {
@@ -132,7 +136,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 	@Override
 	public ArticleDraft findArticleDraft(Integer id) {
-		return this.articleDraftMapper.selectByPrimaryKey(id);
+		return id == null ? null : this.articleDraftMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
@@ -140,14 +144,16 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	public void deleteArticleDraft(Integer id) {
 		ArticleDraft articleDraft = this.articleDraftMapper.selectByPrimaryKey(id);
 		if (articleDraft != null) {
-			if (PublishStatusEnum.PUBLISHED == articleDraft.getIsPublish()) {
+			if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
 				Article record = new Article();
 				record.setId(articleDraft.getArticleId());
-				record.setIsDelete(1);
+				record.setIsDelete(IsDeleteEnum.Y);
+				this.articleMapper.updateByPrimaryKeySelective(record);
 			}
 			ArticleDraft record = new ArticleDraft();
 			record.setId(id);
-			record.setIsDelete(1);
+			record.setIsDelete(IsDeleteEnum.Y);
+			this.articleDraftMapper.updateByPrimaryKeySelective(record);
 		}
 		throw new GlobalMethodRuntimeExcetion("草稿不存在,id=" + id);
 	}
@@ -201,7 +207,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	public PageInfo<Article> selectBySelectiveForBlog(Optional<Integer> startPage, Integer typeId) {
 		ArticleDto bean = new ArticleDto();
 		bean.setTypeId(typeId);
-		bean.setIsDelete(0);
+		bean.setIsDelete(IsDeleteEnum.N);
 		PageHelper.startPage(startPage.get(), PAGE_SIZE);
 		Page<Article> page = (Page<Article>) articleMapper.selectBySelectiveForBlog(bean);
 		PageInfo<Article> info = new PageInfo<Article>();
@@ -226,7 +232,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		// 归档信息
 		List<ArticleFiling> list = new ArrayList<ArticleFiling>();
 		ArticleDto bean = new ArticleDto();
-		bean.setIsDelete(0);
+		bean.setIsDelete(IsDeleteEnum.N);
 		articleMapper.selectBySelectiveForBlog(bean).stream().parallel().map(article -> article.getCreateTime())
 				.map(localDate -> YearMonth.of(localDate.getYear(), localDate.getMonthValue()))
 				.collect(Collectors.groupingByConcurrent(yearMonth -> yearMonth, Collectors.counting()))
@@ -244,5 +250,11 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			a.setContext(generatingSummary(a.getContext()));
 			return a;
 		}).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn) {
+		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
+		return this.articleDraftMapper.selectTileList(new ArticleDraft());
 	}
 }

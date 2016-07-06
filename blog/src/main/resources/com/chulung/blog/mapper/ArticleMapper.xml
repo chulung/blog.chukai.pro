@@ -9,20 +9,15 @@
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" 
 			typeHandler="com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler" />
 		<result column="author" property="author" jdbcType="VARCHAR" />
-		<result column="mender" property="mender" jdbcType="VARCHAR" />
 		<result column="type_id" property="typeId" jdbcType="INTEGER" />
 		<result column="derivation_Url" property="derivationUrl"
 			jdbcType="VARCHAR" />
 		<result column="version" property="version" jdbcType="INTEGER" />
-		<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
-		<result column="chang_log" property="changLog" jdbcType="VARCHAR" />
+		<result column="is_delete" property="isDelete" jdbcType="CHAR" />
 		<result column="context" property="context" jdbcType="LONGVARCHAR" />
 		<result column="visit_count" property="visitCount" jdbcType="INTEGER" />
 		<result column="comment_count" property="commentCount" jdbcType="INTEGER" />
 	</resultMap>
-	<select id="selectAllArticleId">
-		select id from article 
-	</select>
 	<select id="selectTileList" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select id, title, create_time, update_time, author,
@@ -31,13 +26,13 @@
 	</select>
 	<select id="selectBySelectiveForBlog" resultMap="BaseResultMap">
 		select id, title, create_time,
-		update_time, author, mender,
+		update_time, author, 
 		type_id, derivation_Url,
 		version,
-		is_delete, chang_log, context,visit_count,comment_count
+		is_delete, context,visit_count,comment_count
 		from
 		article
-		where type_id in (1,3) and is_publish ='PUBLISHED'
+		where type_id in (1,3) and is_publish ='P'
 		<if test="typeId != null">
 			and type_id= #{typeId,jdbcType=INTEGER}
 		</if>

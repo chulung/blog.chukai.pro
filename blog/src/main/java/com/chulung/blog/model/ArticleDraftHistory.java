@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Id;
 
+import com.chulung.blog.enumerate.IsDeleteEnum;
+import com.chulung.blog.enumerate.PublishStatusEnum;
+
 public class ArticleDraftHistory extends BaseModel {
 	/**
 	 * 
@@ -22,17 +25,13 @@ public class ArticleDraftHistory extends BaseModel {
 
 	private String author;
 	
-	private String mender;
-
-	private Integer isPublish;
+	private PublishStatusEnum isPublish;
 
 	private Integer typeId;
 
-	private Integer isDelete;
+	private IsDeleteEnum isDelete;
 
 	private Integer version;
-
-	private String changLog;
 
 	private String context;
 
@@ -86,19 +85,12 @@ public class ArticleDraftHistory extends BaseModel {
 		this.author = author == null ? null : author.trim();
 	}
 
-	public String getMender() {
-		return mender;
-	}
 
-	public void setMender(String mender) {
-		this.mender = mender == null ? null : mender.trim();
-	}
-
-	public Integer getIsPublish() {
+	public PublishStatusEnum getIsPublish() {
 		return isPublish;
 	}
 
-	public void setIsPublish(Integer isPublish) {
+	public void setIsPublish(PublishStatusEnum isPublish) {
 		this.isPublish = isPublish;
 	}
 
@@ -110,11 +102,11 @@ public class ArticleDraftHistory extends BaseModel {
 		this.typeId = typeId;
 	}
 
-	public Integer getIsDelete() {
+	public IsDeleteEnum getIsDelete() {
 		return isDelete;
 	}
 
-	public void setIsDelete(Integer isDelete) {
+	public void setIsDelete(IsDeleteEnum isDelete) {
 		this.isDelete = isDelete;
 	}
 
@@ -124,14 +116,6 @@ public class ArticleDraftHistory extends BaseModel {
 
 	public void setVersion(Integer version) {
 		this.version = version;
-	}
-
-	public String getChangLog() {
-		return changLog;
-	}
-
-	public void setChangLog(String changLog) {
-		this.changLog = changLog == null ? null : changLog.trim();
 	}
 
 	public String getContext() {

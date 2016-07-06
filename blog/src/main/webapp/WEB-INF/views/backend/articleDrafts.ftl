@@ -1,5 +1,5 @@
 <#include "WEB-INF/views/backend/pageMacro.ftl">     
-<@page mianJs=["/backend/js/articlesDrafts.js"] miancss=[]>
+<@page mainJs="common-main" miancss=[]>
 		  <div class="col-md-10">
   			<div class="content-box-large">
   				<div class="panel-heading">

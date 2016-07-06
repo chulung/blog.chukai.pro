@@ -12,7 +12,7 @@ requirejs([ "jquery"], function($) {
 							dataType : 'json',
 							success : function(data) {
 								$tbody = $('#articleTable').find('tbody');
-								$(data).each(
+								$(data.result).each(
 										function(index, item) {
 											$tr = $('<tr>').appendTo($tbody);
 											$('<th>').html(item.id).appendTo($tr);
@@ -28,7 +28,7 @@ requirejs([ "jquery"], function($) {
 													.appendTo($tr);
 											$('<th>').append(
 													$('<a>').html('编辑').attr('href',
-															'/backend/editors?id=' + item.id))
+															'/backend/articleEditor?id=' + item.id))
 													.appendTo($tr);
 											$('<th>').append(
 													$('<a>').html('删除')
@@ -56,10 +56,7 @@ requirejs([ "jquery"], function($) {
 							}
 						});
 				}
-	exports.init=function(){
-		exports.ajaxData(1);
-	}
-	
+	exports.ajaxData(1);
 	return exports;
 });
 
