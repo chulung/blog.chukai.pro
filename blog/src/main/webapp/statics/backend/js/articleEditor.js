@@ -31,11 +31,11 @@ requirejs([ "jquery","bootstrap"], function($) {
 	
 	draftId && $.getJSON("/backend/articleDraft/"+draftId,function(rt){
 		if (rt.result) {
-			editor.setMarkdown(result.context);
+			editor.setMarkdown(rt.result.context);
 			$('#isPublish').prop("checked",
-					result.isPublish='Y');
-			$('#title').val(result.title);
-			$('#articleType').val(result.typeId);
+					rt.result.isPublish='Y');
+			$('#title').val(rt.result.title);
+			$('#articleType').val(rt.result.typeId);
 		}
 	})
 	return exports;

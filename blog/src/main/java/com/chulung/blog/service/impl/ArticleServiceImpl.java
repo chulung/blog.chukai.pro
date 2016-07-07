@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
-import org.apache.xmlrpc.XmlRpcException;
 import org.pegdown.PegDownProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,24 +23,18 @@ import com.chulung.blog.dto.PageIn;
 import com.chulung.blog.enumerate.DictionaryTypeEnum;
 import com.chulung.blog.enumerate.IsDeleteEnum;
 import com.chulung.blog.enumerate.PublishStatusEnum;
-import com.chulung.blog.enumerate.SiteEnum;
-import com.chulung.blog.exception.GlobalMethodRuntimeExcetion;
+import com.chulung.blog.exception.MethodValidateExcetion;
 import com.chulung.blog.mapper.ArticleDraftHistoryMapper;
 import com.chulung.blog.mapper.ArticleDraftMapper;
 import com.chulung.blog.mapper.ArticleMapper;
 import com.chulung.blog.mapper.DictionaryMapper;
-import com.chulung.blog.mapper.MetaCLBlogLogMapper;
 import com.chulung.blog.model.Article;
 import com.chulung.blog.model.ArticleDraft;
 import com.chulung.blog.model.Dictionary;
-import com.chulung.blog.model.MetaCLBlogLog;
 import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
 import com.chulung.blog.session.WebSessionSupport;
-import com.chulung.common.util.DateUtils;
 import com.chulung.common.util.NumberUtil;
-import com.chulung.metaclblog.MetaWeblog;
-import com.chulung.metaclblog.struct.Post;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -49,7 +42,6 @@ import com.github.pagehelper.PageInfo;
 @Service
 public class ArticleServiceImpl extends BaseService implements ArticleService {
 	private static final int PAGE_SIZE = 10;
-	public static String METACKBLOG_COMMENTS = "<p>本文于%s从<a href=\"//blog.chulung.com\">Chu lung's blog</a>自动同步同步,<a href=\"http://blog.chulung.com/article/%s\">访问原文</a><p>";
 
 	@Resource
 	private WebSessionSupport webSessionSupport;
@@ -62,14 +54,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	private ArticleDraftMapper articleDraftMapper;
 	@Autowired
 	private DictionaryMapper dictionaryMapper;
-	@Autowired
-	private MetaCLBlogLogMapper metaWeBlogLogMapper;
 	private PegDownProcessor downProcessor = new PegDownProcessor();
-	/**
-	 * 博客园的metaweblog接口
-	 */
-	@Resource(name = "cnblogMetaWeblog")
-	private MetaWeblog cnblogMetaWeblog;
 
 	public Article findArticleById(Integer id) {
 		return articleMapper.selectByPrimaryKey(id);
@@ -97,9 +82,14 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			} else {
 				articleMapper.updateByPrimaryKeySelective(article);
 			}
+		}else if (articleDraft.getArticleId()!=null) {
+			Article record=new Article();
+			record.setId(articleDraft.getArticleId());
+			record.setIsDelete(IsDeleteEnum.Y);
+			this.articleMapper.updateByPrimaryKeySelective(record);
 		}
 		if (!(articleDraftMapper.updateByPrimaryKeySelective(articleDraft) == 1)) {
-			throw new GlobalMethodRuntimeExcetion("修改草稿失败");
+			throw new MethodValidateExcetion("修改草稿失败");
 		}
 		return true;
 	}
@@ -155,49 +145,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			record.setIsDelete(IsDeleteEnum.Y);
 			this.articleDraftMapper.updateByPrimaryKeySelective(record);
 		}
-		throw new GlobalMethodRuntimeExcetion("草稿不存在,id=" + id);
+		throw new MethodValidateExcetion("草稿不存在,id=" + id);
 	}
 
-	/**
-	 * 推送博客文章至其他网站
-	 * 
-	 * @param article
-	 * @return
-	 */
-	public boolean pushArticle(Article article) {
-		MetaCLBlogLog metaCLBlogLog = this.metaWeBlogLogMapper.selectOne(new MetaCLBlogLog(article.getId()));
-		Post post = new Post();
-		post.setTitle(article.getTitle());
-		post.setDateCreated(DateUtils.toDate(article.getCreateTime()));
-		post.setDescription(article.getContext()
-				+ String.format(METACKBLOG_COMMENTS, DateUtils.format(LocalDateTime.now()), article.getId()));
-		if (metaCLBlogLog != null) {
-			post.setPostid(metaCLBlogLog.getPostId());
-			try {
-				// 发送编辑请求
-				cnblogMetaWeblog.editPost(post, true);
-				MetaCLBlogLog record = new MetaCLBlogLog();
-				record.setId(metaCLBlogLog.getId());
-				record.setLastestPostTime(LocalDateTime.now());
-				metaWeBlogLogMapper.updateByPrimaryKeySelective(record);
-			} catch (XmlRpcException e) {
-				logger.error("", e);
-			}
-
-		} else {
-			try {
-				// 发送新建博客请求
-				String postId = cnblogMetaWeblog.newPost(article.getId().toString(), post, true);
-				MetaCLBlogLog record = new MetaCLBlogLog(postId, article.getId(), LocalDateTime.now(),
-						SiteEnum.CNBLOGS);
-				metaWeBlogLogMapper.insertSelective(record);
-			} catch (XmlRpcException e) {
-				logger.error("", e);
-			}
-		}
-		return true;
-
-	}
+	
 
 	private String generatingSummary(String context) {
 		String replaceAll = context.replaceAll("</?.*?>", "");

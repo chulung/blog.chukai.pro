@@ -32,7 +32,7 @@
 		is_delete, context,visit_count,comment_count
 		from
 		article
-		where type_id in (1,3) and is_publish ='P'
+		where type_id in (1,3) and is_delete ='N'
 		<if test="typeId != null">
 			and type_id= #{typeId,jdbcType=INTEGER}
 		</if>
@@ -42,6 +42,11 @@
 			#{createTimeEnd,jdbcType=TIMESTAMP,typeHandler=com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler}
 		</if>
 		order by create_time desc
+	</select>
+	<select id="selectListForMetaClblog" resultMap="BaseResultMap">
+	<![CDATA[
+		SELECT * from article a where a.id NOT IN(SELECT article_id from meta_cl_blog_log m,article a where a.id=m.article_id and a.update_time < m.lastest_post_time)
+	 ]]>
 	</select>
 	<update id="incrementVisitCount" parameterType="integer">
 		update article  set visit_count=visit_count+1 where id=#{articleId}

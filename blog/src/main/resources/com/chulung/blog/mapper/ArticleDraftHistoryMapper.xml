@@ -11,12 +11,10 @@ html_context,
 create_time,
 update_time,
 author,
-mender,
 is_publish,
 type_id,
 is_delete,
-version,
-chang_log
+version
   	) select * from article_draft where id=#{id}
   </insert>
 

@@ -34,6 +34,6 @@
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	<!-- 定时任务在bean扫描后再初始化 <import resource="classpath:quartz.xml" /> -->
-
+	<!-- 定时任务在bean扫描后再初始化  -->
+	<import resource="classpath:quartz.xml" />
 </beans>

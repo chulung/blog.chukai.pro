@@ -21,8 +21,7 @@ requirejs([ "jquery"], function($) {
 											$('<th>').html(item.author).appendTo($tr);
 											$('<th>').html(item.createTime).appendTo($tr);
 											$('<th>').html(item.updateTime).appendTo($tr);
-											$('<th>').html(item.mender).appendTo($tr);
-											$('<th>').html(item.isPublish == 'PUBLISHED' ? "已发布" : "未发布")
+											$('<th>').html(item.isPublish)
 													.appendTo($tr);
 											$('<th>').addClass('version').html(item.version)
 													.appendTo($tr);

@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 import com.chulung.blog.enumerate.SiteEnum;
 
-public class MetaCLBlogLog {
+public class MetaClBlogLog {
 	@Id
 	private Integer id;
 
@@ -15,10 +15,10 @@ public class MetaCLBlogLog {
 	private LocalDateTime lastestPostTime;
 	private SiteEnum site;
 
-	public MetaCLBlogLog() {
+	public MetaClBlogLog() {
 	}
 
-	public MetaCLBlogLog(String postId, Integer articleId, LocalDateTime lastestPostTime, SiteEnum site) {
+	public MetaClBlogLog(String postId, Integer articleId, LocalDateTime lastestPostTime, SiteEnum site) {
 		super();
 		this.postId = postId;
 		this.articleId = articleId;
@@ -26,7 +26,7 @@ public class MetaCLBlogLog {
 		this.site = site;
 	}
 
-	public MetaCLBlogLog(Integer articleId) {
+	public MetaClBlogLog(Integer articleId) {
 		this.articleId = articleId;
 	}
 

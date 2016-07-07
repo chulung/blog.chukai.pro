@@ -8,17 +8,17 @@
         class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
-                <ref bean="testTrigger" />
+                <ref bean="metaClBlogTrigger" />
             </list>
         </property>
     </bean>
     <!-- 启动触发器的配置结束 -->
  
     <!-- quartz-2.x的配置 -->
-    <bean id="testTrigger"
+    <bean id="metaClBlogTrigger"
         class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail">
-            <ref bean="testJobDetail" />
+            <ref bean="metaClBlogDetail" />
         </property>
         <property name="cronExpression">
             <!--middle night 24. do it  -->
@@ -28,10 +28,10 @@
     <!-- 调度的配置结束 -->
  
     <!-- job的配置开始 -->
-    <bean id="testJobDetail"
+    <bean id="metaClBlogDetail"
         class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject">
-            <ref bean="testJob" />
+            <ref bean="metaClBlogCronJob" />
         </property>
         <property name="targetMethod">
             <value>mainHandler</value>

@@ -141,11 +141,12 @@ public class BackendController extends BaseController {
 	 * 根据id查询草稿
 	 * 
 	 * @param id
+	 * @return 
 	 * @return
 	 */
 	@RequestMapping(value = "/articleDraft/{id}", method = RequestMethod.GET)
-	public @ResponseBody ArticleDraft getArticleDraft(@PathVariable Integer id) {
-		return this.articleService.findArticleDraft(id);
+	public @ResponseBody  JsonResult<ArticleDraft> getArticleDraft(@PathVariable Integer id) {
+		return JsonResult.ofSuccess(this.articleService.findArticleDraft(id));
 	}
 
 	/**

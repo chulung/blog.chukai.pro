@@ -1,12 +1,12 @@
 package com.chulung.blog.exception;
 
 /**
- * 全局方法执行异常
+ * 全局方法校验异常
  * 
  * @author ChuKai
  *
  */
-public class GlobalMethodRuntimeExcetion extends RuntimeException {
+public class MethodValidateExcetion extends RuntimeException {
 
 	/**
 	 * 
@@ -15,13 +15,13 @@ public class GlobalMethodRuntimeExcetion extends RuntimeException {
 
 	private int code;
 
-	public GlobalMethodRuntimeExcetion() {
+	public MethodValidateExcetion() {
 	}
 
-	public GlobalMethodRuntimeExcetion(String message) {
+	public MethodValidateExcetion(String message) {
 		this(-1,message);
 	}
-	public GlobalMethodRuntimeExcetion(int code, String message) {
+	public MethodValidateExcetion(int code, String message) {
 		super(message);
 		this.setCode(code);
 	}
