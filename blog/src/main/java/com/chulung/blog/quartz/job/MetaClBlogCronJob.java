@@ -1,7 +1,6 @@
 package com.chulung.blog.quartz.job;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.chulung.blog.enumerate.IsDeleteEnum;
 import com.chulung.blog.enumerate.SiteEnum;
 import com.chulung.blog.mapper.ArticleMapper;
 import com.chulung.blog.mapper.MetaClBlogLogMapper;
@@ -56,9 +56,13 @@ public class MetaClBlogCronJob extends AbstractCronJob {
 		post.setDescription(article.getContext()
 				+ String.format(METACKBLOG_COMMENTS, DateUtils.format(LocalDateTime.now()), article.getId()));
 		if (metaCLBlogLog != null) {
-			post.setPostid(metaCLBlogLog.getPostId());
-			// 发送编辑请求
-			cnblogMetaWeblog.editPost(post, true);
+			if (article.getIsDelete() == IsDeleteEnum.Y) {
+				cnblogMetaWeblog.deletePost(metaCLBlogLog.getPostId());
+			} else {
+				post.setPostid(metaCLBlogLog.getPostId());
+				// 发送编辑请求
+				cnblogMetaWeblog.editPost(post, true);
+			}
 			MetaClBlogLog record = new MetaClBlogLog();
 			record.setId(metaCLBlogLog.getId());
 			record.setLastestPostTime(LocalDateTime.now());
