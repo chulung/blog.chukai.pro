@@ -26,8 +26,9 @@ public class MetaClBlogLog {
 		this.site = site;
 	}
 
-	public MetaClBlogLog(Integer articleId) {
+	public MetaClBlogLog(Integer articleId, SiteEnum site) {
 		this.articleId = articleId;
+		this.site=site;
 	}
 
 	public Integer getId() {

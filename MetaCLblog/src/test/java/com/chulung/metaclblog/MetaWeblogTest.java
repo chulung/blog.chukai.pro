@@ -22,13 +22,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.chulung.metaclblog.MetaWeblog;
 import com.chulung.metaclblog.struct.Post;
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:metackblog.xml")
 //测试顺序
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) 
 public class MetaWeblogTest {
 	@Resource
-	private MetaWeblog metaWeblog;
+	private MetaWeblog cnblogMetaWeblog;
 	private static Post post= new Post();
 	@Before 
 	public void setUp(){
@@ -39,7 +40,7 @@ public class MetaWeblogTest {
 	
 	@Test
 	public void test1NewPost() throws XmlRpcException {
-		String postId = metaWeblog.newPost("1", post, true);
+		String postId = cnblogMetaWeblog.newPost("1", post, true);
 		assertNotNull(postId);
 		post.setPostid(postId);
 	}
@@ -47,19 +48,19 @@ public class MetaWeblogTest {
 	@Test
 	public void test2EditPost() throws XmlRpcException {
 		post.setDescription("<h3>hello world edit</h3>");
-		assertThat(this.metaWeblog.editPost(post, true), is(true));
+		assertThat(this.cnblogMetaWeblog.editPost(post, true), is(true));
 	}
 
 	@Test
 	public void test3GetPost() throws XmlRpcException {
 		post.setDescription("<h3>hello world edit</h3>");
-		assertNull(this.metaWeblog.getPost("1"));
-		assertThat(this.metaWeblog.getPost(post.getPostid()).getDescription(), equalTo(post.getDescription()));
+		assertNull(this.cnblogMetaWeblog.getPost("1"));
+		assertThat(this.cnblogMetaWeblog.getPost(post.getPostid()).getDescription(), equalTo(post.getDescription()));
 	}
 
 	@Test
 	public void test4DeletePost() throws XmlRpcException {
-		assertThat(this.metaWeblog.deletePost(post.getPostid()), is(true));
+		assertThat(this.cnblogMetaWeblog.deletePost(post.getPostid()), is(true));
 	}
 
 	@Test

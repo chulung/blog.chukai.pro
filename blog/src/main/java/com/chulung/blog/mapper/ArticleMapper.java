@@ -7,7 +7,7 @@ import com.chulung.blog.model.Article;
 
 public interface ArticleMapper extends BaseMapper<Article>{
 	List<Article> selectTileList();
-	List<Article> selectListForMetaClblog();
+	List<Article> selectListForMetaClblog(String siteName);
 	List<Article> selectBySelectiveForBlog(ArticleDto record);
 	int incrementVisitCount(Integer articleId);
 

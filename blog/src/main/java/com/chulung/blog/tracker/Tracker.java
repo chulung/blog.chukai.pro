@@ -1,6 +1,5 @@
 package com.chulung.blog.tracker;
 
-import java.time.LocalDateTime;
 import java.util.concurrent.LinkedTransferQueue;
 import java.util.concurrent.TransferQueue;
 
@@ -9,11 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
 
-import com.chulung.blog.constant.Constants;
 import com.chulung.blog.model.BaseComponent;
 import com.chulung.blog.model.VisitorInfo;
 import com.chulung.blog.service.VisitorInfoService;
-import com.chulung.common.util.NetUtil;
 
 @Component
 public class Tracker extends BaseComponent {
@@ -38,9 +35,7 @@ public class Tracker extends BaseComponent {
 
 	public void track(HttpServletRequest request) {
 		try {
-			visitorInfos.put(new VisitorInfo(NetUtil.getIpAddr(request), request.getHeader("User-Agent"),
-					LocalDateTime.now(), NetUtil.getAccessUrl(request), request.getServerName(),
-					NetUtil.getCookieValue(Constants.TUID)));
+			visitorInfos.put(new VisitorInfo(request));
 		} catch (InterruptedException e) {
 			this.errorLog(e);
 		}

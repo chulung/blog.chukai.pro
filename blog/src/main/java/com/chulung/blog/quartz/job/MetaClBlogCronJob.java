@@ -1,6 +1,7 @@
 package com.chulung.blog.quartz.job;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -21,22 +22,22 @@ import com.chulung.metaclblog.struct.Post;
 
 @Component
 public class MetaClBlogCronJob extends AbstractCronJob {
-	public static String METACKBLOG_COMMENTS = "<p>本文于%s从<a href=\"https://blog.chulung.com\">Chu Lung's blog</a>自动同步同步,<a href=\"http://blog.chulung.com/article/%s\">访问原文</a><p>";
+	public static String METACKBLOG_COMMENTS = "<p>作者：Chu Lung</p><p>原文链接:<a href=\"http://blog.chulung.com/article/%s\">http://blog.chulung.com/article/%s</a></p><p>本文由<a href=\"https://github.com/chulung/chulung.com/tree/master/MetaCLblog\">MetaCLBlog</a>于%s自动同步至%s</p>";
 
 	@Autowired
 	private ArticleMapper articleMapper;
 	@Autowired
 	private MetaClBlogLogMapper metaWeBlogLogMapper;
-	/**
-	 * 博客园的metaweblog接口
-	 */
-	@Resource(name = "cnblogMetaWeblog")
-	private MetaWeblog cnblogMetaWeblog;
+
+	@Resource(name = "metaCLBlogList")
+	private List<MetaWeblog> metaCLBlogList;
 
 	@Override
 	public void execute() throws Exception {
-		for (Article article : articleMapper.selectListForMetaClblog().subList(0, 1)) {
-			this.pushArticle(article);
+		for (MetaWeblog metaWeblog : metaCLBlogList) {
+			for (Article article : articleMapper.selectListForMetaClblog(metaWeblog.getConfigInfo().getSiteName())) {
+				this.pushArticle(article, metaWeblog);
+			}
 		}
 	}
 
@@ -44,24 +45,26 @@ public class MetaClBlogCronJob extends AbstractCronJob {
 	 * 推送博客文章至其他网站
 	 * 
 	 * @param article
+	 * @param metaWeblog
 	 * @return
 	 * @throws XmlRpcException
 	 */
 	@Transactional
-	public boolean pushArticle(Article article) throws XmlRpcException {
-		MetaClBlogLog metaCLBlogLog = this.metaWeBlogLogMapper.selectOne(new MetaClBlogLog(article.getId()));
+	public boolean pushArticle(Article article, MetaWeblog metaWeblog) throws XmlRpcException {
+		SiteEnum site = SiteEnum.valueOf(metaWeblog.getConfigInfo().getSiteName());
+		MetaClBlogLog metaCLBlogLog = this.metaWeBlogLogMapper.selectOne(new MetaClBlogLog(article.getId(), site));
 		Post post = new Post();
 		post.setTitle(article.getTitle());
 		post.setDateCreated(DateUtils.toDate(article.getCreateTime()));
-		post.setDescription(article.getContext()
-				+ String.format(METACKBLOG_COMMENTS, DateUtils.format(LocalDateTime.now()), article.getId()));
+		post.setDescription(String.format(METACKBLOG_COMMENTS, article.getId(), article.getId(),
+				DateUtils.format(LocalDateTime.now()), site.getDedcription()) + article.getContext());
 		if (metaCLBlogLog != null) {
 			if (article.getIsDelete() == IsDeleteEnum.Y) {
-				cnblogMetaWeblog.deletePost(metaCLBlogLog.getPostId());
+				metaWeblog.deletePost(metaCLBlogLog.getPostId());
 			} else {
 				post.setPostid(metaCLBlogLog.getPostId());
 				// 发送编辑请求
-				cnblogMetaWeblog.editPost(post, true);
+				metaWeblog.editPost(post, true);
 			}
 			MetaClBlogLog record = new MetaClBlogLog();
 			record.setId(metaCLBlogLog.getId());
@@ -69,8 +72,8 @@ public class MetaClBlogCronJob extends AbstractCronJob {
 			metaWeBlogLogMapper.updateByPrimaryKeySelective(record);
 		} else {
 			// 发送新建博客请求
-			String postId = cnblogMetaWeblog.newPost(article.getId().toString(), post, true);
-			MetaClBlogLog record = new MetaClBlogLog(postId, article.getId(), LocalDateTime.now(), SiteEnum.CNBLOGS);
+			String postId = metaWeblog.newPost(article.getId().toString(), post, true);
+			MetaClBlogLog record = new MetaClBlogLog(postId, article.getId(), LocalDateTime.now(), site);
 			metaWeBlogLogMapper.insertSelective(record);
 		}
 		return true;

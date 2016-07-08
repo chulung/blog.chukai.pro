@@ -1,7 +1,7 @@
 package com.chulung.blog.enumerate;
 
 public enum SiteEnum {
-	CNBLOGS(0, "博客园");
+	CNBLOGS(0, "cnblogs"), CSDN(1, "csdn");
 	private Integer code;
 	private String dedcription;
 

@@ -18,12 +18,11 @@
 		</property>
 		<property name="fileEncoding" value="UTF-8"></property>
 	</bean>
-	<context:component-scan base-package="com.chulung.metackblog" />
+	<context:component-scan base-package="com.chulung.metaclblog" />
 	<bean id="cnblogConfig" class="com.chulung.metackblog.config.ConfigInfo">
 		<property name="userName" value="${cnblog.username}"></property>
 		<property name="password" value="${cnblog.password}"></property>
 		<property name="serverUrl" value="${cnblog.serverurl}"></property>
-		<property name="appKey" value="${cnblog.appKey}"></property>
 	</bean>
 	<bean id="cnblogMetaWeblog" class="com.chulung.metaclblog.MetaWeblog">
 		<property name="configInfo" ref="cnblogConfig"></property>

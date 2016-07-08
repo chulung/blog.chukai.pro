@@ -10,12 +10,31 @@
      http://www.springframework.org/schema/aop 
      http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 	<bean id="cnblogConfig" class="com.chulung.metackblog.config.ConfigInfo">
+		<property name="siteName" value="CNBLOGS"></property>
 		<property name="userName" value="${cnblog.username}"></property>
 		<property name="password" value="${cnblog.password}"></property>
 		<property name="serverUrl" value="${cnblog.serverurl}"></property>
 	</bean>
+	<bean id="csdnConfig" class="com.chulung.metackblog.config.ConfigInfo">
+		<property name="siteName" value="CSDN"></property>
+		<property name="userName" value="csdn.username}"></property>
+		<property name="password" value="${csdn.password}"></property>
+		<property name="serverUrl" value="${csdn.serverurl}"></property>
+	</bean>
 	<context:component-scan base-package="com.chulung.metaclblog" />
-	<bean id="cnblogMetaWeblog" class="com.chulung.metaclblog.MetaWeblog">
-		<property name="configInfo" ref="cnblogConfig"></property>
+
+	<bean id="metaCLBlogList" class="java.util.ArrayList">
+		<constructor-arg index="0">
+			<list>
+				<bean id="cnblogMetaWeblog" class="com.chulung.metaclblog.MetaWeblog">
+					<property name="configInfo" ref="cnblogConfig"></property>
+				</bean>
+				<!-- csdn的rpc接口有问题 暂时不同步
+				<bean id="csdnMetaWeblog" class="com.chulung.metaclblog.MetaWeblog">
+					<property name="configInfo" ref="csdnConfig"></property>
+				</bean>
+				 -->
+			</list>
+		</constructor-arg>
 	</bean>
 </beans>

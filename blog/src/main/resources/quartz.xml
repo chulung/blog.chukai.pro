@@ -22,7 +22,7 @@
         </property>
         <property name="cronExpression">
             <!--middle night 24. do it  -->
-            <value>*/5 * * * * ?</value>
+            <value>0 0 2 * * ?</value>
         </property>
     </bean>
     <!-- 调度的配置结束 -->

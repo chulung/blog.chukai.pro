@@ -9,8 +9,8 @@ public class ConfigInfo {
 	private String userName;
 	private String password;
 	private String serverUrl;
-	
 	private String appKey;
+	private String siteName;
 
 	public String getUserName() {
 		return userName;
@@ -42,6 +42,14 @@ public class ConfigInfo {
 
 	public void setAppKey(String appKey) {
 		this.appKey = appKey;
+	}
+
+	public String getSiteName() {
+		return siteName;
+	}
+
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
 	}
 
 }

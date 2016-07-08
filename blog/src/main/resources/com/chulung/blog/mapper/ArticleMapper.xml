@@ -6,7 +6,7 @@
 		<result column="title" property="title" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"
 			typeHandler="com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler" />
-		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" 
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"
 			typeHandler="com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler" />
 		<result column="author" property="author" jdbcType="VARCHAR" />
 		<result column="type_id" property="typeId" jdbcType="INTEGER" />
@@ -16,7 +16,8 @@
 		<result column="is_delete" property="isDelete" jdbcType="CHAR" />
 		<result column="context" property="context" jdbcType="LONGVARCHAR" />
 		<result column="visit_count" property="visitCount" jdbcType="INTEGER" />
-		<result column="comment_count" property="commentCount" jdbcType="INTEGER" />
+		<result column="comment_count" property="commentCount"
+			jdbcType="INTEGER" />
 	</resultMap>
 	<select id="selectTileList" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -26,7 +27,7 @@
 	</select>
 	<select id="selectBySelectiveForBlog" resultMap="BaseResultMap">
 		select id, title, create_time,
-		update_time, author, 
+		update_time, author,
 		type_id, derivation_Url,
 		version,
 		is_delete, context,visit_count,comment_count
@@ -38,17 +39,23 @@
 		</if>
 		<if test="createTimeStart != null and createTimeEnd!=null">
 			and create_time between
-			#{createTimeStart,jdbcType=TIMESTAMP,typeHandler=com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler} and
+			#{createTimeStart,jdbcType=TIMESTAMP,typeHandler=com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler}
+			and
 			#{createTimeEnd,jdbcType=TIMESTAMP,typeHandler=com.chulung.blog.mapper.typehandler.LocalDateTimeTypeHandler}
 		</if>
 		order by create_time desc
 	</select>
 	<select id="selectListForMetaClblog" resultMap="BaseResultMap">
 	<![CDATA[
-		SELECT * from article a where a.id NOT IN(SELECT article_id from meta_cl_blog_log m,article a where a.id=m.article_id and a.update_time < m.lastest_post_time)
+		SELECT * from article a 
+		where a.id NOT IN(
+			SELECT article_id from meta_cl_blog_log m,article a 
+			where a.id=m.article_id and a.update_time < m.lastest_post_time and site=#{siteName}
+		) and type_id=1
 	 ]]>
 	</select>
 	<update id="incrementVisitCount" parameterType="integer">
-		update article  set visit_count=visit_count+1 where id=#{articleId}
+		update article
+		set visit_count=visit_count+1 where id=#{articleId}
 	</update>
 </mapper>

@@ -23,7 +23,7 @@ public class MetaWeblog {
 	 * 推送
 	 * 
 	 * @param blogid
-	 *            标识位，好像没具体含义
+	 *            标识位，意义不明，随意填
 	 * @param post
 	 *            post.Title,post.DateCreated,post.Description 必填
 	 * @param publish

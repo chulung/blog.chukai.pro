@@ -3,6 +3,10 @@ package com.chulung.blog.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Id;
+import javax.servlet.http.HttpServletRequest;
+
+import com.chulung.blog.constant.Constants;
+import com.chulung.common.util.NetUtil;
 
 public class VisitorInfo extends BaseModel {
 	/**
@@ -19,19 +23,26 @@ public class VisitorInfo extends BaseModel {
 	private LocalDateTime accessTime;
 
 	private String accessUrl;
-	
+
 	private String serverName;
-	
+
 	private String tuid;
 
-	public VisitorInfo(String ip, String userAgent, LocalDateTime accessTime, String accessUrl,String serverName,String tuid) {
+	public VisitorInfo(String ip, String userAgent, LocalDateTime accessTime, String accessUrl, String serverName,
+			String tuid) {
 		super();
 		this.ip = ip;
 		this.userAgent = userAgent;
 		this.accessTime = accessTime;
 		this.accessUrl = accessUrl;
 		this.setServerName(serverName);
-		this.tuid=tuid;
+		this.tuid = tuid;
+	}
+
+	public VisitorInfo(HttpServletRequest request) {
+		this(NetUtil.getIpAddr(request), request.getHeader("User-Agent"),
+					LocalDateTime.now(), NetUtil.getAccessUrl(request), request.getServerName(),
+					NetUtil.getCookieValue(Constants.TUID));
 	}
 
 	public Integer getId() {

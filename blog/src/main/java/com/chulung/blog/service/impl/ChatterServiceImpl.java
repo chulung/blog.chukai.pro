@@ -23,7 +23,7 @@ public class ChatterServiceImpl implements ChatterService {
 	@Override
 	public List<ChatterDto> getchatterList() {
 		List<ChatterDto> chatterDtos = new ArrayList<>();
-		chatterMapper.selectList().parallelStream().collect(Collectors.groupingByConcurrent(c -> {
+		chatterMapper.selectList().parallelStream().collect(Collectors.groupingBy(c -> {
 			return YearMonth.of(c.getCreateTime().getYear(), c.getCreateTime().getMonthValue());
 		})).forEach((k, v) -> {
 			Collections.sort(v, Comparator.comparing(Chatter::getCreateTime).reversed());

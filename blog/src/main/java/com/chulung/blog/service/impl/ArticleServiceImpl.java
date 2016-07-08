@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.pegdown.PegDownProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,7 +71,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		articleDraft.setArticleId(oldDraft.getArticleId());
 		articleDraft.setUpdateTime(LocalDateTime.now());
 		articleDraft.setVersion(oldDraft.getVersion() + 1);
-		articleDraft.setHtmlContext(downProcessor.markdownToHtml(articleDraft.getContext()));
+		// 转码html 防止其他
+		articleDraft
+				.setHtmlContext(StringEscapeUtils.escapeHtml4(downProcessor.markdownToHtml(articleDraft.getContext())));
 		// 判断是否发布文章
 		if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
 			Article article = Article.of(articleDraft);
@@ -82,8 +85,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			} else {
 				articleMapper.updateByPrimaryKeySelective(article);
 			}
-		}else if (articleDraft.getArticleId()!=null) {
-			Article record=new Article();
+		} else if (articleDraft.getArticleId() != null) {
+			Article record = new Article();
 			record.setId(articleDraft.getArticleId());
 			record.setIsDelete(IsDeleteEnum.Y);
 			this.articleMapper.updateByPrimaryKeySelective(record);
@@ -148,8 +151,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		throw new MethodValidateExcetion("草稿不存在,id=" + id);
 	}
 
-	
-
 	private String generatingSummary(String context) {
 		String replaceAll = context.replaceAll("</?.*?>", "");
 		return replaceAll.length() > 120 ? replaceAll.substring(0, 120) + "..." : replaceAll;
@@ -184,10 +185,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		List<ArticleFiling> list = new ArrayList<ArticleFiling>();
 		ArticleDto bean = new ArticleDto();
 		bean.setIsDelete(IsDeleteEnum.N);
-		articleMapper.selectBySelectiveForBlog(bean).stream().parallel().map(article -> article.getCreateTime())
+		articleMapper.selectBySelectiveForBlog(bean).parallelStream().map(article -> article.getCreateTime())
 				.map(localDate -> YearMonth.of(localDate.getYear(), localDate.getMonthValue()))
-				.collect(Collectors.groupingByConcurrent(yearMonth -> yearMonth, Collectors.counting()))
-				.forEach((k, v) -> {
+				.collect(Collectors.groupingBy(yearMonth -> yearMonth, Collectors.counting())).forEach((k, v) -> {
 					list.add(new ArticleFiling(k, v.intValue()));
 				});
 		list.sort((o1, o2) -> {
