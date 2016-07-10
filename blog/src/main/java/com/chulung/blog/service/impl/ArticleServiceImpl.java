@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.pegdown.PegDownProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +25,7 @@ import com.chulung.blog.dto.PageIn;
 import com.chulung.blog.enumerate.DictionaryTypeEnum;
 import com.chulung.blog.enumerate.IsDeleteEnum;
 import com.chulung.blog.enumerate.PublishStatusEnum;
-import com.chulung.blog.exception.MethodValidateExcetion;
+import com.chulung.blog.exception.MethodRuntimeExcetion;
 import com.chulung.blog.mapper.ArticleDraftHistoryMapper;
 import com.chulung.blog.mapper.ArticleDraftMapper;
 import com.chulung.blog.mapper.ArticleMapper;
@@ -79,8 +80,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			Article article = Article.of(articleDraft);
 			if (article.getId() == null) {
 				article.setAuthor(user.getNickName());
-				article.setCreateTime(LocalDateTime.now());
-				articleMapper.insertSelective(article);
+				article.setCreateTime(LocalDateTime.now());articleMapper.insertSelective(article);
 				articleDraft.setArticleId(article.getId());
 			} else {
 				articleMapper.updateByPrimaryKeySelective(article);
@@ -92,7 +92,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			this.articleMapper.updateByPrimaryKeySelective(record);
 		}
 		if (!(articleDraftMapper.updateByPrimaryKeySelective(articleDraft) == 1)) {
-			throw new MethodValidateExcetion("修改草稿失败");
+			throw new MethodRuntimeExcetion("修改草稿失败");
 		}
 		return true;
 	}
@@ -106,24 +106,29 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 	@Override
 	@Transactional
-	public void insert(ArticleDraft articleDraft) {
-		User user = this.webSessionSupport.getCurUser().get();
-		articleDraft.setUpdateTime(LocalDateTime.now());
-		articleDraft.setVersion(1);
-		articleDraft.setAuthor(user.getNickName());
-		articleDraft.setIsDelete(IsDeleteEnum.N);
-		articleDraft.setCreateTime(LocalDateTime.now());
-		articleDraft.setHtmlContext(downProcessor.markdownToHtml(articleDraft.getContext()));
-		if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
-			Article article = Article.of(articleDraft);
-			int key = 0;
-			if ((key = articleMapper.insertSelective(article)) <= 0) {
-				throw new RuntimeException("插入文章失败");
+	public Integer insert(ArticleDraft articleDraft) {
+		try {
+			User user = this.webSessionSupport.getCurUser().get();
+			articleDraft.setUpdateTime(LocalDateTime.now());
+			articleDraft.setVersion(1);
+			articleDraft.setAuthor(user.getNickName());
+			articleDraft.setIsDelete(IsDeleteEnum.N);
+			articleDraft.setCreateTime(LocalDateTime.now());
+			articleDraft.setHtmlContext(downProcessor.markdownToHtml(articleDraft.getContext()));
+			if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
+				Article article = Article.of(articleDraft);
+				int key = 0;
+				if ((articleMapper.insertSelective(article)) <= 0) {
+					throw new MethodRuntimeExcetion("插入文章失败");
+				}
+				articleDraft.setArticleId(key);
 			}
-			articleDraft.setArticleId(key);
-		}
-		if (this.articleDraftMapper.insertSelective(articleDraft) <= 0) {
-			throw new RuntimeException("插入草稿失败");
+			if (this.articleDraftMapper.insertSelective(articleDraft) <= 0) {
+				throw new MethodRuntimeExcetion("插入草稿失败");
+			}
+			return articleDraft.getId();
+		} catch (DuplicateKeyException e) {
+			throw new MethodRuntimeExcetion("文章已存在");
 		}
 	}
 
@@ -148,7 +153,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			record.setIsDelete(IsDeleteEnum.Y);
 			this.articleDraftMapper.updateByPrimaryKeySelective(record);
 		}
-		throw new MethodValidateExcetion("草稿不存在,id=" + id);
+		throw new MethodRuntimeExcetion("草稿不存在,id=" + id);
 	}
 
 	private String generatingSummary(String context) {

@@ -6,6 +6,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>blog</name>
+	<description>Chu Lung' Blog sources</description>
+	<url>https://github.com/chulung/chulung.com</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven-dependency-plugin.version>2.1</maven-dependency-plugin.version>
@@ -18,7 +20,25 @@
 		<mybatis-spring.version>1.2.4</mybatis-spring.version>
 		<org.slf4j.version>1.7.12</org.slf4j.version>
 	</properties>
+
+	<licenses>
+		<license>
+			<name>The GNU Lesser General Public License, version 3.0</name>
+			<url>http://opensource.org/licenses/LGPL-3.0</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Chulung</name>
+			<email>chulung@chulung.com</email>
+		</developer>
+	</developers>
 	<dependencies>
+		<dependency>
+			<groupId>com.chulung.com</groupId>
+			<artifactId>ccache</artifactId>
+			<version>1.0</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>jsr305</artifactId>

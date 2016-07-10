@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.chulung.blog.mapper.UserMapper;
 import com.chulung.blog.model.User;
-import com.chulung.cache.Cache;
-import com.chulung.cache.CacheBuilder;
+import com.chulung.ccache.Cache;
+import com.chulung.ccache.builder.CacheBuilder;
 import com.chulung.common.util.NetUtil;
 
 /**
@@ -27,9 +27,7 @@ public class WebSessionSupport {
 	@Resource
 	private UserMapper userMapper;
 
-	@SuppressWarnings("unchecked")
-	private Cache<String, User> cache = CacheBuilder.config(10).addLiveMillesCacheStrategy(30 * 60, true)
-			.generateCache();
+	private Cache cache = CacheBuilder.config(10).addLiveMillesCacheStrategy(30 * 60, true).generateCache();
 
 	/**
 	 * 判断当前用户是否登陆

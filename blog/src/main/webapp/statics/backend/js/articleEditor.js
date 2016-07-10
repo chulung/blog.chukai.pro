@@ -21,6 +21,9 @@ requirejs([ "jquery","bootstrap"], function($) {
 			success : function(data) {
 				if (data.success == 1) {
 					alert('保存成功');
+					$('#btn-save').data(data.id);
+				}else{
+					alert(data.message);
 				}
 			},
 			error : function() {
@@ -33,7 +36,7 @@ requirejs([ "jquery","bootstrap"], function($) {
 		if (rt.result) {
 			editor.setMarkdown(rt.result.context);
 			$('#isPublish').prop("checked",
-					rt.result.isPublish='Y');
+					rt.result.isPublish=='Y');
 			$('#title').val(rt.result.title);
 			$('#articleType').val(rt.result.typeId);
 		}

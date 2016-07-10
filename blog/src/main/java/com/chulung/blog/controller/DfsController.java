@@ -18,7 +18,7 @@ import com.github.tobato.fastdfs.domain.MateData;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 
-@RequestMapping("/")
+@RequestMapping("/dfs")
 @RestController
 public class DfsController extends BaseController {
 	@Autowired
@@ -30,9 +30,7 @@ public class DfsController extends BaseController {
 	}
 
 	@RequestMapping(value = "/file", method = RequestMethod.POST)
-	public @ResponseBody ModelMap postFile(@RequestParam(value = "file", required = false) MultipartFile file1,
-			@RequestParam(value = "editormd-image-file", required = false) MultipartFile file2) {
-		MultipartFile file = file1 != null ? file1 : file2;
+	public @ResponseBody ModelMap postFile(@RequestParam(value = "file") MultipartFile file) {
 		if (file == null) {
 			return errorMap();
 		}

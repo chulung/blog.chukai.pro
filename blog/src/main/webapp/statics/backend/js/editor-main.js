@@ -69,7 +69,7 @@ require(deps, function(editormd) {
 		tex : false, // 开启科学公式TeX语言支持，默认关闭
 		flowChart : false, // 开启流程图支持，默认关闭
 		sequenceDiagram : false, // 开启时序/序列图支持，默认关闭,
-		imageUpload : false,
+		imageUpload : true,
 		imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp" ],
 		imageUploadURL : "/dfs/file",
 		toolbar : true,

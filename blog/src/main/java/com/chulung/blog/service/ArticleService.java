@@ -22,7 +22,7 @@ public interface ArticleService {
 
 	List<Dictionary> findAllArticleTypes();
 
-	void insert(ArticleDraft articleDraft);
+	Integer insert(ArticleDraft articleDraft);
 
 	ArticleDraft findArticleDraft(Integer id);
 

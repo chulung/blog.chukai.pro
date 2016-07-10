@@ -21,6 +21,11 @@
 	<!--注解说明 <context:annotation-config /> -->
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
+	<!-- 上传文件拦截，设置最大上传文件大小 10M=10*1024*1024(B)=10485760 bytes -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1048576" />
+	</bean>
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">

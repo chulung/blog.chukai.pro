@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import com.chulung.blog.enumerate.LogLevel;
 import com.chulung.blog.enumerate.LogType;
-import com.chulung.blog.exception.MethodValidateExcetion;
+import com.chulung.blog.exception.MethodRuntimeExcetion;
 import com.chulung.blog.mapper.AppLogMapper;
 import com.chulung.blog.model.AppLog;
 import com.chulung.blog.model.VisitorInfo;
@@ -36,8 +36,8 @@ public class GlobalControllerExceptionAdvice extends BaseController {
 		return errorMap().addAttribute("message", "文件过大");
 	}
 
-	@ExceptionHandler(MethodValidateExcetion.class)
-	public @ResponseBody ModelMap GlobalMethodRuntimeExcetion(MethodValidateExcetion excetion) {
+	@ExceptionHandler(MethodRuntimeExcetion.class)
+	public @ResponseBody ModelMap GlobalMethodRuntimeExcetion(MethodRuntimeExcetion excetion) {
 		return new ModelMap().addAttribute("success", excetion.getCode()).addAttribute("message",
 				excetion.getMessage());
 	}

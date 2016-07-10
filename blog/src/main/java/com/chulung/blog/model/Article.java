@@ -2,6 +2,8 @@ package com.chulung.blog.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -15,6 +17,7 @@ public class Article extends BaseModel {
 	private static final long serialVersionUID = -1692088776366835421L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String title;
@@ -124,7 +127,6 @@ public class Article extends BaseModel {
 	public void setIsDelete(IsDeleteEnum isDelete) {
 		this.isDelete = isDelete;
 	}
-
 
 	public String getContext() {
 		return context;

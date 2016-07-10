@@ -35,6 +35,12 @@
 					<li><a href="https://github.com/chulung" rel="external nofollow" target="_blank">GitHub</a></li>
 				</ol>
 			</div>
+			<div class="sidebar-module">
+				<h4>一起玩耍</h4>
+				<ol class="list-unstyled">
+					<li><a href="https://github.com/chulung" rel="external nofollow" target="_blank">邮箱</a></li>
+				</ol>
+			</div>
 		</div>
 	</div>
 </div>

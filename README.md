@@ -1,11 +1,11 @@
-# wenchukai.com
-整站源码 of [初的博客](wenchukai.com)
+# blog.chulung.com
+整站源码 of [Chulung's Blog](https://blog.chulung.com)
 
 #### 致谢以下开源项目
 [editor.md](https://github.com/pandao/editor.md)
 
 #### License
 
-The MIT License.
+The GNU Lesser General Public License, version 3.0.
 
-Copyright (c) 2016 wenchukai
+Copyright (c) 2016 Chulung

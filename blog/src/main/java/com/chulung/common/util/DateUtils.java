@@ -28,14 +28,15 @@ public class DateUtils extends DateFormatUtils {
 	public static final String format(Date date) {
 		return format(date, DEFAULT_DATE_FORMAT);
 	}
-	
+
 	/**
-	 * 转化为默认格式  yyyy-MM-dd HH:mm:ss
+	 * 转化为默认格式 yyyy-MM-dd HH:mm:ss
+	 * 
 	 * @param localDateTime
-	 * @return 
+	 * @return
 	 */
 	public static final String format(LocalDateTime localDateTime) {
-		return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		return localDateTime.format(DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT));
 	}
 
 	public static final Date toDate(LocalDateTime source) {

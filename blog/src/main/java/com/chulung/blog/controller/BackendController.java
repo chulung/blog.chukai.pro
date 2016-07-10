@@ -169,8 +169,7 @@ public class BackendController extends BaseController {
 	 */
 	@RequestMapping(value = "/articleDraft", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> postArticle(@ModelAttribute ArticleDraft articleDraft) {
-		this.articleService.insert(articleDraft);
-		return successMap();
+		return successMap().addAttribute("id", this.articleService.insert(articleDraft));
 	}
 
 	/**

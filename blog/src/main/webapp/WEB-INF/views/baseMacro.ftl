@@ -9,7 +9,7 @@
 <meta name="description" content="Chu Lung's blog">
 <meta name="author" content="Chu Lung">
 <meta content="${base_keywords}" name="keywords">
-<title>${base_title}-Chu Lung's blog</title>
+<title>${base_title}-Chulung's blog</title>
 <link rel="shortcut icon" href="${staticsPath}/blog/images/favicon.ico"	type="image/x-icon" />
 <link rel="stylesheet"
 	href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">

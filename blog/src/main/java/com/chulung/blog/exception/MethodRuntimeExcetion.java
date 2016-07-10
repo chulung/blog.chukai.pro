@@ -6,7 +6,7 @@ package com.chulung.blog.exception;
  * @author ChuKai
  *
  */
-public class MethodValidateExcetion extends RuntimeException {
+public class MethodRuntimeExcetion extends RuntimeException {
 
 	/**
 	 * 
@@ -15,13 +15,13 @@ public class MethodValidateExcetion extends RuntimeException {
 
 	private int code;
 
-	public MethodValidateExcetion() {
+	public MethodRuntimeExcetion() {
 	}
 
-	public MethodValidateExcetion(String message) {
-		this(-1,message);
+	public MethodRuntimeExcetion(String message) {
+		this(0,message);
 	}
-	public MethodValidateExcetion(int code, String message) {
+	public MethodRuntimeExcetion(int code, String message) {
 		super(message);
 		this.setCode(code);
 	}
