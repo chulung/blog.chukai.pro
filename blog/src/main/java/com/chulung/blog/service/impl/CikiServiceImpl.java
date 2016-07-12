@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.chulung.blog.dto.JsonResult;
-import com.chulung.blog.dto.TreeNode;
+import com.chulung.blog.dto.CikiTreeNode;
 import com.chulung.blog.enumerate.CateLevelEnum;
 import com.chulung.blog.mapper.CikiMapper;
 import com.chulung.blog.model.Ciki;
@@ -24,15 +24,15 @@ public class CikiServiceImpl extends BaseService implements CikiService {
 	private TemplateProcessor templateProcessor;
 
 	@Override
-	public List<TreeNode> getCategoryTreeNode() {
+	public List<CikiTreeNode> getCategoryTreeNode() {
 		return Arrays.asList(getCikiTreeNodeByParentId(0).get(0));
 	}
 
-	private List<TreeNode> getCikiTreeNodeByParentId(Integer parentId) {
+	private List<CikiTreeNode> getCikiTreeNodeByParentId(Integer parentId) {
 		Ciki record = new Ciki();
 		record.setParentId(parentId);
 		return this.cikiMapper.getCikiTitelListByParentId(record).parallelStream().map(c -> {
-			TreeNode node = new TreeNode(c.getId(), c.getTitle());
+			CikiTreeNode node = new CikiTreeNode(c.getId(), c.getTitle());
 			if (c.getCateLevel() != CateLevelEnum.ITEM) {
 				node.setNodes(this.getCikiTreeNodeByParentId(c.getId()));
 			}

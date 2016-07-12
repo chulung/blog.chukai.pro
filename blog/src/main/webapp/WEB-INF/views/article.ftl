@@ -45,4 +45,6 @@
 			</form>
 	  </div>
 	</div>
+	<div data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+	</div>
 </@page> 

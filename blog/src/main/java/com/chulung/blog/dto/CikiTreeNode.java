@@ -4,20 +4,20 @@ import java.util.List;
 
 import com.chulung.blog.enumerate.CateLevelEnum;
 
-public class TreeNode {
+public class CikiTreeNode {
 	private Integer id;
 	private String text;
 	private CateLevelEnum cateLevel;
-	private List<TreeNode> nodes;
+	private List<CikiTreeNode> nodes;
 
-	public TreeNode(Integer id, String text, CateLevelEnum cateLevel) {
+	public CikiTreeNode(Integer id, String text, CateLevelEnum cateLevel) {
 		super();
 		this.id = id;
 		this.text = text;
 		this.cateLevel = cateLevel;
 	}
 
-	public TreeNode(Integer id, String text) {
+	public CikiTreeNode(Integer id, String text) {
 		this.id = id;
 		this.text = text;
 	}
@@ -46,11 +46,11 @@ public class TreeNode {
 		this.cateLevel = cateLevel;
 	}
 
-	public List<TreeNode> getNodes() {
+	public List<CikiTreeNode> getNodes() {
 		return nodes;
 	}
 
-	public void setNodes(List<TreeNode> nodes) {
+	public void setNodes(List<CikiTreeNode> nodes) {
 		this.nodes = nodes;
 	}
 

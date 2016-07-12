@@ -22,7 +22,7 @@ import com.chulung.metaclblog.struct.Post;
 
 @Component
 public class MetaClBlogCronJob extends AbstractCronJob {
-	public static String METACKBLOG_COMMENTS = "<p>作者：Chu Lung</p><p>原文链接:<a href=\"http://blog.chulung.com/article/%s\">http://blog.chulung.com/article/%s</a></p><p>本文由<a href=\"https://github.com/chulung/chulung.com/tree/master/MetaCLblog\">MetaCLBlog</a>于%s自动同步至%s</p>";
+	public static String METACKBLOG_COMMENTS = "<p>作者：Chu Lung</p><p>原文链接:<a href=\"https://blog.chulung.com/article/%s\">https://blog.chulung.com/article/%s</a></p><p>本文由<a href=\"https://github.com/chulung/chulung.com/tree/master/MetaCLblog\">MetaCLBlog</a>于%s自动同步至%s</p>";
 
 	@Autowired
 	private ArticleMapper articleMapper;

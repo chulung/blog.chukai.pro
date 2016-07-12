@@ -7,9 +7,18 @@
 		<p class="lead blog-description">唯爱、技术和美食三者不可辜负.</p>
 	</div>
 	<div class="row">
+	    <div class="col-sm-3">
+            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
+                <li class="active"><a href="#section-1">第一部分</a></li>
+                <li><a href="#section-2">第二部分</a></li>
+                <li><a href="#section-3">第三部分</a></li>
+                <li><a href="#section-4">第四部分</a></li>
+                <li><a href="#section-5">第五部分</a></li>
+            </ul>
+        </div>
 		<div class="col-sm-8 blog-main">
 		<#nested>
-	</div>
+		</div>
 		<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
 			<div class="sidebar-module sidebar-module-inset">
 				<h4>Hi</h4>
@@ -38,7 +47,7 @@
 			<div class="sidebar-module">
 				<h4>一起玩耍</h4>
 				<ol class="list-unstyled">
-					<li><a href="https://github.com/chulung" rel="external nofollow" target="_blank">邮箱</a></li>
+					<li><a href="mailto:chulung@chulung.com" rel="external nofollow" target="_blank">邮箱</a></li>
 				</ol>
 			</div>
 		</div>

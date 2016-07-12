@@ -3,12 +3,12 @@ package com.chulung.blog.service;
 import java.util.List;
 
 import com.chulung.blog.dto.JsonResult;
-import com.chulung.blog.dto.TreeNode;
+import com.chulung.blog.dto.CikiTreeNode;
 import com.chulung.blog.model.Ciki;
 
 public interface CikiService {
 
-	List<TreeNode> getCategoryTreeNode();
+	List<CikiTreeNode> getCategoryTreeNode();
 
 	JsonResult<Ciki> getCikiById(Integer id);
 

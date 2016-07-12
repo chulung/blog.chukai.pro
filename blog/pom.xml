@@ -46,11 +46,6 @@
 		</dependency>
 		<!-- http://mvnrepository.com/artifact/org.pegdown/pegdown 基于java的markdown解析器 -->
 		<dependency>
-			<groupId>org.pegdown</groupId>
-			<artifactId>pegdown</artifactId>
-			<version>1.6.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${org.slf4j.version}</version>
