@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.pegdown.PegDownProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -37,7 +35,6 @@ import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
 import com.chulung.blog.session.WebSessionSupport;
 import com.chulung.common.util.NumberUtil;
-import com.chulung.common.util.StringUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -57,7 +54,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	private ArticleDraftMapper articleDraftMapper;
 	@Autowired
 	private DictionaryMapper dictionaryMapper;
-	private PegDownProcessor downProcessor = new PegDownProcessor();
 
 	public Article findArticleById(Integer id) {
 		return articleMapper.selectByPrimaryKey(id);
@@ -74,8 +70,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		articleDraft.setUpdateTime(LocalDateTime.now());
 		articleDraft.setVersion(oldDraft.getVersion() + 1);
 		// 转码html 防止其他
-		articleDraft.setHtmlContext(StringEscapeUtils
-				.escapeHtml4(StringUtil.handlerHTagIndex(downProcessor.markdownToHtml(articleDraft.getContext()))));
 		// 判断是否发布文章
 		if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
 			Article article = Article.of(articleDraft);
@@ -116,8 +110,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			articleDraft.setAuthor(user.getNickName());
 			articleDraft.setIsDelete(IsDeleteEnum.N);
 			articleDraft.setCreateTime(LocalDateTime.now());
-			articleDraft.setHtmlContext(StringEscapeUtils
-					.escapeHtml4(StringUtil.handlerHTagIndex(downProcessor.markdownToHtml(articleDraft.getContext()))));
 			if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
 				Article article = Article.of(articleDraft);
 				int key = 0;

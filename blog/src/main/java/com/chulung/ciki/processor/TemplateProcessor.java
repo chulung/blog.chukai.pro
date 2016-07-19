@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.pegdown.PegDownProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,19 +33,20 @@ public class TemplateProcessor extends BaseComponent {
 	@Autowired
 	private CikiMapper cikiMapper;
 	private Configuration cfg = new Configuration(new Version("2.3.23"));
-	private PegDownProcessor downProcessor = new PegDownProcessor();
+
 	public TemplateProcessor() throws IOException {
 		cfg.setDirectoryForTemplateLoading(new File(getClass().getResource("/com/chulung/ciki/templates/").getPath()));
 		cfg.setDefaultEncoding("UTF-8");
 		cfg.setNumberFormat("#");
-		new Thread(()->{
+		new Thread(() -> {
 			try {
 				Thread.sleep(1000);
 				this.processor();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}).start();;
+		}).start();
+		;
 	}
 
 	public void processor() throws Exception {
@@ -66,13 +66,13 @@ public class TemplateProcessor extends BaseComponent {
 			File file2 = new File(file.getPath() + "/" + c.getEnIndex());
 			file2.mkdir();
 			c.getCikis().forEach(a -> {
-				if (a.getCateLevel()==CateLevelEnum.ITEM) {
+				if (a.getCateLevel() == CateLevelEnum.ITEM) {
 					try {
 						HashMap<String, Object> hashMap2 = new HashMap<String, Object>();
 						hashMap2.put("cateIndex", c.getEnIndex());
 						hashMap2.put("cate", c.getTitle());
 						hashMap2.put("ciki", a);
-						hashMap2.put("html",a.getMarkdown()==null?"": downProcessor.markdownToHtml(a.getMarkdown()));
+						hashMap2.put("html", a.getHtml());
 						printTemplate(hashMap2, "contextPage.ftl", file2.getPath() + "/" + a.getEnIndex() + ".html");
 					} catch (Exception e) {
 						this.errorLog(e);

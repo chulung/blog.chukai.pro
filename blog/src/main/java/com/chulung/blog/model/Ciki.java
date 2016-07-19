@@ -16,6 +16,7 @@ public class Ciki {
 	private String enIndex;
 	private CateLevelEnum cateLevel;
 	private String markdown;
+	private String html;
 	private LocalDateTime createTime;
 	private LocalDateTime updateTime;
 	
@@ -92,6 +93,14 @@ public class Ciki {
 
 	public void setEnIndex(String enIndex) {
 		this.enIndex = enIndex;
+	}
+
+	public String getHtml() {
+		return html;
+	}
+
+	public void setHtml(String html) {
+		this.html = html;
 	}
 
 }

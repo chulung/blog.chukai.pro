@@ -8,10 +8,7 @@
         <dependent-module archiveName="ccache-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ccache/ccache">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="metaclblog-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/MetaCKblog/MetaCKblog">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="fastdfs-client-1.25.2-cl-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/FastDFS_Client/FastDFS_Client">
+        <dependent-module archiveName="metaclblog-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/metaclblog/metaclblog">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="blog"/>

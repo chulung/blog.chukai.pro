@@ -19,7 +19,8 @@ requirejs([ "jquery","treeview","contextMenu","bootstrap"], function($) {
 				url : "/backend/ciki",
 				data : {
 					"id" : $(this).data("id"),
-					"markdown" : editor.getMarkdown()
+					"markdown" : editor.getMarkdown(),
+					"html":editor.getHTML()
 				},
 				dataType : "json",
 				success : function(data) {
