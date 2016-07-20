@@ -51,7 +51,9 @@
 	</footer>
 </body>
 <script>var staticsPath="${staticsPath}"</script>
+<#if moduleName??>
 <script>var module="${moduleName}"</script>
+</#if>
 <script data-main='${staticsPath}/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 </html>
 </#macro> 

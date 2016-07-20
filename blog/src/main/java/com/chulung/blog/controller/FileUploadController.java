@@ -18,9 +18,9 @@ import com.github.tobato.fastdfs.domain.MateData;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 
-@RequestMapping("/dfs")
+@RequestMapping("/fileUpload")
 @RestController
-public class DfsController extends BaseController {
+public class FileUploadController extends BaseController {
 	@Autowired
 	protected FastFileStorageClient storageClient;
 

@@ -104,6 +104,7 @@
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/backend/**" />
+			<mvc:mapping path="/fileUpload/**" />
 			<mvc:exclude-mapping path="/backend/logIn" />
 			<bean class="com.chulung.blog.interceptor.BackendInterceptor"></bean>
 		</mvc:interceptor>

@@ -71,7 +71,7 @@ require(deps, function(editormd) {
 		sequenceDiagram : false, // 开启时序/序列图支持，默认关闭,
 		imageUpload : true,
 		imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp" ],
-		imageUploadURL : "/dfs/file",
+		imageUploadURL : "/fileUpload/file",
 		toolbar : true,
 		onload : function() {
 			editor = this;

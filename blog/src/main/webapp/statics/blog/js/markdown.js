@@ -4,6 +4,7 @@ requirejs.config({
 	baseUrl : "https://static.chulung.com/statics/markdown/lib/",
 	paths : {
 		jquery : "https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
+		bootstrap : 'https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min',
 		marked : "marked.min",
 		prettify : "prettify.min",
 		raphael : "raphael.min",
@@ -17,13 +18,14 @@ requirejs.config({
 	},
 	//手动声明依赖部分
 	shim : {
+		jqueryflowchart : [ "flowchart" ],
 		jqueryflowchart : [ "jquery" ],
 		sequenceDiagram : [ "raphael" ]
 	},
 	waitSeconds : 30
 });
 
-var deps = [ "editormd", "../plugins/link-dialog/link-dialog",
+var deps = [ "../../blog/js/global" , "editormd","../plugins/link-dialog/link-dialog",
 		"../plugins/reference-link-dialog/reference-link-dialog",
 		"../plugins/image-dialog/image-dialog",
 		"../plugins/code-block-dialog/code-block-dialog",
@@ -32,11 +34,12 @@ var deps = [ "editormd", "../plugins/link-dialog/link-dialog",
 		"../plugins/goto-line-dialog/goto-line-dialog",
 		"../plugins/help-dialog/help-dialog",
 		"../plugins/html-entities-dialog/html-entities-dialog",
-		"../plugins/preformatted-text-dialog/preformatted-text-dialog" ];
+		"../plugins/preformatted-text-dialog/preformatted-text-dialog"];
 var editor;
 require(
 		deps,
-		function(editormd) {
+		function(global,editormd) {
+			global.init();
 			editormd(
 					"editor-div",
 					{
