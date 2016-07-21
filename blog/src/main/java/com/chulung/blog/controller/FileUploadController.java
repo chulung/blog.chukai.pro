@@ -1,5 +1,6 @@
 package com.chulung.blog.controller;
 
+import java.io.InputStream;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.chulung.common.util.DateUtils;
+import com.chulung.common.util.ImageUtil;
 import com.github.tobato.fastdfs.domain.MateData;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
@@ -39,7 +41,8 @@ public class FileUploadController extends BaseController {
 		metaDataSet.add(new MateData("createDate", DateUtils.format(new Date())));
 		String fileName = file.getOriginalFilename();
 		try {
-			StorePath path = storageClient.uploadImageAndCrtThumbImage(file.getInputStream(), file.getSize(),
+			InputStream in = ImageUtil.mark(file.getInputStream(), fileName.substring(fileName.length() - 4));
+			StorePath path = storageClient.uploadImageAndCrtThumbImage(in, file.getSize(),
 					fileName.substring(fileName.lastIndexOf('.') + 1), metaDataSet);
 			return successMap().addAttribute("message", "上传成功").addAttribute("url",
 					"//static.chulung.com/" + path.getFullPath());
