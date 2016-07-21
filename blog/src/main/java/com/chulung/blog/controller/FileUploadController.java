@@ -1,8 +1,11 @@
 package com.chulung.blog.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.chulung.blog.session.WebSessionSupport;
 import com.chulung.common.util.DateUtils;
 import com.chulung.common.util.ImageUtil;
 import com.github.tobato.fastdfs.domain.MateData;
@@ -24,6 +29,8 @@ import com.github.tobato.fastdfs.service.FastFileStorageClient;
 @RestController
 public class FileUploadController extends BaseController {
 	@Autowired
+	private WebSessionSupport webSessionSupport;
+	@Autowired
 	protected FastFileStorageClient storageClient;
 
 	@RequestMapping(value = { "/", "" })
@@ -32,17 +39,25 @@ public class FileUploadController extends BaseController {
 	}
 
 	@RequestMapping(value = "/file", method = RequestMethod.POST)
-	public @ResponseBody ModelMap postFile(@RequestParam(value = "file") MultipartFile file) {
-		if (file == null) {
-			return errorMap();
+	public @ResponseBody ModelMap postFile(MultipartHttpServletRequest mRequest) {
+		if (!webSessionSupport.islogIn()) {
+			return errorMap("抱歉，本站不对外提供文件上传功能!");
 		}
+		Iterator<String> itr = mRequest.getFileNames();
+		Map<String, MultipartFile> map = mRequest.getFileMap();
+		if (map.size() != 1) {
+			return errorMap("文件个数必须为1个");
+		}
+		MultipartFile file = map.values().iterator().next();
+		String fileName = file.getOriginalFilename();
 		Set<MateData> metaDataSet = new HashSet<MateData>();
 		metaDataSet.add(new MateData("creator", "system"));
 		metaDataSet.add(new MateData("createDate", DateUtils.format(new Date())));
-		String fileName = file.getOriginalFilename();
 		try {
-			InputStream in = ImageUtil.mark(file.getInputStream(), fileName.substring(fileName.length() - 4));
-			StorePath path = storageClient.uploadImageAndCrtThumbImage(in, file.getSize(),
+			byte[] bytes = ImageUtil.mark(file.getInputStream(), fileName.substring(fileName.length() - 3));
+			long size = bytes == null ? file.getSize() : bytes.length;
+			InputStream in = bytes == null ? file.getInputStream() : new ByteArrayInputStream(bytes);
+			StorePath path = storageClient.uploadImageAndCrtThumbImage(in, size,
 					fileName.substring(fileName.lastIndexOf('.') + 1), metaDataSet);
 			return successMap().addAttribute("message", "上传成功").addAttribute("url",
 					"//static.chulung.com/" + path.getFullPath());
@@ -50,5 +65,6 @@ public class FileUploadController extends BaseController {
 			logger.error("文件上传失败", e);
 			return errorMap();
 		}
+
 	}
 }

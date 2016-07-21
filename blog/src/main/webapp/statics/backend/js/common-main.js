@@ -1,7 +1,6 @@
 // contents of main.js:
 require
 		.config({
-			bathUrl : 'https:static.chulung.com/statics/backend/js',
 			paths : {
 				jquery : 'https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min',
 				bootstrap : 'https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min',

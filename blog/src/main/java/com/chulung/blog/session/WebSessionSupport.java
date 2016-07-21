@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Component;
 
 import com.chulung.blog.mapper.UserMapper;
@@ -21,7 +20,6 @@ import com.chulung.common.util.NetUtil;
  *
  */
 @Component
-@CacheConfig(cacheNames = { "default" })
 public class WebSessionSupport {
 	public final String SESSION_ID = "session_id";
 	@Resource

@@ -33,6 +33,9 @@ public abstract class BaseController extends BaseComponent {
 	public ModelMap errorMap() {
 		return new ModelMap().addAttribute("success", 0);
 	}
+	public ModelMap errorMap(String message) {
+		return new ModelMap().addAttribute("success", 0).addAttribute("message", message);
+	}
 
 	/**
 	 * 约定模块名为将当前Controller类名去除Controller后缀后首字母小写 默认模块名即页面文件名，和对应js文件名

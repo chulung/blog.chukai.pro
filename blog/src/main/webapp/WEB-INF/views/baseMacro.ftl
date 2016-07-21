@@ -6,10 +6,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Chu Lung's blog">
+<meta name="description" content="ChuLung's blog">
 <meta name="author" content="Chu Lung">
 <meta content="${base_keywords}" name="keywords">
-<title>${base_title}-Chulung's blog</title>
+<title>${base_title}-ChuLung's blog</title>
 <link rel="shortcut icon" href="${staticsPath}/blog/images/favicon.ico"	type="image/x-icon" />
 <link rel="stylesheet"
 	href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">

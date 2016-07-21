@@ -34,12 +34,12 @@ public class ImageUtil {
 	 *            水印的文字
 	 * @return
 	 */
-	public static InputStream mark(InputStream is, String imgFormat) {
+	public static byte[] mark(InputStream is, String imgFormat) {
 		Image srcImg;
 		try {
 			srcImg = ImageIO.read(is);
 		} catch (IOException e) {
-			return is;
+			return null;
 		}
 		int srcImgWidth = srcImg.getWidth(null);
 		int srcImgHeight = srcImg.getHeight(null);
@@ -63,7 +63,7 @@ public class ImageUtil {
 		} catch (IOException e) {
 			throw new MethodRuntimeExcetion(e);
 		}
-		return new ByteArrayInputStream(bs.toByteArray());
+		return bs.toByteArray();
 	}
 
 	/**

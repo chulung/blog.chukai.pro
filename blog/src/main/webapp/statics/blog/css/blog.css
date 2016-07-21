@@ -2,7 +2,7 @@
  * Globals
  */
 body {
-	font-family: "Microsoft YaHei" ! important;
+	font-family: "Microsoft YaHei" !important;
 	color: #555;
 }
 
@@ -223,8 +223,9 @@ img {
 }
 
 .comments-body .list-group-item-text {
-	word-wrap:break-word;
+	word-wrap: break-word;
 }
+
 .comments-body .reply-div {
 	float: right;
 }
