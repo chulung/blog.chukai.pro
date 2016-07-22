@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,7 +41,6 @@ public class FileUploadController extends BaseController {
 		if (!webSessionSupport.islogIn()) {
 			return errorMap("抱歉，本站不对外提供文件上传功能!");
 		}
-		Iterator<String> itr = mRequest.getFileNames();
 		Map<String, MultipartFile> map = mRequest.getFileMap();
 		if (map.size() != 1) {
 			return errorMap("文件个数必须为1个");
