@@ -72,7 +72,7 @@
 <script>
 	angular.module('cmind', ['kityminderEditor'])
 			.config(function (configProvider) {
-				configProvider.set('imageUpload', '../server/imageUpload.php');
+				configProvider.set('imageUpload', '/fileUpload/file');
 			})
 			.controller('MainController', function($scope) {
 				$scope.initEditor = function(editor, minder) {

@@ -31,11 +31,6 @@ public class FileUploadController extends BaseController {
 	@Autowired
 	protected FastFileStorageClient storageClient;
 
-	@RequestMapping(value = { "/", "" })
-	public @ResponseBody String index() {
-		return "<h1>Hi DFS!</h1>";
-	}
-
 	@RequestMapping(value = "/file", method = RequestMethod.POST)
 	public @ResponseBody ModelMap postFile(MultipartHttpServletRequest mRequest) {
 		if (!webSessionSupport.islogIn()) {
@@ -43,7 +38,7 @@ public class FileUploadController extends BaseController {
 		}
 		Map<String, MultipartFile> map = mRequest.getFileMap();
 		if (map.size() != 1) {
-			return errorMap("文件个数必须为1个");
+			return errorMap("文件个数必须为1个"); 
 		}
 		MultipartFile file = map.values().iterator().next();
 		String fileName = file.getOriginalFilename();
@@ -57,7 +52,7 @@ public class FileUploadController extends BaseController {
 			StorePath path = storageClient.uploadImageAndCrtThumbImage(in, size,
 					fileName.substring(fileName.lastIndexOf('.') + 1), metaDataSet);
 			return successMap().addAttribute("message", "上传成功").addAttribute("url",
-					"//static.chulung.com/" + path.getFullPath());
+					"https://static.chulung.com/" + path.getFullPath());
 		} catch (Exception e) {
 			logger.error("文件上传失败", e);
 			return errorMap();
