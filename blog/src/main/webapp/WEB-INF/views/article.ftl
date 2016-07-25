@@ -4,7 +4,11 @@
 		<h3 class="blog-post-title"><span class="ico ico_type_${article.typeId}"></span>${article.title}</h3>
 		<p class="blog-post-meta"><@DateTime time=article.createTime/>,${article.author}</p>
 		<#if blog.derivationUrl?exists><p><a href="${article.derivationUrl}">原文链接</a></p></#if>
-		<article>${article.context}</article>
+		<article>
+		<p>作者：Chu Lung</p>
+		<p>原文链接:<a href=\"https://blog.chulung.com/article/${article.id}">https://blog.chulung.com/article/${article.id}</a></p>
+		${article.context}
+		</article>
 	</div>
 	<div class="panel panel-info">
 	  <div class="panel-heading">查看评论</div>
