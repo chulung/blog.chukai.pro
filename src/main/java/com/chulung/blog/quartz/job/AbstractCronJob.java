@@ -15,7 +15,7 @@ import com.chulung.blog.model.AppLog;
 public abstract class AbstractCronJob {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
-	private AppLogMapper cronJobLogMapper;
+	protected AppLogMapper cronJobLogMapper;
 
 	public void mainHandler() {
 		try {

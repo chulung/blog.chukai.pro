@@ -22,6 +22,9 @@ public class AppLog extends BaseModel {
 	public AppLog() {
 	}
 
+	public AppLog(LogType type, LogLevel level, String log) {
+		this(type, level, log, LocalDateTime.now());
+	}
 	public AppLog(LogType type, LogLevel level, String log, LocalDateTime createTime) {
 		super();
 		this.type = type;

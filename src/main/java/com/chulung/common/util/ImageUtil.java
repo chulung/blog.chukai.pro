@@ -16,7 +16,7 @@ import com.chulung.blog.exception.MethodRuntimeExcetion;
 
 public class ImageUtil {
 	private static final String MICROSOFT_YA_HEI = "Microsoft YaHei";
-	private static final String waterMarkContent = "chulung's blog";
+	private static final String waterMarkContent = "chulung.com";
 
 	/**
 	 * 图片添加水印

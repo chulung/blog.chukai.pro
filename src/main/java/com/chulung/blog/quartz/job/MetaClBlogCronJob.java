@@ -11,9 +11,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.chulung.blog.enumerate.IsDeleteEnum;
+import com.chulung.blog.enumerate.LogLevel;
+import com.chulung.blog.enumerate.LogType;
 import com.chulung.blog.enumerate.SiteEnum;
 import com.chulung.blog.mapper.ArticleMapper;
 import com.chulung.blog.mapper.MetaClBlogLogMapper;
+import com.chulung.blog.model.AppLog;
 import com.chulung.blog.model.Article;
 import com.chulung.blog.model.MetaClBlogLog;
 import com.chulung.common.util.DateUtils;
@@ -70,11 +73,13 @@ public class MetaClBlogCronJob extends AbstractCronJob {
 			record.setId(metaCLBlogLog.getId());
 			record.setLastestPostTime(LocalDateTime.now());
 			metaWeBlogLogMapper.updateByPrimaryKeySelective(record);
+			cronJobLogMapper.insertSelective(new AppLog(LogType.META_CK_BLOG_LOG	,LogLevel.INFO, String.format("博客《%s》更新推送成功",post.getTitle())));
 		} else {
 			// 发送新建博客请求
 			String postId = metaWeblog.newPost(article.getId().toString(), post, true);
 			MetaClBlogLog record = new MetaClBlogLog(postId, article.getId(), LocalDateTime.now(), site);
 			metaWeBlogLogMapper.insertSelective(record);
+			cronJobLogMapper.insertSelective(new AppLog(LogType.META_CK_BLOG_LOG	,LogLevel.INFO, String.format("博客《%s》新建推送成功",post.getTitle())));
 		}
 		return true;
 

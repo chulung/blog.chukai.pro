@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 /**
  * 全局异常处理
@@ -47,6 +48,10 @@ public class GlobalControllerExceptionAdvice extends BaseController {
 	
 	@ExceptionHandler(Exception.class)
 	public @ResponseBody ModelMap Excetion(Exception excetion) throws IOException {
+		//忽略参数类型异常
+		if (excetion instanceof MethodArgumentTypeMismatchException) {
+			return new ModelMap().addAttribute("error", "501");
+		}
 		errorLog(excetion);
 		ByteArrayOutputStream buf = new java.io.ByteArrayOutputStream();
 		excetion.printStackTrace(new PrintWriter(buf, true));
@@ -54,7 +59,7 @@ public class GlobalControllerExceptionAdvice extends BaseController {
 		buf.close();
 		HttpServletRequest request = this.currentRequest();
 		if (request != null) {
-			expMessage=new VisitorInfo(request)+":"+expMessage;
+			expMessage=new VisitorInfo(request)+":\n"+expMessage;
 		}
 		AppLog record = new AppLog(LogType.EXCEPTION, LogLevel.ERROR,expMessage, LocalDateTime.now());
 		appLogMapper.insertSelective(record);
