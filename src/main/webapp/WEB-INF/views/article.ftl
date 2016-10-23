@@ -5,7 +5,7 @@
 		<p class="blog-post-meta"><@DateTime time=article.createTime/>,${article.author}</p>
 		<#if blog.derivationUrl?exists><p><a href="${article.derivationUrl}">原文链接</a></p></#if>
 		<article>
-		<p>作者：ChuLung</p>
+		<p>作者：${article.author}</p>
 		<p>原文链接:<a href="https://chulung.com/article/${article.id}">https://chulung.com/article/${article.id}</a></p>
 		${article.context}
 		<#if article.id==37>

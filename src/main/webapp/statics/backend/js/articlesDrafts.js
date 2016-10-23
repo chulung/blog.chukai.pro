@@ -1,6 +1,5 @@
 requirejs([ "jquery"], function($) {
 	var exports={};
-	
 	exports.ajaxData=function ajaxData(page) {
 						$.ajax({
 							url : '/backend/articleDrafts/list',
@@ -18,6 +17,7 @@ requirejs([ "jquery"], function($) {
 											$('<th>').html(item.id).appendTo($tr);
 											$('<th>').html(item.articleId).appendTo($tr);
 											$('<th>').html(item.title).appendTo($tr);
+											$('<th>').html(item.typeId).appendTo($tr);
 											$('<th>').html(item.author).appendTo($tr);
 											$('<th>').html(item.createTime).appendTo($tr);
 											$('<th>').html(item.updateTime).appendTo($tr);

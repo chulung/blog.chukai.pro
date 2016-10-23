@@ -104,8 +104,8 @@ function boundSubmitComments() {
 							message : '邮箱格式不正确.'
 						},
 						stringLength : {
-							max : 512,
-							message : '邮箱长度不能超过512个字符.'
+							max : 50,
+							message : '邮箱长度不能超过50个字符.'
 						}
 					}
 				},
@@ -129,7 +129,12 @@ function boundSubmitComments() {
 				dataType : 'json',
 				data : $(e.target).serialize(),
 				success : function(data) {
-					data.success == 1 && window.location.reload();
+					if (data.success == 1) {
+						window.location.reload();
+					}else{
+						alert(data.message);
+					}
+					 
 				}
 			});
 		});

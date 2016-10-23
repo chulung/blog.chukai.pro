@@ -3,7 +3,7 @@
 <@base base_title=title mainjs='/blog/js/main' base_css=css base_keywords="chulung,chulung's craft">
 <div class="container">
 	<div class="blog-header">
-		<h1 class="blog-title">ChuLung's craft</h1>
+		<h1 class="blog-title">chulung's craft</h1>
 		<p class="lead blog-description">唯爱、技术和美食三者不可辜负.</p>
 	</div>
 	<div class="row">

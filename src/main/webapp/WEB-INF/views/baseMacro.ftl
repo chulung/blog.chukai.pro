@@ -29,14 +29,14 @@
 	      <li <#if typeId=1> class="active" </#if>  role="presentation"><a href="/articles">文章</a></li>
 	      <li <#if typeId=3> class="active" </#if>  role="presentation"><a href="/reprints">他山之石</a></li>
 	      <li <#if typeId=2> class="active" </#if>  role="presentation"><a href="/chatters">碎碎念</a></li>
-	      <li <#if typeId=5> class="active" </#if>  role="presentation"><a href="/ciki/">Ciki</a></li>
+	      <li <#if typeId=5> class="active" </#if>  role="presentation"><a href="/ciki/">ciki</a></li>
 	      <li <#if typeId=0> class="active" </#if>  role="presentation"><a href="/markdown">Markdown</a></li>
 	      <li class="dropdown <#if typeId=4> active</#if>" role="presentation">
 	       	<a aria-expanded="false" aria-haspopup="true" role="button" href="#" data-toggle="dropdown" class="dropdown-toggle">
 	          	关于 <span class="caret"></span>
 	        </a>
 	        <ul class="dropdown-menu">
-	          <li><a href="/about">ChuLung</a></li>
+	          <li><a href="/about">chulung</a></li>
 	          <li class="divider" role="separator"></li>
 	          <li><a href="https://github.com/chulung/chulung.com" rel="external nofollow" target="_blank">本站源码</a></li>
 	        </ul>

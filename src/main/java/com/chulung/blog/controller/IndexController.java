@@ -1,5 +1,6 @@
 package com.chulung.blog.controller;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Optional;
 
@@ -31,6 +32,7 @@ public class IndexController extends BaseController {
 	private ArticleService articleService;
 	@Autowired
 	private ChatterService chatterService;
+
 	/**
 	 * 博客首页
 	 * 
@@ -90,6 +92,7 @@ public class IndexController extends BaseController {
 		return modelAndView("chatter").addObject("chatterDtos", this.chatterService.getchatterList())
 				.addObject("typeId", 2);
 	}
+
 	@RequestMapping("/myLove")
 	public ModelAndView myLove() {
 		return modelAndView("myLove");
@@ -103,11 +106,13 @@ public class IndexController extends BaseController {
 	@RequestMapping("/about")
 	public ModelAndView about() {
 		Article article = articleService.findArticleById(20);
-		return modelAndView("about")
-				.addObject("article", String.format(article.getContext(),
-						String.valueOf((Instant.now().getEpochSecond()
-								- Instant.parse("2015-06-15T09:00:00.00Z").getEpochSecond()) / 31536000.0),
-						"魔都"))
+		double dev = (Instant.now().getEpochSecond() - Instant.parse("2013-11-01T09:00:00.00Z").getEpochSecond())
+				/ 31536000.0;
+		double wook = (Instant.now().getEpochSecond() - Instant.parse("2015-03-01T09:00:00.00Z").getEpochSecond())
+				/ 31536000.0;
+		dev = new BigDecimal(dev).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		wook = new BigDecimal(wook).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		return modelAndView("about").addObject("article", String.format(article.getContext(), dev, wook))
 				.addObject("typeId", 4);
 	}
 }

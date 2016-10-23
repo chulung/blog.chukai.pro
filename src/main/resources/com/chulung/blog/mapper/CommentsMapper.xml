@@ -12,6 +12,6 @@
 		<result column="email" property="email" jdbcType="VARCHAR" />
 	</resultMap>
 	<update id="recalcCommentsCountForArticle" >
-		update article a set comment_count=(select count(*) from comments c where c.article_id=#id# and c.is_delete='N') where a.id =#id#
+		update article a set comment_count=(select count(*) from comments c where c.article_id=#{id,jdbcType=INTEGER} and c.is_delete='N') where a.id =#{id,jdbcType=INTEGER}
 	</update>
 </mapper>

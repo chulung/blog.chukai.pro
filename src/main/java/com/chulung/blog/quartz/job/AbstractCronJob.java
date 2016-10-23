@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.chulung.blog.enumerate.LogLevel;
 import com.chulung.blog.enumerate.LogType;
@@ -19,14 +18,14 @@ public abstract class AbstractCronJob {
 
 	public void mainHandler() {
 		try {
-			Component component = this.getClass().getAnnotation(Component.class);
-			cronJobLogMapper.insertSelective(new AppLog(LogType.CRON_JOB_LOG, LogLevel.INFO,
-					component != null ? component.value() + " starting" : "", LocalDateTime.now()));
+			String name = this.getClass().getName();
+			cronJobLogMapper.insertSelective(
+					new AppLog(LogType.CRON_JOB_LOG, LogLevel.INFO, name + " starting", LocalDateTime.now()));
 			execute();
-			cronJobLogMapper.insertSelective(new AppLog(LogType.CRON_JOB_LOG, LogLevel.INFO,
-					component != null ? component.value() + " end" : "", LocalDateTime.now()));
+			cronJobLogMapper.insertSelective(
+					new AppLog(LogType.CRON_JOB_LOG, LogLevel.INFO, name + " end", LocalDateTime.now()));
 		} catch (Exception e) {
-			logger.error("",e);
+			logger.error("", e);
 			cronJobLogMapper.insertSelective(
 					new AppLog(LogType.CRON_JOB_LOG, LogLevel.ERROR, e.toString(), LocalDateTime.now()));
 		}

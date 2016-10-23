@@ -2,6 +2,7 @@ package com.chulung.blog.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.chulung.blog.exception.MethodRuntimeExcetion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,9 @@ public class ArticleController extends BaseController {
 	@RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView getArticle(@PathVariable Integer id, HttpServletRequest request) {
 		Article article = articleService.findArticleById(id);
+		if(article!=null && article.getTypeId()==4 && !webSessionSupport.islogIn()){
+			throw new MethodRuntimeExcetion("无权访问");
+		}
 		return modelAndView("article").addObject("article", article).addObject("typeId", article.getTypeId());
 	}
 

@@ -20,6 +20,7 @@ import com.chulung.blog.dto.ArticleDto;
 import com.chulung.blog.dto.ArticleFiling;
 import com.chulung.blog.dto.CommonInfo;
 import com.chulung.blog.dto.PageIn;
+import com.chulung.blog.enumerate.ConfigKeyEnum;
 import com.chulung.blog.enumerate.DictionaryTypeEnum;
 import com.chulung.blog.enumerate.IsDeleteEnum;
 import com.chulung.blog.enumerate.PublishStatusEnum;
@@ -27,14 +28,13 @@ import com.chulung.blog.exception.MethodRuntimeExcetion;
 import com.chulung.blog.mapper.ArticleDraftHistoryMapper;
 import com.chulung.blog.mapper.ArticleDraftMapper;
 import com.chulung.blog.mapper.ArticleMapper;
-import com.chulung.blog.mapper.ChatterMapper;
 import com.chulung.blog.mapper.DictionaryMapper;
 import com.chulung.blog.model.Article;
 import com.chulung.blog.model.ArticleDraft;
-import com.chulung.blog.model.Chatter;
 import com.chulung.blog.model.Dictionary;
 import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
+import com.chulung.blog.service.ConfigService;
 import com.chulung.blog.session.WebSessionSupport;
 import com.chulung.common.util.NumberUtil;
 import com.github.pagehelper.Page;
@@ -57,10 +57,14 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	@Autowired
 	private DictionaryMapper dictionaryMapper;
 	@Autowired
-	private ChatterMapper chatterMapper;
+	private ConfigService configService;
 
 	public Article findArticleById(Integer id) {
-		return articleMapper.selectByPrimaryKey(id);
+		Article a = articleMapper.selectByPrimaryKey(id);
+		if (a.getTypeId()==1) {
+			a.setContext(a.getContext()+configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE.name()));
+		}
+		return a;
 	}
 
 	@Override

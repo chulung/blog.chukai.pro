@@ -3,8 +3,8 @@
 <mapper namespace="com.chulung.blog.mapper.ConfigMapper">
 	<resultMap id="BaseResultMap" type="com.chulung.blog.model.Config">
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="key" property="key" jdbcType="VARCHAR" />
-		<result column="value" property="value" jdbcType="VARCHAR" />
-		<result column="comment" property="comment" jdbcType="VARCHAR" />
+		<result column="config_key" property="key" jdbcType="VARCHAR" />
+		<result column="config_value" property="value" jdbcType="VARCHAR" />
+		<result column="config_comment" property="comment" jdbcType="VARCHAR" />
 	</resultMap>
 </mapper>

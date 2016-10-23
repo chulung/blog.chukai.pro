@@ -12,6 +12,7 @@
 								<th>ID</th>
 								<th>文章ID</th>
 								<th>标题</th>
+								<th>类型</th>
 								<th>作者</th>
 								<th>创建日期</th>
 								<th>修改日期</th>

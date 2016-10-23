@@ -39,7 +39,7 @@ requirejs([ "jquery","bootstrap"], function($) {
 			$('#isPublish').prop("checked",
 					rt.result.isPublish=='Y');
 			$('#title').val(rt.result.title);
-			$('#articleType').val(rt.result.typeId);
+			$('#typeId').val(rt.result.typeId);
 		}
 	})
 	return exports;

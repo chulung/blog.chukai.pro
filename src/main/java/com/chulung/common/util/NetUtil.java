@@ -2,6 +2,7 @@ package com.chulung.common.util;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -33,6 +34,13 @@ public class NetUtil {
 	public static String getCookieValue(String name) {
 		Cookie cookie = getCookie(name);
 		return cookie == null ? null : cookie.getValue();
+	}
+
+	public static String getCurSessionId() {
+		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder
+				.getRequestAttributes();
+		return servletRequestAttributes.getSessionId();
+
 	}
 
 	private static Cookie getCookie(String name) {

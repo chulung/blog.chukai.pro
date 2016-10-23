@@ -2,10 +2,10 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="description" content="ChuLung's blog的思维导图工具">
-	<meta name="author" content="Chu Lung">
+	<meta name="description" content="chulung's 的思维导图工具">
+	<meta name="author" content="chulung">
 	<meta content="在线思维导图,Online Mind Map" name="keywords">
-	<title>cmind - Chu Lung's craft</title>
+	<title>cmind - chulung's craft</title>
 	<link href="favicon.ico" type="image/x-icon" rel="shortcut icon">
 	<!-- bower:css -->
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
@@ -15,34 +15,12 @@
 	<link rel="stylesheet" href="${staticsPath}/cmind/color-picker/dist/color-picker.min.css" />
 	<!-- endbower -->
 	<link rel="stylesheet" href="${staticsPath}/cmind/kityminder.editor.min.css">
-	<style>
-		html, body {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-			overflow: hidden;
-		}
-		h1.editor-title {
-			background: #393F4F;
-			color: white;
-			margin: 0;
-			font-family: 'Hiragino Sans GB', 'Arial', 'Microsoft Yahei';
-			font-weight: normal;
-			padding: 0 20px;
-		}
-		div.minder-editor-container {
-			position: absolute;
-			top: 40px;
-			bottom: 0;
-			left: 0;
-			right: 0;
-		}
-	</style>
+	<link rel="stylesheet" href="${staticsPath}/cmind/cmind.css">
 </head>
 <body ng-app="cmind" ng-controller="MainController">
 <div>
 <h1 class="editor-title">
-<a href="/">Chu Lung's craft</a> - CMind<input class="title" type="text"/>
+<a href="/">chulung's craft</a><input class="title" type="text"/>
 </h1> 
 
 </div>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>Backend-ChuLung's craft</title>
+    <title>Backend-chulung's craft</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon"
 	href="${staticsPath}/blog/images/favicon.ico"

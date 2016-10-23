@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.chulung.blog.dto.PageIn;
+import com.chulung.blog.exception.MethodRuntimeExcetion;
 import com.chulung.blog.mapper.CommentsMapper;
 import com.chulung.blog.model.Comments;
 import com.chulung.blog.model.PaginationResult;
 import com.chulung.blog.service.CommentsService;
+import com.chulung.ccache.Cache;
+import com.chulung.ccache.builder.CacheBuilder;
+import com.chulung.common.util.NetUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
@@ -19,8 +23,19 @@ public class CommentsServiceImpl extends BaseService implements CommentsService 
 	@Autowired
 	private CommentsMapper commentsMapper;
 
+	private Cache cache = CacheBuilder.config(100).addLiveMillesCacheStrategy(60, false).generateCache();
+
 	@Override
 	public boolean postComments(Comments comments) {
+		String curSessionId = NetUtil.getCurSessionId() + "_cmts";
+		Integer count = cache.get(curSessionId);
+		if (count == null) {
+			cache.put(curSessionId, 1);
+		} else if (count > 1) {
+			throw new MethodRuntimeExcetion("评论过于频繁，请稍候!");
+		} else {
+			cache.put(curSessionId, ++count);
+		}
 		checkExistBlank(comments.getArticleId(), comments.getEmail(), comments.getUserName());
 		comments.setCreateTime(LocalDateTime.now());
 		commentsMapper.insertSelective(comments);
@@ -33,7 +48,7 @@ public class CommentsServiceImpl extends BaseService implements CommentsService 
 		checkExistBlank(pageIn.getRecord().getArticleId());
 		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
 		Page<Comments> page = (Page<Comments>) commentsMapper.select(pageIn.getRecord());
-		//防暴露email
+		// 防暴露email
 		page.stream().forEach(p -> p.setEmail(null));
 		return PaginationResult.of(page);
 	}

@@ -16,7 +16,7 @@
 		<result column="html_context" property="htmlContext" jdbcType="LONGVARCHAR" />
 	</resultMap>
 	<select id="selectTileList" resultMap="BaseResultMap" parameterType="com.chulung.blog.model.ArticleDraft">
-		select id, title, create_time, update_time, author,is_publish,
+		select id,article_id, title, create_time, update_time, author,is_publish,type_id,
 		version
 		from article_draft  
 		<where >

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.chulung.blog.enumerate.ConfigKeyEnum;
 import com.chulung.blog.enumerate.IsDeleteEnum;
 import com.chulung.blog.enumerate.LogLevel;
 import com.chulung.blog.enumerate.LogType;
@@ -19,13 +20,14 @@ import com.chulung.blog.mapper.MetaClBlogLogMapper;
 import com.chulung.blog.model.AppLog;
 import com.chulung.blog.model.Article;
 import com.chulung.blog.model.MetaClBlogLog;
+import com.chulung.blog.service.ConfigService;
 import com.chulung.common.util.DateUtils;
 import com.chulung.metaclblog.MetaWeblog;
 import com.chulung.metaclblog.struct.Post;
 
 @Component
 public class MetaClBlogCronJob extends AbstractCronJob {
-	public static String METACKBLOG_COMMENTS = "<p>作者：Chu Lung</p><p>原文链接:<a href=\"https://chulung.com/article/%s\">https://chulung.com/article/%s</a></p><p>本文由<a href=\"https://github.com/chulung-team/wheel\">MetaCLBlog</a>于%s自动同步至%s</p>";
+	public static String METACKBLOG_COMMENTS = "<p>作者：chulung</p><p>原文链接:<a href=\"https://chulung.com/article/%s\">https://chulung.com/article/%s</a></p><p>本文由<a href=\"https://github.com/chulung/MetaCLblog\">MetaCLBlog</a>于%s自动同步至%s</p>";
 
 	@Autowired
 	private ArticleMapper articleMapper;
@@ -34,6 +36,8 @@ public class MetaClBlogCronJob extends AbstractCronJob {
 
 	@Resource(name = "metaCLBlogList")
 	private List<MetaWeblog> metaCLBlogList;
+	@Autowired
+	private ConfigService configService;
 
 	@Override
 	public void execute() throws Exception {
@@ -60,7 +64,8 @@ public class MetaClBlogCronJob extends AbstractCronJob {
 		post.setTitle(article.getTitle());
 		post.setDateCreated(DateUtils.toDate(article.getCreateTime()));
 		post.setDescription(String.format(METACKBLOG_COMMENTS, article.getId(), article.getId(),
-				DateUtils.format(LocalDateTime.now()), site.getDedcription()) + article.getContext());
+				DateUtils.format(LocalDateTime.now()), site.getDedcription()) + article.getContext()
+				+ configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE.name()));
 		if (metaCLBlogLog != null) {
 			if (article.getIsDelete() == IsDeleteEnum.Y) {
 				metaWeblog.deletePost(metaCLBlogLog.getPostId());
@@ -73,13 +78,15 @@ public class MetaClBlogCronJob extends AbstractCronJob {
 			record.setId(metaCLBlogLog.getId());
 			record.setLastestPostTime(LocalDateTime.now());
 			metaWeBlogLogMapper.updateByPrimaryKeySelective(record);
-			cronJobLogMapper.insertSelective(new AppLog(LogType.META_CK_BLOG_LOG	,LogLevel.INFO, String.format("博客《%s》更新推送成功",post.getTitle())));
+			cronJobLogMapper.insertSelective(new AppLog(LogType.META_CK_BLOG_LOG, LogLevel.INFO,
+					String.format("博客《%s》更新推送成功", post.getTitle())));
 		} else {
 			// 发送新建博客请求
 			String postId = metaWeblog.newPost(article.getId().toString(), post, true);
 			MetaClBlogLog record = new MetaClBlogLog(postId, article.getId(), LocalDateTime.now(), site);
 			metaWeBlogLogMapper.insertSelective(record);
-			cronJobLogMapper.insertSelective(new AppLog(LogType.META_CK_BLOG_LOG	,LogLevel.INFO, String.format("博客《%s》新建推送成功",post.getTitle())));
+			cronJobLogMapper.insertSelective(new AppLog(LogType.META_CK_BLOG_LOG, LogLevel.INFO,
+					String.format("博客《%s》新建推送成功", post.getTitle())));
 		}
 		return true;
 

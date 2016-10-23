@@ -10,11 +10,9 @@ public class Config extends BaseModel {
 	@Id
 	private Integer id;
 
-	private String key;
+	private String configKey;
 
-	private String value;
-
-	private String comment;
+	private String configValue;
 
 	public Integer getId() {
 		return id;
@@ -24,27 +22,20 @@ public class Config extends BaseModel {
 		this.id = id;
 	}
 
-	public String getKey() {
-		return key;
+	public String getConfigKey() {
+		return configKey;
 	}
 
-	public void setKey(String key) {
-		this.key = key == null ? null : key.trim();
+	public void setConfigKey(String configKey) {
+		this.configKey = configKey;
 	}
 
-	public String getValue() {
-		return value;
+	public String getConfigValue() {
+		return configValue;
 	}
 
-	public void setValue(String value) {
-		this.value = value == null ? null : value.trim();
+	public void setConfigValue(String configValue) {
+		this.configValue = configValue;
 	}
 
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment == null ? null : comment.trim();
-	}
 }

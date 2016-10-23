@@ -1,10 +1,13 @@
 package com.chulung.blog.controller;
 
+import com.chulung.blog.session.WebSessionSupport;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.chulung.blog.model.BaseComponent;
 import com.chulung.common.util.StringUtil;
+
+import javax.annotation.Resource;
 
 /**
  * Controller基类
@@ -14,6 +17,8 @@ import com.chulung.common.util.StringUtil;
  */
 public abstract class BaseController extends BaseComponent {
 
+	@Resource
+	protected WebSessionSupport webSessionSupport;
 	private String staticsPath = "https://static.chulung.com/statics";
 
 	/**
@@ -69,5 +74,4 @@ public abstract class BaseController extends BaseComponent {
 	public ModelAndView modelAndView(String viewName, String moduleName) {
 		return new ModelAndView(viewName).addObject("moduleName", moduleName).addObject("staticsPath", staticsPath);
 	}
-
 }

@@ -9,6 +9,7 @@
         <property name="triggers">
             <list>
                 <ref bean="metaClBlogTrigger" />
+                <ref bean="commonCronJobTrigger" />
             </list>
         </property>
     </bean>
@@ -25,6 +26,16 @@
             <value>0 0 1 * * ?</value>
         </property>
     </bean>
+    <bean id="commonCronJobTrigger"
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="commonCronJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <!--middle night 24. do it  -->
+            <value>0 0 1 * * ?</value>
+        </property>
+    </bean>
     <!-- 调度的配置结束 -->
  
     <!-- job的配置开始 -->
@@ -32,6 +43,15 @@
         class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject">
             <ref bean="metaClBlogCronJob" />
+        </property>
+        <property name="targetMethod">
+            <value>mainHandler</value>
+        </property>
+    </bean>
+    <bean id="commonCronJobDetail"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="commonCronJob" />
         </property>
         <property name="targetMethod">
             <value>mainHandler</value>
