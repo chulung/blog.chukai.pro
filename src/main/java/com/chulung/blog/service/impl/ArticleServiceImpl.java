@@ -173,6 +173,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		PageInfo<Article> info = new PageInfo<Article>();
 		info.setList(convertToSummary(page));
 		info.setTotal(page.getTotal());
+		info.setPages(page.getPages());
 		return info;
 	}
 
