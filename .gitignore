@@ -3,3 +3,4 @@
 /.classpath
 /.project
 *.iml
+src/main/webapp/META-INF/MANIFEST.MF

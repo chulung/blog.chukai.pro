@@ -121,7 +121,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
 				Article article = Article.of(articleDraft);
 				int key = 0;
-				if ((articleMapper.insertSelective(article)) <= 0) {
+				if ((key=articleMapper.insertSelective(article)) <= 0) {
 					throw new MethodRuntimeExcetion("插入文章失败");
 				}
 				articleDraft.setArticleId(key);

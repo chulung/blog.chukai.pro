@@ -1,4 +1,4 @@
 <#include "WEB-INF/views/pageMacro.ftl">     
-<@page title="Ciki" >
+<@page title="ciki" >
 	<#include "ciki/${cate}/${title}.html">     
 </@page> 
