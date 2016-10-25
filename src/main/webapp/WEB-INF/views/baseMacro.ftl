@@ -6,10 +6,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="ChuLung's craft">
-<meta name="author" content="ChuLung">
+<meta name="description" content="chulung's craft">
+<meta name="author" content="chulung">
 <meta content="${base_keywords}" name="keywords">
-<title>${base_title}-ChuLung's craft</title>
+<title>${base_title}-chulung's craft</title>
 <link rel="shortcut icon" href="${staticsPath}/blog/images/favicon.ico"	type="image/x-icon" />
 <link rel="stylesheet"
 	href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -45,7 +45,7 @@
 	</div>
 	<#nested>
 	<footer class="blog-footer">
-		<p>© 2015-2016 ChuLung</p>
+		<p>© 2015-2016 chulung</p>
 		<p><a href="#">返回顶部</a></p>
 		<p>湘ICP备15017845号</p>
 		<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260070301'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260070301%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
