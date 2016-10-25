@@ -78,7 +78,7 @@ public class IndexController extends BaseController {
 		PageInfo<Article> pageInfo = articleService.selectBySelectiveForBlog(ofNullable, typeId);
 		return modelAndView().addObject("blogs", pageInfo.getList()).addObject("page", ofNullable.orElse(1))
 				.addObject("prePage", page > 1 ? page - 1 : null)
-				.addObject("nextPage", page < pageInfo.getTotal() ? page + 1 : null).addObject("typeId", typeId);
+				.addObject("nextPage", page < pageInfo.getPages() ? page + 1 : null).addObject("typeId", typeId);
 
 	}
 
