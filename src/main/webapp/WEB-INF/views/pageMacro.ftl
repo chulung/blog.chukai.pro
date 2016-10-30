@@ -1,49 +1,72 @@
-<#macro page title js=[] css=[] keywords=""> 
+<#macro page title js=[] css=[] keywords="" showHeader="">
 <#include "WEB-INF/views/baseMacro.ftl">     
-<@base base_title=title mainjs='/blog/js/main' base_css=css base_keywords="chulung,chulung's craft">
-<div class="container">
-	<div class="blog-header">
-		<h1 class="blog-title">chulung's craft</h1>
-		<p class="lead blog-description">唯爱、技术和美食三者不可辜负.</p>
-	</div>
-	<div class="row">
-		<div class="col-sm-8 blog-main">
-		<#nested>
-		</div>
-		<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-			<div class="sidebar-module sidebar-module-inset">
-				<h4>Hi</h4>
-				<p>欢迎来到我的世界。</p>
-				<p>不会前端的后端工程师不是好的架构师。</p>
-				<p>PHP是最好的语言。</p>
-			</div>
-			<#-- <div class="sidebar-module">
-				<h4>标签</h4>
-				<ol class="list-unstyled">
-					<li><a href="#">March 2014</a></li>
-				</ol>
-			</div>
-			-->
-			<div class="sidebar-module">
-				<h4>档案</h4>
-				<ol id="articleFilings" class="list-unstyled">
-				</ol>
-			</div>
-			<div class="sidebar-module">
-				<h4>链接</h4>
-				<ol class="list-unstyled">
-					<li><a href="https://github.com/chulung" rel="external nofollow" target="_blank">GitHub</a></li>
-					<li><a href="/jenkins" rel="external nofollow" target="_blank">Jenkins</a></li>
-				</ol>
-			</div>
-			<div class="sidebar-module">
-				<h4>一起玩耍</h4>
-				<ol class="list-unstyled">
-					<li><a href="mailto:chulung@chulung.com" rel="external nofollow" target="_blank">邮箱</a></li>
-				</ol>
-			</div>
-		</div>
-	</div>
-</div>
+<@base base_title=title mainjs='craft/js/main' base_css=css base_keywords="chulung,chulung's craft,chulung.com" base_showHeader=showHeader>
+    <#nested>
+<div class="col-md-4">
+    <section class="widget widget_search">
+        <form role="search" method="get" class="search-form" action="">
+            <label>
+                <span class="screen-reader-text">Search for:</span>
+                <input class="search-field" placeholder="Search …" value="" name="s" title="Search for:" type="search">
+            </label>
+            <input class="search-submit" value="Search" type="submit">
+        </form><!-- search-form -->
+    </section><!-- .widget_search -->
+
+    <section class="widget danish_widget_about">
+        <div class="about-author-container">
+            <!--  <img src="${assetsRoot}/craft/img/logo.jpg" alt="chulung">-->
+            <div class="about-author-info">
+                <h2 class="widget-title">chulung</h2>
+                <span class="author-subtitle">Developer</span>
+                <div class="author-description">
+                    <p>目前专职java后端开发，平时也从前端折腾到服务器，感觉正在走向全栈，业余生活包括下厨，旅行，健身，摄影..</p>
+                    <a href="/about" class="more-link"><span class="moretext">More</span></a>
+                </div><!-- .author-description -->
+                <div class="author-footer">
+                    <div class="author-social">
+                        <a href="https://github.com/chulung" target="_blank" rel="external nofollow" ><i class="fa fa-github"></i></a>
+                        <a href="mailto:chulung@chulung.com" rel="external nofollow" target="_blank"><i class="fa fa-envelope"></i></a>
+                    </div><!-- .author-social -->
+                </div><!-- .author-footer -->
+            </div><!-- .about-author-info -->
+        </div><!-- .about-author-container -->
+    </section><!-- .danish_widget_about -->
+
+    <section class="widget danish_widget_popular_entries">
+        <h2 class="widget-title">热门</h2>
+        <ul>
+            <li>
+                <div class="popular-entry-container">
+                    <div class="entry-image">
+                        <img src="${assetsRoot}/craft/img/logo.jpg">
+                    </div><!-- .entry-image -->
+                    <div class="entry-content">
+                        <h4 class="entry-title">
+                            <a href="#" rel="bookmark">Prepare your luggage necessary when traveling</a>
+                        </h4>
+                        <span class="entry-category"><a href="#">Travel</a></span>
+                        <span class="entry-datetime">May 8, 2016</span>
+                    </div><!-- .entry-content -->
+                </div><!-- .popular-entry-container -->
+            </li>
+        </ul>
+    </section><!-- .danish_widget_popular_entries -->
+    <section class="widget widget_recent_comments">
+        <h2 class="widget-title">最新评论</h2>
+        <ul id="recentcomments">
+            <li>
+                <span class="comment-author-link">Jane</span>
+                on <a href="#">You look so charming when wearing a glasses</a>
+            </li>
+        </ul>
+    </section><!-- .widget_recent_comments -->
+    <section class="widget widget_archive">
+        <h2 class="widget-title">归档</h2>
+        <ul id="articleFilings">
+        </ul>
+    </section><!-- .widget_archive -->
+
+</div><!-- .col-md-4 -->
 </@base>
 </#macro>

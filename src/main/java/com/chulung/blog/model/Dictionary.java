@@ -45,6 +45,9 @@ public class Dictionary extends BaseModel {
 	public String getDictValue() {
 		return dictValue;
 	}
+	public Integer getDictValueByInteger() {
+		return this.dictValue==null?null:Integer.parseInt(this.dictValue);
+	}
 
 	public void setDictValue(String dictValue) {
 		this.dictValue = dictValue;

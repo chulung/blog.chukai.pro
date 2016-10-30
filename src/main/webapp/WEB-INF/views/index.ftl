@@ -1,20 +1,42 @@
-<#include "WEB-INF/views/pageMacro.ftl">     
-<@page title="首页" >
-	<#list blogs as blog>
-		<div class="blog-post list_item">
-			<h3 class="blog-post-title"><span class="ico ico_type_${blog.typeId}"></span><a href="/article/${blog.id}">${blog.title}</a></h3>
-			<article class="summary">${blog.context}</article>
-			<div class="article_manage">
-		        <span class="link_postdate"><@DateTime time=blog.createTime/></span>
-		        <span title="阅读次数" class="link_view"><a title="阅读次数" href="/article/${blog.id}">阅读</a>(${blog.visitCount})</span>
-		        <span title="评论次数" class="link_comments"><a title="评论次数" href="article/${blog.id}#comments">评论</a>(${blog.commentCount})</span>
-	    	</div>
-		</div>
-	</#list>
-	<nav>
-		<ul class="pager">
-			<li><#if prePage?? ><a href="/blog/page/${prePage}?typeId=${typeId}">Previous</a></#if></li>
-			<li><#if nextPage?? ><a href="/blog/page/${nextPage}?typeId=${typeId}">Next</a></#if></li>
-		</ul>
-	</nav>
+<#include "WEB-INF/views/pageMacro.ftl">
+<@page title="首页" showHeader='1' >
+<div class="col-md-8 page-default">
+    <#list blogs as blog>
+    <article class="post format-standard hentry">
+        <div class="post-container">
+            <div class="post-content">
+                <#if blog.pic??>
+                    <img src="${blog.pic}">
+                </#if>
+                <div class="heading-title heading-small">
+                    <span class="post-meta-cat"><a href="/blog/page/1?typeId=${blog.typeId}#content">${blog.typeName}</a></span>
+                    <h2><a href="/article/${blog.id}" rel="bookmark">${blog.title}</a></h2>
+                </div><!-- .heading-small -->
+
+                <div class="post-meta">
+                          <span class="posted-on">
+                            发表于 <a href="javascript:;" rel="bookmark"> <time class="entry-date" datetime="<@DateTime time=blog.createTime/>"><@DateTime time=blog.createTime/></time> </a>
+                          </span><!-- .posted-on -->
+                    <span class="byline">
+                            by <span class="author vcard"><a class="url fn n" href="javascript:;">${blog.author}</a></span>
+                          </span><!-- .byline -->
+                    <span class="reading-estimation">${blog.visitCount} 阅读</span>
+                </div><!-- .post-meta -->
+                <p>${blog.context}.
+                    <a href="/article/${blog.id}" class="more-link">
+                        <span class="moretext">阅读全文</span> <span class="screen-reader-text">Do not leave your camera when traveling</span>
+                    </a><!-- .more-link -->
+                </p>
+            </div><!-- .post-content -->
+        </div><!-- .post-container -->
+    </article><!-- .post -->
+    </#list>
+    <nav class="navigation posts-navigation" role="navigation">
+        <h2 class="screen-reader-text">Posts navigation</h2>
+        <div class="nav-links">
+            <div class="nav-previous"> <a href="<#if prePage?? >/blog/page/${prePage}?typeId=${typeId}</#if>#content"> 前一页</a></div>
+            <div class="nav-next">    <a href="<#if nextPage?? >/blog/page/${nextPage}?typeId=${typeId}</#if>#content">后一页</a></div>
+        </div>
+    </nav><!-- .navigation -->
+</div><!-- .col-md-8 -->
 </@page> 

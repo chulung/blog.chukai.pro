@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chulung.blog.enumerate.DictionaryTypeEnum;
+import com.chulung.blog.service.DictionaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,6 +48,9 @@ public class BackendController extends BaseController {
 
 	@Autowired
 	private CikiService cikiService;
+
+	@Autowired
+	private DictionaryService dictionaryService;
 
 	/**
 	 * 首页
@@ -95,7 +100,6 @@ public class BackendController extends BaseController {
 	/**
 	 * 后台文章编辑器页
 	 * 
-	 * @param article
 	 * @return
 	 */
 	@RequestMapping("/cikiEditor")
@@ -107,15 +111,13 @@ public class BackendController extends BaseController {
 	 * cikiEditor
 	 * 
 	 * @param id
-	 * 
-	 * @param article
 	 * @return
 	 */
 	@RequestMapping("/articleEditor")
 	public ModelAndView articleEditor(@RequestParam(required = false) Integer id) {
 		return modelAndView("/backend/articleEditor", "articleEditor")
 				.addObject("articleDraftId", id)
-				.addObject("articleTypes", this.articleService.findAllArticleTypes());
+				.addObject("articleTypes", this.dictionaryService.getDictListByType(DictionaryTypeEnum.ARTICLE_TYPE));
 	}
 
 	/**
@@ -176,7 +178,6 @@ public class BackendController extends BaseController {
 	/**
 	 * 删除草稿
 	 * 
-	 * @param articleDraft
 	 * @return
 	 */
 	@RequestMapping(value = "/articleDraft/{id}", method = RequestMethod.DELETE)

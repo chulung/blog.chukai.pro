@@ -6,14 +6,12 @@
   <head>
     <title>Backend-chulung's craft</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon"
-	href="${staticsPath}/blog/images/favicon.ico"
-	type="image/x-icon" />
+    <link rel="shortcut icon"	href="${assetsRoot}/craft/img/favicon.ico"	type="image/x-icon" />
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://static.chulung.com/statics/backend/css/backend.css" rel="stylesheet"/>
+    <link href="${assetsRoot}backend/css/backend.css" rel="stylesheet"/>
     <#list basecss as c>
-	<link href="${staticsPath}${c}"  rel="stylesheet"/>
+	<link href="${assetsRoot}${c}"  rel="stylesheet"/>
 	</#list>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -22,9 +20,9 @@
   </head>
 
 				<#nested>
-	<script>var staticsPath="${staticsPath}"</script>
-	<script>var module="${staticsPath}/backend/js/${moduleName!''}.js"</script>
-	<script data-main='${staticsPath}/backend/js/${baseJs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+	<script>var assetsRoot="${assetsRoot}"</script>
+	<script>var module="${assetsRoot}backend/js/${moduleName!''}.js"</script>
+	<script data-main='${assetsRoot}backend/js/${baseJs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 </html>
 </#macro> 
 </#compress>

@@ -3,14 +3,15 @@ package com.chulung.blog.service.impl;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
+import com.chulung.blog.service.DictionaryService;
+import com.chulung.ccache.annotation.CCache;
+import com.chulung.common.util.SpringContextUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -42,8 +43,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 @Service
-public class ArticleServiceImpl extends BaseService implements ArticleService {
-	private static final int PAGE_SIZE = 10;
+public class ArticleServiceImpl extends BaseService implements ArticleService{
+	private static final int PAGE_SIZE = 4;
 
 	@Resource
 	private WebSessionSupport webSessionSupport;
@@ -54,13 +55,19 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	private ArticleDraftHistoryMapper articleDraftHistoryMapper;
 	@Autowired
 	private ArticleDraftMapper articleDraftMapper;
-	@Autowired
-	private DictionaryMapper dictionaryMapper;
+
 	@Autowired
 	private ConfigService configService;
 
+    @Autowired
+    private DictionaryService dictionaryService;
+
+
 	public Article findArticleById(Integer id) {
 		Article a = articleMapper.selectByPrimaryKey(id);
+		if (a==null){
+			throw new MethodRuntimeExcetion("拒绝访问");
+		}
 		if (a.getTypeId()==1) {
 			a.setContext(a.getContext()+configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE.name()));
 		}
@@ -99,13 +106,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			throw new MethodRuntimeExcetion("修改草稿失败");
 		}
 		return true;
-	}
-
-	@Override
-	public List<Dictionary> findAllArticleTypes() {
-		Dictionary record = new Dictionary();
-		record.setDictType(DictionaryTypeEnum.ARTICLE_TYPE);
-		return dictionaryMapper.select(record);
 	}
 
 	@Override
@@ -189,6 +189,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	}
 
 	@Override
+	@CCache(liveSeconds = 3600)
 	public CommonInfo getCommonInfo() {
 		// 归档信息
 		List<ArticleFiling> list = new ArrayList<ArticleFiling>();
@@ -209,6 +210,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	public List<Article> convertToSummary(List<Article> articles) {
 		return articles.stream().map(a -> {
 			a.setContext(generatingSummary(a.getContext()));
+            a.setTypeName(this.dictionaryService.getDictValueMap(DictionaryTypeEnum.ARTICLE_TYPE).get(a.getTypeId().toString()));
 			return a;
 		}).collect(Collectors.toList());
 	}

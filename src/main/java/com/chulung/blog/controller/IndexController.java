@@ -82,37 +82,24 @@ public class IndexController extends BaseController {
 
 	}
 
-	@RequestMapping("/articles")
+	@RequestMapping("/tech")
 	public ModelAndView getArticles() {
-		return getBlogPage(1, 1);
-	}
-
-	@RequestMapping("/chatters")
-	public ModelAndView getChatters() {
-		return modelAndView("chatter").addObject("chatterDtos", this.chatterService.getchatterList())
-				.addObject("typeId", 2);
-	}
-
-	@RequestMapping("/myLove")
-	public ModelAndView myLove() {
-		return modelAndView("myLove");
+		return getBlogPage(1, 1).addObject("headContext","技术改变世界~");
 	}
 
 	@RequestMapping("/reprints")
 	public ModelAndView getReprint() {
-		return getBlogPage(1, 3);
+		return getBlogPage(1, 3).addObject("headContext","他山之石可以攻玉~");
 	}
 
 	@RequestMapping("/about")
 	public ModelAndView about() {
 		Article article = articleService.findArticleById(20);
-		double dev = (Instant.now().getEpochSecond() - Instant.parse("2013-11-01T09:00:00.00Z").getEpochSecond())
-				/ 31536000.0;
 		double wook = (Instant.now().getEpochSecond() - Instant.parse("2015-03-01T09:00:00.00Z").getEpochSecond())
 				/ 31536000.0;
-		dev = new BigDecimal(dev).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		wook = new BigDecimal(wook).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-		return modelAndView("about").addObject("article", String.format(article.getContext(), dev, wook))
+		article.setContext( String.format(article.getContext(), wook));
+		return modelAndView("article").addObject("article",article)
 				.addObject("typeId", 4);
 	}
 }

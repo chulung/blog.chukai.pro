@@ -19,8 +19,6 @@ public abstract class BaseController extends BaseComponent {
 
 	@Resource
 	protected WebSessionSupport webSessionSupport;
-	private String staticsPath = "https://static.chulung.com/statics";
-
 	/**
 	 * 默认成功响应，用于json返回
 	 * 
@@ -72,6 +70,6 @@ public abstract class BaseController extends BaseComponent {
 	 * @return
 	 */
 	public ModelAndView modelAndView(String viewName, String moduleName) {
-		return new ModelAndView(viewName).addObject("moduleName", moduleName).addObject("staticsPath", staticsPath);
+		return new ModelAndView(viewName).addObject("moduleName", moduleName);
 	}
 }

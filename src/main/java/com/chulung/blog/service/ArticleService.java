@@ -1,6 +1,7 @@
 package com.chulung.blog.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.chulung.blog.dto.CommonInfo;
@@ -19,9 +20,6 @@ public interface ArticleService {
 	Article findArticleById(Integer id);
 
 	boolean update(ArticleDraft articleDraft);
-
-	List<Dictionary> findAllArticleTypes();
-
 	Integer insert(ArticleDraft articleDraft);
 
 	ArticleDraft findArticleDraft(Integer id);
@@ -42,4 +40,5 @@ public interface ArticleService {
 	List<Article> getBlogsByYearMonth(Integer year, Integer month);
 
 	List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn);
+
 }

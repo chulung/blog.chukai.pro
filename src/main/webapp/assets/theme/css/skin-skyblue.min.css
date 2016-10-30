@@ -1,0 +1,90 @@
+/* Code tidied up by ScrapBook */
+*::-moz-selection { background: rgb(91, 192, 222) none repeat scroll 0% 0%; }
+a { color: rgb(83, 189, 220); }
+a:hover { color: rgb(40, 161, 197); }
+.uneditable-input:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus, textarea:focus { color: rgb(42, 171, 210); }
+button, input[type="submit"] { background-color: rgb(91, 192, 222); border: 1px solid rgb(49, 176, 213); }
+button:active, button:focus, button:hover, input[type="submit"]:active, input[type="submit"]:focus, input[type="submit"]:hover { background-color: rgb(49, 176, 213); border-color: rgb(42, 171, 210); }
+.page-title h2::after { background-color: rgb(42, 171, 210); }
+.btn-danish { background-color: rgb(91, 192, 222); border-color: rgb(42, 171, 210); }
+.btn-danish.active, .btn-danish:active, .btn-danish:focus, .btn-danish:hover, .open > .dropdown-toggle.btn-danish { background-color: rgb(40, 161, 197); border-color: rgb(40, 161, 197); }
+.btn-danish.disabled, .btn-danish.disabled.active, .btn-danish.disabled:active, .btn-danish.disabled:focus, .btn-danish.disabled:hover, .btn-danish[disabled], .btn-danish.active[disabled], .btn-danish[disabled]:active, .btn-danish[disabled]:focus, .btn-danish[disabled]:hover, fieldset[disabled] .btn-danish, fieldset[disabled] .btn-danish.active, fieldset[disabled] .btn-danish:active, fieldset[disabled] .btn-danish:focus, fieldset[disabled] .btn-danish:hover { background-color: rgb(40, 161, 197); border-color: rgb(40, 161, 197); }
+.btn-danish .badge { color: rgb(91, 192, 222); }
+.search-form .search-submit { border: 1px solid rgb(49, 176, 213); background-color: rgb(91, 192, 222); }
+.search-form .search-submit:focus, .search-form .search-submit:hover { background-color: rgb(49, 176, 213); }
+.site-header.header-dark .main-navigation ul > li.focus > a, .site-header.header-dark .main-navigation ul > li:hover > a { color: rgb(91, 192, 222); }
+.site-header.header-dark .main-navigation ul ul a.focus, .site-header.header-dark .main-navigation ul ul a:hover { color: rgb(91, 192, 222); }
+@media screen and (max-width: 37.5em) {
+  .site-header.header-dark .main-navigation ul > li.focus > a, .site-header.header-dark .main-navigation ul > li:hover > a { color: rgb(91, 192, 222); }
+  .site-header.header-dark .main-navigation ul ul a.focus, .site-header.header-dark .main-navigation ul ul a:hover { color: rgb(91, 192, 222); }
+  .site-header.header-dark .main-navigation li.menu-item-has-children a:focus, .site-header.header-dark .main-navigation li.menu-item-has-children a:hover { color: rgb(91, 192, 222); }
+  .site-header.header-dark .main-navigation a:focus, .site-header.header-dark .main-navigation a:hover { color: rgb(91, 192, 222); }
+  .site-header.header-dark .main-navigation .current-menu-ancestor > a, .site-header.header-dark .main-navigation .current-menu-item > a, .site-header.header-dark .main-navigation .current_page_ancestor > a, .site-header.header-dark .main-navigation .current_page_item > a { color: rgb(91, 192, 222); }
+}
+.main-navigation ul ul { background-color: rgb(91, 192, 222); }
+.main-navigation ul ul a.focus, .main-navigation ul ul a:hover { background-color: rgb(49, 176, 213); }
+.main-navigation li.focus > a, .main-navigation li:hover > a { color: rgb(91, 192, 222); }
+.main-navigation li.menu-item-has-children:focus, .main-navigation li.menu-item-has-children:hover { background-color: rgb(91, 192, 222); }
+.main-navigation .current-menu-ancestor > a, .main-navigation .current-menu-item > a, .main-navigation .current_page_ancestor > a, .main-navigation .current_page_item > a { color: rgb(91, 192, 222); }
+@media screen and (max-width: 37.5em) {
+  .main-navigation ul { background-color: rgb(255, 255, 255); }
+  .main-navigation ul ul { background-color: rgb(255, 255, 255); }
+  .main-navigation ul ul .focus > a, .main-navigation ul ul:hover > a { color: rgb(91, 192, 222); }
+  .main-navigation ul ul a.focus, .main-navigation ul ul a:hover { color: rgb(91, 192, 222); }
+  .main-navigation li.menu-item-has-children:focus, .main-navigation li.menu-item-has-children:hover { background-color: rgb(255, 255, 255); color: rgb(91, 192, 222); }
+  .main-navigation li.menu-item-has-children:focus a:focus, .main-navigation li.menu-item-has-children:focus a:hover, .main-navigation li.menu-item-has-children:hover a:focus, .main-navigation li.menu-item-has-children:hover a:hover { background-color: rgb(255, 255, 255); color: rgb(91, 192, 222); }
+  .main-navigation a:focus, .main-navigation a:hover { color: rgb(91, 192, 222); }
+}
+#header.heading h2 span { color: rgb(91, 192, 222); }
+.featured-container .featured-img h3 a { background-color: rgb(42, 171, 210); }
+.featured-container .featured-img h3 a:hover { background-color: rgb(91, 192, 222); }
+.post-content blockquote { background-color: rgb(42, 171, 210); }
+.post-content blockquote::before { color: rgb(91, 192, 222); }
+.post-content.post-thumbnail:hover::after { background-color: rgba(91, 192, 222, 0.9); }
+.post-atribut a:focus, .post-atribut a:focus .fa, .post-atribut a:focus .glyphicon, .post-atribut a:hover, .post-atribut a:hover .fa, .post-atribut a:hover .glyphicon { color: rgb(42, 171, 210); }
+.post.sticky::before { content: ""; border-width: 20px; border-style: solid; border-color: rgb(91, 192, 222) transparent transparent rgb(91, 192, 222); }
+.post.sticky::after { color: rgb(27, 109, 133); }
+.more-link:focus, .more-link:hover { color: rgb(42, 171, 210); }
+.more-link:focus > .moretext, .more-link:hover > .moretext { color: rgb(42, 171, 210); }
+.post-password-form input[type="submit"] { border: 1px solid rgb(42, 171, 210); background-color: rgb(91, 192, 222); }
+.post-password-form input[type="submit"]:focus, .post-password-form input[type="submit"]:hover { background-color: rgb(40, 161, 197); border-color: rgb(40, 161, 197); }
+.comment-navigation .nav-links .nav-next a:hover, .comment-navigation .nav-links .nav-previous a:hover { background-color: rgb(91, 192, 222); }
+.comment-navigation .nav-links .nav-next a:focus, .comment-navigation .nav-links .nav-previous a:focus { background-color: rgb(42, 171, 210); }
+.comment-form .form-control:focus { border-color: rgb(42, 171, 210); background: rgb(91, 192, 222) none repeat scroll 0% 0%; }
+.comment-form input[type="submit"]:focus { background-color: rgb(40, 161, 197); }
+.comment-form .logged-in-as a:focus, .comment-form .logged-in-as a:hover { color: rgb(42, 171, 210); }
+.post-navigation .nav-links .nav-next a:focus, .post-navigation .nav-links .nav-next a:hover, .post-navigation .nav-links .nav-previous a:focus, .post-navigation .nav-links .nav-previous a:hover { background-color: rgb(91, 192, 222); }
+.posts-navigation .nav-next a:focus, .posts-navigation .nav-next a:hover, .posts-navigation .nav-previous a:focus, .posts-navigation .nav-previous a:hover { border-color: rgb(49, 176, 213); background-color: rgb(91, 192, 222); }
+.pagination .nav-links .current { color: rgb(91, 192, 222); }
+.screen-reader-text:focus { color: rgb(40, 161, 197); }
+.widget ul li a:hover { color: rgb(49, 176, 213); }
+.widget_search .search-form .search-submit { border: 1px solid rgb(49, 176, 213); background-color: rgb(91, 192, 222); }
+.widget_search .search-form .search-submit:focus, .widget_search .search-form .search-submit:hover { background-color: rgb(49, 176, 213); }
+.widget_nav_menu ul li:hover::after { border-color: rgb(49, 176, 213); }
+.widget_nav_menu ul li a:hover { color: rgb(49, 176, 213); }
+.widget_recent_entries ul li a:hover { color: rgb(49, 176, 213); }
+.widget_recent_entries ul li a:hover::before { color: rgb(49, 176, 213); }
+.widget_archive ul li a:hover, .widget_categories ul li a:hover { color: rgb(49, 176, 213); }
+.widget_archive ul li a:hover::before, .widget_categories ul li a:hover::before { color: rgb(49, 176, 213); }
+.widget_calendar #calendar_wrap table #today { color: rgb(91, 192, 222); }
+.widget_calendar #calendar_wrap table tbody a:hover { color: rgb(91, 192, 222); }
+.widget_tag_cloud .tagcloud a { color: rgb(49, 176, 213); }
+.widget_tag_cloud .tagcloud a:hover { border-color: rgb(40, 161, 197); background-color: rgb(49, 176, 213); }
+.widget.danish_widget_popular_entries ul li .entry-category a { color: rgb(91, 192, 222); }
+.widget.danish_widget_about .about-author-info .author-footer a:hover { color: rgb(49, 176, 213); }
+.portfolio-page .portfolio-sort > li > a { border: 1px solid rgb(91, 192, 222); color: rgb(42, 171, 210); }
+.portfolio-page .portfolio-sort > li > a:hover { background-color: rgb(91, 192, 222); }
+.portfolio-page .portfolio-sort > .active > a, .portfolio-page .portfolio-sort > .active > a:focus, .portfolio-page .portfolio-sort > .active > a:hover { background-color: rgb(91, 192, 222); }
+.container-portfolio > li > .portfolio-item > .portfolio-caption > .portfolio-text .portfolio-meta a:hover { color: rgb(70, 184, 218); }
+.container-portfolio > li > .portfolio-item > .portfolio-caption > .portfolio-text h3 { color: rgb(49, 176, 213); }
+.site-footer .widget ul li a:hover { color: rgb(49, 176, 213); }
+.site-footer .widget_nav_menu ul li:hover::after { border-color: rgb(49, 176, 213); }
+.site-footer .widget_nav_menu ul li a:hover { color: rgb(49, 176, 213); }
+.site-footer .widget_recent_entries ul li a:hover { color: rgb(49, 176, 213); }
+.site-footer .widget_recent_comments ul li:hover::before { color: rgb(49, 176, 213); }
+.site-footer .widget_archive ul li a:hover, .site-footer .widget_categories ul li a:hover { color: rgb(49, 176, 213); }
+.site-footer .widget_calendar #calendar_wrap table #today { color: rgb(49, 176, 213); }
+.site-footer .widget_calendar #calendar_wrap table tbody a:hover { color: rgb(49, 176, 213); }
+.site-footer .widget_calendar #calendar_wrap table tfoot a:hover { color: rgb(49, 176, 213); }
+.site-footer .widget_tag_cloud .tagcloud a:hover { border-color: rgb(40, 161, 197); background-color: rgb(49, 176, 213); }
+.site-footer .widget.danish_widget_popular_entries ul li .entry-title a:hover { color: rgb(49, 176, 213); }

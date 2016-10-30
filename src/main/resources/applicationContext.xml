@@ -31,6 +31,7 @@
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<context:component-scan base-package="com.github.tobato" />
 	<!-- 不扫描Controller,在dispatcher-servlet中扫描 -->
+	<bean id="ccacheAop" class="com.chulung.ccache.aop.CacheAop"/>
 	<context:component-scan base-package="com.chulung">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
@@ -39,6 +40,25 @@ public class Article extends BaseModel {
 	private String context;
 	private Integer commentCount;
 	private Integer visitCount;
+	private String pic;
+	@Transient
+	private String typeName;
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+
+	public String getPic() {
+		return pic;
+	}
 
 	public Integer getCommentCount() {
 		return commentCount;
