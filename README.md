@@ -17,7 +17,7 @@
 
 前端用的是Bootstrap+Jquery+RequireJS，考虑过AngularJS，目前没时间学，模板引擎Freemarker；
 
-也有一些自制的轮子，如缓存(CCache)[https://github.com/chulung/CCache]，自动同步到其他博客的黑科技[MetaCLblog](https://github.com/chulung/MetaCLblog)之类的；
+也有一些自制的轮子，如缓存[CCache](https://github.com/chulung/CCache)，自动同步到其他博客的黑科技[MetaCLblog](https://github.com/chulung/MetaCLblog)之类的；
 
 构建发布什么的自然要自动化，所以装了个Jenkins，配下Github的Webhook，再加上一个发布脚本，一提交代码就自动构建部署了；
 
