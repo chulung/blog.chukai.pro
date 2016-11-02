@@ -28,9 +28,13 @@
 [database.sql](/database.sql)
 
 ##致谢以下开源项目
+
 markdown编辑器:[editor.md](https://github.com/pandao/editor.md)
+
 基于Mybatis的通用mapper及分页插件:[Mapper & PageHelper](https://github.com/abel533/Mybatis-Spring)
+
 思维导图编辑器:[kityminder-editor](https://github.com/fex-team/kityminder-editor)
+
 FastDFS客户端:(java)[FastDFS_Client](https://github.com/chulung/FastDFS_Client)
 
 ##License
