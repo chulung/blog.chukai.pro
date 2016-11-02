@@ -38,10 +38,10 @@ public class IndexController extends BaseController {
 	 * 
 	 * @return
 	 */
-	// @Cache(key = "blog-index", timeToLive = 30)
+	// @Cache(key = "Article-index", timeToLive = 30)
 	@RequestMapping(value = { "/", "/index.html", "" })
 	public ModelAndView getIndex() {
-		return getBlogPage(1, null);
+		return getArticlePage(1, null);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class IndexController extends BaseController {
 	 */
 	@RequestMapping(value = "/monthFilings/{year}-{month}")
 	public @ResponseBody ModelAndView getMonthFilings(@PathVariable Integer year, @PathVariable Integer month) {
-		return modelAndView().addObject("blogs", articleService.getBlogsByYearMonth(year, month));
+		return modelAndView().addObject("Articles", articleService.getArticlesByYearMonth(year, month));
 	}
 
 	/**
@@ -72,11 +72,11 @@ public class IndexController extends BaseController {
 	 * @param page
 	 * @return
 	 */
-	@RequestMapping(value = "/blog/page/{page}", method = RequestMethod.GET)
-	public ModelAndView getBlogPage(@PathVariable Integer page, @RequestParam(required = false) Integer typeId) {
+	@RequestMapping(value = "/articles/page/{page}", method = RequestMethod.GET)
+	public ModelAndView getArticlePage(@PathVariable Integer page, @RequestParam(required = false) Integer typeId) {
 		Optional<Integer> ofNullable = Optional.ofNullable(page);
-		PageInfo<Article> pageInfo = articleService.selectBySelectiveForBlog(ofNullable, typeId);
-		return modelAndView().addObject("blogs", pageInfo.getList()).addObject("page", ofNullable.orElse(1))
+		PageInfo<Article> pageInfo = articleService.selectBySelectiveForArticle(ofNullable, typeId);
+		return modelAndView().addObject("articles", pageInfo.getList()).addObject("page", ofNullable.orElse(1))
 				.addObject("prePage", page > 1 ? page - 1 : null)
 				.addObject("nextPage", page < pageInfo.getPages() ? page + 1 : null).addObject("typeId", typeId);
 
@@ -84,12 +84,12 @@ public class IndexController extends BaseController {
 
 	@RequestMapping("/tech")
 	public ModelAndView getArticles() {
-		return getBlogPage(1, 1).addObject("headContext","技术改变世界~");
+		return getArticlePage(1, 1).addObject("headContext","技术改变世界,让世界看到你的影响力。");
 	}
 
 	@RequestMapping("/reprints")
 	public ModelAndView getReprint() {
-		return getBlogPage(1, 3).addObject("headContext","他山之石可以攻玉~");
+		return getArticlePage(1, 3).addObject("headContext","他山之石，可以攻玉。");
 	}
 
 	@RequestMapping("/about")

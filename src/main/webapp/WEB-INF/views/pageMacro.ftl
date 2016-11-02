@@ -35,18 +35,17 @@
 
     <section class="widget danish_widget_popular_entries">
         <h2 class="widget-title">热门</h2>
-        <ul>
-            <li>
+        <ul id="pop-art-ul">
+            <li  class="none">
                 <div class="popular-entry-container">
                     <div class="entry-image">
                         <img src="${assetsRoot}/craft/img/logo.jpg">
                     </div><!-- .entry-image -->
                     <div class="entry-content">
                         <h4 class="entry-title">
-                            <a href="#" rel="bookmark">Prepare your luggage necessary when traveling</a>
                         </h4>
-                        <span class="entry-category"><a href="#">Travel</a></span>
-                        <span class="entry-datetime">May 8, 2016</span>
+                        <span class="entry-category"><a href=""></a></span>
+                        <span class="entry-datetime"></span>
                     </div><!-- .entry-content -->
                 </div><!-- .popular-entry-container -->
             </li>
@@ -55,10 +54,8 @@
     <section class="widget widget_recent_comments">
         <h2 class="widget-title">最新评论</h2>
         <ul id="recentcomments">
-            <li>
-                <span class="comment-author-link">Jane</span>
-                on <a href="#">You look so charming when wearing a glasses</a>
-            </li>
+            <li class="none">
+                            </li>
         </ul>
     </section><!-- .widget_recent_comments -->
     <section class="widget widget_archive">

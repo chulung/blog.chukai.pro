@@ -1,6 +1,8 @@
 package com.chulung.blog.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,4 +55,12 @@ public class CommentsServiceImpl extends BaseService implements CommentsService 
 		return PaginationResult.of(page);
 	}
 
+	@Override
+	public List<Comments> listRecentlyComments() {
+		PageHelper.startPage(1, 3);
+		PageHelper.orderBy("id desc");
+		Page<Comments> page = (Page<Comments>) commentsMapper.selectAll();
+		// 防暴露email
+        return page.stream().map(p->{p.setEmail(null); return p;}).collect(Collectors.toList());
+    }
 }

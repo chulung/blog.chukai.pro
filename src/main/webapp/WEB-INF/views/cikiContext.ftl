@@ -1,4 +1,6 @@
 <#include "WEB-INF/views/pageMacro.ftl">     
 <@page title="ciki" >
-	<#include "ciki/${cate}/${title}.html">     
+	<div class="col-md-8">
+		<#include "ciki/${cate}/${title}.html">
+	  </div>
 </@page> 

@@ -1,29 +1,29 @@
 <#include "WEB-INF/views/pageMacro.ftl">
 <@page title="首页" showHeader='1' >
 <div class="col-md-8 page-default">
-    <#list blogs as blog>
+    <#list articles as article>
     <article class="post format-standard hentry">
         <div class="post-container">
             <div class="post-content">
-                <#if blog.pic??>
-                    <img src="${blog.pic}">
+                <#if article.pic??>
+                    <img src="${article.pic}">
                 </#if>
                 <div class="heading-title heading-small">
-                    <span class="post-meta-cat"><a href="/blog/page/1?typeId=${blog.typeId}#content">${blog.typeName}</a></span>
-                    <h2><a href="/article/${blog.id}" rel="bookmark">${blog.title}</a></h2>
+                    <span class="post-meta-cat"><a href="/articles/page/1?typeId=${article.typeId}#content">${article.typeName}</a></span>
+                    <h2><a href="/article/${article.id}" rel="bookmark">${article.title}</a></h2>
                 </div><!-- .heading-small -->
 
                 <div class="post-meta">
                           <span class="posted-on">
-                            发表于 <a href="javascript:;" rel="bookmark"> <time class="entry-date" datetime="<@DateTime time=blog.createTime/>"><@DateTime time=blog.createTime/></time> </a>
+                            发表于 <a href="javascript:;" rel="bookmark"> <time class="entry-date" datetime="<@DateTime time=article.createTime/>"><@DateTime time=article.createTime/></time> </a>
                           </span><!-- .posted-on -->
                     <span class="byline">
-                            by <span class="author vcard"><a class="url fn n" href="javascript:;">${blog.author}</a></span>
+                            by <span class="author vcard"><a class="url fn n" href="javascript:;">${article.author}</a></span>
                           </span><!-- .byline -->
-                    <span class="reading-estimation">${blog.visitCount} 阅读</span>
+                    <span class="reading-estimation">${article.visitCount} 阅读</span>
                 </div><!-- .post-meta -->
-                <p>${blog.context}.
-                    <a href="/article/${blog.id}" class="more-link">
+                <p>${article.context}.
+                    <a href="/article/${article.id}" class="more-link">
                         <span class="moretext">阅读全文</span> <span class="screen-reader-text">Do not leave your camera when traveling</span>
                     </a><!-- .more-link -->
                 </p>
@@ -34,8 +34,8 @@
     <nav class="navigation posts-navigation" role="navigation">
         <h2 class="screen-reader-text">Posts navigation</h2>
         <div class="nav-links">
-            <div class="nav-previous"> <a href="<#if prePage?? >/blog/page/${prePage}?typeId=${typeId}</#if>#content"> 前一页</a></div>
-            <div class="nav-next">    <a href="<#if nextPage?? >/blog/page/${nextPage}?typeId=${typeId}</#if>#content">后一页</a></div>
+            <div class="nav-previous"> <a href="<#if prePage?? >/articles/page/${prePage}?typeId=${typeId}</#if>#content"> 前一页</a></div>
+            <div class="nav-next">    <a href="<#if nextPage?? >/articles/page/${nextPage}?typeId=${typeId}</#if>#content">后一页</a></div>
         </div>
     </nav><!-- .navigation -->
 </div><!-- .col-md-8 -->

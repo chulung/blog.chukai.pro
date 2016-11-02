@@ -16,7 +16,8 @@ requirejs([ "jquery","bootstrap"], function($) {
 				"typeId" : $('#typeId').val(),
 				"context" : editor.getMarkdown(),
 				"htmlContext":editor.getHTML(),
-				"isPublish" : $("#isPublish").is(":checked") ? 'Y' : 'N'
+				"isPublish" : $("#isPublish").is(":checked") ? 'Y' : 'N',
+				"license":$("#license").val()
 			},
 			dataType : "json",
 			success : function(data) {

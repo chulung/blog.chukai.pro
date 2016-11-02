@@ -14,7 +14,8 @@ author,
 is_publish,
 type_id,
 is_delete,
-version
+version,
+licence
   	) select * from article_draft where id=#{id}
   </insert>
 

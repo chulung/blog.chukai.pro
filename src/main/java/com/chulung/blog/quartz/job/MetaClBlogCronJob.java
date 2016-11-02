@@ -63,9 +63,9 @@ public class MetaClBlogCronJob extends AbstractCronJob {
 		Post post = new Post();
 		post.setTitle(article.getTitle());
 		post.setDateCreated(DateUtils.toDate(article.getCreateTime()));
-		post.setDescription(String.format(METACKBLOG_COMMENTS, article.getId(), article.getId(),
-				DateUtils.format(LocalDateTime.now()), site.getDedcription()) + article.getContext()
-				+ configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE.name()));
+		post.setDescription(article.getContext()
+				+String.format(METACKBLOG_COMMENTS, article.getId(), article.getId(),
+				DateUtils.format(LocalDateTime.now()), site.getDedcription()) +  configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE.name()));
 		if (metaCLBlogLog != null) {
 			if (article.getIsDelete() == IsDeleteEnum.Y) {
 				metaWeblog.deletePost(metaCLBlogLog.getPostId());

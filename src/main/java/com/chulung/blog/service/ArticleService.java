@@ -28,17 +28,16 @@ public interface ArticleService {
 
 	/**
 	 * 查询最新的博客,用于首页显示
-	 * 
+	 *
 	 * @param page
 	 * @param articleType
 	 * @return
 	 */
-	PageInfo<Article> selectBySelectiveForBlog(Optional<Integer> page, Integer typeId);
+	PageInfo<Article> selectBySelectiveForArticle(Optional<Integer> ofNullable, Integer typeId);
 
 	CommonInfo getCommonInfo();
 
-	List<Article> getBlogsByYearMonth(Integer year, Integer month);
+	List<Article> getArticlesByYearMonth(Integer year, Integer month);
 
 	List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn);
-
 }

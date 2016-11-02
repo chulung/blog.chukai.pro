@@ -63,6 +63,7 @@
                                         <ul class="sub-menu">
                                             <li class="menu-item"><a href="/markdown ">markdown</a></li>
                                             <li class="menu-item"><a href="/cmind">思维导图</a></li>
+                                            <li class="menu-item"><a href="/ciki">ciki</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">业余</a>
@@ -91,7 +92,8 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <blockquote>
-                            <p>${headContext!'唯爱、技术和美食三者不可辜负. ~'}</p>
+                            <p>${headContext!'唯爱、技术和美食三者不可辜负。'}</p>
+
                             <small>chulung</small>
                         </blockquote>
                     </div>

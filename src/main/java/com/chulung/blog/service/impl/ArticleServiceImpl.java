@@ -8,9 +8,13 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
+import com.chulung.blog.model.*;
+import com.chulung.blog.model.Dictionary;
+import com.chulung.blog.service.CommentsService;
 import com.chulung.blog.service.DictionaryService;
 import com.chulung.ccache.annotation.CCache;
 import com.chulung.common.util.SpringContextUtils;
+import com.chulung.common.util.StringUtil;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -30,10 +34,6 @@ import com.chulung.blog.mapper.ArticleDraftHistoryMapper;
 import com.chulung.blog.mapper.ArticleDraftMapper;
 import com.chulung.blog.mapper.ArticleMapper;
 import com.chulung.blog.mapper.DictionaryMapper;
-import com.chulung.blog.model.Article;
-import com.chulung.blog.model.ArticleDraft;
-import com.chulung.blog.model.Dictionary;
-import com.chulung.blog.model.User;
 import com.chulung.blog.service.ArticleService;
 import com.chulung.blog.service.ConfigService;
 import com.chulung.blog.session.WebSessionSupport;
@@ -62,6 +62,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService{
     @Autowired
     private DictionaryService dictionaryService;
 
+	@Autowired
+	private CommentsService commentsService;
+
+
 
 	public Article findArticleById(Integer id) {
 		Article a = articleMapper.selectByPrimaryKey(id);
@@ -69,7 +73,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService{
 			throw new MethodRuntimeExcetion("拒绝访问");
 		}
 		if (a.getTypeId()==1) {
-			a.setContext(a.getContext()+configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE.name()));
+			a.setContext(a.getContext()+ (a.getTypeId()!=3 && StringUtil.isBlank(a.getLicense())?configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE.name()):a.getLicense()));
 		}
 		return a;
 	}
@@ -164,7 +168,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService{
 		return replaceAll.length() > 120 ? replaceAll.substring(0, 120) + "..." : replaceAll;
 	}
 
-	public PageInfo<Article> selectBySelectiveForBlog(Optional<Integer> startPage, Integer typeId) {
+	public PageInfo<Article> selectBySelectiveForArticle(Optional<Integer> startPage, Integer typeId) {
 		ArticleDto bean = new ArticleDto();
 		bean.setTypeId(typeId);
 		bean.setIsDelete(IsDeleteEnum.N);
@@ -178,7 +182,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService{
 	}
 
 	@Override
-	public List<Article> getBlogsByYearMonth(Integer year, Integer month) {
+	public List<Article> getArticlesByYearMonth(Integer year, Integer month) {
 		if (NumberUtil.isRangeNotIn(year, 2014, 2993) || NumberUtil.isRangeNotIn(month, 1, 12)) {
 			return Collections.emptyList();
 		}
@@ -204,6 +208,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService{
 			return o2.compareTo(o1);
 		});
 		CommonInfo commonInfo = new CommonInfo(list);
+		commonInfo.setPopularArticles(this.listPopularArticles());
+		commonInfo.setRecentlyComments(this.commentsService.listRecentlyComments());
 		return commonInfo;
 	}
 
@@ -219,5 +225,22 @@ public class ArticleServiceImpl extends BaseService implements ArticleService{
 	public List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn) {
 		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
 		return this.articleDraftMapper.selectTileList(new ArticleDraft());
+	}
+
+	public List<Article> listPopularArticles(){
+		PageHelper.startPage(1,3,"id desc");
+		Article record=new Article();
+		record.setTypeId(1);
+		List<Article> select = this.articleMapper.select(record);
+		return select.stream().map(a->{
+			Article tmp=new Article();
+			tmp.setId(a.getId());
+			tmp.setTitle(a.getTitle());
+			tmp.setCreateTime(a.getCreateTime());
+			tmp.setTypeName(this.dictionaryService.getDictValueMap(DictionaryTypeEnum.ARTICLE_TYPE).get(a.getTypeId().toString()));
+			tmp.setTypeId(a.getTypeId());
+			return  tmp;
+				}).collect(Collectors.toList());
+
 	}
 }

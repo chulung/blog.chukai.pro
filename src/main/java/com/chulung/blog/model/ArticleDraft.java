@@ -3,6 +3,7 @@ package com.chulung.blog.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import com.chulung.blog.enumerate.IsDeleteEnum;
 import com.chulung.blog.enumerate.PublishStatusEnum;
@@ -38,6 +39,17 @@ public class ArticleDraft extends BaseModel {
 	private String context;
 
 	private String htmlContext;
+
+	@Transient
+	private String license;
+
+	public String getLicense() {
+		return license;
+	}
+
+	public void setLicense(String license) {
+		this.license = license;
+	}
 
 	public Integer getId() {
 		return id;
