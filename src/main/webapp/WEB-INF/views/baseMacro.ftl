@@ -177,8 +177,6 @@
 <script>var module="${moduleName!''}"</script>
 <script type="text/javascript"  src="https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript"  src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript"  src="https://cdn.bootcss.com/formvalidation/0.6.1/js/formValidation.min.js"></script>
-<script type="text/javascript"  src="https://cdn.bootcss.com/formvalidation/0.6.1/js/framework/bootstrap.min.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/jquery.justifiedGallery.min.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/jquery.magnific-popup.min.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/imagesloaded.pkgd.min.js"></script>

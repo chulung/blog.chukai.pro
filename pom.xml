@@ -6,8 +6,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>website</name>
-	<description>https://chulung.com website sources</description>
-	<url>https://github.com/chulung-team/chulung.com</url>
+	<description>https://chulung.com sources</description>
+	<url>https://github.com/chulung/chulung.com</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven-dependency-plugin.version>2.1</maven-dependency-plugin.version>
@@ -23,8 +23,8 @@
 
 	<licenses>
 		<license>
-			<name>The GNU Lesser General Public License, version 3.0</name>
-			<url>http://opensource.org/licenses/LGPL-3.0</url>
+			<name>The MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
 		</license>
 	</licenses>
 	<developers>

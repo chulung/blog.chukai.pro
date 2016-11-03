@@ -38,7 +38,7 @@ public class CommentsServiceImpl extends BaseService implements CommentsService 
 		} else {
 			cache.put(curSessionId, ++count);
 		}
-		checkExistBlank(comments.getArticleId(), comments.getEmail(), comments.getUserName());
+		checkExistBlank(comments.getArticleId(),comments.getComment(), comments.getUserName());
 		comments.setCreateTime(LocalDateTime.now());
 		commentsMapper.insertSelective(comments);
 		commentsMapper.recalcCommentsCountForArticle(comments.getArticleId());
