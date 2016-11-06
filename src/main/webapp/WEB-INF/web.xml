@@ -95,4 +95,13 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>/assets/*</url-pattern>
 	</servlet-mapping>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/errorPage/404</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/errorPage/500</location>
+	</error-page>
 </web-app>

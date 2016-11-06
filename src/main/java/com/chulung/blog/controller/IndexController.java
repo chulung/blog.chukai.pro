@@ -84,7 +84,7 @@ public class IndexController extends BaseController {
 
 	@RequestMapping("/tech")
 	public ModelAndView getArticles() {
-		return getArticlePage(1, 1).addObject("headContext","技术改变世界,让世界看到你的影响力。");
+		return getArticlePage(1, 1).addObject("headContext","曾经这个栏目叫技术，只想写技术的东西，但现在的我已经不再仅仅只专注技术，因为技术是工程师技能的大部，但不是技能的全部。");
 	}
 
 	@RequestMapping("/reprints")
