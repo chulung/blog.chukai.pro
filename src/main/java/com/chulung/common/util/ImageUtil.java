@@ -12,7 +12,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 
-import com.chulung.blog.exception.MethodRuntimeExcetion;
+import com.chulung.craft.exception.MethodRuntimeExcetion;
 
 public class ImageUtil {
 	private static final String MICROSOFT_YA_HEI = "Microsoft YaHei";

@@ -15,10 +15,10 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.chulung.blog.enumerate.CateLevelEnum;
-import com.chulung.blog.mapper.CikiMapper;
-import com.chulung.blog.model.BaseComponent;
-import com.chulung.blog.model.Ciki;
+import com.chulung.craft.enumerate.CateLevelEnum;
+import com.chulung.craft.mapper.CikiMapper;
+import com.chulung.craft.model.BaseComponent;
+import com.chulung.craft.model.Ciki;
 
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;

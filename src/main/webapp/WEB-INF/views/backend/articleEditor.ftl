@@ -9,7 +9,7 @@
 					<input id="isPublish" type="checkBox" checked>发布</input>
 					<select id="typeId">
 							<#list articleTypes as type>
-							<option value="${type.dictValue}">${type.dictDesc}</option>
+							<option value="${type.id}">${type.cnName}</option>
 							</#list>
 					</select>
 					<button id="btn-save" data-articledraftid="${articleDraftId}">保存</button>

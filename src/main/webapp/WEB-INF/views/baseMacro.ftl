@@ -57,22 +57,22 @@
                             <div class="menu-testing-menu-container">
                                 <ul id="primary-menu" class="menu nav-menu" aria-expanded="false">
                                     <li class="menu-item"><a href="/">首页</a></li>
-                                    <li class="menu-item"><a href="/tech">技能</a></li>
-                                    <li class="menu-item"><a href="/reprints">他山之石</a></li>
-                                    <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">其它</a>
+                                    <li class="menu-item"><a href="/column/skills">技能</a></li>
+                                    <li class="menu-item"><a href="/column/reprints">他山之石</a></li>
+                                    <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">随笔</a>
                                         <ul class="sub-menu">
-                                            <li class="menu-item"><a href="#/heart ">心悟</a></li>
-                                            <li class="menu-item"><a href="#/food ">吃货</a></li>
-                                            <li class="menu-item"><a href="#/travel">旅行</a></li>
-                                            <li class="menu-item"><a href="#/exercise">健身</a></li>
-                                            <li class="menu-item"><a href="#/photography">摄影</a></li>
+                                            <li class="menu-item"><a href="/column/sensibility">心悟</a></li>
+                                            <li class="menu-item"><a href="/column/food ">吃货</a></li>
+                                            <li class="menu-item"><a href="/column/travel">旅行</a></li>
+                                            <li class="menu-item"><a href="/column/exercise">健身</a></li>
+                                            <li class="menu-item"><a href="/column/photography">摄影</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">工具</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item"><a href="/markdown ">markdown</a></li>
                                             <li class="menu-item"><a href="/cmind">思维导图</a></li>
-                                            <li class="menu-item"><a href="/ciki">ciki</a></li>
+                                            <li class="menu-item"><a href="/ciki/">ciki</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item"><a href="/about">关于我</a></li>
@@ -93,8 +93,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <blockquote>
-                            <p>${headContext!'你知道自己要变得优秀，也知道如何变得优秀，还有过不够优秀的教训，那还愣着干什么。'}</p>
-
+                            <p><#if column?? && column.slogans??>${column.slogans} <#else>'你知道自己要变得优秀，也知道如何变得优秀，还有过不够优秀的教训，那还愣着干什么。</#if></p>
                             <small>chulung</small>
                         </blockquote>
                     </div>

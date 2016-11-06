@@ -9,13 +9,14 @@
                     <img src="${article.pic}">
                 </#if>
                 <div class="heading-title heading-small">
-                    <span class="post-meta-cat"><a href="/articles/page/1?typeId=${article.typeId}#content">${article.typeName}</a></span>
+                    <span class="post-meta-cat"><a href="/articles?typeId=${article.typeId}#content">${article.typeName}</a></span>
                     <h2><a href="/article/${article.id}" rel="bookmark">${article.title}</a></h2>
                 </div><!-- .heading-small -->
 
                 <div class="post-meta">
                           <span class="posted-on">
-                            发表于 <a href="javascript:;" rel="bookmark"> <time class="entry-date" datetime="<@DateTime time=article.createTime/>"><@DateTime time=article.createTime/></time> </a>
+                            发表于 <a href="javascript:;> <time class="entry-date" datetime="<@DateTime time=article.createTime/>"><@DateTime time=article.createTime/></time> </a>
+                            更新于<a href="javascript:;> <time class="entry-date" datetime="<@DateTime time=article.updateTime/>"><@DateTime time=article.updateTime/></time> </a>
                           </span><!-- .posted-on -->
                     <span class="byline">
                             by <span class="author vcard"><a class="url fn n" href="javascript:;">${article.author}</a></span>
@@ -24,7 +25,7 @@
                 </div><!-- .post-meta -->
                 <p>${article.context}.
                     <a href="/article/${article.id}" class="more-link">
-                        <span class="moretext">阅读全文</span> <span class="screen-reader-text">Do not leave your camera when traveling</span>
+                        <span class="moretext">阅读全文</span>
                     </a><!-- .more-link -->
                 </p>
             </div><!-- .post-content -->
@@ -34,8 +35,8 @@
     <nav class="navigation posts-navigation" role="navigation">
         <h2 class="screen-reader-text">Posts navigation</h2>
         <div class="nav-links">
-            <div class="nav-previous"> <a href="<#if prePage?? >/articles/page/${prePage}?typeId=${typeId}</#if>#content"> 前一页</a></div>
-            <div class="nav-next">    <a href="<#if nextPage?? >/articles/page/${nextPage}?typeId=${typeId}</#if>#content">后一页</a></div>
+            <div class="nav-previous"> <a href="<#if prePage?? >/articles?page=${prePage}&typeId=<#if column??>${column.id}</#if></#if>#content"> 前一页</a></div>
+            <div class="nav-next">   <a href="<#if nextPage?? >/articles?page=${nextPage}&typeId=<#if column??>${column.id}</#if></#if>#content">后一页</a></div>
         </div>
     </nav><!-- .navigation -->
 </div><!-- .col-md-8 -->

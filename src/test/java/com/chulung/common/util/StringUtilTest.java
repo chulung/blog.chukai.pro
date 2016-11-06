@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.chulung.blog.dto.Node;
+import com.chulung.craft.dto.Node;
 
 public class StringUtilTest {
 

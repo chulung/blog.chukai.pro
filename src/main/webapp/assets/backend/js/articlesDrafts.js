@@ -6,7 +6,7 @@ requirejs([ "jquery"], function($) {
 							type : 'get',
 							data : {
 								'page' : page,
-								'pageSize' : '20'
+								'pageSize' : '100'
 							},
 							dataType : 'json',
 							success : function(data) {

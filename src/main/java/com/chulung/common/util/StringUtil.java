@@ -8,7 +8,7 @@ import java.util.ListIterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.chulung.blog.dto.Node;
+import com.chulung.craft.dto.Node;
 
 public class StringUtil extends org.apache.commons.lang3.StringUtils {
 	public static String toLowerCaseFirstChar(String s) {
