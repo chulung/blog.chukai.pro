@@ -16,7 +16,6 @@
                 <div class="post-meta">
                           <span class="posted-on">
                             发表于 <a href="javascript:;> <time class="entry-date" datetime="<@DateTime time=article.createTime/>"><@DateTime time=article.createTime/></time> </a>
-                            更新于<a href="javascript:;> <time class="entry-date" datetime="<@DateTime time=article.updateTime/>"><@DateTime time=article.updateTime/></time> </a>
                           </span><!-- .posted-on -->
                     <span class="byline">
                             by <span class="author vcard"><a class="url fn n" href="javascript:;">${article.author}</a></span>
