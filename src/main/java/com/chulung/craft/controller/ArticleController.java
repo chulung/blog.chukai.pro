@@ -35,9 +35,6 @@ public class ArticleController extends BaseController {
 	@RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView getArticle(@PathVariable Integer id, HttpServletRequest request) {
 		Article article = articleService.findArticleById(id);
-		if(article!=null && article.getTypeId()==4 && !webSessionSupport.islogIn()){
-			throw new MethodRuntimeExcetion("无权访问");
-		}
 		return modelAndView("article").addObject("article", article).addObject("typeId", article.getTypeId());
 	}
 

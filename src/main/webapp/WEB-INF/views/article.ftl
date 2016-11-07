@@ -15,7 +15,12 @@
         </header><!-- .entry-header -->
 
         <div class="entry-content">
-			${article.context}
+             ${article.context}
+            <#if article.derivationUrl??>
+                <p>原文链接:<a href="${article.derivationUrl}" target="_blank">${article.derivationUrl}</a></p>
+            <#else>
+                <p>原文链接:<a href="https://chulung.com/article/${article.id}" >https://chulung.com/article/${article.id}</a></p>
+            </#if>
         </div><!-- .entry-content -->
 
         <footer class="entry-footer">
@@ -26,6 +31,11 @@
     <div id="comments" class="comments-area">
         <div id="respond" class="comment-respond">
             <h3 id="reply-title" class="comment-reply-title">评论 <small></small></h3>
+            <section class="widget widget_recent_comments">
+                <ul id="ul_comments">
+                    <li class="none">
+                    </li>
+            </section>
             <form action="" method="" id="commentform" class="form-horizontal comment-form" >
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -37,7 +47,7 @@
                         <input id="userName" name="userName" value="" class="form-control" placeholder="*名字 :" aria-required="true" type="text" maxlength="20">
                     </div>
                     <div class="col-sm-4">
-                        <input name="email" value="" class="form-control" placeholder="邮箱(选填) :" aria-required="true" type="email" maxlength="50">
+                        <input id="email" name="email" value="" class="form-control" placeholder="*邮箱 :" aria-required="true" type="email" maxlength="50">
                         <input name="articleId" value="${article.id}" class="form-control" type="hidden"/>
                     </div>
                 </div>

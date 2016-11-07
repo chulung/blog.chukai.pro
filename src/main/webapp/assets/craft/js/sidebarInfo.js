@@ -37,7 +37,7 @@ define(function() {
 					$.each(data.recentlyComments,(function () {
 						$li=nLi.clone().html("<span class='comment-author-link'>"+
 							this.userName
-							+"</span>on <a href='/article/"+this.articleId+"#comments"+this.id+"'></a>").show().appendTo($("#recentcomments"));
+							+"</span> : <a href='/article/"+this.articleId+"#comments"+this.id+"'>"+this.comment+"</a>").show().appendTo($("#recentcomments"));
 					}));
 				}
 			});

@@ -311,10 +311,9 @@ img[class*="wp-image-"] { max-width: 100%; height: auto; }
 .single-format-quote .post-content blockquote { padding: 60px 40px 40px; margin-bottom: 0px; font-size: 24px; line-height: 40px; }
 .single-format-quote .post-content blockquote::before { left: 40px; top: 30px; }
 .single-format-quote .post-content blockquote footer, .single-format-quote .post-content blockquote small { margin-top: 20px; font-size: 16px; line-height: 24px; }
-.entry-author-bio { position: relative; min-height: 100px; padding: 25px; border: 1px solid rgb(230, 230, 230); background-color: rgb(255, 255, 255); }
+.entry-author-bio { position: relative; min-height: 100px; padding: 10px; border: 1px solid rgb(230, 230, 230); background-color: rgb(255, 255, 255); }
 .entry-author-bio .author-bio-avatar { position: absolute; left: 25px; top: 25px; }
 .entry-author-bio .author-bio-avatar img { border-radius: 2px; }
-.entry-author-bio .author-bio-description { padding-left: 115px; }
 .entry-author-bio .author-bio-description h4 { display: block; margin-top: 0px; margin-bottom: 20px; font-size: 20px; line-height: 28px; text-transform: capitalize; color: rgb(44, 62, 80); }
 .entry-author-bio .author-bio-description h4 small { display: block; font-size: 13px; line-height: 22px; color: rgb(161, 163, 176); }
 .related-posts { display: block; }
@@ -450,7 +449,7 @@ img[class*="wp-image-"] { max-width: 100%; height: auto; }
 .widget_recent_comments ul li { position: relative; padding: 5px 5px 10px 25px; border-bottom: 1px dashed rgb(217, 217, 217); text-transform: uppercase; font-size: 11px; color: rgb(133, 136, 153); }
 .widget_recent_comments ul li::before { content: ""; font-family: FontAwesome; position: absolute; left: 0px; top: 5px; font-size: 14px; }
 .widget_recent_comments ul li:hover { color: rgb(43, 43, 43); }
-.widget_recent_comments ul li a { display: block ! important; font-size: 14px; line-height: 22px; font-weight: 700; text-transform: capitalize; color: rgb(43, 43, 43); transition: color 0.1s linear 0s; }
+.widget_recent_comments ul li a,.widget_recent_comments ul li p { display: block ! important; font-size: 14px; line-height: 22px; font-weight: 700; text-transform: capitalize; color: rgb(43, 43, 43); transition: color 0.1s linear 0s; }
 .widget_recent_comments ul li a:hover { color: rgb(133, 136, 153); transition: color 0.1s linear 0s; }
 .widget_recent_comments ul li span { display: inline-block; color: rgb(133, 136, 153); }
 .widget_recent_comments ul li span, .widget_recent_comments ul li span a { text-transform: uppercase; font-size: 11px; font-weight: 400; }

@@ -3,51 +3,50 @@
  */
 define(function() {
 	var exports={};
-		exports.init=function () {
-		boundSubmitComments();
-		$.ajax({
-			url : '/comments/list/' + $("input[name='articleId']").val(),
-			type : 'get',
-			dataType : 'json',
-			success : function(data) {
-				$comments = $(".list-group-item.comments-li.none")
-				$.each(data.list, function(i, item) {
-					$nCom = $comments.clone().removeClass("none");
-					$nCom.find(".floor").attr({'name':item.id,'href':'#'+item.id}).html("#"+(++i));
-					$nCom.find(".date").html(item.createTime);
-					$nCom.find(".name").html(item.userName);
-					$nCom.find(".list-group-item-text").html(item.comment);
-					$comments.before($nCom);
-				});
-			}
-		});
-		}
-	return exports;
-});
-// 提交评论
-function boundSubmitComments() {
-	$('#submitComments').one("click", function() {
-            if (!validate(["#comment","#userName"])){
+    exports.boundSubmitComments=function () {
+        $('#submitComments').one("click", function() {
+            if (!validate(["#comment","#userName","#email"])){
                 boundSubmitComments();
                 return;
             }
-			$.ajax({
-				url : '/comments',
-				type : 'post',
-				dataType : 'json',
-				data : $("#commentform").serialize(),
-				success : function(data) {
-					if (data.success == 1) {
-						window.location.reload();
-					}else{
-						alert(data.message);
-					}
-					 
-				}
-			});
-		});
-}
+            $.ajax({
+                url : '/comments',
+                type : 'post',
+                dataType : 'json',
+                data : $("#commentform").serialize(),
+                success : function(data) {
+                    if (data.success == 1) {
+                        exports.listComments();
+                    }else{
+                        alert(data.message);
+                    }
 
+                }
+            });
+        });
+    }
+    exports.listComments=function () {
+        $.ajax({
+            url : '/comments/list/' + $("input[name='articleId']").val(),
+            type : 'get',
+            dataType : 'json',
+            success : function(data) {
+                $("#ul_comments").find("li:visible").remove()
+                var nLi=$("#ul_comments").find(".none");
+                $.each(data.list,(function () {
+                    $li=nLi.clone().html("<span class='comment-author-link'>"+
+                        this.userName
+                        +":</span> <p>"+this.comment+"</p>").show().appendTo($("#ul_comments"));
+                }));
+            }
+        });
+    }
+    exports.init=function () {
+        exports.boundSubmitComments();
+        exports.listComments();
+    }
+	return exports;
+});
 function validate(ids){
     for(i=0;i<ids.length;i++){
         if (!$(ids[i]).val()){
