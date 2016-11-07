@@ -26,7 +26,7 @@
                 <div class="author-footer">
                     <div class="author-social">
                         <a href="https://github.com/chulung" target="_blank" rel="external nofollow" ><i class="fa fa-github"></i></a>
-                        <a href="mailto:wen.chukai@foxmail.com" rel="external nofollow" target="_blank"><i class="fa fa-envelope"></i></a>
+                        <a href="mailto:chulung@chulung.com" rel="external nofollow" target="_blank"><i class="fa fa-envelope"></i></a>
                     </div><!-- .author-social -->
                 </div><!-- .author-footer -->
             </div><!-- .about-author-info -->

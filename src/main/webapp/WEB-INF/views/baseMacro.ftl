@@ -147,7 +147,7 @@
                         <div class="site-info">
                             <h3 class="site-brand"><i class="fa fa-recycle"></i> chulung.</h3>
                             <p>上海</p>
-                            <p>wen.chukai@foxmail.com</p>
+                            <p>chulung@chulung.com</p>
                         </div><!-- .site-info -->
                     </section><!-- .danish_widget_site_info -->
                 </div><!-- .col-sm-6 -->
@@ -165,7 +165,7 @@
                 <div class="col-sm-6 copy-right">
                     <ul class="social-icon">
                         <li><a href="https://github.com/chulung/chulung.com" target="_blank" class="icon-twitter"  rel="external nofollow" ><i class="fa fa-github"></i></a></li>
-                        <li><a href="mailto:wen.chukai@foxmail.com" target="_blank" class="icon-instagram"  rel="external nofollow" ><i class="fa fa-envelope"></i></a></li>
+                        <li><a href="mailto:chulung@chulung.com" target="_blank" class="icon-instagram"  rel="external nofollow" ><i class="fa fa-envelope"></i></a></li>
                     </ul>
                 </div><!-- .col-sm-6 -->
             </div><!-- .row -->
