@@ -11,8 +11,8 @@ import javax.annotation.Resource;
 import com.chulung.craft.mapper.ColumnTypeMapper;
 import com.chulung.craft.model.ColumnType;
 import com.chulung.craft.model.User;
-import com.chulung.craft.service.ColumnTypeSevice;
-import com.chulung.craft.service.CommentsService;
+import com.chulung.craft.quartz.job.MetaClBlogCronJob;
+import com.chulung.craft.service.*;
 import com.chulung.ccache.annotation.CCache;
 import com.chulung.common.util.StringUtil;
 import com.chulung.craft.dto.ArticleDto;
@@ -23,8 +23,6 @@ import com.chulung.craft.enumerate.IsDeleteEnum;
 import com.chulung.craft.mapper.ArticleMapper;
 import com.chulung.craft.model.Article;
 import com.chulung.craft.model.ArticleDraft;
-import com.chulung.craft.service.ArticleService;
-import com.chulung.craft.service.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -66,6 +64,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	@Autowired
 	private CommentsService commentsService;
 
+    @Autowired
+    private MetaClBlogLogService metaClBlogLogService;
 
 
 	public Article findArticleById(Integer id) {
@@ -101,6 +101,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			} else {
 				articleMapper.updateByPrimaryKeySelective(article);
 			}
+			pushBlog(articleDraft);
 		} else if (articleDraft.getArticleId() != null) {
 			Article record = new Article();
 			record.setId(articleDraft.getArticleId());
@@ -111,6 +112,20 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			throw new MethodRuntimeExcetion("修改草稿失败");
 		}
 		return true;
+	}
+
+	/**
+	 * 推送博客
+	 * @param articleDraft
+	 */
+	private void pushBlog(ArticleDraft articleDraft) {
+		if (articleDraft.getArticleId()!=null && articleDraft.getPushBlog()==1){
+            try {
+                metaClBlogLogService.pushBlog();
+            } catch (Exception e) {
+                logger.error("同步文章失败 articleDraftId={},err={})",articleDraft.getId(),e);
+            }
+        }
 	}
 
 	@Override
@@ -125,15 +140,15 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			articleDraft.setCreateTime(LocalDateTime.now());
 			if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
 				Article article = Article.of(articleDraft);
-				int key = 0;
-				if ((key=articleMapper.insertSelective(article)) <= 0) {
+				if (articleMapper.insertSelective(article)<= 0) {
 					throw new MethodRuntimeExcetion("插入文章失败");
 				}
-				articleDraft.setArticleId(key);
+				articleDraft.setArticleId(article.getId());
 			}
 			if (this.articleDraftMapper.insertSelective(articleDraft) <= 0) {
 				throw new MethodRuntimeExcetion("插入草稿失败");
 			}
+			pushBlog(articleDraft);
 			return articleDraft.getId();
 		} catch (DuplicateKeyException e) {
 			throw new MethodRuntimeExcetion("文章已存在");

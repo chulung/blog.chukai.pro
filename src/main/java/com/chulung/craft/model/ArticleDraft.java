@@ -43,6 +43,20 @@ public class ArticleDraft extends BaseModel {
 	@Transient
 	private String license;
 
+	/**
+	 * 是否推送博客到其他网站 0 否 1是
+	 */
+	@Transient
+	private int pushBlog;
+
+	public int getPushBlog() {
+		return pushBlog;
+	}
+
+	public void setPushBlog(int pushBlog) {
+		this.pushBlog = pushBlog;
+	}
+
 	public String getLicense() {
 		return license;
 	}
