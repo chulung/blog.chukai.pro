@@ -103,7 +103,11 @@ public class IndexController extends BaseController {
 		double wook = (Instant.now().getEpochSecond() - Instant.parse("2015-03-01T09:00:00.00Z").getEpochSecond())
 				/ 31536000.0;
 		wook = new BigDecimal(wook).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-		article.setContext( String.format(article.getContext(), wook));
+
+		int pinyin = (int)((Instant.now().getEpochSecond() - Instant.parse("1867-01-01T00:00:00.00Z").getEpochSecond())
+				/ 31536000);
+
+		article.setContext( String.format(article.getContext(),pinyin, wook));
 		return modelAndView("article").addObject("article",article);
 	}
 }
