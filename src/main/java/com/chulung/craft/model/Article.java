@@ -9,11 +9,13 @@ import javax.persistence.Transient;
 
 import com.chulung.craft.enumerate.IsDeleteEnum;
 import com.chulung.jackson.databind.LocalDateTimeSerializer;
+import com.chulung.search.DocType;
+import com.chulung.search.Indexable;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 
-public class Article extends BaseModel {
+public class Article extends BaseModel implements Indexable{
     /**
      *
      */
@@ -92,6 +94,11 @@ public class Article extends BaseModel {
 
     public Integer getId() {
         return id;
+    }
+
+    @Override
+    public DocType getDocType() {
+        return DocType.ART;
     }
 
     public void setId(Integer id) {

@@ -63,10 +63,10 @@
 
                 cmAddonPath + "edit/trailingspace", 
                 cmAddonPath + "dialog/dialog", 
-                cmAddonPath + "search/searchcursor", 
-                cmAddonPath + "search/search", 
+                cmAddonPath + "search/searchcursor",
+                cmAddonPath + "search/search",
                 cmAddonPath + "scroll/annotatescrollbar", 
-                cmAddonPath + "search/matchesonscrollbar", 
+                cmAddonPath + "search/matchesonscrollbar",
                 cmAddonPath + "display/placeholder", 
                 cmAddonPath + "edit/closetag", 
                 cmAddonPath + "fold/foldcode",

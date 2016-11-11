@@ -36,6 +36,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.chulung</groupId>
+			<artifactId>csearch</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chulung</groupId>
 			<artifactId>ccache</artifactId>
 			<version>1.1-SNAPSHOT</version>
 		</dependency>
