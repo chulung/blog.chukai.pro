@@ -97,7 +97,7 @@ public class Article extends BaseModel implements Indexable{
     }
 
     @Override
-    public DocType getDocType() {
+    public DocType docType() {
         return DocType.ART;
     }
 

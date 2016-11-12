@@ -4,10 +4,10 @@
     <#nested>
 <div class="col-md-4">
     <section class="widget widget_search">
-        <form role="search" method="get" class="search-form" action="">
+        <form role="search" method="get" class="search-form" action="/search">
             <label>
                 <span class="screen-reader-text">Search for:</span>
-                <input class="search-field" placeholder="Search …" value="" name="s" title="Search for:" type="search">
+                <input class="search-field" placeholder="CSearch …" value="" name="word" title="Search for:" type="search">
             </label>
             <input class="search-submit" value="Search" type="submit">
         </form><!-- search-form -->

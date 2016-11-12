@@ -22,6 +22,7 @@
 				<value>file:${catalina.home}/conf/fastdfs.properties</value>
 				<value>file:${catalina.home}/conf/jdbc.properties</value>
 				<value>file:${catalina.home}/conf/metackblog.properties</value>
+				<value>file:${catalina.home}/conf/csearch.properties</value>
 			</list>
 		</property>
 		<property name="fileEncoding" value="UTF-8"></property>

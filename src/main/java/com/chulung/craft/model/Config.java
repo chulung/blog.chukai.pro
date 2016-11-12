@@ -1,41 +1,41 @@
 package com.chulung.craft.model;
 
+import com.chulung.craft.enumerate.ConfigKeyEnum;
+
 import javax.persistence.Id;
 
 public class Config extends BaseModel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1126303022719698976L;
-	@Id
-	private Integer id;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1126303022719698976L;
 
-	private String configKey;
+    @Id
+    private ConfigKeyEnum configKey;
 
-	private String configValue;
+    private String configValue;
 
-	public Integer getId() {
-		return id;
-	}
+    public Config(ConfigKeyEnum key, String value) {
+        this.configKey=key;
+        this.configValue=value;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Config() {
+    }
+    public ConfigKeyEnum getConfigKey() {
+        return configKey;
+    }
 
-	public String getConfigKey() {
-		return configKey;
-	}
+    public void setConfigKey(ConfigKeyEnum configKey) {
+        this.configKey = configKey;
+    }
 
-	public void setConfigKey(String configKey) {
-		this.configKey = configKey;
-	}
+    public String getConfigValue() {
+        return configValue;
+    }
 
-	public String getConfigValue() {
-		return configValue;
-	}
-
-	public void setConfigValue(String configValue) {
-		this.configValue = configValue;
-	}
+    public void setConfigValue(String configValue) {
+        this.configValue = configValue;
+    }
 
 }

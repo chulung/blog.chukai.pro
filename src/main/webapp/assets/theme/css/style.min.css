@@ -671,3 +671,7 @@ img[class*="wp-image-"] { max-width: 100%; height: auto; }
   .copyright .copy-left, .copyright .copy-right { margin-top: 20px; margin-bottom: 20px; text-align: center; }
 }
 .none{display: none}
+.row_search em{
+  color: #c00;
+  font-style: normal;
+}

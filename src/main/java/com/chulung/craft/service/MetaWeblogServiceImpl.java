@@ -64,7 +64,7 @@ public class MetaWeblogServiceImpl implements MetaClBlogLogService{
         post.setDateCreated(DateUtils.toDate(article.getCreateTime()));
         post.setDescription(article.getContext()
                 +String.format(METACKBLOG_COMMENTS, article.getId(), article.getId(),
-                DateUtils.format(LocalDateTime.now()), site.getDedcription()) +  configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE.name()));
+                DateUtils.format(LocalDateTime.now()), site.getDedcription()) +  configService.getValueBykey(ConfigKeyEnum.RESET_SEARCH_INDEX, ConfigKeyEnum.ARTICLE_LICENSE.name()));
         if (metaCLBlogLog != null) {
             if (article.getIsDelete() == IsDeleteEnum.Y) {
                 metaWeblog.deletePost(metaCLBlogLog.getPostId());

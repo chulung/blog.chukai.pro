@@ -7,4 +7,9 @@
 		<result column="config_value" property="value" jdbcType="VARCHAR" />
 		<result column="config_comment" property="comment" jdbcType="VARCHAR" />
 	</resultMap>
+
+	<update id="updateValueByKey">
+
+
+	</update>
 </mapper>

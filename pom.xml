@@ -19,6 +19,7 @@
 		<mybatis.version>3.3.1</mybatis.version>
 		<mybatis-spring.version>1.2.4</mybatis-spring.version>
 		<org.slf4j.version>1.7.12</org.slf4j.version>
+		<lucene.version>6.2.1</lucene.version>
 	</properties>
 
 	<licenses>
@@ -37,7 +38,15 @@
 		<dependency>
 			<groupId>com.chulung</groupId>
 			<artifactId>csearch</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.9-SNAPSHOT</version>
+		</dependency>
+		<!-- 这个插件没有maven版本，手动依赖-->
+		<dependency>
+			<groupId>com.hankcs</groupId>
+			<artifactId>hanlp-solr-plugin</artifactId>
+			<version>1.0.3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/hanlp-solr-plugin-1.0.3.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.chulung</groupId>
@@ -170,7 +179,38 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatis-spring.version}</version>
 		</dependency>
+		<!--lucene start-->
+		<!-- 这个插件没有maven版本，手动依赖-->
+		<dependency>
+			<groupId>com.hankcs</groupId>
+			<artifactId>hanlp-solr-plugin</artifactId>
+			<version>1.0.3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/hanlp-solr-plugin-1.0.3.jar</systemPath>
+		</dependency>
 
+		<dependency>
+			<groupId>com.hankcs</groupId>
+			<artifactId>hanlp</artifactId>
+			<version>portable-1.2.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-queryparser</artifactId>
+			<version>${lucene.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-memory</artifactId>
+			<version>${lucene.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-highlighter</artifactId>
+			<version>${lucene.version}</version>
+		</dependency>
+
+		<!--lucene end-->
 		<!-- tomcat已自带 scope设为provided -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -235,6 +275,31 @@
 				<configuration>
 					<packagingExcludes>ciki/**</packagingExcludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources</directory>
+									<includes>
+										<include>*.*</include>
+									</includes>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
