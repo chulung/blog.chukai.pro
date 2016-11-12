@@ -274,6 +274,15 @@
 				<version>2.2</version>
 				<configuration>
 					<packagingExcludes>ciki/**</packagingExcludes>
+					<webResources>
+						<resource>
+							<directory>lib/</directory>
+							<targetPath>WEB-INF/lib</targetPath>
+							<includes>
+								<include>**/*.jar</include>
+							</includes>
+						</resource>
+					</webResources>
 				</configuration>
 			</plugin>
 			<plugin>
