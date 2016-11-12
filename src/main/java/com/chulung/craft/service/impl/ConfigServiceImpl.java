@@ -30,7 +30,7 @@ public class ConfigServiceImpl implements ConfigService {
     @Override
     public String getValueBykey(ConfigKeyEnum key, String defaultV) {
         String value = this.getValueBykey(key);
-        return value != null ? value : this.create(new Config(key, value)).getConfigValue();
+        return value != null ? value : this.create(new Config(key, defaultV)).getConfigValue();
     }
 
     @Override

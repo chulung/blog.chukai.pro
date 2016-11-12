@@ -17,7 +17,7 @@ public class DateUtils extends DateFormatUtils {
 	/**
 	 * 默认日期格式
 	 */
-	public static String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+	private static String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	/**
 	 * 转化默认格式 yyyy-MM-dd HH:mm:ss
@@ -35,11 +35,11 @@ public class DateUtils extends DateFormatUtils {
 	 * @param localDateTime
 	 * @return
 	 */
-	public static final String format(LocalDateTime localDateTime) {
+	public static String format(LocalDateTime localDateTime) {
 		return localDateTime.format(DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT));
 	}
 
-	public static final Date toDate(LocalDateTime source) {
+	public static  Date toDate(LocalDateTime source) {
 		return Date.from(source.atZone(ZoneId.systemDefault()).toInstant());
 	}
 }

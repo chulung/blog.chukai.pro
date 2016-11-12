@@ -32,7 +32,7 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
     @Autowired
     private ConfigService configService;
 
-    public void resetIndex() {
+    private void resetIndex() {
         cSearchIndex.clearAll();
         indexAll();
     }
@@ -40,32 +40,35 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
     /**
      * 索引所有文章
      */
-    public void indexAll() {
+    private void indexAll() {
         List<Article> list;
         int pageNum = 1;
         PageHelper.startPage(pageNum, 10);
         while (!(list = this.articleMapper.selectAll()).isEmpty()) {
-            cSearchIndex.createIndex( list.parallelStream().map(article -> {
-                CSearchDocument document = new CSearchDocument(article.docId(), article.getTitle(), article.getContext().replaceAll("</?[^<]+>", "").replaceAll("\\s+", ""));
-                return  document;
-            }).collect(Collectors.toList()));
+            cSearchIndex.createIndex(list.parallelStream().map(article -> new CSearchDocument(article.docId(), article.getTitle(), replaceHtmlTag(article))
+            ).collect(Collectors.toList()));
             PageHelper.startPage(++pageNum, 10);
         }
     }
 
+    private String replaceHtmlTag(Article article) {
+        return article.getContext().replaceAll("</?[^<]+>", "").replaceAll("\\s+", "");
+    }
+
     /**
      * 索引文章
-     * @param articleId
+     *
+     * @param articleId articleId
      */
-    public void index(Integer articleId){
-        Article article=this.articleMapper.selectByPrimaryKey(articleId);
-        if (article==null) return;
-        this.cSearchIndex.createIndex(new CSearchDocument(article.docId(), article.getTitle(), article.getContext().replaceAll("</?[^<]+>", "").replaceAll("\\s+", "")));
+    public void index(Integer articleId) {
+        Article article = this.articleMapper.selectByPrimaryKey(articleId);
+        if (article == null) return;
+        this.cSearchIndex.createIndex(new CSearchDocument(article.docId(), article.getTitle(), replaceHtmlTag(article)));
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        new Thread(()->{
+        new Thread(() -> {
             if (!Boolean.FALSE.toString().equals(configService.getValueBykey(ConfigKeyEnum.RESET_SEARCH_INDEX, Boolean.TRUE.toString()))) {
                 logger.info("开始重建索引......");
                 this.resetIndex();
@@ -86,7 +89,7 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
             }).collect(Collectors.toList());
         } catch (Exception e) {
             errorLog(e);
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         }
     }
 }

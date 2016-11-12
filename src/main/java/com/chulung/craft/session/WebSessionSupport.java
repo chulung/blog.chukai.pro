@@ -30,8 +30,6 @@ public class WebSessionSupport {
 	/**
 	 * 判断当前用户是否登陆
 	 * 
-	 * @param sessionId
-	 *            cookie中的sessionId
 	 * @return
 	 */
 	public boolean islogIn() {

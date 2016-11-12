@@ -17,7 +17,7 @@ public class LocalDateTimeSerializer extends JsonSerializer<Object> {
 
 	@Override
 	public void serialize(Object value, JsonGenerator gen, SerializerProvider serializers)
-			throws IOException, JsonProcessingException {
+			throws IOException {
 		gen.writeString(value == null ? null : value.toString().replace('T', ' '));
 	}
 

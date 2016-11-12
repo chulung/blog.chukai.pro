@@ -27,8 +27,6 @@ public interface ArticleService {
 	/**
 	 * 查询最新的博客,用于首页显示
 	 *
-	 * @param page
-	 * @param articleType
 	 * @return
 	 */
 	PageInfo<Article> selectBySelectiveForArticle(Optional<Integer> ofNullable, Integer typeId);

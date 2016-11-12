@@ -46,7 +46,6 @@ public class TemplateProcessor extends BaseComponent {
 				e.printStackTrace();
 			}
 		}).start();
-		;
 	}
 
 	public void processor() throws Exception {
@@ -59,7 +58,7 @@ public class TemplateProcessor extends BaseComponent {
 		File file = new File(rootPath + "/ciki");
 		FileUtils.deleteDirectory(file);
 		file.mkdir();
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		HashMap<String, Object> hashMap = new HashMap<>();
 		hashMap.put("cikis", cikis);
 		printTemplate(hashMap, "indexPage.ftl", file.getPath() + "/index.html");
 		cikis.forEach(c -> {
@@ -68,7 +67,7 @@ public class TemplateProcessor extends BaseComponent {
 			c.getCikis().forEach(a -> {
 				if (a.getCateLevel() == CateLevelEnum.ITEM) {
 					try {
-						HashMap<String, Object> hashMap2 = new HashMap<String, Object>();
+						HashMap<String, Object> hashMap2 = new HashMap<>();
 						hashMap2.put("cateIndex", c.getEnIndex());
 						hashMap2.put("cate", c.getTitle());
 						hashMap2.put("ciki", a);
@@ -84,8 +83,8 @@ public class TemplateProcessor extends BaseComponent {
 	}
 
 	private void printTemplate(Map<String, Object> data, String templateName, String outputPath)
-			throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException,
-			UnsupportedEncodingException, FileNotFoundException, TemplateException {
+			throws IOException,
+			TemplateException {
 		Template template = cfg.getTemplate(templateName);
 		Writer out = new OutputStreamWriter(new FileOutputStream(outputPath), "UTF-8");
 		template.process(data, out);
@@ -97,9 +96,7 @@ public class TemplateProcessor extends BaseComponent {
 		Ciki record = new Ciki();
 		record.setParentId(parentId);
 		List<Ciki> categories = this.cikiMapper.select(record);
-		categories.stream().parallel().forEach(c -> {
-			c.setCikis(this.getCikisByParentId(c.getId()));
-		});
+		categories.forEach(c -> c.setCikis(this.getCikisByParentId(c.getId())));
 		return categories;
 	}
 

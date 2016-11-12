@@ -1,16 +1,15 @@
 package com.chulung.common.util;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 public class NetUtil {
 
 	public static String getIpAddr(HttpServletRequest request) {
-		String ipAddress = null;
+		String ipAddress;
 		ipAddress = request.getHeader("x-forwarded-for");
 		if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
 			ipAddress = request.getHeader("Proxy-Client-IP");
@@ -52,8 +51,7 @@ public class NetUtil {
 		HttpServletRequest request = servletRequestAttributes.getRequest();
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
-			for (int i = 0; i < cookies.length; i++) {
-				Cookie cookie = cookies[i];
+			for (Cookie cookie : cookies) {
 				if (name.equals(cookie.getName())) {
 					return cookie;
 				}

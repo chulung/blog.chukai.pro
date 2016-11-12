@@ -23,14 +23,6 @@ public class ImageUtil {
 	 * 
 	 * @param imgFormat
 	 * 
-	 * @param srcImgPath
-	 *            需要添加水印的图片的路径
-	 * @param outImgPath
-	 *            添加水印后图片输出路径
-	 * @param markContentColor
-	 *            水印文字的颜色
-	 * @param waterMarkContent
-	 *            水印的文字
 	 * @return
 	 */
 	public static byte[] mark(InputStream is, String imgFormat) {
@@ -73,7 +65,7 @@ public class ImageUtil {
 	 * @param g
 	 * @return 水印文字总长度
 	 */
-	public static int getWatermarkLength(String waterMarkContent, Graphics2D g) {
+	private static int getWatermarkLength(String waterMarkContent, Graphics2D g) {
 		return g.getFontMetrics(g.getFont()).charsWidth(waterMarkContent.toCharArray(), 0, waterMarkContent.length());
 	}
 

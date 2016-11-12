@@ -1,8 +1,7 @@
 package com.chulung.search;
 
-import javax.persistence.Transient;
-
 /**
+ * 索引实现接口
  * Created by chulung on 2016/11/10.
  */
 public interface Indexable {

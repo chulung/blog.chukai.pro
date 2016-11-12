@@ -192,7 +192,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		bean.setIsDelete(IsDeleteEnum.N);
 		PageHelper.startPage(startPage.orElse(1), PAGE_SIZE);
 		Page<Article> page = (Page<Article>) articleMapper.selectBySelectiveForBlog(bean);
-		PageInfo<Article> info = new PageInfo<Article>();
+		PageInfo<Article> info = new PageInfo<>();
 		info.setList(convertToSummary(page));
 		info.setTotal(page.getTotal());
 		info.setPages(page.getPages());
@@ -214,17 +214,13 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	@CCache(liveSeconds = 3600)
 	public CommonInfo getCommonInfo() {
 		// 归档信息
-		List<ArticleFiling> list = new ArrayList<ArticleFiling>();
+		List<ArticleFiling> list = new ArrayList<>();
 		ArticleDto bean = new ArticleDto();
 		bean.setIsDelete(IsDeleteEnum.N);
-		articleMapper.selectBySelectiveForBlog(bean).parallelStream().map(article -> article.getCreateTime())
+		articleMapper.selectBySelectiveForBlog(bean).parallelStream().map(Article::getCreateTime)
 				.map(localDate -> YearMonth.of(localDate.getYear(), localDate.getMonthValue()))
-				.collect(Collectors.groupingBy(yearMonth -> yearMonth, Collectors.counting())).forEach((k, v) -> {
-					list.add(new ArticleFiling(k, v.intValue()));
-				});
-		list.sort((o1, o2) -> {
-			return o2.compareTo(o1);
-		});
+				.collect(Collectors.groupingBy(yearMonth -> yearMonth, Collectors.counting())).forEach((k, v) -> list.add(new ArticleFiling(k, v.intValue())));
+		list.sort((o1, o2) -> o2.compareTo(o1));
 		CommonInfo commonInfo = new CommonInfo(list);
 		commonInfo.setPopularArticles(this.listPopularArticles());
 		commonInfo.setRecentlyComments(this.commentsService.listRecentlyComments());

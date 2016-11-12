@@ -15,7 +15,7 @@ import com.chulung.craft.service.VisitorInfoService;
 @Component
 public class Tracker extends BaseComponent {
 
-	private TransferQueue<VisitorInfo> visitorInfos = new LinkedTransferQueue<VisitorInfo>();
+	private TransferQueue<VisitorInfo> visitorInfos = new LinkedTransferQueue<>();
 	@Resource
 	private VisitorInfoService visitorInfoService;
 
@@ -24,9 +24,9 @@ public class Tracker extends BaseComponent {
 		new Thread(() -> {
 			try {
 				Thread.sleep(10000);
-				while (true) {
+				do {
 					this.visitorInfoService.insertVisitorInfo(this.visitorInfos.take());
-				}
+				} while (true);
 			} catch (Exception e) {
 				this.errorLog(e);
 			}

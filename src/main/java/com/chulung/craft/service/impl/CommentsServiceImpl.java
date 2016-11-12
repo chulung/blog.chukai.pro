@@ -51,7 +51,7 @@ public class CommentsServiceImpl extends BaseService implements CommentsService 
 		PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
 		Page<Comments> page = (Page<Comments>) commentsMapper.select(pageIn.getRecord());
 		// 防暴露email
-		page.stream().forEach(p -> p.setEmail(null));
+		page.forEach(p -> p.setEmail(null));
 		return PaginationResult.of(page);
 	}
 
