@@ -9,13 +9,13 @@
 	<link href="favicon.ico" type="image/x-icon" rel="shortcut icon">
 	<!-- bower:css -->
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="${assetsRoot}/markdown/lib/codemirror/codemirror.min.css" />
-	<link rel="stylesheet" href="${assetsRoot}/cmind/hotbox/hotbox.css" />
-	<link rel="stylesheet" href="${assetsRoot}/cmind/kityminder-core/dist/kityminder.core.css" />
-	<link rel="stylesheet" href="${assetsRoot}/cmind/color-picker/dist/color-picker.min.css" />
+	<link rel="stylesheet" href="${assetsRoot}markdown/lib/codemirror/codemirror.min.css" />
+	<link rel="stylesheet" href="${assetsRoot}kityminder/hotbox/hotbox.css" />
+	<link rel="stylesheet" href="${assetsRoot}kityminder/kityminder-core/dist/kityminder.core.css" />
+	<link rel="stylesheet" href="${assetsRoot}kityminder/color-picker/dist/color-picker.min.css" />
 	<!-- endbower -->
-	<link rel="stylesheet" href="${assetsRoot}/cmind/kityminder.editor.min.css">
-	<link rel="stylesheet" href="${assetsRoot}/cmind/cmind.css">
+	<link rel="stylesheet" href="${assetsRoot}kityminder/kityminder.editor.min.css">
+	<link rel="stylesheet" href="${assetsRoot}/craft/css/cmind.css">
 </head>
 <body ng-app="cmind" ng-controller="MainController">
 <div>
@@ -40,16 +40,16 @@
 <script src="${assetsRoot}markdown/lib/codemirror/mode/markdown/markdown.js"></script>
 <script src="${assetsRoot}markdown/lib/codemirror/addon/mode/overlay.js"></script>
 <script src="${assetsRoot}markdown/lib/codemirror/mode/gfm/gfm.js"></script>
-<script src="${assetsRoot}cmind/angular-ui-codemirror/ui-codemirror.min.js"></script>
+<script src="${assetsRoot}kityminder/angular-ui-codemirror/ui-codemirror.min.js"></script>
 <script src="${assetsRoot}markdown/lib/marked.min.js"></script>
-<script src="${assetsRoot}cmind/kity/dist/kity.min.js"></script>
-<script src="${assetsRoot}cmind/hotbox/hotbox.min.js"></script>
-<script src="${assetsRoot}cmind/json-diff/json-diff.js"></script>
-<script src="${assetsRoot}cmind/kityminder-core/dist/kityminder.core.min.js"></script>
-<script src="${assetsRoot}cmind/color-picker/dist/color-picker.min.js"></script>
+<script src="${assetsRoot}kityminder/kity/dist/kity.min.js"></script>
+<script src="${assetsRoot}kityminder/hotbox/hotbox.min.js"></script>
+<script src="${assetsRoot}kityminder/json-diff/json-diff.js"></script>
+<script src="${assetsRoot}kityminder/kityminder-core/dist/kityminder.core.min.js"></script>
+<script src="${assetsRoot}kityminder/color-picker/dist/color-picker.min.js"></script>
 <!-- endbower -->
 
-<script src="${assetsRoot}cmind/kityminder.editor.js"></script>
+<script src="${assetsRoot}kityminder/kityminder.editor.js"></script>
 
 
 <script>
