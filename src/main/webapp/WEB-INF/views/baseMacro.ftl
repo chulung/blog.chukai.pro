@@ -88,7 +88,7 @@
     <#if base_showHeader=='1'>
 
         <!-- #header -->
-        <section id="header" style="background-image: url('${assetsRoot}/craft/img/bg.jpg');">
+        <section id="header" style="background-image: url('${assetsRoot}theme/css/bg.jpg');">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -185,7 +185,7 @@
 <script type="text/javascript"  src="${assetsRoot}theme/js/navigation.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/skip-link-focus-fix.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/script.js"></script>
-<script data-main='${assetsRoot}${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script data-main='/assets/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 <script>
 </body>
 </html>

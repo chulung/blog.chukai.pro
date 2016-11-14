@@ -39,7 +39,7 @@
             <li  class="none">
                 <div class="popular-entry-container">
                     <div class="entry-image">
-                        <img src="${assetsRoot}/craft/img/logo.jpg">
+                        <img src="${assetsRoot}theme/img/logo.jpg">
                     </div><!-- .entry-image -->
                     <div class="entry-content">
                         <h4 class="entry-title">

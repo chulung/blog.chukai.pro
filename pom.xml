@@ -42,13 +42,6 @@
 		</dependency>
 		<!-- 这个插件没有maven版本，手动依赖-->
 		<dependency>
-			<groupId>com.hankcs</groupId>
-			<artifactId>hanlp-solr-plugin</artifactId>
-			<version>1.0.3</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/hanlp-solr-plugin-1.0.3.jar</systemPath>
-		</dependency>
-		<dependency>
 			<groupId>com.chulung</groupId>
 			<artifactId>ccache</artifactId>
 			<version>1.1-SNAPSHOT</version>
@@ -264,6 +257,7 @@
 						</goals>
 						<configuration>
 							<outputDirectory>src/main/webapp/WEB-INF/lib</outputDirectory>
+							<includeScope>compile</includeScope>
 						</configuration>
 					</execution>
 				</executions>

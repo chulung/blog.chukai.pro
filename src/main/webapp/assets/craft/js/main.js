@@ -1,7 +1,7 @@
 // contents of main.js:
 require
 		.config({
-			bathUrl : assetsRoot+'craft/js/',
+			bathUrl : '/assets/craft/js/',
 		});
 
 // Start the main app logic.
