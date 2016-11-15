@@ -6,10 +6,10 @@
   <head>
     <title>Backend-chulung's craft</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon"	href="${assetsRoot}/craft/img/favicon.ico"	type="image/x-icon" />
+    <link rel="shortcut icon"	href="/assets/craft/img/favicon.ico"	type="image/x-icon" />
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="${assetsRoot}backend/css/backend.css" rel="stylesheet"/>
+    <link href="/assets/backend/css/backend.css" rel="stylesheet"/>
     <#list basecss as c>
 	<link href="${assetsRoot}${c}"  rel="stylesheet"/>
 	</#list>
@@ -21,8 +21,8 @@
 
 				<#nested>
 	<script>var assetsRoot="${assetsRoot}"</script>
-	<script>var module="${assetsRoot}backend/js/${moduleName!''}.js"</script>
-	<script data-main='${assetsRoot}backend/js/${baseJs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+	<script>var module="/assets/backend/js/${moduleName!''}.js"</script>
+	<script data-main='/assets/backend/js/${baseJs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 </html>
 </#macro> 
 </#compress>
