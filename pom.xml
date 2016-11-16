@@ -46,11 +46,6 @@
 			<artifactId>ccache</artifactId>
 			<version>1.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>com.google.code.findbugs</groupId>
-			<artifactId>jsr305</artifactId>
-			<version>3.0.1</version>
-		</dependency>
 		<!-- http://mvnrepository.com/artifact/org.pegdown/pegdown 基于java的markdown解析器 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -203,6 +198,22 @@
 			<version>${lucene.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.logback-extensions</groupId>
+			<artifactId>logback-ext-spring</artifactId>
+			<version>0.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+
 		<!--lucene end-->
 		<!-- tomcat已自带 scope设为provided -->
 		<dependency>
@@ -242,25 +253,6 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>${maven-dependency-plugin.version}</version>
-				<executions>
-					<!-- 复制依赖包到/WEB-INF/lib下<开发环境使用[无时会报ClassNotFoundException]，测试环境，stg环境均需要去掉> -->
-					<execution>
-						<id>copy-lib</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>src/main/webapp/WEB-INF/lib</outputDirectory>
-							<includeScope>compile</includeScope>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

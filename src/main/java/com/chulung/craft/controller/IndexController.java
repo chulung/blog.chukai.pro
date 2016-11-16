@@ -93,7 +93,7 @@ public class IndexController extends BaseController {
 	@RequestMapping("column/{columnType}")
 	public ModelAndView getArticles(@PathVariable String columnType) {
 		ColumnType c=this.columnTypeSevice.getEnNameColumnMap().get(columnType);
-		if (c==null) throw  new PageNotFoundException();
+		if (c==null) return new ModelAndView("redirect:/");
 		return getArticlePage(1, c.getId()).addObject("column",c);
 	}
 

@@ -30,6 +30,16 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript"  src="https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+            //cdn可能导致图片加载失败，访问原站
+            $("img").on("error",function () {
+                $(this).attr("src",$(this).attr("src").replace('static.',''))
+                $(this).off("error");
+            });
+        })
+    </script>
 </head>
 <body class="home blog">
 <div id="page" class="site">
@@ -88,7 +98,7 @@
     <#if base_showHeader=='1'>
 
         <!-- #header -->
-        <section id="header" style="background-image: url('${assetsRoot}theme/css/bg.jpg');">
+        <section id="header" style="background-image: url('https://static.chulung.com/assets/theme/css/bg.jpg');">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -175,7 +185,7 @@
 </div><!-- #page -->
 <script>var assetsRoot="${assetsRoot}"</script>
 <script>var module="${moduleName!''}"</script>
-<script type="text/javascript"  src="https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <script type="text/javascript"  src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/jquery.justifiedGallery.min.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/jquery.magnific-popup.min.js"></script>
@@ -186,7 +196,7 @@
 <script type="text/javascript"  src="${assetsRoot}theme/js/skip-link-focus-fix.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/script.js"></script>
 <script data-main='/assets/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-<script>
+
 </body>
 </html>
 </#macro>

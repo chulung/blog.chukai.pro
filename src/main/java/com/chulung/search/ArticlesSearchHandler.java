@@ -80,6 +80,7 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
 
     public List<Article> search(String key) {
         try {
+
             return this.cSearchIndex.search(key).stream().map(cSearchDocument -> {
                 Article article = new Article();
                 article.setIdFromDocId(cSearchDocument.getId());

@@ -74,7 +74,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			throw new MethodRuntimeExcetion("拒绝访问");
 		}
 		if (a.getTypeId()==1) {
-			a.setContext(a.getContext()+ (a.getTypeId()!=3 && StringUtil.isBlank(a.getLicense())?configService.getValueBykey(ConfigKeyEnum.RESET_SEARCH_INDEX, ConfigKeyEnum.ARTICLE_LICENSE.name()):a.getLicense()));
+			a.setContext(a.getContext()+ (a.getTypeId()!=3 && StringUtil.isBlank(a.getLicense())?configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()):a.getLicense()));
 		}
 		return a;
 	}

@@ -21,6 +21,7 @@ public class SearchController extends  BaseController{
     public
     @ResponseBody
     ModelAndView search(@RequestParam(defaultValue = "CSearch") String word) {
+        if (word.length() > 20) word = word.substring(0, 20);
         return  modelAndView().addObject("articles",this.articlesSearchHandler.search(word)).addObject("word",word);
     }
 }
