@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Responsive personal blog and portfolio template">
+    <meta name="description" content="chulung's craft">
     <meta name="keywords" content="${base_keywords}">
-    <meta name="author" content="template ninja">
+    <meta name="author" content="chulung">
     <link rel="shortcut icon"	href="${assetsRoot}/craft/img/favicon.ico"	type="image/x-icon" />
     <title>${base_title}-chulung's craft</title>
 
@@ -185,7 +185,6 @@
 </div><!-- #page -->
 <script>var assetsRoot="${assetsRoot}"</script>
 <script>var module="${moduleName!''}"</script>
-
 <script type="text/javascript"  src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/jquery.justifiedGallery.min.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/jquery.magnific-popup.min.js"></script>
@@ -196,7 +195,17 @@
 <script type="text/javascript"  src="${assetsRoot}theme/js/skip-link-focus-fix.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/script.js"></script>
 <script data-main='/assets/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
+<script>
+(function(){
+    var e = /([http|https]:\/\/chulung\.com)/gi;
+    if (e.test(window.location.href)) {
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    }
+})();
+</script>
 </body>
 </html>
 </#macro>

@@ -1,4 +1,4 @@
-<#macro page title js=[] css=[] keywords="" showHeader="">
+<#macro page title js=[] css=[] keywords="chulung,chulung's craft,chulung的博客" showHeader="">
 <#include "WEB-INF/views/baseMacro.ftl">     
 <@base base_title=title mainjs='craft/js/main' base_css=css base_keywords="chulung,chulung's craft,chulung.com" base_showHeader=showHeader>
     <#nested>
