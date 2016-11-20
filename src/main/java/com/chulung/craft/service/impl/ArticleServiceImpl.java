@@ -93,6 +93,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		// 判断是否发布文章
 		if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
 			Article article = Article.of(articleDraft);
+			article.setIsDelete(IsDeleteEnum.N);
 			if (article.getId() == null) {
 				article.setAuthor(user.getNickName());
 				article.setCreateTime(LocalDateTime.now());
@@ -177,8 +178,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			record.setId(id);
 			record.setIsDelete(IsDeleteEnum.Y);
 			this.articleDraftMapper.updateByPrimaryKeySelective(record);
+		}else {
+			throw new MethodRuntimeExcetion("草稿不存在,id=" + id);
 		}
-		throw new MethodRuntimeExcetion("草稿不存在,id=" + id);
 	}
 
 	private String generatingSummary(String context) {

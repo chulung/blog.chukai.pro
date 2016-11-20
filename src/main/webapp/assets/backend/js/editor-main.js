@@ -2,7 +2,7 @@
 requirejs
 		.config({
 			// 静态分离路径
-			baseUrl : assetsRoot+"/markdown/lib/",
+			baseUrl : assetsRoot+"markdown/lib/",
 			paths : {
 				jquery : "https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
 				bootstrap : 'https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min',
@@ -15,7 +15,7 @@ requirejs
 				jqueryflowchart : "jquery.flowchart.min",
 				sequenceDiagram : "sequence-diagram.min",
 				katex : "https://cdn.bootcss.com/KaTeX/0.1.1/katex.min",
-				editormd : "../editormd.amd", // Using Editor.md amd version
+				editormd : "../editormd.amd.min", // Using Editor.md amd version
 				ciki : "../../backend/js/ciki",
 				contextMenu : "https://cdn.bootcss.com/bootstrap-contextmenu/0.3.4/bootstrap-contextmenu"
 			// for
