@@ -32,7 +32,7 @@ public class CommentsController extends BaseController {
 		return commentsService.postComments(comments) ? successMap() : errorMap();
 	}
 
-	@RequestMapping(value = { "/list/{articleId}" })
+	@RequestMapping(value = { "/list/{articleId}" }, method = RequestMethod.GET)
 	public @ResponseBody PaginationResult<Comments> listComments(Integer page,@PathVariable Integer articleId) {
 		PageIn<Comments> pageIn=new PageIn<Comments>(0, Constants.DEFAULT_PAGE_SIZE, new Comments(articleId));
 		return commentsService.listComments(pageIn);

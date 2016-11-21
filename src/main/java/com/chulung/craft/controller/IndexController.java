@@ -41,7 +41,7 @@ public class IndexController extends BaseController {
 	 * @return
 	 */
 	// @Cache(key = "Article-index", timeToLive = 30)
-	@RequestMapping(value = { "/", "/index.html", "" })
+	@RequestMapping(value = { "/", "/index.html", "" }, method = RequestMethod.GET)
 	public ModelAndView getIndex() {
 		return getArticlePage(1, null);
 	}
@@ -64,7 +64,7 @@ public class IndexController extends BaseController {
 	 * @param month
 	 * @return
 	 */
-	@RequestMapping(value = "/monthFilings/{year}-{month}")
+	@RequestMapping(value = "/monthFilings/{year}-{month}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView getMonthFilings(@PathVariable Integer year, @PathVariable Integer month) {
 		return modelAndView().addObject("articles", articleService.getArticlesByYearMonth(year, month));
 	}
@@ -90,14 +90,14 @@ public class IndexController extends BaseController {
 	 * 按栏目名显示文章列表
 	 * @return
 	 */
-	@RequestMapping("column/{columnType}")
+	@RequestMapping(value = "column/{columnType}", method = RequestMethod.GET)
 	public ModelAndView getArticles(@PathVariable String columnType) {
 		ColumnType c=this.columnTypeSevice.getEnNameColumnMap().get(columnType);
 		if (c==null) return new ModelAndView("redirect:/");
 		return getArticlePage(1, c.getId()).addObject("column",c);
 	}
 
-	@RequestMapping("/about")
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public ModelAndView about() {
 		Article article = articleService.findArticleById(20);
 		double wook = (Instant.now().getEpochSecond() - Instant.parse("2015-03-01T09:00:00.00Z").getEpochSecond())

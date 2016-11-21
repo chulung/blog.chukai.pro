@@ -59,7 +59,7 @@ public class BackendController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = { "", "/" })
+	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public ModelAndView index() {
 		return modelAndView("/backend/index");
 	}

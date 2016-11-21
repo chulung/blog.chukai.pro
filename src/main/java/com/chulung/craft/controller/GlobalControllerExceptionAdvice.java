@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,7 +50,7 @@ public class GlobalControllerExceptionAdvice extends BaseController {
 	@ExceptionHandler(Exception.class)
 	public @ResponseBody ModelMap Excetion(Exception excetion) throws IOException {
 		//忽略参数类型异常
-		if (excetion instanceof MethodArgumentTypeMismatchException) {
+		if (excetion instanceof MethodArgumentTypeMismatchException || excetion instanceof HttpRequestMethodNotSupportedException) {
 			return new ModelMap().addAttribute("error", "501");
 		}
 		errorLog(excetion);
