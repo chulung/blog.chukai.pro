@@ -66,7 +66,7 @@ public class IndexController extends BaseController {
 	 */
 	@RequestMapping(value = "/monthFilings/{year}-{month}")
 	public @ResponseBody ModelAndView getMonthFilings(@PathVariable Integer year, @PathVariable Integer month) {
-		return modelAndView().addObject("Articles", articleService.getArticlesByYearMonth(year, month));
+		return modelAndView().addObject("articles", articleService.getArticlesByYearMonth(year, month));
 	}
 
 	/**
