@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,27 +30,13 @@ import freemarker.template.TemplateNotFoundException;
 import freemarker.template.Version;
 
 @Component
-public class TemplateProcessor extends BaseComponent {
+public class TemplateProcessor extends BaseComponent implements InitializingBean{
 	@Autowired
 	private CikiMapper cikiMapper;
 	private Configuration cfg = new Configuration(new Version("2.3.23"));
 
-	public TemplateProcessor() throws IOException {
-		cfg.setDirectoryForTemplateLoading(new File(getClass().getResource("/com/chulung/ciki/templates/").getPath()));
-		cfg.setDefaultEncoding("UTF-8");
-		cfg.setNumberFormat("#");
-		new Thread(() -> {
-			try {
-				Thread.sleep(1000);
-				this.processor();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}).start();
-	}
-
 	public void processor() throws Exception {
-		logger.info("starting processor...");
+		logger.info("starting ciki processor...");
 		generateCiki(this.getCikisByParentId(1));
 	}
 
@@ -100,4 +87,17 @@ public class TemplateProcessor extends BaseComponent {
 		return categories;
 	}
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        cfg.setDirectoryForTemplateLoading(new File(getClass().getResource("/com/chulung/ciki/templates/").getPath()));
+        cfg.setDefaultEncoding("UTF-8");
+        cfg.setNumberFormat("#");
+        new Thread(() -> {
+            try {
+                this.processor();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
 }
