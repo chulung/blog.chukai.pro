@@ -98,12 +98,12 @@
     <#if base_showHeader=='1'>
 
         <!-- #header -->
-        <section id="header" style="background-image: url('https://static.chulung.com/assets/theme/css/bg.jpg');">
+        <section id="header" style="background-image: url('https://static.chulung.com/assets/theme/img/bg.jpg');">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <blockquote>
-                            <p><#if column?? && column.slogans??>${column.slogans} <#else>'你知道自己要变得优秀，也知道如何变得优秀，还有过不够优秀的教训，那还愣着干什么。</#if></p>
+                            <p><#if column?? && column.slogans??>${column.slogans} <#else>Talk is cheap. Show me the code。</#if></p>
                             <small>chulung</small>
                         </blockquote>
                     </div>

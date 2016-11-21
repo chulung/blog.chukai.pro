@@ -8,7 +8,7 @@ require
 /**
  * module 当前模块自定义js,值来自于页面
  */
-requirejs([ 'sidebarInfo','global','lib/tmpl', module], function(sidebarInfo,
+requirejs([ 'sidebarInfo','global', module], function(sidebarInfo,
 		global, module) {
 	global.init();
 	sidebarInfo.init();

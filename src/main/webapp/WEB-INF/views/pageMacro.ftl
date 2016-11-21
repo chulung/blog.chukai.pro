@@ -20,7 +20,7 @@
                 <h2 class="widget-title">chulung</h2>
                 <span class="author-subtitle">Developer</span>
                 <div class="author-description">
-                    <p>目前专职java后端开发，平时也从前端折腾到服务器，感觉正在走向全栈，业余生活包括下厨，旅行，健身，摄影..</p>
+                    <p>目前从事后端开发，关注网站架构，平时也从前端折腾到数据库，感觉正在走向全栈，业余时会下厨，旅行，健身...</p>
                     <a href="/about" class="more-link"><span class="moretext">More</span></a>
                 </div><!-- .author-description -->
                 <div class="author-footer">
