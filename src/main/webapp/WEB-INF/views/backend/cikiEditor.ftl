@@ -1,5 +1,5 @@
 <#include "WEB-INF/views/backend/pageMacro.ftl">     
-<@page mainJs="editor-main" miancss=["/markdown/lib/codemirror/codemirror.min.css","/markdown/css/editormd.css"]>
+<@page mainJs="editor-main" miancss=["markdown/lib/codemirror/codemirror.min.css","markdown/css/editormd.css"]>
 <div class="row">
 	<div id="editor-tree" class="col-md-2"></div>
 	<div class="col-md-10">
