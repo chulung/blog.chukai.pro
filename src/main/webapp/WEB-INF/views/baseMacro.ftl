@@ -14,10 +14,8 @@
 
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="${assetsRoot}theme/css/css.css" rel="stylesheet" type="text/css">
-    <link href="${assetsRoot}theme/css/css_001.css" rel="stylesheet" type="text/css">
-    <link href="${assetsRoot}theme/css/font-awesome.min.css" rel="stylesheet">
-    <link href="${assetsRoot}theme/css/magnific-popup.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/magnific-popup.js/1.0.1/magnific-popup.min.css" rel="stylesheet">
     <link href="${assetsRoot}theme/css/style.min.css" rel="stylesheet">
     <link href="${assetsRoot}theme/css/skin-skyblue.min.css" rel="stylesheet">
     <#list base_css as c>
@@ -98,7 +96,7 @@
     <#if base_showHeader=='1'>
 
         <!-- #header -->
-        <section id="header" style="background-image: url('https://static.chulung.com/assets/theme/img/bg.jpg');">
+        <section id="header" style="background-image: url('//ww1.sinaimg.cn/mw690/967a8004gw1fa2f8npjnkj20sg0g0juy.jpg');">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -130,14 +128,14 @@
     </div><!-- #content -->
 
     <!-- site-footer -->
-    <footer id="colophon" class="site-footer" role="contentinfo">
+    <footer id="colophon" class="site-footer" style="background-image: url('${assetscdn}theme/img/footer-background.png');" role="contentinfo">
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
                     <section class="widget widget_tag_cloud">
                         <h3 class="widget-title">标签</h3>
                         <div class="tagcloud">
-                            <a href="/tags">tag</a>
+                            <a href="#tags">tag</a>
                         </div>
                     </section><!-- .widget_tag_cloud -->
                 </div><!-- .col-sm-3 -->
@@ -147,6 +145,7 @@
                         <h3 class="widget-title">链接</h3>
                         <ul>
                             <li><a href="https://github.com/chulung" rel="external nofollow" target="_blank">GitHub</a></li>
+                            <li><a href="http://www.cnblogs.com/chulung/" rel="external nofollow" target="_blank">博客园</a></li>
                             <li><a href="/jenkins" rel="external nofollow" target="_blank">Jenkins</a></li>
                         </ul>
                     </section><!-- .widget_recent_entries -->
@@ -155,7 +154,7 @@
                 <div class="col-sm-4">
                     <section class="widget danish_widget_site_info">
                         <div class="site-info">
-                            <h3 class="site-brand"><i class="fa fa-recycle"></i> chulung.</h3>
+                            <h3 class="site-brand"><i class="fa fa-user-circle"></i> chulung.</h3>
                             <p>上海</p>
                             <p>chulung@chulung.com</p>
                         </div><!-- .site-info -->
@@ -170,12 +169,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 copy-left">
-                    Copyright © 2016 <a href="https://chulung.com/"><strong>chulung</strong></a>. All Right Reserved.
+                    Copyright © 2015-2016 <a href="/"><strong>chulung</strong></a>. All Right Reserved.
                 </div><!-- .col-sm-6 -->
                 <div class="col-sm-6 copy-right">
                     <ul class="social-icon">
                         <li><a href="https://github.com/chulung/chulung.com" target="_blank" class="icon-twitter"  rel="external nofollow" ><i class="fa fa-github"></i></a></li>
                         <li><a href="mailto:chulung@chulung.com" target="_blank" class="icon-instagram"  rel="external nofollow" ><i class="fa fa-envelope"></i></a></li>
+                        <li><a href="http://weibo.com/chulung" target="_blank" class="icon-instagram"  rel="external nofollow" ><i class="fa fa-weibo"></i></a></li>
                     </ul>
                 </div><!-- .col-sm-6 -->
             </div><!-- .row -->
@@ -186,11 +186,11 @@
 <script>var assetsRoot="${assetsRoot}"</script>
 <script>var module="${moduleName!''}"</script>
 <script type="text/javascript"  src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript"  src="${assetsRoot}theme/js/jquery.justifiedGallery.min.js"></script>
-<script type="text/javascript"  src="${assetsRoot}theme/js/jquery.magnific-popup.min.js"></script>
-<script type="text/javascript"  src="${assetsRoot}theme/js/imagesloaded.pkgd.min.js"></script>
-<script type="text/javascript"  src="${assetsRoot}theme/js/jquery.isotope.min.js"></script>
-<script type="text/javascript"  src="${assetsRoot}theme/js/masonry.pkgd.min.js"></script>
+<script type="text/javascript"  src="//cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.js"></script>
+<script type="text/javascript"  src="//cdn.bootcss.com/magnific-popup.js/1.0.1/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript"  src="//cdn.bootcss.com/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript"  src="//cdn.bootcss.com/jquery.isotope/1.5.25/jquery.isotope.min.js"></script>
+<script type="text/javascript"  src="//cdn.bootcss.com/masonry/3.1.5/masonry.pkgd.min.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/navigation.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/skip-link-focus-fix.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/script.js"></script>

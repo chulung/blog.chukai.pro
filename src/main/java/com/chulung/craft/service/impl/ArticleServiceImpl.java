@@ -39,7 +39,7 @@ import com.github.pagehelper.PageInfo;
 
 @Service
 public class ArticleServiceImpl extends BaseService implements ArticleService {
-	private static final int PAGE_SIZE = 4;
+	private static final int PAGE_SIZE = 5;
 
 	@Resource
 	private WebSessionSupport webSessionSupport;
