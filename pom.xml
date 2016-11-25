@@ -269,12 +269,12 @@
 				<configuration>
 					<!-- path to optimizer json config file(s) -->
 					<configFile>
-						${basedir}/src/main/webapp/assets_src/build/buildConfig.js
-					</configFile>
+                        build/buildConfig.js
+                    </configFile>
 					<!-- optional path to optimizer executable -->
 					<optimizerFile>
-						${basedir}/src/main/webapp/assets_src/build/r.js
-					</optimizerFile>
+                        build/r.js
+                    </optimizerFile>
 					<!-- optional parameters to optimizer executable -->
 					<optimizerParameters>
 						<parameter>optimize=uglify</parameter>
@@ -301,7 +301,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<packagingExcludes>ciki/**,assets_src/**</packagingExcludes>
+					<packagingExcludes>ciki/**,assets_src/**,assets/build.txt</packagingExcludes>
 					<webResources>
 						<resource>
 							<directory>lib/</directory>
