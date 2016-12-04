@@ -9,6 +9,9 @@
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"
 			typeHandler="com.chulung.craft.mapper.typehandler.LocalDateTimeTypeHandler" />
 		<result column="author" property="author" jdbcType="VARCHAR" />
+		<result column="pic" property="pic" jdbcType="VARCHAR" />
+		<result column="type_name" property="typeName" jdbcType="VARCHAR" />
+		<result column="summary" property="summary" jdbcType="VARCHAR" />
 		<result column="type_id" property="typeId" jdbcType="INTEGER" />
 		<result column="derivation_Url" property="derivationUrl"
 			jdbcType="VARCHAR" />
@@ -25,12 +28,16 @@
 		version
 		from article
 	</select>
-	<select id="selectBySelectiveForBlog" resultMap="BaseResultMap">
+	<select id="listPopularArticles" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, title, type_name,create_time
+		from article
+	</select>
+	<select id="selectSummarys" resultMap="BaseResultMap">
 		select id, title, create_time,
 		update_time, author,
-		type_id, derivation_Url,
-		version,
-		is_delete, context,visit_count,comment_count
+		type_id, derivation_url,pic,summary,type_name,
+		is_delete,context,visit_count,comment_count
 		from
 		article
 		where 1=1

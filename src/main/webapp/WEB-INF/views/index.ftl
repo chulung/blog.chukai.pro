@@ -22,7 +22,7 @@
                           </span><!-- .byline -->
                     <span class="reading-estimation">${article.visitCount} 阅读</span>
                 </div><!-- .post-meta -->
-                <p>${article.context}.
+                <p>${article.summary}.
                     <a href="/article/${article.id}" class="more-link">
                         <span class="moretext">阅读全文</span>
                     </a><!-- .more-link -->

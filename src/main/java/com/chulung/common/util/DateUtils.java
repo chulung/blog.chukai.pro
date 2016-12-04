@@ -22,18 +22,18 @@ public class DateUtils extends DateFormatUtils {
 	/**
 	 * 转化默认格式 yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @param date
-	 * @return
+	 * @param date date
+	 * @return String
 	 */
-	public static final String format(Date date) {
+	public static String format(Date date) {
 		return format(date, DEFAULT_DATE_FORMAT);
 	}
 
 	/**
 	 * 转化为默认格式 yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @param localDateTime
-	 * @return
+	 * @param localDateTime localDateTime
+	 * @return String
 	 */
 	public static String format(LocalDateTime localDateTime) {
 		return localDateTime.format(DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT));

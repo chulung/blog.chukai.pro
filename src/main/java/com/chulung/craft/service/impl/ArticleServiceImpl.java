@@ -4,10 +4,13 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
+import com.chulung.common.util.ArticleBuilder;
 import com.chulung.craft.model.User;
 import com.chulung.craft.service.*;
 import com.chulung.ccache.annotation.CCache;
@@ -52,9 +55,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	private ArticleDraftMapper articleDraftMapper;
 
 	@Autowired
-	private ColumnTypeSevice columnTypeSevice;
-
-	@Autowired
 	private ConfigService configService;
 
 
@@ -67,6 +67,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	@Autowired
 	private ArticlesSearchHandler articlesSearchHandler;
 
+	@Autowired
+	private ArticleBuilder articleBuilder;
+    @Autowired
+    private ColumnTypeSevice columnTypeSevice;
 
 	public Article findArticleById(Integer id) {
 		Article a = articleMapper.selectByPrimaryKey(id);
@@ -92,7 +96,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		// 转码html 防止其他
 		// 判断是否发布文章
 		if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
-			Article article = Article.of(articleDraft);
+			Article article = articleBuilder.buildeFromDraft(articleDraft);
 			article.setIsDelete(IsDeleteEnum.N);
 			if (article.getId() == null) {
 				article.setAuthor(user.getNickName());
@@ -141,7 +145,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			articleDraft.setIsDelete(IsDeleteEnum.N);
 			articleDraft.setCreateTime(LocalDateTime.now());
 			if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
-				Article article = Article.of(articleDraft);
+				Article article = articleBuilder.buildeFromDraft(articleDraft);
 				if (articleMapper.insertSelective(article)<= 0) {
 					throw new MethodRuntimeExcetion("插入文章失败");
 				}
@@ -183,19 +187,22 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		}
 	}
 
-	private String generatingSummary(String context) {
-		String replaceAll = context.replaceAll("</?.*?>", "");
-		return replaceAll.length() > 120 ? replaceAll.substring(0, 120) + "..." : replaceAll;
-	}
+
 
 	public PageInfo<Article> selectBySelectiveForArticle(Optional<Integer> startPage, Integer typeId) {
 		ArticleDto bean = new ArticleDto();
 		bean.setTypeId(typeId);
 		bean.setIsDelete(IsDeleteEnum.N);
 		PageHelper.startPage(startPage.orElse(1), PAGE_SIZE);
-		Page<Article> page = (Page<Article>) articleMapper.selectBySelectiveForBlog(bean);
+		Page<Article> page = (Page<Article>) articleMapper.selectSummarys(bean);
+        page.forEach(a->{
+            Article r=new Article();
+            r.setId(a.getId() );
+            r.setSummary(articleBuilder.generatingSummary(a.getContext()));
+            articleMapper.updateByPrimaryKeySelective(r);
+        });
 		PageInfo<Article> info = new PageInfo<>();
-		info.setList(convertToSummary(page));
+		info.setList(page);
 		info.setTotal(page.getTotal());
 		info.setPages(page.getPages());
 		return info;
@@ -209,7 +216,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		ArticleDto bean = new ArticleDto();
 		bean.setCreateTimeStart(LocalDateTime.of(year, month, 1, 0, 0));
 		bean.setCreateTimeEnd(LocalDateTime.of(year, month, 1, 0, 0).plus(1, ChronoUnit.MONTHS));
-		return convertToSummary(articleMapper.selectBySelectiveForBlog(bean));
+		return articleMapper.selectSummarys(bean);
 	}
 
 	@Override
@@ -219,7 +226,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		List<ArticleFiling> list = new ArrayList<>();
 		ArticleDto bean = new ArticleDto();
 		bean.setIsDelete(IsDeleteEnum.N);
-		articleMapper.selectBySelectiveForBlog(bean).parallelStream().map(Article::getCreateTime)
+		//按月统计文章数量
+		articleMapper.selectSummarys(bean).parallelStream().map(Article::getCreateTime)
 				.map(localDate -> YearMonth.of(localDate.getYear(), localDate.getMonthValue()))
 				.collect(Collectors.groupingBy(yearMonth -> yearMonth, Collectors.counting())).forEach((k, v) -> list.add(new ArticleFiling(k, v.intValue())));
 		list.sort((o1, o2) -> o2.compareTo(o1));
@@ -227,14 +235,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		commonInfo.setPopularArticles(this.listPopularArticles());
 		commonInfo.setRecentlyComments(this.commentsService.listRecentlyComments());
 		return commonInfo;
-	}
-
-	public List<Article> convertToSummary(List<Article> articles) {
-		return articles.stream().map(a -> {
-			a.setContext(generatingSummary(a.getContext()));
-            a.setTypeName(this.columnTypeSevice.getIdColumnMap().get(a.getTypeId()).getCnName());
-			return a;
-		}).collect(Collectors.toList());
 	}
 
 	@Override
@@ -248,7 +248,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		PageHelper.startPage(1,3,"id desc");
 		Article record=new Article();
 		record.setTypeId(1);
-		return this.convertToSummary(this.articleMapper.select(record));
+		return this.articleMapper.listPopularArticles(record);
 
 	}
 }

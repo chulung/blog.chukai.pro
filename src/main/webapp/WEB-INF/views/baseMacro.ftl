@@ -1,7 +1,7 @@
 <#compress>
 <#macro base base_title mainjs="" base_css=[] base_keywords="" base_showHeader="" >
 <!DOCTYPE html>
-<html class="csstransforms csstransforms3d csstransitions" lang="zh-CN" xmlns:wb="http://open.weibo.com/wb">
+<html class="csstransforms csstransforms3d csstransitions" lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -101,7 +101,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <blockquote>
-                            <p><#if column?? && column.slogans??>${column.slogans} <#else>Talk is cheap. Show me the code。</#if></p>
+                            <p><#if column?? && column.slogans??>${column.slogans}<#else>This is chulung's craft</#if></p>
                             <small>chulung</small>
                         </blockquote>
                     </div>
@@ -194,7 +194,7 @@
 <script type="text/javascript"  src="${assetsRoot}theme/js/navigation.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/skip-link-focus-fix.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/script.js"></script>
-<script data-main='/assets/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script data-main='${assetsRoot2}/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 <script>
 (function(){
     var e = /([http|https]:\/\/chulung\.com)/gi;
@@ -206,7 +206,6 @@
     }
 })();
 </script>
-<script src="https://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2168115281" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
 </#macro>

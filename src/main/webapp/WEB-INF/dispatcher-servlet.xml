@@ -83,6 +83,7 @@
 			<map>
 				<entry key="DateTime" value-ref="dateTimeTemplate" />
 				<entry key="assetsRoot" value="${assetsRoot}"></entry>
+				<entry key="assetsRoot2" value="${assetsRoot2}"></entry>
 				<entry key="assetscdn" value="${assetscdn}"></entry>
 			</map>
 		</property>

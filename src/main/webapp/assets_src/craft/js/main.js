@@ -1,7 +1,7 @@
 // contents of main.js:
 require
 		.config({
-			bathUrl : '/assets/craft/js/',
+			bathUrl : '/assets_src/craft/js/',
             paths:{
                 lscache:"//cdn.bootcss.com/lscache/1.0.7/lscache.min"
             }

@@ -1,6 +1,8 @@
 package com.chulung.craft.model;
 
 import java.time.LocalDateTime;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,13 +46,26 @@ public class Article extends BaseModel implements Indexable{
     private IsDeleteEnum isDelete;
 
     private String context;
+
     private Integer commentCount;
+
     private Integer visitCount;
+
     private String pic;
-    @Transient
+
     private String typeName;
 
     private String license;
+
+    private String summary;
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 
     public String getLicense() {
         return license;
@@ -177,17 +192,4 @@ public class Article extends BaseModel implements Indexable{
         this.context = context == null ? null : context.trim();
     }
 
-    public static Article of(ArticleDraft articleDraft) {
-        Article article = new Article();
-        article.setId(articleDraft.getArticleId());
-        article.setContext(StringEscapeUtils.unescapeHtml4(articleDraft.getHtmlContext()));
-        article.setUpdateTime(articleDraft.getUpdateTime());
-        article.setAuthor(articleDraft.getAuthor());
-        article.setIsDelete(articleDraft.getIsDelete());
-        article.setTitle(articleDraft.getTitle());
-        article.setCreateTime(articleDraft.getCreateTime());
-        article.setTypeId(articleDraft.getTypeId());
-        article.setVersion(articleDraft.getVersion());
-        return article;
-    }
 }

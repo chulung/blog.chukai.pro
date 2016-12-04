@@ -30,7 +30,7 @@ public class ArticleController extends BaseController {
 	@RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView getArticle(@PathVariable Integer id, HttpServletRequest request) {
 		Article article = articleService.findArticleById(id);
-		return modelAndView("article").addObject("article", article).addObject("typeId", article.getTypeId());
+		return modelAndView("article").addObject("article", article).addObject("typeId", article.getTypeId()).addObject("isLogin",webSessionSupport.islogIn());
 	}
 
 }

@@ -8,7 +8,8 @@ import com.chulung.craft.model.Article;
 public interface ArticleMapper extends BaseMapper<Article>{
 	List<Article> selectTileList();
 	List<Article> selectListForMetaClblog(String siteName);
-	List<Article> selectBySelectiveForBlog(ArticleDto record);
+	List<Article> selectSummarys(ArticleDto record);
 	int incrementVisitCount(Integer articleId);
 
+    List<Article> listPopularArticles(Article record);
 }
