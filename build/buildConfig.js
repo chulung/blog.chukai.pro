@@ -12,11 +12,12 @@
     removeCombined: true,//如果为true，将从输出目录中删除已合并的文件
     //打包配置path
     paths:{
-        jquery:"empty:",//jquery不打包，global已自带
+        jquery:"empty:",//jquery不打包
         main:"craft/js/main",
         global:"craft/js/global",
         article:"craft/js/article",
-        sidebarInfo:"craft/js/sidebarInfo"
+        sidebarInfo:"craft/js/sidebarInfo",
+        lscache:"empty:"
     },
     modules:[
         {
