@@ -62,7 +62,7 @@ public class MetaWeblogServiceImpl implements MetaClBlogLogService{
         Post post = new Post();
         post.setTitle(article.getTitle());
         post.setDateCreated(DateUtils.toDate(article.getCreateTime()));
-        post.setDescription(article.getContext()
+        post.setDescription(article.getContent()
                 +String.format(METACKBLOG_COMMENTS, article.getId(), article.getId(),
                 DateUtils.format(LocalDateTime.now()), site.getDedcription()) +  configService.getValueBykey(ConfigKeyEnum.RESET_SEARCH_INDEX, ConfigKeyEnum.ARTICLE_LICENSE.name()));
         if (metaCLBlogLog != null) {

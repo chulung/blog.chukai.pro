@@ -18,7 +18,7 @@
         </header><!-- .entry-header -->
 
         <div class="entry-content">
-             ${article.context}
+             ${article.content}
             <#if article.derivationUrl??>
                 <p>原文链接:<a href="${article.derivationUrl}" target="_blank">${article.derivationUrl}</a></p>
             <#else>

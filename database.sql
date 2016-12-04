@@ -40,7 +40,7 @@ DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
 `id`  int(10) NOT NULL AUTO_INCREMENT COMMENT 'id' ,
 `title`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标题' ,
-`context`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容' ,
+`content`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容' ,
 `create_time`  datetime NOT NULL ,
 `update_time`  datetime NOT NULL ,
 `author`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '作者' ,
@@ -69,7 +69,7 @@ CREATE TABLE `article_draft` (
 `id`  int(10) NOT NULL AUTO_INCREMENT COMMENT 'id' ,
 `article_id`  int(10) NULL DEFAULT NULL COMMENT '文章id' ,
 `title`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标题' ,
-`context`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容' ,
+`content`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容' ,
 `html_context`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
 `create_time`  datetime NOT NULL ,
 `update_time`  datetime NOT NULL ,
@@ -98,7 +98,7 @@ CREATE TABLE `article_draft_history` (
 `id`  int(10) NULL DEFAULT NULL COMMENT 'id' ,
 `article_id`  int(10) NULL DEFAULT NULL COMMENT '文章id' ,
 `title`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题' ,
-`context`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容' ,
+`content`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容' ,
 `html_context`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
 `create_time`  datetime NULL DEFAULT NULL ,
 `update_time`  datetime NULL DEFAULT NULL ,
@@ -123,7 +123,7 @@ AUTO_INCREMENT=87
 DROP TABLE IF EXISTS `chatter`;
 CREATE TABLE `chatter` (
 `id`  int(10) NOT NULL AUTO_INCREMENT ,
-`context`  varchar(280) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`content`  varchar(280) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `create_time`  datetime NOT NULL ,
 `is_delete`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N' ,
 PRIMARY KEY (`id`)

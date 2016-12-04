@@ -12,8 +12,8 @@
 		<result column="type_id" property="typeId" jdbcType="INTEGER" />
 		<result column="is_delete" property="isDelete" jdbcType="CHAR" />
 		<result column="version" property="version" jdbcType="INTEGER" />
-		<result column="context" property="context" jdbcType="LONGVARCHAR" />
-		<result column="html_context" property="htmlContext" jdbcType="LONGVARCHAR" />
+		<result column="content" property="content" jdbcType="LONGVARCHAR" />
+		<result column="html_content" property="htmlContent" jdbcType="LONGVARCHAR" />
 	</resultMap>
 	<select id="selectTileList" resultMap="BaseResultMap" parameterType="com.chulung.craft.model.ArticleDraft">
 		select id,article_id, title, create_time, update_time, author,is_publish,type_id,

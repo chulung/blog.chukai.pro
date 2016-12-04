@@ -18,15 +18,15 @@ public class ArticleBuilder {
     public  Article buildeFromDraft(ArticleDraft articleDraft){
             Article article = new Article();
             article.setId(articleDraft.getArticleId());
-            String htmlContext = articleDraft.getHtmlContext();
+            String htmlContent = articleDraft.getHtmlContent();
             Pattern p = Pattern.compile("(https:)?//(\\w+\\.)?chulung.com.+?(\\.\\w{3})");
-            Matcher m = p.matcher(htmlContext);
+            Matcher m = p.matcher(htmlContent);
             if(m.find()){
                 article.setPic(m.group());
             }
             article.setTypeName(this.columnTypeSevice.getIdColumnMap().get(articleDraft.getTypeId()).getCnName());
-            article.setSummary(generatingSummary(htmlContext));
-            article.setContext(StringEscapeUtils.unescapeHtml4(htmlContext));
+            article.setSummary(generatingSummary(htmlContent));
+            article.setContent(StringEscapeUtils.unescapeHtml4(htmlContent));
             article.setUpdateTime(articleDraft.getUpdateTime());
             article.setAuthor(articleDraft.getAuthor());
             article.setIsDelete(articleDraft.getIsDelete());
@@ -36,8 +36,8 @@ public class ArticleBuilder {
             article.setVersion(articleDraft.getVersion());
             return article;
     }
-    public String generatingSummary(String context) {
-        String replaceAll = context.replaceFirst("<h[1-9](.+)?</h[1-9]>","").replaceAll("</?.*?>", "");
+    public String generatingSummary(String content) {
+        String replaceAll = content.replaceFirst("<h[1-9](.+)?</h[1-9]>","").replaceAll("</?.*?>", "");
         return replaceAll.length() > 100 ? replaceAll.substring(0, 97) + "..." : replaceAll;
     }
 }

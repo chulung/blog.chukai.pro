@@ -1,20 +1,16 @@
 package com.chulung.craft.model;
 
 import java.time.LocalDateTime;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 import com.chulung.craft.enumerate.IsDeleteEnum;
 import com.chulung.jackson.databind.LocalDateTimeSerializer;
 import com.chulung.search.DocType;
 import com.chulung.search.Indexable;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.apache.commons.lang3.StringEscapeUtils;
 
 
 public class Article extends BaseModel implements Indexable{
@@ -45,7 +41,7 @@ public class Article extends BaseModel implements Indexable{
 
     private IsDeleteEnum isDelete;
 
-    private String context;
+    private String content;
 
     private Integer commentCount;
 
@@ -184,12 +180,12 @@ public class Article extends BaseModel implements Indexable{
         this.isDelete = isDelete;
     }
 
-    public String getContext() {
-        return context;
+    public String getContent() {
+        return content;
     }
 
-    public void setContext(String context) {
-        this.context = context == null ? null : context.trim();
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
 }

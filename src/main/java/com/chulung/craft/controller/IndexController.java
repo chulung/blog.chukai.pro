@@ -5,7 +5,6 @@ import java.time.Instant;
 import java.util.Optional;
 
 import com.chulung.craft.dto.CommonInfo;
-import com.chulung.craft.exception.PageNotFoundException;
 import com.chulung.craft.model.Article;
 import com.chulung.craft.model.ColumnType;
 import com.chulung.craft.service.ArticleService;
@@ -107,7 +106,7 @@ public class IndexController extends BaseController {
 		int pinyin = (int)((Instant.now().getEpochSecond() - Instant.parse("1867-01-01T00:00:00.00Z").getEpochSecond())
 				/ 31536000);
 
-		article.setContext( String.format(article.getContext(),pinyin, wook));
+		article.setContent( String.format(article.getContent(),pinyin, wook));
 		return modelAndView("article").addObject("article",article);
 	}
 }

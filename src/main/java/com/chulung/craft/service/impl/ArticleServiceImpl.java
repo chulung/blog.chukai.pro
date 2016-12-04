@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
@@ -78,7 +76,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			throw new MethodRuntimeExcetion("拒绝访问");
 		}
 		if (a.getTypeId()==1) {
-			a.setContext(a.getContext()+ (a.getTypeId()!=3 && StringUtil.isBlank(a.getLicense())?configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()):a.getLicense()));
+			a.setContent(a.getContent()+ (a.getTypeId()!=3 && StringUtil.isBlank(a.getLicense())?configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()):a.getLicense()));
 		}
 		return a;
 	}
@@ -198,7 +196,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         page.forEach(a->{
             Article r=new Article();
             r.setId(a.getId() );
-            r.setSummary(articleBuilder.generatingSummary(a.getContext()));
+            r.setSummary(articleBuilder.generatingSummary(a.getContent()));
             articleMapper.updateByPrimaryKeySelective(r);
         });
 		PageInfo<Article> info = new PageInfo<>();

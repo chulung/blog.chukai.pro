@@ -17,7 +17,7 @@
 			jdbcType="VARCHAR" />
 		<result column="version" property="version" jdbcType="INTEGER" />
 		<result column="is_delete" property="isDelete" jdbcType="CHAR" />
-		<result column="context" property="context" jdbcType="LONGVARCHAR" />
+		<result column="content" property="content" jdbcType="LONGVARCHAR" />
 		<result column="visit_count" property="visitCount" jdbcType="INTEGER" />
 		<result column="comment_count" property="commentCount"
 			jdbcType="INTEGER" />
@@ -37,7 +37,7 @@
 		select id, title, create_time,
 		update_time, author,
 		type_id, derivation_url,pic,summary,type_name,
-		is_delete,context,visit_count,comment_count
+		is_delete,content,visit_count,comment_count
 		from
 		article
 		where 1=1

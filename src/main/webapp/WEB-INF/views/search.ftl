@@ -17,7 +17,7 @@
 
                         <div class="entry-summary">
                             <p>
-                                 ${article.context!}
+                                 ${article.content!}
                                 <a href="/article/${article.id!}" class="more-link">
                                     <span class="moretext">阅读全文</span>
                                 </a>

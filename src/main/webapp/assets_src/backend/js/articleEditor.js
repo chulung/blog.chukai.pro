@@ -14,7 +14,7 @@ requirejs([ "jquery","bootstrap"], function($) {
 				"id" : draftId,
 				"title" : title,
 				"typeId" : $('#typeId').val(),
-				"context" : editor.getMarkdown(),
+				"content" : editor.getMarkdown(),
 				"htmlContext":editor.getHTML(),
 				"isPublish" : $("#isPublish").is(":checked") ? 'Y' : 'N',
 				"pushBlog" :$("#pushBlog").is(":checked")?1:0,
@@ -37,7 +37,7 @@ requirejs([ "jquery","bootstrap"], function($) {
 	
 	draftId && $.getJSON("/backend/articleDraft/"+draftId,function(rt){
 		if (rt.result) {
-			editor.setMarkdown(rt.result.context);
+			editor.setMarkdown(rt.result.content);
 			$('#isPublish').prop("checked",
 					rt.result.isPublish=='Y');
 			$('#title').val(rt.result.title);

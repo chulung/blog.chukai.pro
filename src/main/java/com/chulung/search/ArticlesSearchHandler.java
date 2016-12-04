@@ -52,7 +52,7 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
     }
 
     private String replaceHtmlTag(Article article) {
-        return article.getContext().replaceAll("</?[^<]+>", "").replaceAll("\\s+", "");
+        return article.getContent().replaceAll("</?[^<]+>", "").replaceAll("\\s+", "");
     }
 
     /**
@@ -85,7 +85,7 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
                 Article article = new Article();
                 article.setIdFromDocId(cSearchDocument.getId());
                 article.setTitle(cSearchDocument.getTitle());
-                article.setContext(cSearchDocument.getContext());
+                article.setContent(cSearchDocument.getContent());
                 return article;
             }).collect(Collectors.toList());
         } catch (Exception e) {

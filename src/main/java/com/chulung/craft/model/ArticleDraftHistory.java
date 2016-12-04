@@ -33,9 +33,9 @@ public class ArticleDraftHistory extends BaseModel {
 
 	private Integer version;
 
-	private String context;
+	private String content;
 
-	private String htmlContext;
+	private String htmlContent;
 
 	public Integer getId() {
 		return id;
@@ -118,19 +118,19 @@ public class ArticleDraftHistory extends BaseModel {
 		this.version = version;
 	}
 
-	public String getContext() {
-		return context;
+	public String getContent() {
+		return content;
 	}
 
-	public void setContext(String context) {
-		this.context = context == null ? null : context.trim();
+	public void setContent(String content) {
+		this.content = content == null ? null : content.trim();
 	}
 
-	public String getHtmlContext() {
-		return htmlContext;
+	public String getHtmlContent() {
+		return htmlContent;
 	}
 
-	public void setHtmlContext(String htmlContext) {
-		this.htmlContext = htmlContext == null ? null : htmlContext.trim();
+	public void setHtmlContent(String htmlContent) {
+		this.htmlContent = htmlContent == null ? null : htmlContent.trim();
 	}
 }
