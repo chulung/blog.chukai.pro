@@ -40,7 +40,7 @@
             <li  class="none">
                 <div class="popular-entry-container">
                     <div class="entry-image">
-                        <img src="https://static.chulung.com/assets/theme/img/logo.jpg">
+                        <img src="${assetsRoot}theme/img/logo.jpg">
                     </div><!-- .entry-image -->
                     <div class="entry-content">
                         <h4 class="entry-title">

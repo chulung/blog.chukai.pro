@@ -2,6 +2,9 @@
 require
 		.config({
 			bathUrl : '/assets/craft/js/',
+            paths:{
+                lscache:"//cdn.bootcss.com/lscache/1.0.7/lscache.min"
+            }
 		});
 
 // Start the main app logic.
