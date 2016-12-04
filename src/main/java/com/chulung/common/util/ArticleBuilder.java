@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,7 +31,7 @@ public class ArticleBuilder {
             article.setAuthor(articleDraft.getAuthor());
             article.setIsDelete(articleDraft.getIsDelete());
             article.setTitle(articleDraft.getTitle());
-            article.setCreateTime(articleDraft.getCreateTime());
+            article.setCreateTime(LocalDateTime.now());
             article.setTypeId(articleDraft.getTypeId());
             article.setVersion(articleDraft.getVersion());
             return article;
