@@ -25,7 +25,7 @@ public class ArticleBuilder {
                 article.setPic(m.group());
             }
             article.setTypeName(this.columnTypeSevice.getIdColumnMap().get(articleDraft.getTypeId()).getCnName());
-            article.setSummary(generatingSummary(articleDraft.getContext()));
+            article.setSummary(generatingSummary(htmlContext));
             article.setContext(StringEscapeUtils.unescapeHtml4(htmlContext));
             article.setUpdateTime(articleDraft.getUpdateTime());
             article.setAuthor(articleDraft.getAuthor());
