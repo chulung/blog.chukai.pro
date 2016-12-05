@@ -15,7 +15,7 @@ requirejs([ "jquery","bootstrap"], function($) {
 				"title" : title,
 				"typeId" : $('#typeId').val(),
 				"content" : editor.getMarkdown(),
-				"htmlContext":editor.getHTML(),
+				"htmlContent":editor.getHTML(),
 				"isPublish" : $("#isPublish").is(":checked") ? 'Y' : 'N',
 				"pushBlog" :$("#pushBlog").is(":checked")?1:0,
 				"license":$("#license").val()
