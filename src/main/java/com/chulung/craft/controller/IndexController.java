@@ -99,14 +99,7 @@ public class IndexController extends BaseController {
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public ModelAndView about() {
 		Article article = articleService.findArticleById(20);
-		double wook = (Instant.now().getEpochSecond() - Instant.parse("2015-03-01T09:00:00.00Z").getEpochSecond())
-				/ 31536000.0;
-		wook = new BigDecimal(wook).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 
-		int pinyin = (int)((Instant.now().getEpochSecond() - Instant.parse("1867-01-01T00:00:00.00Z").getEpochSecond())
-				/ 31536000);
-
-		article.setContent( String.format(article.getContent(),pinyin, wook));
 		return modelAndView("article").addObject("article",article);
 	}
 }

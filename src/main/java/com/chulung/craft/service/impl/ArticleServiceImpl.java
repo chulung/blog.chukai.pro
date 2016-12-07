@@ -1,5 +1,7 @@
 package com.chulung.craft.service.impl;
 
+import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
@@ -74,6 +76,15 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 		Article a = articleMapper.selectByPrimaryKey(id);
 		if (a==null){
 			throw new MethodRuntimeExcetion("拒绝访问");
+		}
+		if (id==20){
+			double wook = (Instant.now().getEpochSecond() - Instant.parse("2015-03-01T09:00:00.00Z").getEpochSecond())
+					/ 31536000.0;
+			wook = new BigDecimal(wook).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+
+			int pinyin = (int)((Instant.now().getEpochSecond() - Instant.parse("1867-01-01T00:00:00.00Z").getEpochSecond())
+					/ 31536000);
+			a.setContent( String.format(a.getContent(),pinyin, wook));
 		}
 		if (a.getTypeId()==1) {
 			a.setContent(a.getContent()+ (a.getTypeId()!=3 && StringUtil.isBlank(a.getLicense())?configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()):a.getLicense()));
