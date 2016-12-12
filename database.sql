@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 112.124.127.23_3306
+Source Server         : cklinux
 Source Server Version : 50173
 Source Host           : 112.124.127.23:3306
 Source Database       : wckblog
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50173
 File Encoding         : 65001
 
-Date: 2016-10-17 22:18:12
+Date: 2016-12-12 09:49:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=MyISAM
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=82187
+AUTO_INCREMENT=97210
 
 ;
 
@@ -45,19 +45,23 @@ CREATE TABLE `article` (
 `update_time`  datetime NOT NULL ,
 `author`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '作者' ,
 `type_id`  int(10) NOT NULL COMMENT '文章类型' ,
+`type_name`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '类型名' ,
 `derivation_url`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '转载原文链接' ,
 `version`  int(10) NOT NULL DEFAULT 0 COMMENT '版本' ,
 `is_delete`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N' ,
 `comment_count`  int(10) NOT NULL DEFAULT 0 COMMENT '评论数' ,
 `visit_count`  int(10) NOT NULL DEFAULT 0 COMMENT '查看数' ,
-PRIMARY KEY (`id`),
+`pic`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文章默认图片' ,
+`license`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '版权声明' ,
+`summary`  varchar(400) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '摘要' ,
+PRIMARY KEY (`id`, `license`),
 UNIQUE INDEX `uk_title` USING BTREE (`title`) ,
 INDEX `idx_createtime` USING BTREE (`create_time`) ,
 INDEX `idx_typeid` USING BTREE (`type_id`) 
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=38
+AUTO_INCREMENT=64
 
 ;
 
@@ -70,7 +74,7 @@ CREATE TABLE `article_draft` (
 `article_id`  int(10) NULL DEFAULT NULL COMMENT '文章id' ,
 `title`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标题' ,
 `content`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容' ,
-`html_context`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`html_content`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
 `create_time`  datetime NOT NULL ,
 `update_time`  datetime NOT NULL ,
 `author`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
@@ -78,6 +82,7 @@ CREATE TABLE `article_draft` (
 `type_id`  int(10) NOT NULL ,
 `is_delete`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N' ,
 `version`  int(11) NOT NULL DEFAULT 1 ,
+`licence`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 PRIMARY KEY (`id`),
 UNIQUE INDEX `uk_title` USING BTREE (`title`) ,
 INDEX `idx_createtime` USING BTREE (`create_time`) ,
@@ -85,7 +90,7 @@ INDEX `idx_typeid` USING BTREE (`type_id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=42
+AUTO_INCREMENT=61
 
 ;
 
@@ -99,7 +104,7 @@ CREATE TABLE `article_draft_history` (
 `article_id`  int(10) NULL DEFAULT NULL COMMENT '文章id' ,
 `title`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '标题' ,
 `content`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容' ,
-`html_context`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`html_content`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
 `create_time`  datetime NULL DEFAULT NULL ,
 `update_time`  datetime NULL DEFAULT NULL ,
 `author`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
@@ -107,30 +112,14 @@ CREATE TABLE `article_draft_history` (
 `type_id`  int(10) NULL DEFAULT NULL ,
 `is_delete`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `version`  int(11) NULL DEFAULT 1 ,
+`licence`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 PRIMARY KEY (`history_id`),
 INDEX `idx_createtime` USING BTREE (`create_time`) ,
 INDEX `idx_typeid` USING BTREE (`type_id`) 
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=87
-
-;
-
--- ----------------------------
--- Table structure for `chatter`
--- ----------------------------
-DROP TABLE IF EXISTS `chatter`;
-CREATE TABLE `chatter` (
-`id`  int(10) NOT NULL AUTO_INCREMENT ,
-`content`  varchar(280) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-`create_time`  datetime NOT NULL ,
-`is_delete`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N' ,
-PRIMARY KEY (`id`)
-)
-ENGINE=MyISAM
-DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=13
+AUTO_INCREMENT=178
 
 ;
 
@@ -154,7 +143,24 @@ UNIQUE INDEX `uk_folder_name` USING BTREE (`title`, `cate_level`)
 )
 ENGINE=MyISAM
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=35
+AUTO_INCREMENT=41
+
+;
+
+-- ----------------------------
+-- Table structure for `column_type`
+-- ----------------------------
+DROP TABLE IF EXISTS `column_type`;
+CREATE TABLE `column_type` (
+`id`  int(10) NOT NULL AUTO_INCREMENT ,
+`cn_name`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`en_name`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`slogans`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+PRIMARY KEY (`id`)
+)
+ENGINE=MyISAM
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=9
 
 ;
 
@@ -169,14 +175,14 @@ CREATE TABLE `comments` (
 `comment`  varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' ,
 `create_time`  datetime NOT NULL ,
 `user_name`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-`email`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`email`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `is_delete`  varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N' COMMENT '是否删除' ,
 PRIMARY KEY (`id`),
 INDEX `idx_article_id` USING BTREE (`article_id`, `is_delete`) 
 )
 ENGINE=MyISAM
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=13
+AUTO_INCREMENT=29
 
 ;
 
@@ -185,33 +191,13 @@ AUTO_INCREMENT=13
 -- ----------------------------
 DROP TABLE IF EXISTS `config`;
 CREATE TABLE `config` (
-`id`  int(10) NOT NULL AUTO_INCREMENT ,
-`key`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-`value`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
-`comment`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
-PRIMARY KEY (`id`)
+`config_key`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`config_value`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' ,
+`config_comment`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+PRIMARY KEY (`config_key`)
 )
 ENGINE=MyISAM
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=1
-
-;
-
--- ----------------------------
--- Table structure for `dictionary`
--- ----------------------------
-DROP TABLE IF EXISTS `dictionary`;
-CREATE TABLE `dictionary` (
-`id`  int(10) NOT NULL AUTO_INCREMENT ,
-`dict_type`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '数据类型' ,
-`dict_value`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '值' ,
-`dict_desc`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
-`create_time`  datetime NOT NULL ,
-PRIMARY KEY (`id`)
-)
-ENGINE=MyISAM
-DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=11
 
 ;
 
@@ -230,7 +216,7 @@ UNIQUE INDEX `uk_site_aid` USING BTREE (`site`, `article_id`)
 )
 ENGINE=MyISAM
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=14
+AUTO_INCREMENT=20
 
 ;
 
@@ -268,7 +254,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=MyISAM
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=7810
+AUTO_INCREMENT=12157
 
 ;
 
@@ -291,68 +277,3 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 AUTO_INCREMENT=156116
 
 ;
-
--- ----------------------------
--- Auto increment value for `app_log`
--- ----------------------------
-ALTER TABLE `app_log` AUTO_INCREMENT=82187;
-
--- ----------------------------
--- Auto increment value for `article`
--- ----------------------------
-ALTER TABLE `article` AUTO_INCREMENT=38;
-
--- ----------------------------
--- Auto increment value for `article_draft`
--- ----------------------------
-ALTER TABLE `article_draft` AUTO_INCREMENT=42;
-
--- ----------------------------
--- Auto increment value for `article_draft_history`
--- ----------------------------
-ALTER TABLE `article_draft_history` AUTO_INCREMENT=87;
-
--- ----------------------------
--- Auto increment value for `chatter`
--- ----------------------------
-ALTER TABLE `chatter` AUTO_INCREMENT=13;
-
--- ----------------------------
--- Auto increment value for `ciki`
--- ----------------------------
-ALTER TABLE `ciki` AUTO_INCREMENT=35;
-
--- ----------------------------
--- Auto increment value for `comments`
--- ----------------------------
-ALTER TABLE `comments` AUTO_INCREMENT=13;
-
--- ----------------------------
--- Auto increment value for `config`
--- ----------------------------
-ALTER TABLE `config` AUTO_INCREMENT=1;
-
--- ----------------------------
--- Auto increment value for `dictionary`
--- ----------------------------
-ALTER TABLE `dictionary` AUTO_INCREMENT=11;
-
--- ----------------------------
--- Auto increment value for `meta_cl_blog_log`
--- ----------------------------
-ALTER TABLE `meta_cl_blog_log` AUTO_INCREMENT=14;
-
--- ----------------------------
--- Auto increment value for `user`
--- ----------------------------
-ALTER TABLE `user` AUTO_INCREMENT=2;
-
--- ----------------------------
--- Auto increment value for `user_tracker`
--- ----------------------------
-ALTER TABLE `user_tracker` AUTO_INCREMENT=7810;
-
--- ----------------------------
--- Auto increment value for `visitor_info`
--- ----------------------------
-ALTER TABLE `visitor_info` AUTO_INCREMENT=156116;
