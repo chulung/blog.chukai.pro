@@ -40,7 +40,7 @@
 		is_delete,content,visit_count,comment_count
 		from
 		article
-		where 1=1
+		where type_id !=4
 		<if test="typeId != null">
 			and type_id= #{typeId,jdbcType=INTEGER}
 		</if>

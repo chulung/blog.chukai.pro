@@ -109,10 +109,11 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 			article.setIsDelete(IsDeleteEnum.N);
 			if (article.getId() == null) {
 				article.setAuthor(user.getNickName());
-				article.setCreateTime(LocalDateTime.now());
 				articleMapper.insertSelective(article);
 				articleDraft.setArticleId(article.getId());
 			} else {
+				//不修改创建日期
+				article.setCreateTime(null);
 				articleMapper.updateByPrimaryKeySelective(article);
 			}
 			pushBlog(articleDraft);
