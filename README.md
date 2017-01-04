@@ -25,7 +25,14 @@
 
 ##表结构 
 
-[database.sql](/database.sql)
+[chulung_craft.sql](/chulung_craft.sql)
+
+##依赖的模块及轮子
+[CSearch](https://github.com/chulung/CSearch)：搜索的轮子
+[FastDFS_Client](https://github.com/chulung/FastDFS_Client)：fastdfs客户端
+[assets](https://github.com/chulung/chulung.github.io)：第三方静态文件
+[MetaClblog](https://github.com/chulung/MetaCLblog):metaweblog的博客推送
+[CCache](https://github.com/chulung/CCache)：缓存的轮子
 
 ##致谢以下开源项目
 
@@ -35,10 +42,10 @@ markdown编辑器:[editor.md](https://github.com/pandao/editor.md)
 
 思维导图编辑器:[kityminder-editor](https://github.com/fex-team/kityminder-editor)
 
-FastDFS客户端:(java)[FastDFS_Client](https://github.com/chulung/FastDFS_Client)
+FastDFS客户端:(java)[FastDFS_Client](https://github.com/tobato/FastDFS_Client)
 
 ##License
 
 The MIT License.
 
-Copyright (c) 2015-2016 chulung
+Copyright (c) 2015-2017 chulung
