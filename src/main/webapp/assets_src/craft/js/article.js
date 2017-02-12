@@ -24,14 +24,14 @@ define(function() {
                 }
             });
         });
-    }
+    };
     exports.listComments=function () {
         $.ajax({
             url : '/comments/list/' + $("input[name='articleId']").val(),
             type : 'get',
             dataType : 'json',
             success : function(data) {
-                $("#ul_comments").find("li:visible").remove()
+                $("#ul_comments").find("li:visible").remove();
                 var nLi=$("#ul_comments").find(".none");
                 $.each(data.list,(function () {
                     $li=nLi.clone().html("<span class='comment-author-link'>"+
@@ -40,11 +40,11 @@ define(function() {
                 }));
             }
         });
-    }
+    };
     exports.init=function () {
         exports.boundSubmitComments();
         exports.listComments();
-    }
+    };
 	return exports;
 });
 function validate(ids){

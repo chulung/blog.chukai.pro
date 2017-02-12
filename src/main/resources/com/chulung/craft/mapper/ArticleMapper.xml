@@ -44,6 +44,9 @@
 		<if test="typeId != null">
 			and type_id= #{typeId,jdbcType=INTEGER}
 		</if>
+		<if test="typeId == null">
+			and type_id in (1,2)
+		</if>
 		<if test="createTimeStart != null and createTimeEnd!=null">
 			and create_time between
 			#{createTimeStart,jdbcType=TIMESTAMP,typeHandler=com.chulung.craft.mapper.typehandler.LocalDateTimeTypeHandler}
