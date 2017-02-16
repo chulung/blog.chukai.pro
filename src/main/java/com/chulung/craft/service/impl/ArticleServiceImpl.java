@@ -255,7 +255,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 	@Override
 	public List<Article> listPopularArticles(){
-		PageHelper.startPage(1,3,"id desc");
+		PageHelper.startPage(1,3);
 		Article record=new Article();
 		record.setTypeId(1);
 		return this.articleMapper.listPopularArticles(record);

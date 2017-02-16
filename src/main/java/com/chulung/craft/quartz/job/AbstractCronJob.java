@@ -6,12 +6,13 @@ import com.chulung.craft.enumerate.LogType;
 import com.chulung.craft.model.AppLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.chulung.craft.enumerate.LogLevel;
 import com.chulung.craft.mapper.AppLogMapper;
 
-public abstract class AbstractCronJob {
+public abstract class AbstractCronJob implements InitializingBean{
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	protected AppLogMapper cronJobLogMapper;
@@ -32,4 +33,9 @@ public abstract class AbstractCronJob {
 	}
 
 	public abstract void execute() throws Exception;
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+
+	}
 }

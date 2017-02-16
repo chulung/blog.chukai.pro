@@ -1,6 +1,6 @@
 <#macro page title js=[] css=[] keywords="chulung,chulung's craft,chulung的博客" showHeader="">
 <#include "WEB-INF/views/baseMacro.ftl">     
-<@base base_title=title mainjs='craft/js/main' base_css=css base_keywords="chulung,chulung's craft,chulung.com" base_showHeader=showHeader>
+<@base base_title=title mainjs='/craft/js/config' base_css=css base_keywords="chulung,chulung's craft,chulung.com" base_showHeader=showHeader>
     <#nested>
 <div class="col-md-4">
     <section class="widget widget_search">
@@ -64,6 +64,13 @@
         <ul id="articleFilings">
         </ul>
     </section><!-- .widget_archive -->
+
+    <section class="widget widget_tag_cloud">
+        <h2 class="widget-title">Tags</h2>
+        <div class="tagcloud">
+            <a href="archive.html">beauty</a>
+        </div>
+    </section><!-- .widget_tag_cloud -->
 
 </div><!-- .col-md-4 -->
 </@base>

@@ -13,7 +13,7 @@
     //打包配置path
     paths:{
         jquery:"empty:",//jquery不打包
-        main:"craft/js/main",
+        config:"craft/js/config",
         global:"craft/js/global",
         article:"craft/js/article",
         sidebarInfo:"craft/js/sidebarInfo",
@@ -21,7 +21,7 @@
     },
     modules:[
         {
-            name:"main"
+            name:"config"
             //这里将购物车所有依赖模块打包成一个cart_main.js供发布使用
         }
     ],
@@ -30,7 +30,7 @@
     //   closure: 使用 Google's Closure Compiler 的简单优化模式
     //   closure.keepLines: 使用 closure，但保持换行
     //   none: 不压缩代码
-    optimize: "uglify",
+    optimize: "uglify2",
 
     // 使用 UglifyJS 时的可配置参数
     // See https://github.com/mishoo/UglifyJS for the possible values.

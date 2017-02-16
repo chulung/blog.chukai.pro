@@ -24,7 +24,7 @@ define(["lscache"], function (lscache) {
                         html: this.title
                     }));
                     $li.find(".entry-category").append($("<a>", {
-                        href: "/articles/page/1?typeId=" + this.typeId + "#content",
+                        href: "/articles?page=1&typeId=" + this.typeId + "#content",
                         html: this.typeName
                     }));
                     $li.find(".entry-datetime").html(this.createTime);

@@ -30,8 +30,8 @@
 	</select>
 	<select id="listPopularArticles" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
-		select id, title, type_name,create_time
-		from article order by visit_count DESC
+		select id, title, type_name,create_time,type_id
+		from article ORDER  by index_rank desc
 	</select>
 	<select id="selectSummarys" resultMap="BaseResultMap">
 		select id, title, create_time,

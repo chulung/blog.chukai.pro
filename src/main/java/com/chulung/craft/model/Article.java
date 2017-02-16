@@ -55,6 +55,8 @@ public class Article extends BaseModel implements Indexable{
 
     private String summary;
 
+    private Integer indexRank;
+
     public String getSummary() {
         return summary;
     }
@@ -188,4 +190,11 @@ public class Article extends BaseModel implements Indexable{
         this.content = content == null ? null : content.trim();
     }
 
+    public Integer getIndexRank() {
+        return indexRank;
+    }
+
+    public void setIndexRank(Integer indexRank) {
+        this.indexRank = indexRank;
+    }
 }
