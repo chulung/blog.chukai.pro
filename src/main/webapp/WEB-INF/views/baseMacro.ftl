@@ -73,7 +73,6 @@
                                             <li class="menu-item"><a href="/column/food ">吃货</a></li>
                                             <li class="menu-item"><a href="/column/travel">旅行</a></li>
                                             <li class="menu-item"><a href="/column/exercise">健身</a></li>
-                                            <li class="menu-item"><a href="/column/photography">摄影</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">工具</a>
