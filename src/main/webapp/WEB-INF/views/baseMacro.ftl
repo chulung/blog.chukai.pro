@@ -133,9 +133,8 @@
             <div class="row">
                 <div class="col-sm-4">
                     <section class="widget widget_tag_cloud">
-                        <h3 class="widget-title">标签</h3>
-                        <div class="tagcloud">
-                            <a href="#tags">tag</a>
+                        <h3 class="widget-title">全部标签</h3>
+                        <div id="all-tag" class="tagcloud">
                         </div>
                     </section><!-- .widget_tag_cloud -->
                 </div><!-- .col-sm-3 -->
@@ -194,7 +193,7 @@
 <script type="text/javascript"  src="${assetsRoot}theme/js/navigation.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/skip-link-focus-fix.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/script.js"></script>
-<script data-main='${assetsRoot2}/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script data-main='${assetsRoot}/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 <script>
 (function(){
     var e = /([http|https]:\/\/chulung\.com)/gi;

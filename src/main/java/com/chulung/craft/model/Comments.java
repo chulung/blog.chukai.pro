@@ -8,8 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.OrderBy;
 
 import com.chulung.jackson.databind.LocalDateTimeSerializer;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Comments extends BaseModel {
 	/**
 	 * 

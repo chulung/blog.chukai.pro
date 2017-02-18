@@ -30,25 +30,18 @@ public class NumberUtil {
 
 	/**
 	 * 线性函数归一化(Min-Max scaling)
-	 * @param arr
-	 * @return
+	 * @param arr 将arr归一化
 	 */
-	public static double []  normalization(double [] arr){
-		if (ArrayUtils.isEmpty(arr)) return  arr;
-
-		double max=arr[0];
-		double min=arr[0];
-
+	public static void  normalization(double [] arr){
+		if (ArrayUtils.isEmpty(arr)) return;
+		double max=arr[0],min=arr[0];
 		for (int i = 1; i < arr.length; i++) {
 			max=arr[i]>max?arr[i]:max;
 			min=arr[i]<min?arr[i]:min;
 		}
-
-		double[] rs=new double[arr.length];
 		double v = max - min;
 		for (int i = 0; i < arr.length; i++) {
-			rs[i]=(arr[i]-min)/ v;
+			arr[i]=(arr[i]-min)/ v;
 		}
-		return  rs;
 	}
 }

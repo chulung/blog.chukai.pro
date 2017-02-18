@@ -1,11 +1,14 @@
 package com.chulung.craft.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.Id;
 
 /**
  * 网站文章栏目类型
  * Created by ChuKai on 2016/11/6.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ColumnType extends  BaseModel{
 
     @Id

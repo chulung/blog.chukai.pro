@@ -7,7 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import com.chulung.craft.enumerate.CateLevelEnum;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Ciki {
 	@Id
 	private Integer id;

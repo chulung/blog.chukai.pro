@@ -18,7 +18,8 @@ requirejs([ "jquery","bootstrap"], function($) {
 				"htmlContent":editor.getHTML(),
 				"isPublish" : $("#isPublish").is(":checked") ? 'Y' : 'N',
 				"pushBlog" :$("#pushBlog").is(":checked")?1:0,
-				"license":$("#license").val()
+				"license":$("#license").val(),
+				"tags":$('#tags').val()
 			},
 			dataType : "json",
 			success : function(data) {
@@ -42,6 +43,7 @@ requirejs([ "jquery","bootstrap"], function($) {
 					rt.result.isPublish=='Y');
 			$('#title').val(rt.result.title);
 			$('#typeId').val(rt.result.typeId);
+			$('#tags').val(rt.result.tags);
 		}
 	})
 	return exports;

@@ -44,7 +44,7 @@
 		<if test="typeId != null">
 			and type_id= #{typeId,jdbcType=INTEGER}
 		</if>
-		<if test="typeId == null">
+		<if test="typeId == null and ids == null">
 			and type_id in (1,2)
 		</if>
 		<if test="createTimeStart != null and createTimeEnd!=null">
@@ -52,6 +52,13 @@
 			#{createTimeStart,jdbcType=TIMESTAMP,typeHandler=com.chulung.craft.mapper.typehandler.LocalDateTimeTypeHandler}
 			and
 			#{createTimeEnd,jdbcType=TIMESTAMP,typeHandler=com.chulung.craft.mapper.typehandler.LocalDateTimeTypeHandler}
+		</if>
+		<if test="ids != null">
+			and id in
+			<foreach item="item" index="index" collection="ids"
+					 open="(" separator="," close=")">
+				#{item}
+			</foreach>
 		</if>
 		and is_delete ='N'
 		order by create_time desc

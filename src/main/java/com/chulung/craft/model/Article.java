@@ -10,9 +10,11 @@ import com.chulung.craft.enumerate.IsDeleteEnum;
 import com.chulung.jackson.databind.LocalDateTimeSerializer;
 import com.chulung.search.DocType;
 import com.chulung.search.Indexable;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Article extends BaseModel implements Indexable{
     /**
      *
@@ -56,6 +58,16 @@ public class Article extends BaseModel implements Indexable{
     private String summary;
 
     private Integer indexRank;
+
+    private String tags;
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 
     public String getSummary() {
         return summary;

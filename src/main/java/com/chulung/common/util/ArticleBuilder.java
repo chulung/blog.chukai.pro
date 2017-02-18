@@ -34,6 +34,7 @@ public class ArticleBuilder {
             article.setCreateTime(LocalDateTime.now());
             article.setTypeId(articleDraft.getTypeId());
             article.setVersion(articleDraft.getVersion());
+            article.setTags(articleDraft.getTags());
             return article;
     }
     public String generatingSummary(String content) {

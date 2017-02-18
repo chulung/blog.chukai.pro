@@ -18,7 +18,9 @@
               <div>
                   <lable>license</lable>
                   <input id="license" type="text"/>
-			  </div>
+                  <lable>tags</lable>
+                  <input id="tags" type="text"/>
+              </div>
 		  </div>
           <div  id="editor-div"  class="panel-body" >
           </div>

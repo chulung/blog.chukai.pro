@@ -20,7 +20,7 @@
                     <span class="byline">
                             by <span class="author vcard"><a class="url fn n" href="javascript:;">${article.author}</a></span>
                           </span><!-- .byline -->
-                    <span class="reading-estimation">${article.visitCount} 阅读</span>
+                    <span class="reading-estimation">${article.visitCount} 点击</span>
                 </div><!-- .post-meta -->
                 <p>${article.summary}.
                     <a href="/article/${article.id}" class="more-link">

@@ -8,158 +8,170 @@ import javax.persistence.Transient;
 import com.chulung.craft.enumerate.IsDeleteEnum;
 import com.chulung.craft.enumerate.PublishStatusEnum;
 import com.chulung.jackson.databind.LocalDateTimeSerializer;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArticleDraft extends BaseModel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8858052175630827783L;
-	@Id
-	private Integer id;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -8858052175630827783L;
+    @Id
+    private Integer id;
 
-	private Integer articleId;
+    private Integer articleId;
 
-	private String title;
+    private String title;
 
-	private LocalDateTime createTime;
+    private LocalDateTime createTime;
 
-	private LocalDateTime updateTime;
+    private LocalDateTime updateTime;
 
-	private String author;
+    private String author;
 
-	private PublishStatusEnum isPublish;
+    private PublishStatusEnum isPublish;
 
-	private Integer typeId;
+    private Integer typeId;
 
-	private IsDeleteEnum isDelete;
+    private IsDeleteEnum isDelete;
 
-	private Integer version;
+    private Integer version;
 
-	private String content;
+    private String content;
 
-	private String htmlContent;
+    private String htmlContent;
 
-	@Transient
-	private String license;
+    @Transient
+    private String license;
 
-	/**
-	 * 是否推送博客到其他网站 0 否 1是
-	 */
-	@Transient
-	private int pushBlog;
+    private String tags;
 
-	public int getPushBlog() {
-		return pushBlog;
-	}
+    /**
+     * 是否推送博客到其他网站 0 否 1是
+     */
+    @Transient
+    private int pushBlog;
 
-	public void setPushBlog(int pushBlog) {
-		this.pushBlog = pushBlog;
-	}
+    public String getTags() {
+        return tags;
+    }
 
-	public String getLicense() {
-		return license;
-	}
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 
-	public void setLicense(String license) {
-		this.license = license;
-	}
+    public int getPushBlog() {
+        return pushBlog;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public void setPushBlog(int pushBlog) {
+        this.pushBlog = pushBlog;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public String getLicense() {
+        return license;
+    }
 
-	public Integer getArticleId() {
-		return articleId;
-	}
+    public void setLicense(String license) {
+        this.license = license;
+    }
 
-	public void setArticleId(Integer articleId) {
-		this.articleId = articleId;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setTitle(String title) {
-		this.title = title == null ? null : title.trim();
-	}
+    public Integer getArticleId() {
+        return articleId;
+    }
 
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	public LocalDateTime getCreateTime() {
-		return createTime;
-	}
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
+    }
 
-	public void setCreateTime(LocalDateTime createTime) {
-		this.createTime = createTime;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	public LocalDateTime getUpdateTime() {
-		return updateTime;
-	}
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
 
-	public void setUpdateTime(LocalDateTime updateTime) {
-		this.updateTime = updateTime;
-	}
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
 
-	public String getAuthor() {
-		return author;
-	}
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setAuthor(String author) {
-		this.author = author == null ? null : author.trim();
-	}
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
 
-	public PublishStatusEnum getIsPublish() {
-		return isPublish;
-	}
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
 
-	public void setIsPublish(PublishStatusEnum isPublish) {
-		this.isPublish = isPublish;
-	}
+    public String getAuthor() {
+        return author;
+    }
 
-	public Integer getTypeId() {
-		return typeId;
-	}
+    public void setAuthor(String author) {
+        this.author = author == null ? null : author.trim();
+    }
 
-	public void setTypeId(Integer typeId) {
-		this.typeId = typeId;
-	}
+    public PublishStatusEnum getIsPublish() {
+        return isPublish;
+    }
 
-	public IsDeleteEnum getIsDelete() {
-		return isDelete;
-	}
+    public void setIsPublish(PublishStatusEnum isPublish) {
+        this.isPublish = isPublish;
+    }
 
-	public void setIsDelete(IsDeleteEnum isDelete) {
-		this.isDelete = isDelete;
-	}
+    public Integer getTypeId() {
+        return typeId;
+    }
 
-	public Integer getVersion() {
-		return version;
-	}
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
 
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
+    public IsDeleteEnum getIsDelete() {
+        return isDelete;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public void setIsDelete(IsDeleteEnum isDelete) {
+        this.isDelete = isDelete;
+    }
 
-	public void setContent(String content) {
-		this.content = content == null ? null : content.trim();
-	}
+    public Integer getVersion() {
+        return version;
+    }
 
-	public String getHtmlContent() {
-		return htmlContent;
-	}
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
-	public void setHtmlContent(String htmlContent) {
-		this.htmlContent = htmlContent == null ? null : htmlContent.trim();
-	}
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
+    public String getHtmlContent() {
+        return htmlContent;
+    }
+
+    public void setHtmlContent(String htmlContent) {
+        this.htmlContent = htmlContent == null ? null : htmlContent.trim();
+    }
 }

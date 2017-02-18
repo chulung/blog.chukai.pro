@@ -44,9 +44,9 @@ public class CommonCronJob extends AbstractCronJob {
             commentsPoint[i]=articles.get(i).getCommentCount();
             visitorCountPoint[i]=articles.get(i).getVisitCount();
         }
-        timePoint= NumberUtil.normalization(timePoint);
-        commentsPoint=NumberUtil.normalization(commentsPoint);
-        visitorCountPoint=NumberUtil.normalization( visitorCountPoint);
+         NumberUtil.normalization(timePoint);
+        NumberUtil.normalization(commentsPoint);
+        NumberUtil.normalization( visitorCountPoint);
         for (int i = 0; i < articles.size(); i++) {
             Article r=new Article();
             r.setId(articles.get(i).getId());

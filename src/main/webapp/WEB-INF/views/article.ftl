@@ -2,6 +2,7 @@
 <@page title=article.title >
 <div class="col-md-8">
     <article class="post format-standard hentry" >
+        <input type="hidden" id="art-tag-val" value="${article.tags}"/>
         <header class="entry-header">
             <div class="heading-title">
                 <h1 class="entry-title">${article.title}</h1>
@@ -9,8 +10,8 @@
             <div class="entry-meta">
                 <span class="posted-on">发表于 <@DateTime time=article.createTime/></span>
                 <span class="byline"> by <span class="author vcard"><a class="url fn n" href="javascript:;">${article.author}</a></span></span>
-                <span class="meta-viewer">${article.visitCount}阅读</span>
-                <span class="reading-estimation">${blog.commentCount!'0'}评论</span>
+                <span class="meta-viewer">${article.visitCount} 点击</span>
+                <span class="reading-estimation">${blog.commentCount!'0'} 评论</span>
                 <span class="">分享至:<a href="http://service.weibo.com/share/share.php?url=https://chulung.com/article/${article.id}&appkey=2897075133&title=【${article.title}】${article.summary}&pic=${article.pic!}&ralateUid=&language=" target="_blank">
                 <i class="fa fa-weibo"></i></a></span>
 

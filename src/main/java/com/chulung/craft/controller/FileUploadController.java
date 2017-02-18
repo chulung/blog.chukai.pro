@@ -46,10 +46,7 @@ public class FileUploadController extends BaseController {
 		metaDataSet.add(new MateData("creator", "system"));
 		metaDataSet.add(new MateData("createDate", DateUtils.format(new Date())));
 		try {
-			byte[] bytes = ImageUtil.mark(file.getInputStream(), fileName.substring(fileName.length() - 3));
-			long size = bytes == null ? file.getSize() : bytes.length;
-			InputStream in = bytes == null ? file.getInputStream() : new ByteArrayInputStream(bytes);
-			StorePath path = storageClient.uploadImageAndCrtThumbImage(in, size,
+			StorePath path = storageClient.uploadImageAndCrtThumbImage(file.getInputStream(), file.getSize(),
 					fileName.substring(fileName.lastIndexOf('.') + 1), metaDataSet);
 			return successMap().addAttribute("message", "上传成功").addAttribute("url",
 					"https://static.chulung.com/" + path.getFullPath());

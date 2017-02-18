@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.chulung.craft.model.Article;
-import com.chulung.craft.model.Chatter;
+import com.chulung.craft.model.ArticleTag;
 import com.chulung.craft.model.Comments;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * 页面公共信息
@@ -13,6 +14,7 @@ import com.chulung.craft.model.Comments;
  * @author hasee
  *
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CommonInfo implements Serializable{
 	/**
 	 * 归档日期
@@ -22,13 +24,11 @@ public class CommonInfo implements Serializable{
 	/**
 	 * 标签
 	 */
-	private List<String> tags;
+	private List<ArticleTag> tags;
 
 	private List<Comments> recentlyComments;
 
 	private List<Article> popularArticles;
-
-	private Chatter chatter;
 
 	public List<Comments> getRecentlyComments() {
 		return recentlyComments;
@@ -61,20 +61,12 @@ public class CommonInfo implements Serializable{
 		this.articleFilings = articleFilings;
 	}
 
-	public List<String> getTags() {
+	public List<ArticleTag> getTags() {
 		return tags;
 	}
 
-	public void setTags(List<String> tags) {
+	public void setTags(List<ArticleTag> tags) {
 		this.tags = tags;
-	}
-
-	public Chatter getChatter() {
-		return chatter;
-	}
-
-	public void setChatter(Chatter chatter) {
-		this.chatter = chatter;
 	}
 
 }

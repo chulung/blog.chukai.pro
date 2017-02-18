@@ -6,7 +6,9 @@ import javax.persistence.Id;
 
 import com.chulung.craft.enumerate.IsDeleteEnum;
 import com.chulung.craft.enumerate.PublishStatusEnum;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArticleDraftHistory extends BaseModel {
 	/**
 	 * 

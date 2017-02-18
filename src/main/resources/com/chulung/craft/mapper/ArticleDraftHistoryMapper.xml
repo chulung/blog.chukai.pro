@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.chulung.craft.mapper.ArticleDraftHistoryMapper" >
-  <insert id="insertToArticleDraftHistory" >
+<mapper namespace="com.chulung.craft.mapper.ArticleDraftHistoryMapper">
+    <insert id="insertToArticleDraftHistory">
   	insert into article_draft_history(
 id,
 article_id,
@@ -15,7 +15,8 @@ is_publish,
 type_id,
 is_delete,
 version,
-licence
+licence,
+tags
   	) select * from article_draft where id=#{id}
   </insert>
 

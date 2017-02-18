@@ -102,4 +102,9 @@ public class IndexController extends BaseController {
 
 		return modelAndView("article").addObject("article",article);
 	}
+
+	@RequestMapping(value = "/tag/{tagName}",method = RequestMethod.GET)
+	public ModelAndView getArticlesByTag(@PathVariable String tagName){
+		return modelAndView().addObject("articles",this.articleService.getArticlesByTagName(tagName));
+	}
 }

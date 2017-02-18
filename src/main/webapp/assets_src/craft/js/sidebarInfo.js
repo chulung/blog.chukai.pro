@@ -35,9 +35,12 @@ define(["lscache"], function (lscache) {
                         this.userName
                         + "</span> : <a href='/article/" + this.articleId + "#comments" + this.id + "'>" + this.comment + "</a>").show().appendTo($("#recentcomments"));
                 }));
+                $('#all-tag').html($(data.tags).map(function () {
+                    return '<a href="/tag/'+this.tagName+'">'+this.tagName+'('+this.count+')'+'</a>';
+                }).get().join(''));
             }
 
-            if (lscache.get("sidebarInfo")) {
+            if (!lscache.get("sidebarInfo")) {
                 showSideBarInfo(lscache.get("sidebarInfo"));
             } else {
                 $.ajax({

@@ -65,10 +65,9 @@
         </ul>
     </section><!-- .widget_archive -->
 
-    <section class="widget widget_tag_cloud">
-        <h2 class="widget-title">Tags</h2>
-        <div class="tagcloud">
-            <a href="archive.html">beauty</a>
+    <section class="widget widget_tag_cloud art_section none">
+        <h2 class="widget-title">本文标签</h2>
+        <div id="art-tag" class="tagcloud">
         </div>
     </section><!-- .widget_tag_cloud -->
 

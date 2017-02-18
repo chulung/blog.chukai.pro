@@ -18,6 +18,7 @@ public interface ArticleService {
 	Article findArticleById(Integer id);
 
 	boolean update(ArticleDraft articleDraft);
+	Article updateArticle(ArticleDraft articleDraft);
 	Integer insert(ArticleDraft articleDraft);
 
 	ArticleDraft findArticleDraft(Integer id);
@@ -38,4 +39,6 @@ public interface ArticleService {
 	List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn);
 
 	List<Article> listPopularArticles();
+
+	List<Article> getArticlesByTagName(String tagName);
 }
