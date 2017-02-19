@@ -16,8 +16,7 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/magnific-popup.js/1.0.1/magnific-popup.min.css" rel="stylesheet">
-    <link href="${assetsRoot}theme/css/style.min.css" rel="stylesheet">
-    <link href="${assetsRoot}theme/css/skin-skyblue.min.css" rel="stylesheet">
+    <link href="${assetsRoot}craft/css/style.min.css" rel="stylesheet">
     <#list base_css as c>
         <link href="${assetsRoot}${c}" rel="stylesheet">
     </#list>
@@ -184,6 +183,7 @@
 <script>var assetsRoot="${assetsRoot}"</script>
 <script>var module="${moduleName!''}"</script>
 <script type="text/javascript"  src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.1.10/vue.min.js"></script>
 <script type="text/javascript"  src="//cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.js"></script>
 <script type="text/javascript"  src="//cdn.bootcss.com/magnific-popup.js/1.0.1/jquery.magnific-popup.min.js"></script>
 <script type="text/javascript"  src="//cdn.bootcss.com/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>

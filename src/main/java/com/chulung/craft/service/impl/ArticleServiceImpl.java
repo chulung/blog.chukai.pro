@@ -278,10 +278,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
     @Override
     public List<Article> listPopularArticles() {
-        PageHelper.startPage(1, 3);
-        Article record = new Article();
-        record.setTypeId(1);
-        return this.articleMapper.listPopularArticles(record);
+        PageHelper.startPage(1, 4);
+        return this.articleMapper.listPopularArticles();
 
     }
 
@@ -296,5 +294,13 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         ArticleDto art=new ArticleDto();
         art.setIds(articleIds);
         return this.articleMapper.selectSummarys(art);
+    }
+
+    @Override
+    public List<Article> listRelevancy(Integer id){
+        List<Article> list=this.articleMapper.listRelevancy(id);
+        if (list.size()<=4) return  list;
+        Collections.shuffle(list);
+        return list.subList(0,4);
     }
 }

@@ -30,28 +30,47 @@ define(function () {
             url: '/comments/list/' + $("input[name='articleId']").val(),
             type: 'get',
             dataType: 'json',
-            success: function (data) {
-                $("#ul_comments").find("li:visible").remove();
-                var nLi = $("#ul_comments").find(".none");
-                $.each(data.list, (function () {
-                    $li = nLi.clone().html("<span class='comment-author-link'>" +
-                        this.userName
-                        + ":</span> <p>" + this.comment + "</p>").show().appendTo($("#ul_comments"));
-                }));
+            success: function (result) {
+                var vm = new Vue({
+                    data: result,
+                    el: "#ul_comments"
+                })
+            }
+        });
+    };
+    exports.listRelevancy = function () {
+        $.ajax({
+            url: '/article/relevancy/' + $("input[name='articleId']").val(),
+            type: 'get',
+            dataType: 'json',
+            success: function (result) {
+                var vm = new Vue({
+                    data: result,
+                    el: '#related-posts',
+                    methods: {
+                        defaultPic: function (pic) {
+                            return pic || '//static.chulung.com/group1/M00/00/00/cHx_F1b31x6ASf2iAAAfnIyLLQI109_150x150.jpg';
+                        }
+                    }
+                })
             }
         });
     };
     exports.init = function () {
         exports.boundSubmitComments();
-        exports.listComments();
+        $(window).scroll(function () {
+            function isFirstScrollOn(id, callBack) {
+                if (typeof(exports[id]) == "undefined" && !!($(window).scrollTop() > $(id).offset().top - 500)) {
+                    callBack();
+                    exports[id] = 1;
+                }
+            }
 
-        var tags = $('#art-tag-val').val()
-        if (tags) {
-            $('#art-tag').html(
-                $(tags.split(' ')).map(function () {
-                    return '<a href="/tag/' + this + '">' + this + '</a>';
-                }).get().join('')).parents('.art_section').show();
-        }
+            isFirstScrollOn('#comments', exports.listComments);
+            isFirstScrollOn('#related-top', exports.listRelevancy);
+
+        });
+
     };
     return exports;
 });

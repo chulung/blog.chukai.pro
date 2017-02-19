@@ -1,5 +1,6 @@
 package com.chulung.craft.controller;
 
+import com.chulung.craft.dto.JsonResult;
 import com.chulung.craft.model.Article;
 import com.chulung.craft.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 基于rest风格的文章,草稿WS
@@ -33,4 +35,8 @@ public class ArticleController extends BaseController {
 		return modelAndView("article").addObject("article", article).addObject("typeId", article.getTypeId()).addObject("isLogin",webSessionSupport.islogIn());
 	}
 
+	@RequestMapping(value = "/article/relevancy/{id}")
+	public  @ResponseBody JsonResult relevancy(@PathVariable Integer id){
+		return JsonResult.ofSuccess(this.articleService.listRelevancy(id));
+	}
 }

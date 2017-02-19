@@ -1,8 +1,8 @@
 <#macro page title js=[] css=[] keywords="chulung,chulung's craft,chulung的博客" showHeader="">
-<#include "WEB-INF/views/baseMacro.ftl">     
+<#include "WEB-INF/views/baseMacro.ftl">
 <@base base_title=title mainjs='/craft/js/config' base_css=css base_keywords="chulung,chulung's craft,chulung.com" base_showHeader=showHeader>
     <#nested>
-<div class="col-md-4">
+<div class="col-md-4" id="sidebar-div">
     <section class="widget widget_search">
         <form role="search" method="get" class="search-form" action="/search">
             <label>
@@ -34,42 +34,38 @@
         </div><!-- .about-author-container -->
     </section><!-- .danish_widget_about -->
 
-    <section class="widget danish_widget_popular_entries">
+    <section class="widget danish_widget_popular_entries none" :class="{show:!!popularArticles}"  v-if="popularArticles && popularArticles.length">
         <h2 class="widget-title">热门</h2>
-        <ul id="pop-art-ul">
-            <li  class="none">
+        <ul >
+            <li style="display: list-item;" v-for="item in popularArticles">
                 <div class="popular-entry-container">
-                    <div class="entry-image">
-                        <img src="${assetsRoot}theme/img/logo.jpg">
-                    </div><!-- .entry-image -->
+                    <div class="entry-image"><img :src="defaultPic(item.pic)"></div>
                     <div class="entry-content">
-                        <h4 class="entry-title">
-                        </h4>
-                        <span class="entry-category"><a href=""></a></span>
-                        <span class="entry-datetime"></span>
-                    </div><!-- .entry-content -->
-                </div><!-- .popular-entry-container -->
+                        <h4 class="entry-title"><a ref="bookmark" :href="'/article/'+item.id">{{item.title}}</a></h4>
+                        <span class="entry-category"><a :href="'/articles?page=1&typeId='+item.typeId+'#content'">{{item.typeName}}</a></span>
+                        <span class="entry-datetime">{{item.createTime}}</span>
+                    </div>
+                </div>
             </li>
         </ul>
     </section><!-- .danish_widget_popular_entries -->
+
     <section class="widget widget_recent_comments">
         <h2 class="widget-title">最新评论</h2>
         <ul id="recentcomments">
-            <li class="none">
-                            </li>
+            <li style="display: list-item;" v-for="item in recentlyComments">
+                <span class="comment-author-link">{{item.userName}}</span> :
+                <a :href="'/article/'+item.articleId+'#comments'+item.id">{{item.comment}}
+                </a>
+            </li>
         </ul>
     </section><!-- .widget_recent_comments -->
-    <section class="widget widget_archive">
+    <section class="widget widget_archive" v-if="articleFilings">
         <h2 class="widget-title">归档</h2>
         <ul id="articleFilings">
+            <li  v-for="item in articleFilings"><a :href="'/monthFilings/'+ yearMonth(item)">{{yearMonth(item)}}</a>({{item.count}})</li>
         </ul>
     </section><!-- .widget_archive -->
-
-    <section class="widget widget_tag_cloud art_section none">
-        <h2 class="widget-title">本文标签</h2>
-        <div id="art-tag" class="tagcloud">
-        </div>
-    </section><!-- .widget_tag_cloud -->
 
 </div><!-- .col-md-4 -->
 </@base>

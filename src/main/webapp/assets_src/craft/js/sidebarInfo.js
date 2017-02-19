@@ -1,46 +1,31 @@
 /**
  * 侧边栏信息，依赖jquery
  */
+Vue.config.devtools = true;
+Vue.config.debug = true;
 define(["lscache"], function (lscache) {
     return {
         init: function () {
             function showSideBarInfo(data) {
-                if (data.articleFilings != null) {
-                    $.each(data.articleFilings, function (i, item) {
-                        var ym = item.yearMonth.year + '-'
-                            + item.yearMonth.monthValue;
-                        $("#articleFilings").append(
-                            "<li><a href='/monthFilings/" + ym + "'>"
-                            + ym + '</a>' + '(' + item.count
-                            + ')' + '</li>');
-                    });
-                }
-                var nLi = $("#pop-art-ul").find(".none");
-                $.each(data.popularArticles, (function () {
-                    $li = nLi.clone().show().appendTo($("#pop-art-ul"));
-                    $li.find(".entry-title").append($("<a>", {
-                        ref: "bookmark",
-                        href: "/article/" + this.id,
-                        html: this.title
-                    }));
-                    $li.find(".entry-category").append($("<a>", {
-                        href: "/articles?page=1&typeId=" + this.typeId + "#content",
-                        html: this.typeName
-                    }));
-                    $li.find(".entry-datetime").html(this.createTime);
-                }));
-                nli = $("#recentcomments").find(".none");
-                $.each(data.recentlyComments, (function () {
-                    $li = nLi.clone().html("<span class='comment-author-link'>" +
-                        this.userName
-                        + "</span> : <a href='/article/" + this.articleId + "#comments" + this.id + "'>" + this.comment + "</a>").show().appendTo($("#recentcomments"));
-                }));
+                var vm = new Vue({
+                    data: data,
+                    el: "#sidebar-div",
+                    methods: {
+                        yearMonth: function (item) {
+                            return item.yearMonth.year + '-' + item.yearMonth.monthValue;
+                        },
+                        defaultPic: function (pic) {
+                            return pic || '//static.chulung.com/group1/M00/00/00/cHx_F1b31x6ASf2iAAAfnIyLLQI109_150x150.jpg';
+                        }
+                    }
+                });
+
                 $('#all-tag').html($(data.tags).map(function () {
-                    return '<a href="/tag/'+this.tagName+'">'+this.tagName+'('+this.count+')'+'</a>';
+                    return '<a href="/tag/' + this.tagName + '">' + this.tagName + '(' + this.count + ')' + '</a>';
                 }).get().join(''));
             }
 
-            if (!lscache.get("sidebarInfo")) {
+            if (lscache.get("sidebarInfo")) {
                 showSideBarInfo(lscache.get("sidebarInfo"));
             } else {
                 $.ajax({

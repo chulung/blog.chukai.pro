@@ -41,4 +41,6 @@ public interface ArticleService {
 	List<Article> listPopularArticles();
 
 	List<Article> getArticlesByTagName(String tagName);
+
+	List<Article> listRelevancy(Integer id);
 }

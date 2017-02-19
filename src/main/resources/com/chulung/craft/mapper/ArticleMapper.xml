@@ -30,7 +30,7 @@
 	</select>
 	<select id="listPopularArticles" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
-		select id, title, type_name,create_time,type_id
+		select id, title, type_name,create_time,type_id,pic
 		from article ORDER  by index_rank desc
 	</select>
 	<select id="selectSummarys" resultMap="BaseResultMap">
@@ -76,4 +76,11 @@
 		update article
 		set visit_count=visit_count+1 where id=#{articleId}
 	</update>
+	
+	<select id="listRelevancy"  resultMap="BaseResultMap">
+		SELECT 	 id, title, create_time,pic from article
+		where id in
+		(SELECT DISTINCT article_id from article_tag where tag_name in
+		(SELECT tag_name from article_tag where article_id=#{articleId})) and id !=#{articleId}
+		</select>
 </mapper>

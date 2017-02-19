@@ -26,6 +26,8 @@ public class Comments extends BaseModel {
 
 	private String comment;
 
+	private String website;
+
 	//按时间倒序
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@OrderBy("DESC")
@@ -35,6 +37,14 @@ public class Comments extends BaseModel {
 
 	private String email;
 
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 	public Comments() {
 	}
 	public Comments(Integer articleId) {
