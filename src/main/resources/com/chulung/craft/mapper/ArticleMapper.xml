@@ -83,4 +83,5 @@
 		(SELECT DISTINCT article_id from article_tag where tag_name in
 		(SELECT tag_name from article_tag where article_id=#{articleId})) and id !=#{articleId}
 		</select>
+
 </mapper>

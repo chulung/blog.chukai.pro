@@ -6,7 +6,7 @@ import com.chulung.craft.dto.ArticleDto;
 import com.chulung.craft.model.Article;
 
 public interface ArticleMapper extends BaseMapper<Article>{
-	List<Article> selectTileList();
+
 	List<Article> selectListForMetaClblog(String siteName);
 	List<Article> selectSummarys(ArticleDto record);
 
@@ -29,4 +29,5 @@ public interface ArticleMapper extends BaseMapper<Article>{
 	 * @return
 	 */
 	List<Article> listRelevancy(Integer articleId);
+
 }

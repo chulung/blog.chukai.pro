@@ -129,7 +129,7 @@
     <footer id="colophon" class="site-footer" style="background-image: url('${assetscdn}theme/img/footer-background.png');" role="contentinfo">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <section class="widget widget_tag_cloud">
                         <h3 class="widget-title">全部标签</h3>
                         <div id="all-tag" class="tagcloud">
@@ -137,18 +137,27 @@
                     </section><!-- .widget_tag_cloud -->
                 </div><!-- .col-sm-3 -->
 
-                <div class="col-sm-4">
-                    <section class="widget widget_recent_entries">
-                        <h3 class="widget-title">链接</h3>
+                <div class="col-sm-3">
+                    <section class="widget widget_recent_entries none" :class="show">
+                        <h3 class="widget-title">推荐</h3>
                         <ul>
-                            <li><a href="https://github.com/chulung" rel="external nofollow" target="_blank">GitHub</a></li>
-                            <li><a href="http://www.cnblogs.com/chulung/" rel="external nofollow" target="_blank">博客园</a></li>
-                            <li><a href="/jenkins" rel="external nofollow" target="_blank">Jenkins</a></li>
+                            <li>
+                                <a href="single.html">Beauty is not just what you see</a>
+                                <span class="post-date">May 19, 2016</span>
+                            </li>
+                            <li>
+                                <a href="single.html">You say: Dont leave me, but you are gone. Liar</a>
+                                <span class="post-date">May 9, 2016</span>
+                            </li>
+                            <li>
+                                <a href="single.html">You never know how beautiful you are</a>
+                                <span class="post-date">May 5, 2016</span>
+                            </li>
                         </ul>
                     </section><!-- .widget_recent_entries -->
-                </div><!-- .col-sm-3 -->
+                </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <section class="widget danish_widget_site_info">
                         <div class="site-info">
                             <h3 class="site-brand"><i class="fa fa-user-circle"></i> chulung.</h3>
@@ -166,7 +175,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 copy-left">
-                    Copyright © 2015-2016 <a href="/"><strong>chulung</strong></a>. All Right Reserved.
+                    Copyright © 2015-2017 <a href="/"><strong>chulung</strong></a>. All Right Reserved.
                 </div><!-- .col-sm-6 -->
                 <div class="col-sm-6 copy-right">
                     <ul class="social-icon">

@@ -142,7 +142,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
             }
             if (StringUtil.isNotBlank(article.getTags())) {
                 Arrays.asList(article.getTags().split(" ")).stream().forEach(t -> {
-                    ArticleTag tag=new ArticleTag();
+                    ArticleTag tag = new ArticleTag();
                     tag.setArticleId(article.getId());
                     tag.setTagName(t);
                     articleTagMapper.insertSelective(tag);
@@ -185,7 +185,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
             articleDraft.setAuthor(user.getNickName());
             articleDraft.setIsDelete(IsDeleteEnum.N);
             articleDraft.setCreateTime(LocalDateTime.now());
-           this.updateArticle(articleDraft);
+            this.updateArticle(articleDraft);
             if (this.articleDraftMapper.insertSelective(articleDraft) <= 0) {
                 throw new MethodRuntimeExcetion("插入草稿失败");
             }
@@ -267,6 +267,14 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         commonInfo.setPopularArticles(this.listPopularArticles());
         commonInfo.setRecentlyComments(this.commentsService.listRecentlyComments());
         commonInfo.setTags(this.articleTagMapper.selectAllTags());
+        String headlineIdsStr = this.configService.getValueBykey(ConfigKeyEnum.HEAD_LINE_ARTICLE_IDS);
+        if (StringUtil.isNoneBlank(headlineIdsStr)) {
+            ArticleDto dto = new ArticleDto();
+            dto.setIds(Arrays.asList(headlineIdsStr.split(",")).stream().map(s -> {
+                return Integer.valueOf(s);
+            }).collect(Collectors.toList()));
+            commonInfo.setHeadlineArticles(this.articleMapper.selectSummarys(dto));
+        }
         return commonInfo;
     }
 
@@ -285,22 +293,22 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
     @Override
     public List<Article> getArticlesByTagName(String tagName) {
-        ArticleTag record=new ArticleTag();
+        ArticleTag record = new ArticleTag();
         record.setTagName(tagName);
-        List<Integer> articleIds=this.articleTagMapper.select(record).stream().map(t->{
-            return  t.getArticleId();
+        List<Integer> articleIds = this.articleTagMapper.select(record).stream().map(t -> {
+            return t.getArticleId();
         }).collect(Collectors.toList());
-        if(CollectionUtils.isEmpty(articleIds)) return Collections.emptyList();
-        ArticleDto art=new ArticleDto();
+        if (CollectionUtils.isEmpty(articleIds)) return Collections.emptyList();
+        ArticleDto art = new ArticleDto();
         art.setIds(articleIds);
         return this.articleMapper.selectSummarys(art);
     }
 
     @Override
-    public List<Article> listRelevancy(Integer id){
-        List<Article> list=this.articleMapper.listRelevancy(id);
-        if (list.size()<=4) return  list;
+    public List<Article> listRelevancy(Integer id) {
+        List<Article> list = this.articleMapper.listRelevancy(id);
+        if (list.size() <= 4) return list;
         Collections.shuffle(list);
-        return list.subList(0,4);
+        return list.subList(0, 4);
     }
 }
