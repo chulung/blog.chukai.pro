@@ -44,7 +44,8 @@
         </footer><!-- .entry-footer -->
     </article><!-- .post -->
     <div id="related-top"></div>
-    <div class="related-posts none" id="related-posts" :class="{show:!!result && result.length}">
+    <template v-if="result && result.length">
+    <div class="related-posts none" id="related-posts">
         <h3>猜你喜欢</h3>
         <div class="row">
             <div class="col-md-3 col-sm-6" v-for="item in result">
@@ -58,7 +59,7 @@
             </div><!-- .col-md-3 -->
         </div><!-- .row -->
     </div>
-
+    </template>
     <div id="comments" class="comments-area">
         <div id="respond" class="comment-respond">
             <h3 id="reply-title" class="comment-reply-title">评论
@@ -66,11 +67,11 @@
             </h3>
             <section class="widget widget_recent_comments">
                 <ul id="ul_comments">
-                    <li class="none"  style="display: list-item;"  v-for="item in list" ><span class="comment-author-link"><a :href="item.website">{{item.userName}}:</a></span> <p>{{item.comment}}</p></li>
+                    <li style="display: list-item;"  v-for="item in list" ><span class="comment-author-link"><a :href="item.website">{{item.userName}}:</a></span> <p>{{item.comment}}</p></li>
                 </ul>
             </section>
 
-            <form action="" method="" id="commentform" class="form-horizontal comment-form">
+            <form  id="commentform" class="form-horizontal comment-form">
                 <div class="form-group">
                     <div class="col-sm-12">
                         <textarea id="comment" class="form-control" rows="6" name="comment" aria-required="true"

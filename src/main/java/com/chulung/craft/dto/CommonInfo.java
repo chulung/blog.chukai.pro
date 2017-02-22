@@ -12,61 +12,67 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * 页面公共信息
  *
  * @author hasee
- *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CommonInfo implements Serializable{
-	/**
-	 * 归档日期
-	 */
-	private List<ArticleFiling> articleFilings;
+public class CommonInfo implements Serializable {
+    /**
+     * 归档日期
+     */
+    private List<ArticleFiling> articleFilings;
 
-	/**
-	 * 标签
-	 */
-	private List<ArticleTag> tags;
+    private List<ArticleTag> tags;
 
-	private List<Comments> recentlyComments;
+    private List<Comments> recentlyComments;
 
-	private List<Article> popularArticles;
+    private List<Article> popularArticles;
 
-	public List<Comments> getRecentlyComments() {
-		return recentlyComments;
-	}
+    private List<Article> recommendedArticles;
 
-	public List<Article> getPopularArticles() {
-		return popularArticles;
-	}
+    public List<Article> getRecommendedArticles() {
+        return recommendedArticles;
+    }
 
-	public void setPopularArticles(List<Article> popularArticles) {
-		this.popularArticles = popularArticles;
-	}
+    public void setRecommendedArticles(List<Article> recommendedArticles) {
+        this.recommendedArticles = recommendedArticles;
+    }
 
-	public void setRecentlyComments(List<Comments> recentlyComments) {
-		this.recentlyComments = recentlyComments;
-	}
+    public List<Comments> getRecentlyComments() {
+        return recentlyComments;
+    }
 
-	public CommonInfo() {
-	}
+    public List<Article> getPopularArticles() {
+        return popularArticles;
+    }
 
-	public CommonInfo(List<ArticleFiling> articleFilings) {
-		this.articleFilings = articleFilings;
-	}
+    public void setPopularArticles(List<Article> popularArticles) {
+        this.popularArticles = popularArticles;
+    }
 
-	public List<ArticleFiling> getArticleFilings() {
-		return articleFilings;
-	}
+    public void setRecentlyComments(List<Comments> recentlyComments) {
+        this.recentlyComments = recentlyComments;
+    }
 
-	public void setArticleFilings(List<ArticleFiling> articleFilings) {
-		this.articleFilings = articleFilings;
-	}
+    public CommonInfo() {
+    }
 
-	public List<ArticleTag> getTags() {
-		return tags;
-	}
+    public CommonInfo(List<ArticleFiling> articleFilings) {
+        this.articleFilings = articleFilings;
+    }
 
-	public void setTags(List<ArticleTag> tags) {
-		this.tags = tags;
-	}
+    public List<ArticleFiling> getArticleFilings() {
+        return articleFilings;
+    }
+
+    public void setArticleFilings(List<ArticleFiling> articleFilings) {
+        this.articleFilings = articleFilings;
+    }
+
+    public List<ArticleTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<ArticleTag> tags) {
+        this.tags = tags;
+    }
 
 }

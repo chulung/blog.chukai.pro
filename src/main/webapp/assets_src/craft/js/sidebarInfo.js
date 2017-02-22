@@ -1,8 +1,7 @@
 /**
  * 侧边栏信息，依赖jquery
  */
-Vue.config.devtools = true;
-Vue.config.debug = true;
+
 define(["lscache"], function (lscache) {
     return {
         init: function () {
