@@ -65,6 +65,7 @@ public class MetaWeblogServiceImpl implements MetaClBlogLogService{
         post.setDescription(article.getContent()
                 +String.format(METACKBLOG_COMMENTS, article.getId(), article.getId(),
                 DateUtils.format(LocalDateTime.now()), site.getDedcription()) +  configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE,""));
+        post.setMt_keywords(article.getTags());
         if (metaCLBlogLog != null) {
             if (article.getIsDelete() == IsDeleteEnum.Y) {
                 metaWeblog.deletePost(metaCLBlogLog.getPostId());
@@ -79,7 +80,7 @@ public class MetaWeblogServiceImpl implements MetaClBlogLogService{
             metaWeBlogLogMapper.updateByPrimaryKeySelective(record);
             cronJobLogMapper.insertSelective(new AppLog(LogType.META_CK_BLOG_LOG, LogLevel.INFO,
                     String.format("博客《%s》更新推送成功", post.getTitle())));
-        } else {
+        } else if(article.getIsDelete()==IsDeleteEnum.N){
             // 发送新建博客请求
             String postId = metaWeblog.newPost(article.getId().toString(), post, true);
             MetaClBlogLog record = new MetaClBlogLog(postId, article.getId(), LocalDateTime.now(), site);

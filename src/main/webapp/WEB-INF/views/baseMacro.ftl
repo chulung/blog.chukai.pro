@@ -146,7 +146,6 @@
                                 <a :href="'/article/'+item.id">{{item.title}}</a>
                                 <span class="post-date">{{item.createTime}}</span>
                             </li>
-
                         </ul>
                         </template>
                     </section><!-- .widget_recent_entries -->
