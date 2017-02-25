@@ -22,7 +22,7 @@
         </header><!-- .entry-header -->
 
         <div class="entry-content">
-        ${article.content}
+                 ${article.content}
             <#if article.derivationUrl??>
                 <p>原文链接:<a href="${article.derivationUrl}" target="_blank">${article.derivationUrl}</a></p>
             <#else>
@@ -36,8 +36,8 @@
             <span class="cat-links">发表在 <a href="https://chulung.com">chulung's craft</a></span>
             <#if article.tags??>
                 <span class="tags-links">标签
-                    <#list article.tags?split(" ") as tag>
-                        <a href="/tag/${tag}">${tag}</a><#if tag_has_next>,</#if>
+                    <#list article.tags?split(",") as tag>
+                        <a href="/tag/${encodeURL(tag)}">${tag}</a><#if tag_has_next>,</#if>
                     </#list>
             </span>
             </#if>
@@ -67,7 +67,9 @@
             </h3>
             <section class="widget widget_recent_comments">
                 <ul id="ul_comments">
-                    <li style="display: list-item;"  v-for="item in list" ><span class="comment-author-link"><a :href="item.website">{{item.userName}}:</a></span> <p>{{item.comment}}</p></li>
+                    <template>
+                        <li style="display: list-item;"  v-for="item in list" ><span class="comment-author-link"><a :href="item.website">{{item.userName}}:</a></span> <p>{{item.comment}}</p></li>
+                    </template>
                 </ul>
             </section>
 

@@ -3,6 +3,7 @@ package com.chulung.craft.controller;
 import com.chulung.craft.dto.JsonResult;
 import com.chulung.craft.model.Article;
 import com.chulung.craft.service.ArticleService;
+import com.chulung.freemaker.template.EncodeURLMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,7 +33,7 @@ public class ArticleController extends BaseController {
 	@RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView getArticle(@PathVariable Integer id, HttpServletRequest request) {
 		Article article = articleService.findArticleById(id);
-		return modelAndView("article").addObject("article", article).addObject("typeId", article.getTypeId()).addObject("isLogin",webSessionSupport.islogIn());
+		return modelAndView("article").addObject("article", article).addObject("typeId", article.getTypeId()).addObject("isLogin",webSessionSupport.islogIn()).addObject("encodeURL",new EncodeURLMethod());
 	}
 
 	@RequestMapping(value = "/article/relevancy/{id}")

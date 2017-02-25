@@ -12,5 +12,5 @@ public enum ConfigKeyEnum {
 	/**
 	 * 推荐文章id字符串 1,2,3
 	 */
-	HEAD_LINE_ARTICLE_IDS
+	RECOMMENDED_ARTICLE_IDS
 }

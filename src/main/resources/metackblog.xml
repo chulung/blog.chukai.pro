@@ -21,6 +21,13 @@
 		<property name="password" value="${csdn.password}"></property>
 		<property name="serverUrl" value="${csdn.serverurl}"></property>
 	</bean>
+	<bean id="oschinaConfig" class="com.chulung.metaclblog.config.ConfigInfo">
+		<property name="siteName" value="OSCHINA"></property>
+		<property name="userName" value="${oschina.username}"></property>
+		<property name="password" value="${oschina.password}"></property>
+		<property name="serverUrl" value="${oschina.serverurl}"></property>
+	</bean>
+
 	<context:component-scan base-package="com.chulung.metaclblog" />
 
 	<bean id="metaCLBlogList" class="java.util.ArrayList">
@@ -28,6 +35,9 @@
 			<list>
 				<bean id="cnblogMetaWeblog" class="com.chulung.metaclblog.MetaWeblog">
 					<property name="configInfo" ref="cnblogConfig"></property>
+				</bean>
+				<bean id="oschinaMetaWeblog" class="com.chulung.metaclblog.MetaWeblog">
+					<property name="configInfo" ref="oschinaConfig"></property>
 				</bean>
 				<!-- csdn的rpc接口有问题 暂时不同步
 				<bean id="csdnMetaWeblog" class="com.chulung.metaclblog.MetaWeblog">

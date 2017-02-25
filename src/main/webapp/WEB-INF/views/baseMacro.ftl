@@ -133,12 +133,15 @@
                     <section class="widget widget_tag_cloud">
                         <h3 class="widget-title">全部标签</h3>
                         <div id="all-tag" class="tagcloud">
+                            <template>
+                                <a v-for="item in tags" :href="'/tag/' + item.tagName">{{item.tagName}}({{item.count}})</a>
+                            </template>
                         </div>
                     </section><!-- .widget_tag_cloud -->
                 </div><!-- .col-sm-3 -->
 
                 <div class="col-sm-3">
-                    <section class="widget widget_recent_entries none" :class="show">
+                    <section class="widget widget_recent_entries ">
                         <h3 class="widget-title">推荐</h3>
                         <template v-if="recommendedArticles">
                         <ul>
@@ -195,7 +198,7 @@
 <script type="text/javascript"  src="${assetsRoot}theme/js/navigation.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/skip-link-focus-fix.js"></script>
 <script type="text/javascript"  src="${assetsRoot}theme/js/script.js"></script>
-<script data-main='${assetsRoot}/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script data-main='/assets/${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 <script>
 (function(){
     var e = /([http|https]:\/\/chulung\.com)/gi;

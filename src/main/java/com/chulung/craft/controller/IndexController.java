@@ -9,6 +9,7 @@ import com.chulung.craft.model.Article;
 import com.chulung.craft.model.ColumnType;
 import com.chulung.craft.service.ArticleService;
 import com.chulung.craft.service.ColumnTypeSevice;
+import com.chulung.freemaker.template.EncodeURLMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

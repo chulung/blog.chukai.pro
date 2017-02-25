@@ -25,6 +25,7 @@ import com.chulung.craft.mapper.ArticleMapper;
 import com.chulung.craft.model.Article;
 import com.chulung.craft.model.ArticleDraft;
 import com.chulung.search.ArticlesSearchHandler;
+import com.hankcs.hanlp.dictionary.py.SYTDictionary;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -141,7 +142,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
                 articleMapper.updateByPrimaryKeySelective(article);
             }
             if (StringUtil.isNotBlank(article.getTags())) {
-                Arrays.asList(article.getTags().split(" ")).stream().forEach(t -> {
+                Arrays.asList(article.getTags().split(",")).stream().forEach(t -> {
                     ArticleTag tag = new ArticleTag();
                     tag.setArticleId(article.getId());
                     tag.setTagName(t);
@@ -227,12 +228,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         bean.setIsDelete(IsDeleteEnum.N);
         PageHelper.startPage(startPage.orElse(1), PAGE_SIZE);
         Page<Article> page = (Page<Article>) articleMapper.selectSummarys(bean);
-        page.forEach(a -> {
-            Article r = new Article();
-            r.setId(a.getId());
-            r.setSummary(articleBuilder.generatingSummary(a.getContent()));
-            articleMapper.updateByPrimaryKeySelective(r);
-        });
         PageInfo<Article> info = new PageInfo<>();
         info.setList(page);
         info.setTotal(page.getTotal());
@@ -267,10 +262,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         commonInfo.setPopularArticles(this.listPopularArticles());
         commonInfo.setRecentlyComments(this.commentsService.listRecentlyComments());
         commonInfo.setTags(this.articleTagMapper.selectAllTags());
-        String headlineIdsStr = this.configService.getValueBykey(ConfigKeyEnum.HEAD_LINE_ARTICLE_IDS);
-        if (StringUtil.isNoneBlank(headlineIdsStr)) {
+        String recommendedArticleIds = this.configService.getValueBykey(ConfigKeyEnum.RECOMMENDED_ARTICLE_IDS);
+        if (StringUtil.isNoneBlank(recommendedArticleIds)) {
             ArticleDto dto = new ArticleDto();
-            dto.setIds(Arrays.asList(headlineIdsStr.split(",")).stream().map(s -> {
+            dto.setIds(Arrays.asList(recommendedArticleIds.split(",")).stream().map(s -> {
                 return Integer.valueOf(s);
             }).collect(Collectors.toList()));
             commonInfo.setRecommendedArticles(this.articleMapper.selectSummarys(dto));

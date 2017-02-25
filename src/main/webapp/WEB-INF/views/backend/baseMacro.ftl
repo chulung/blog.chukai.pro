@@ -20,8 +20,8 @@
   </head>
 
 				<#nested>
-	<script>var assetsRoot="${assetsRoot}"</script>
-	<script>var module="/assets/backend/js/${moduleName!''}.js"</script>
+	<script>var assetsRoot="${assetsRoot}";</script>
+	<script>var module="/assets/backend/js/${moduleName!''}.js";</script>
 	<script data-main='/assets/backend/js/${baseJs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 </html>
 </#macro> 

@@ -1,7 +1,7 @@
 package com.chulung.craft.enumerate;
 
 public enum SiteEnum {
-	CNBLOGS(0, "cnblogs"), CSDN(1, "csdn");
+	CNBLOGS(0, "cnblogs"), CSDN(1, "csdn"),OSCHINA(2,"oschina");
 	private Integer code;
 	private String dedcription;
 

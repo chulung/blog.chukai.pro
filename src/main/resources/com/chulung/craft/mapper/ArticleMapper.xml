@@ -37,7 +37,7 @@
 		select id, title, create_time,
 		update_time, author,
 		type_id, derivation_url,pic,summary,type_name,
-		is_delete,content,visit_count,comment_count
+		is_delete,visit_count,comment_count
 		from
 		article
 		where type_id !=4
@@ -69,7 +69,7 @@
 		where a.id NOT IN(
 			SELECT article_id from meta_cl_blog_log m,article a 
 			where a.id=m.article_id and a.update_time < m.lastest_post_time and site=#{siteName}
-		) and type_id=1
+		) and type_id in(1,2)
 	 ]]>
 	</select>
 	<update id="incrementVisitCount" parameterType="integer">

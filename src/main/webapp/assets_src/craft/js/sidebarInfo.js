@@ -18,10 +18,10 @@ define(["lscache"], function (lscache) {
                         }
                     }
                 });
-
-                $('#all-tag').html($(data.tags).map(function () {
-                    return '<a href="/tag/' + this.tagName + '">' + this.tagName + '(' + this.count + ')' + '</a>';
-                }).get().join(''));
+                var colophonVm=new Vue({
+                    el:"#colophon",
+                    data:data
+                });
             }
 
             if (lscache.get("sidebarInfo")) {
