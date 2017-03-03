@@ -1,6 +1,8 @@
-/target/
-/.settings
-/.classpath
-/.project
-*.iml
-src/main/webapp/META-INF/MANIFEST.MF
+/.gradle
+/website.iml
+/.idea
+/classes
+/build
+chulung.com.ipr
+chulung.com.iws
+out/

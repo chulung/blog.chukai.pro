@@ -1,0 +1,11 @@
+/target/
+/.settings
+/.classpath
+/.project
+*.iml
+src/main/webapp/META-INF/MANIFEST.MF
+/.gradle
+/.idea
+/classes
+/build
+/assets
