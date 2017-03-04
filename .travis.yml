@@ -1,0 +1,11 @@
+s
+language: java
+jdk:
+  - oraclejdk8
+
+script:
+  - "cd website;mvn clean package"
+  
+branches:
+  only:
+- master 
