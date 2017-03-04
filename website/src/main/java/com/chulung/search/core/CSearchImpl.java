@@ -18,6 +18,7 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.highlight.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.store.RAMDirectory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -42,7 +43,7 @@ public class CSearchImpl implements InitializingBean,CSearch {
     private static final int DEFAULT_ROW = 10;
     private Logger logger= LoggerFactory.getLogger(this.getClass());
 
-    private Directory fsDirectory;
+    private Directory directory;
     @Autowired
     private CSearchConfig cSearchConfig;
 
@@ -153,7 +154,7 @@ public class CSearchImpl implements InitializingBean,CSearch {
      */
     private DirectoryReader getReader() throws Exception {
         if (reader==null){
-            this.reader=DirectoryReader.open(fsDirectory);
+            this.reader=DirectoryReader.open(directory);
         }
         //有更新则重新打开,读入新增加的增量索引内容，满足实时查询需求
         DirectoryReader newReader = DirectoryReader.openIfChanged((DirectoryReader)reader,  getIndexWriter(), false);
@@ -166,8 +167,12 @@ public class CSearchImpl implements InitializingBean,CSearch {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        fsDirectory = FSDirectory.open(Paths.get(this.cSearchConfig.getIndexStorePath()));
-         indexWriter=new IndexWriter(fsDirectory, new IndexWriterConfig(analyzer));
+        if (cSearchConfig.isRamDirectory()){
+            directory = new RAMDirectory();
+        }else{
+             directory = FSDirectory.open(Paths.get(this.cSearchConfig.getIndexStorePath()));
+        }
+         indexWriter=new IndexWriter(directory, new IndexWriterConfig(analyzer));
     }
 
     private IndexWriter getIndexWriter() throws Exception {

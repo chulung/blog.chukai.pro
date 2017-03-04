@@ -38,6 +38,19 @@ public class CSearchConfig implements InitializingBean {
 
     private Formatter highLighterFormatter;
 
+    /**
+     * 用于构建环境
+     */
+    private boolean ramDirectory=false;
+
+    public boolean isRamDirectory() {
+        return ramDirectory;
+    }
+
+    public void setRamDirectory(boolean ramDirectory) {
+        this.ramDirectory = ramDirectory;
+    }
+
     public Integer getFragmentSize() {
         return fragmentSize;
     }
