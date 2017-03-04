@@ -59,7 +59,7 @@ fdfs:
 #搜索 start
 #索引存储目录
 csearch:
-      indexStorePath: D:/indexstore
+      indexStorePath: /indexstore
 
 #metaweblog 可选
 metaweblog:
