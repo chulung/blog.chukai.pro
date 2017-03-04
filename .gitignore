@@ -6,3 +6,5 @@
 chulung.com.ipr
 chulung.com.iws
 out/
+website/src/main/resources/static/
+website/src/main/resources/application.yaml

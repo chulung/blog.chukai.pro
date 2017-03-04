@@ -1,4 +1,4 @@
 <#include "pageMacro.ftl">
-<@page miancss=[]>
+<@page mainJs="" miancss=[]>
 		
 </@page>

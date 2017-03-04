@@ -1,5 +1,5 @@
 <#include "pageMacro.ftl">
-<@page mainJs="editor-main" miancss=["markdown/lib/codemirror/codemirror.min.css","markdown/css/editormd.css"]>
+<@page mainJs="editor-main" miancss=["https://chulung.github.io/assets/markdown/lib/codemirror/codemirror.min.css","https://chulung.github.io/assets/markdown/css/editormd.css"]>
 <div class="col-md-12">
           <div class="panel-heading">
           	  <div class="panel-title">Markdown</div>
@@ -13,7 +13,7 @@
 						</#list>
 					</select>
                   <input id="pushBlog" type="checkBox" >推送</input>
-                  <button id="btn-save" data-articledraftid="${articleDraftId}">保存</button>
+                  <button id="btn-save" data-articledraftid="${articleDraftId!}">保存</button>
 			  </div>
               <div>
                   <lable>license</lable>

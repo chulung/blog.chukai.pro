@@ -3,28 +3,20 @@
           xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
     <id>release</id>
     <formats>
-        <format>jar</format>
+        <format>tar.gz</format>
     </formats>
 
     <fileSets>
         <fileSet>
-            <directory>src/main/resources</directory>
+            <directory>libs</directory>
             <outputDirectory>\</outputDirectory>
-            <excludes>
-                <exclude>assets/</exclude>
-                <exclude>build/</exclude>
-            </excludes>
-        </fileSet>
-        <fileSet>
-            <directory>assets</directory>
-            <outputDirectory>\assets</outputDirectory>
         </fileSet>
     </fileSets>
     <dependencySets>
         <dependencySet>
             <useProjectArtifact>true</useProjectArtifact>
             <excludes>
-                <exclude>com.chulung:website</exclude>
+                <exclude>org.springframework.boot:spring-boot-devtools</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>

@@ -66,17 +66,17 @@
                                     <li class="menu-item"><a href="/">首页</a></li>
                                     <li class="menu-item"><a href="/column/skills">技能</a></li>
                                     <li class="menu-item"><a href="/column/sensibility">心悟</a></li>
-                                    <li class="menu-item"><a href="/column/reprints">他山之石</a></li>
+                                    <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">其他</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item"><a href="/column/doc">手册</a></li>
+                                            <li class="menu-item"><a href="/column/reprints">他山之石</a></li>
+                                        </ul>
+                                    </li>
                                     <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">业余</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item"><a href="/column/cooking ">烹饪</a></li>
                                             <li class="menu-item"><a href="/column/exercise">健身</a></li>
                                             <li class="menu-item"><a href="/column/travel">旅行</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">其他</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item"><a href="/ciki/">ciki</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">业余</a>
@@ -197,9 +197,9 @@
 <script type="text/javascript"  src="//cdn.bootcss.com/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
 <script type="text/javascript"  src="//cdn.bootcss.com/jquery.isotope/1.5.25/jquery.isotope.min.js"></script>
 <script type="text/javascript"  src="//cdn.bootcss.com/masonry/3.1.5/masonry.pkgd.min.js"></script>
-<script type="text/javascript"  src="/assets/theme/js/navigation.js"></script>
-<script type="text/javascript"  src="/assets/theme/js/skip-link-focus-fix.js"></script>
-<script type="text/javascript"  src="/assets/theme/js/script.js"></script>
+<script type="text/javascript"  src="/assets/website/js/lib/navigation.js"></script>
+<script type="text/javascript"  src="/assets/website/js/lib/skip-link-focus-fix.js"></script>
+<script type="text/javascript"  src="/assets/website/js/lib/script.js"></script>
 <script data-main='/assets${mainjs}.js' src="https://cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 <script>
 (function(){

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.chulung</groupId>
     <artifactId>website</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>2.0</version>
     <packaging>jar</packaging>
     <name>website</name>
     <description>https://chulung.com sources</description>
@@ -62,6 +62,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
@@ -188,6 +189,7 @@
 
     <build>
         <finalName>website</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -224,7 +226,7 @@
                         <parameter>optimize=uglify</parameter>
                         <parameter>appDir=${basedir}/src/main/resources/assets/</parameter>
                         <parameter>baseUrl=./</parameter>
-                        <parameter>dir=${basedir}/assets/</parameter>
+                        <parameter>dir=${basedir}/src/main/resources/static</parameter>
                     </optimizerParameters>
                     <!--
                     Whether or not to process configFile with maven filters.
@@ -240,23 +242,44 @@
                     </skip>
                 </configuration>
             </plugin>
+            <!--代码覆盖率-->
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                    <check/>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*.class</include>
+                        <include>**/mapper/*.*</include>
+                        <include>**/static/**/*.*</include>
+                        <include>**/siteroot/*.*</include>
+                        <include>**/templates/*.*</include>
+                    </includes>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.chulung.Application</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>hanlp-solr-plugin-1.0.3.jar</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.chulung.Application</mainClass>
-                        </manifest>
-                    </archive>
                     <descriptors> <!--描述文件路径-->
                         <descriptor>src/main/resources/build/assembly.xml</descriptor>
                     </descriptors>

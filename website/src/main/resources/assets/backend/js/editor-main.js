@@ -2,7 +2,7 @@
 requirejs
 		.config({
 			// 静态分离路径
-			baseUrl : "/markdown/lib/",
+			baseUrl : "https://chulung.github.io/assets/markdown/lib/",
 			paths : {
 				jquery : "https://apps.bdimg.com/libs/jquery/1.11.3/jquery.min",
 				bootstrap : 'https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min',
@@ -80,21 +80,23 @@ require(deps, function(editormd) {
 				alert('请输入标题');
 				return;
 			}
+			var data2 = {
+				"id": draftId,
+				"title": title,
+				"typeId": $('#typeId').val(),
+				"content": editor.getMarkdown(),
+				"htmlContent": editor.getHTML(),
+				"isPublish": $("#isPublish").is(":checked") ? 'Y' : 'N',
+				"pushBlog": $("#pushBlog").is(":checked") ? 1 : 0,
+				"license": $("#license").val(),
+				"tags": $('#tags').val()
+			};
 			$.ajax({
 				type: draftId ? "PUT" : "POST",
 				url: "/backend/articleDraft",
-				data: {
-					"id": draftId,
-					"title": title,
-					"typeId": $('#typeId').val(),
-					"content": editor.getMarkdown(),
-					"htmlContent": editor.getHTML(),
-					"isPublish": $("#isPublish").is(":checked") ? 'Y' : 'N',
-					"pushBlog": $("#pushBlog").is(":checked") ? 1 : 0,
-					"license": $("#license").val(),
-					"tags": $('#tags').val()
-				},
+				data:  JSON.stringify(data2),
 				dataType: "json",
+				contentType :'application/json',
 				success: function (data) {
 					if (data.success == 1) {
 						alert('保存成功');

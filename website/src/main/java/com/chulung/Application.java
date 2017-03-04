@@ -22,7 +22,6 @@ import java.io.File;
 @Import(FdfsClientConfig.class)
 public class Application {
     public static void main(String[] args) throws ClassNotFoundException {
-        System.out.println(new File("/ciki").getAbsolutePath());
         SpringApplication.run(Application.class);
     };
 }

@@ -10,23 +10,15 @@ import com.chulung.website.enumerate.DictionaryTypeEnum;
 import com.chulung.website.model.ColumnType;
 import com.chulung.website.service.ColumnTypeSevice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.chulung.website.dto.CikiTreeNode;
 import com.chulung.website.dto.JsonResult;
 import com.chulung.website.dto.PageIn;
 import com.chulung.website.model.ArticleDraft;
-import com.chulung.website.model.Ciki;
 import com.chulung.website.model.User;
 import com.chulung.website.service.ArticleService;
-import com.chulung.website.service.CikiService;
 import com.chulung.website.service.UserService;
 import com.chulung.website.session.WebSessionSupport;
 
@@ -46,9 +38,6 @@ public class BackendController extends BaseController {
 	private ArticleService articleService;
 	@Autowired
 	private WebSessionSupport webSessionSupport;
-
-	@Autowired
-	private CikiService cikiService;
 
 	@Autowired
 	private ColumnTypeSevice columnTypeSevice;
@@ -161,7 +150,7 @@ public class BackendController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/articleDraft", method = RequestMethod.PUT)
-	public @ResponseBody Map<String, Object> putArticleDraft(@ModelAttribute ArticleDraft articleDraft) {
+	public @ResponseBody Map<String, Object> putArticleDraft(@RequestBody ArticleDraft articleDraft) {
 		this.articleService.update(articleDraft);
 		return successMap();
 	}
@@ -202,27 +191,4 @@ public class BackendController extends BaseController {
 		return modelAndView("/backend/logIn");
 	}
 
-	@RequestMapping(value = "/ciki/{id}", method = RequestMethod.GET)
-	public JsonResult<Ciki> getCiki(@PathVariable Integer id) {
-		return this.cikiService.getCikiById(id);
-	}
-
-	@RequestMapping(value = "/ciki", method = RequestMethod.POST)
-	public @ResponseBody JsonResult<?> postCiki(@ModelAttribute Ciki ciki) {
-		this.cikiService.addCiki(ciki);
-		return JsonResult.ofSuccess(null);
-
-	}
-
-	@RequestMapping(value = "/ciki", method = RequestMethod.PUT)
-	public @ResponseBody JsonResult<?> putCiki(@ModelAttribute Ciki ciki) {
-		this.cikiService.updateCiki(ciki);
-		return JsonResult.ofSuccess(null);
-
-	}
-
-	@RequestMapping("/ciki/category/list")
-	public @ResponseBody JsonResult<List<CikiTreeNode>> listCategory() {
-		return JsonResult.ofSuccess(this.cikiService.getCategoryTreeNode());
-	}
 }

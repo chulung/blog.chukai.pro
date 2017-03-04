@@ -11,7 +11,7 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/assets/backend/css/backend.css" rel="stylesheet"/>
     <#list basecss as c>
-	<link href="/assets/${c}"  rel="stylesheet"/>
+	<link href="${c}"  rel="stylesheet"/>
 	</#list>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
