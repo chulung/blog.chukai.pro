@@ -5,9 +5,7 @@ jdk:
 
 script:
   - "cd website"
-  - "mvn clean"
-  - "mvn cobertura:cobertura"
-  - "mvn package -Dmaven.test.skip=true"
+  - "mvn clean package"
 branches:
   only:
     - master 
