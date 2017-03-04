@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @Transactional
-@SpringBootTest(classes = Application.class,properties = "classpath:application_test.yml")
+@SpringBootTest(classes = Application.class)
 public abstract class BaseTest {
 
 }

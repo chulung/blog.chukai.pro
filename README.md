@@ -32,7 +32,7 @@
 
 ##表结构 
 
-[chulung_craft.sql](/chulung_craft.sql)
+[chulung_craft.sql](/website/src/test/resources/data.sql)
 
 ##致谢以下开源项目
 

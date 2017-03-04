@@ -15,9 +15,6 @@
     <dependencySets>
         <dependencySet>
             <useProjectArtifact>true</useProjectArtifact>
-            <excludes>
-                <exclude>org.springframework.boot:spring-boot-devtools</exclude>
-            </excludes>
         </dependencySet>
     </dependencySets>
 </assembly>

@@ -9,3 +9,4 @@ out/
 website/src/main/resources/static/
 website/src/main/resources/application.yaml
 website/application.yaml
+website/src/main/resources/application-local.yml
