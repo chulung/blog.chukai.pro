@@ -4,8 +4,10 @@ jdk:
   - oraclejdk8
 
 script:
-  - "cd website;mvn clean package"
-  
+  - "cd website"
+  - "mvn clean"
+  - "mvn cobertura:cobertura"
+  - "mvn package -Dmaven.test.skip=true"
 branches:
   only:
     - master 
