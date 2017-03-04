@@ -35,7 +35,6 @@ mapper:
     identity: HSQLDB
 
 pagehelper:
-    reasonable: true
     supportMethodsArguments: true
 
 #FASTDFS start

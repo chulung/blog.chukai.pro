@@ -1,4 +1,4 @@
-<#include "WEB-INF/views/pageMacro.ftl">
+<#include "pageMacro.ftl">
 <@page title="首页" showHeader='1' >
 <div class="col-md-8">
     <header class="page-header">

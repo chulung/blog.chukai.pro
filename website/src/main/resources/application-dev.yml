@@ -39,7 +39,6 @@ mapper:
     identity: MYSQL
 
 pagehelper:
-    reasonable: true
     supportMethodsArguments: true
 
 #FASTDFS start
