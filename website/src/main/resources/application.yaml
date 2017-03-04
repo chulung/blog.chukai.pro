@@ -21,7 +21,7 @@ spring:
 # mybatis start
 
 dbcp:
-      url: jdbc:mysql://${ip}}/wckblog?useUnicode=true&characterEncoding=UTF-8
+      url: jdbc:mysql://${ip}/wckblog?useUnicode=true&characterEncoding=UTF-8
       driver-class-name: com.mysql.jdbc.Driver
       username: ${username}
       password : ${password}
