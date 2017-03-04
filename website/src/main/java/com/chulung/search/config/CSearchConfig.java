@@ -94,7 +94,7 @@ public class CSearchConfig implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if (StringUtils.isBlank(indexStorePath)) throw  new IllegalArgumentException("indexStorePath can't be empty");
+        if (!this.isRamDirectory() && StringUtils.isBlank(indexStorePath)) throw  new IllegalArgumentException("indexStorePath can't be empty");
         if (StringUtils.isBlank(this.highlighterOpening)||StringUtils.isBlank(this.highlighterClosing)){
             this.highLighterFormatter=new SimpleHTMLFormatter("<em>","</em>");
         }else {
