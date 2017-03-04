@@ -11,6 +11,8 @@ import com.chulung.website.model.Article;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -22,7 +24,7 @@ import java.util.stream.Collectors;
  * Created by chulung on 2016/11/10.
  */
 @Component
-public class ArticlesSearchHandler extends BaseComponent implements InitializingBean {
+public class ArticlesSearchHandler extends BaseComponent implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private ArticleMapper articleMapper;
 
@@ -66,23 +68,6 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
         this.cSearchIndex.createIndex(new CSearchDocument(article.docId(), article.getTitle(), replaceHtmlTag(article)));
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        new Thread(() -> {
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (!Boolean.FALSE.toString().equals(configService.getValueBykey(ConfigKeyEnum.RESET_SEARCH_INDEX, Boolean.TRUE.toString()))) {
-                logger.info("开始重建索引......");
-                this.resetIndex();
-                this.configService.updateByKey(new Config(ConfigKeyEnum.RESET_SEARCH_INDEX, Boolean.FALSE.toString()));
-                logger.info("重建索引完毕......");
-            }
-        }).start();
-    }
-
     public List<Article> search(String key) {
         try {
 
@@ -97,5 +82,17 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
             errorLog(e);
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        new Thread(() -> {
+            if (!Boolean.FALSE.toString().equals(configService.getValueBykey(ConfigKeyEnum.RESET_SEARCH_INDEX, Boolean.TRUE.toString()))) {
+                logger.info("开始重建索引......");
+                this.resetIndex();
+                this.configService.updateByKey(new Config(ConfigKeyEnum.RESET_SEARCH_INDEX, Boolean.FALSE.toString()));
+                logger.info("重建索引完毕......");
+            }
+        }).start();
     }
 }
