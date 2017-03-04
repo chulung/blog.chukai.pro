@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/chulung/chulung.com.svg?branch=master)](https://travis-ci.org/chulung/chulung.com)
+[![Build Status](https://travis-ci.org/chulung/chulung.com.svg?branch=master)](https://travis-ci.org/chulung/chulung.com)[![codecov](https://codecov.io/gh/chulung/chulung.com/branch/master/graph/badge.svg)](https://codecov.io/gh/chulung/ch
 
 整站源码:[chulung's craft](https://chulung.com) 
 
