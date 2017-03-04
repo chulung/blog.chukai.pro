@@ -49,9 +49,9 @@
 		</if>
 		<if test="createTimeStart != null and createTimeEnd!=null">
 			and create_time between
-			#{createTimeStart,jdbcType=TIMESTAMP,typeHandler=com.chulung.website.mapper.typehandler.LocalDateTimeTypeHandler}
+			#{createTimeStart,jdbcType=TIMESTAMP,typeHandler=com.chulung.mybatis.typehandler.LocalDateTimeTypeHandler}
 			and
-			#{createTimeEnd,jdbcType=TIMESTAMP,typeHandler=com.chulung.website.mapper.typehandler.LocalDateTimeTypeHandler}
+			#{createTimeEnd,jdbcType=TIMESTAMP,typeHandler=com.chulung.mybatis.typehandler.LocalDateTimeTypeHandler}
 		</if>
 		<if test="ids != null">
 			and id in

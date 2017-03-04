@@ -26,6 +26,7 @@ public class Comments extends BaseModel {
 
 	//按时间倒序
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@OrderBy("desc")
 	private LocalDateTime createTime;
 
 	private String userName;

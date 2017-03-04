@@ -28,6 +28,5 @@ public class ConfigMapperTest {
     private  ConfigMapper configMapper;
     @Test
     public void insert(){
-        configMapper.selectByPrimaryKey(ConfigKeyEnum.RESET_SEARCH_INDEX);
     }
 }

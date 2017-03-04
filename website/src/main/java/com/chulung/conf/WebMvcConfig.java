@@ -24,14 +24,20 @@
 
 package com.chulung.conf;
 
+import com.chulung.website.filter.EscapeFilter;
 import com.chulung.website.interceptor.BackendInterceptor;
 import com.chulung.website.interceptor.GlobalTrackerInterceptor;
+import com.google.common.annotations.Beta;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.Assert;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import javax.servlet.Filter;
 
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
@@ -56,4 +62,20 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(backendInterceptor).addPathPatterns("/backend/**").excludePathPatterns("/backend/logIn");
         super.addInterceptors(registry);
     }
+
+    @Bean
+    public FilterRegistrationBean someFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(escapeFilter());
+        registration.addUrlPatterns("/comments/*");
+        registration.setName("escapeFilter");
+        registration.setOrder(1);
+        return registration;
+    }
+
+    @Bean
+    public Filter escapeFilter() {
+        return new EscapeFilter();
+    }
+
 }

@@ -79,7 +79,7 @@
                                             <li class="menu-item"><a href="/column/travel">旅行</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">业余</a>
+                                    <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">关于</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item"><a href="/about">关于我</a></li>
                                             <li class="menu-item"><a href="#">简历</a></li>

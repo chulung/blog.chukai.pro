@@ -21,10 +21,10 @@ spring:
 # mybatis start
 
 dbcp:
-      url: jdbc:mysql://localhost/test?useUnicode=true&characterEncoding=UTF-8
+      url: jdbc:mysql://${ip}}/wckblog?useUnicode=true&characterEncoding=UTF-8
       driver-class-name: com.mysql.jdbc.Driver
-      username: testuser
-      password : 123456
+      username: ${username}
+      password : ${password}
       initial-size: 1
       min-idle: 1
       max-active: 20
@@ -54,7 +54,7 @@ fdfs:
          width: 150
          height: 150
     trackerList:            #TrackerList参数,支持多个
-         - 127.0.0.1:2156
+         - 198.123.10.15:10121
 
 #搜索 start
 #索引存储目录
@@ -67,13 +67,13 @@ metaweblog:
     #cnblogs
     -
       siteName: CNBLOGS
-      userName: 
-      password: 
+      userName:
+      password:
       serverUrl: http://rpc.cnblogs.com/metaweblog/chulung
     #oschina
     -
       siteName: OSCHINA
-      userName: 
-      password: 
+      userName:
+      password:
       serverUrl: https://my.oschina.net/action/xmlrpc
 

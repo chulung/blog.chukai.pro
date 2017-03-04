@@ -53,7 +53,7 @@
                 </exclusion>
                 <exclusion>
                     <groupId>io.projectreactor.addons</groupId>
-                    <artifactId>:reactor-test</artifactId>
+                    <artifactId>reactor-test</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

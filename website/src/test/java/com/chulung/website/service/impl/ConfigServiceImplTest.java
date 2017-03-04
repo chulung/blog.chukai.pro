@@ -26,7 +26,6 @@ public class ConfigServiceImplTest {
     private ConfigService configService;
     @Test
     public void getValueBykey() throws Exception {
-        configService.getValueBykey(ConfigKeyEnum.RESET_SEARCH_INDEX, Boolean.TRUE.toString());
     }
 
     @Test
