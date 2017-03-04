@@ -18,19 +18,17 @@ spring:
         request-context-attribute: request
     jmx :
       enabled: false
+    datasource:
+      type: org.apache.commons.dbcp.BasicDataSource
+      driverClassName : com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
+      username: testuser
+      password: 123456
+      dbcp2:
+        validation-query: SELECT NOW() FROM DUAL
+        test-on-borrow: true
+
 # mybatis start
-
-dbcp:
-      url: jdbc:mysql://${ip}/wckblog?useUnicode=true&characterEncoding=UTF-8
-      driver-class-name: com.mysql.jdbc.Driver
-      username: ${username}
-      password : ${password}
-      initial-size: 1
-      min-idle: 1
-      max-active: 20
-      test-on-borrow: true
-      validation-query: SELECT NOW() FROM DUAL
-
 mybatis:
     type-aliases-package: com.chulung.website.model
     type-handlers-package: com.chulung.mybatis.typehandler
@@ -41,10 +39,8 @@ mapper:
     identity: MYSQL
 
 pagehelper:
-    helperDialect: mysql
     reasonable: true
     supportMethodsArguments: true
-    params: count=countSql
 
 #FASTDFS start
 fdfs:
@@ -59,7 +55,7 @@ fdfs:
 #搜索 start
 #索引存储目录
 csearch:
-      indexStorePath: /indexstore
+#      indexStorePath: /indexstore
       ramDirectory : true #true 使用内存索引 否则使用上面路径的文件索引
 
 #metaweblog 可选

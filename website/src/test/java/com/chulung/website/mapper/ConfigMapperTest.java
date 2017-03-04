@@ -1,6 +1,7 @@
 package com.chulung.website.mapper;
 
 import com.chulung.Application;
+import com.chulung.test.BaseTest;
 import com.chulung.website.enumerate.ConfigKeyEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,11 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Created by chukai on 2017/3/4.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@Transactional
-@SpringBootTest(classes = Application.class)
-public class ConfigMapperTest {
+public class ConfigMapperTest extends BaseTest {
 
     @Autowired
     private  ConfigMapper configMapper;

@@ -1,0 +1,72 @@
+
+# mybatis
+server:
+    port: 8080
+    #context-path:
+
+logging:
+    level:
+        com.chulung.mapper: info
+
+spring:
+    mvc:
+        view:
+            prefix: /templates/
+            suffix: .ftl
+    freemarker:
+        cache: false
+        request-context-attribute: request
+    jmx :
+      enabled: false
+    datasource:
+      type: org.apache.commons.dbcp.BasicDataSource
+      driverClassName : org.h2.Driver
+      initialize: true
+      schema : classpath:data.sql
+
+# mybatis start
+mybatis:
+    type-aliases-package: com.chulung.website.model
+    type-handlers-package: com.chulung.mybatis.typehandler
+    mapper-locations: classpath:mapper/*.xml
+
+mapper:
+    not-empty: false
+    identity: HSQLDB
+
+pagehelper:
+    reasonable: true
+    supportMethodsArguments: true
+
+#FASTDFS start
+fdfs:
+    soTimeout: 1501
+    connectTimeout: 601
+    thumbImage:             #缩略图生成参数
+         width: 150
+         height: 150
+    trackerList:            #TrackerList参数,支持多个
+         - 198.123.10.15:10121
+
+#搜索 start
+#索引存储目录
+csearch:
+      indexStorePath: /indexstore
+      ramDirectory : true #true 使用内存索引 否则使用上面路径的文件索引
+
+#metaweblog 可选
+metaweblog:
+    configInfos :
+    #cnblogs
+    -
+      siteName: CNBLOGS
+      userName:
+      password:
+      serverUrl: http://rpc.cnblogs.com/metaweblog/chulung
+    #oschina
+    -
+      siteName: OSCHINA
+      userName:
+      password:
+      serverUrl: https://my.oschina.net/action/xmlrpc
+
