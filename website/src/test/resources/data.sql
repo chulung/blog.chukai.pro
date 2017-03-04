@@ -1,18 +1,3 @@
-/*
-Navicat MySQL Data Transfer
-
-Source Server         : 112.124.127.23_3306
-Source Server Version : 50173
-Source Host           : 112.124.127.23:3306
-Source Database       : test
-
-Target Server Type    : MYSQL
-Target Server Version : 50173
-File Encoding         : 65001
-
-Date: 2017-03-04 18:20:08
-*/
-
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -55,10 +40,7 @@ CREATE TABLE `article` (
   `index_rank` int(5) unsigned DEFAULT '0',
   `tags` varchar(100) DEFAULT NULL COMMENT '标签',
   `length` int(10) NOT NULL DEFAULT '0' COMMENT '字数',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_title` (`title`) USING BTREE,
-  KEY `idx_createtime` (`create_time`) USING BTREE,
-  KEY `idx_typeid` (`type_id`) USING BTREE
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -84,10 +66,7 @@ CREATE TABLE `article_draft` (
   `version` int(11) NOT NULL DEFAULT '1',
   `licence` varchar(200) DEFAULT NULL,
   `tags` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_title` (`title`) USING BTREE,
-  KEY `idx_createtime` (`create_time`) USING BTREE,
-  KEY `idx_typeid` (`type_id`) USING BTREE
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -114,9 +93,7 @@ CREATE TABLE `article_draft_history` (
   `version` int(11) DEFAULT '1',
   `licence` varchar(200) DEFAULT NULL,
   `tags` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`history_id`),
-  KEY `idx_createtime` (`create_time`) USING BTREE,
-  KEY `idx_typeid` (`type_id`) USING BTREE
+  PRIMARY KEY (`history_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=267 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -131,9 +108,7 @@ CREATE TABLE `article_tag` (
   `id` int(18) NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(10) NOT NULL COMMENT '标签名',
   `article_id` int(18) NOT NULL COMMENT '文章id',
-  PRIMARY KEY (`id`),
-  KEY `idx_article_id` (`article_id`) USING BTREE,
-  KEY `idx_tag_name` (`tag_name`) USING BTREE
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -179,8 +154,7 @@ CREATE TABLE `comments` (
   `email` varchar(50) DEFAULT NULL,
   `is_delete` varchar(1) NOT NULL DEFAULT 'N' COMMENT '是否删除',
   `website` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_article_id` (`article_id`,`is_delete`) USING BTREE
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -215,8 +189,7 @@ CREATE TABLE `meta_cl_blog_log` (
   `article_id` int(10) NOT NULL COMMENT '文章id',
   `post_id` varchar(20) NOT NULL COMMENT '对应站点文章id',
   `lastest_post_time` datetime NOT NULL COMMENT '最后推送时间',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_site_aid` (`site`,`article_id`) USING BTREE
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
