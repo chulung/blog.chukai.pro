@@ -10,10 +10,9 @@ define(function () {
                 return;
             }
             $.ajax({
-                url: '/comments',
+                url: '/comments?'+$("#commentform").serialize(),
                 type: 'post',
                 dataType: 'json',
-                data: $("#commentform").serialize(),
                 success: function (data) {
                     if (data.success == 1) {
                         exports.listComments();

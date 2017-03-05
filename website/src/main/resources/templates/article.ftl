@@ -90,7 +90,7 @@
                         <input name="articleId" value="${article.id}" class="form-control" type="hidden"/>
                     </div>
                     <div class="col-sm-4">
-                        <input name="url" type="url" value="" class="form-control" maxlength="100" placeholder="你的网址 :" />
+                        <input name="website" type="url" value="" class="form-control" maxlength="100" placeholder="你的网址 :" />
                     </div>
                 </div>
                 <p class="form-submit">

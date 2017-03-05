@@ -74,7 +74,7 @@ public class BackendController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = { "/logIn" }, method = RequestMethod.POST)
-	public ModelAndView logIn(@ModelAttribute User user, @RequestParam(required = false) String reUrl,
+	public ModelAndView logIn(@RequestBody User user, @RequestParam(required = false) String reUrl,
 			HttpServletResponse response) {
 		User backend = userService.logInbackend(user);
 		if (backend == null) {
@@ -127,7 +127,7 @@ public class BackendController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/articleDrafts/list")
-	public JsonResult<List<ArticleDraft>> getArticlesDrafts(@ModelAttribute PageIn<ArticleDraft> pageIn) {
+	public JsonResult<List<ArticleDraft>> getArticlesDrafts(@RequestBody PageIn<ArticleDraft> pageIn) {
 		return JsonResult.ofSuccess(this.articleService.findArticleDraftsList(pageIn));
 	}
 
@@ -162,7 +162,7 @@ public class BackendController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/articleDraft", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> postArticle(@ModelAttribute ArticleDraft articleDraft) {
+	public @ResponseBody Map<String, Object> postArticle(@RequestBody ArticleDraft articleDraft) {
 		return successMap().addAttribute("id", this.articleService.insert(articleDraft));
 	}
 
