@@ -274,10 +274,10 @@
                 <configuration>
                     <includes>
                         <include>**/*.class</include>
-                        <include>**/mapper/*.*</include>
+                        <include>**/mapper/**/*.*</include>
                         <include>**/static/**/*.*</include>
-                        <include>**/siteroot/*.*</include>
-                        <include>**/templates/*.*</include>
+                        <include>**/siteroot/**/*.*</include>
+                        <include>**/templates/**/*.*</include>
                     </includes>
                     <archive>
                         <manifest>
