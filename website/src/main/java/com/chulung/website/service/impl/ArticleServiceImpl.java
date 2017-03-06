@@ -6,16 +6,16 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
-import com.chulung.common.util.ArticleBuilder;
 import com.chulung.website.mapper.ArticleTagMapper;
 import com.chulung.website.model.ArticleTag;
 import com.chulung.website.model.User;
 import com.chulung.website.service.*;
-import com.chulung.common.util.StringUtil;
 import com.chulung.website.dto.ArticleDto;
 import com.chulung.website.dto.CommonInfo;
 import com.chulung.website.enumerate.ConfigKeyEnum;
@@ -27,7 +27,10 @@ import com.chulung.search.ArticlesSearchHandler;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Range;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DuplicateKeyException;
@@ -41,7 +44,6 @@ import com.chulung.website.exception.MethodRuntimeExcetion;
 import com.chulung.website.mapper.ArticleDraftHistoryMapper;
 import com.chulung.website.mapper.ArticleDraftMapper;
 import com.chulung.website.session.WebSessionSupport;
-import com.chulung.common.util.NumberUtil;
 
 @Service
 public class ArticleServiceImpl extends BaseService implements ArticleService {
@@ -71,8 +73,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     private ArticlesSearchHandler articlesSearchHandler;
 
     @Autowired
-    private ArticleBuilder articleBuilder;
-    @Autowired
     private ColumnTypeSevice columnTypeSevice;
 
     @Autowired
@@ -93,7 +93,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
             a.setContent(String.format(a.getContent(), pinyin, wook));
         }
         if (a.getTypeId() == 1) {
-            a.setContent(a.getContent() + (a.getTypeId() != 3 && StringUtil.isBlank(a.getLicense()) ? configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()) : a.getLicense()));
+            a.setContent(a.getContent() + (a.getTypeId() != 3 && StringUtils.isBlank(a.getLicense()) ? configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()) : a.getLicense()));
         }
         return a;
     }
@@ -129,7 +129,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         // 判断是否发布文章
         if (PublishStatusEnum.Y == articleDraft.getIsPublish()) {
             User user = this.webSessionSupport.getCurUser().get();
-            Article article = articleBuilder.buildeFromDraft(articleDraft);
+            Article article = buildeFromDraft(articleDraft);
             article.setIsDelete(IsDeleteEnum.N);
             if (article.getId() == null) {
                 article.setAuthor(user.getNickName());
@@ -140,7 +140,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
                 article.setCreateTime(null);
                 articleMapper.updateByPrimaryKeySelective(article);
             }
-            if (StringUtil.isNotBlank(article.getTags())) {
+            if (StringUtils.isNotBlank(article.getTags())) {
                 Arrays.asList(article.getTags().split(",")).stream().forEach(t -> {
                     ArticleTag tag = new ArticleTag();
                     tag.setArticleId(article.getId());
@@ -236,7 +236,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
     @Override
     public List<Article> getArticlesByYearMonth(Integer year, Integer month) {
-        if (NumberUtil.isRangeNotIn(year, 2014, 2993) || NumberUtil.isRangeNotIn(month, 1, 12)) {
+        if (!Range.atLeast(2014).contains(year) || !Range.open(1,12).contains(month)) {
             return Collections.emptyList();
         }
         ArticleDto bean = new ArticleDto();
@@ -262,7 +262,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         commonInfo.setRecentlyComments(this.commentsService.listRecentlyComments());
         commonInfo.setTags(this.articleTagMapper.selectAllTags());
         String recommendedArticleIds = this.configService.getValueBykey(ConfigKeyEnum.RECOMMENDED_ARTICLE_IDS);
-        if (StringUtil.isNoneBlank(recommendedArticleIds)) {
+        if (StringUtils.isNotBlank(recommendedArticleIds)) {
             ArticleDto dto = new ArticleDto();
             dto.setIds(Arrays.asList(recommendedArticleIds.split(",")).stream().map(s -> {
                 return Integer.valueOf(s);
@@ -305,4 +305,33 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         Collections.shuffle(list);
         return list.subList(0, 4);
     }
+
+    public  Article buildeFromDraft(ArticleDraft articleDraft){
+        Article article = new Article();
+        article.setId(articleDraft.getArticleId());
+        String htmlContent = articleDraft.getHtmlContent();
+        Pattern p = Pattern.compile("(https:)?//(\\w+\\.)?chulung.com.+?(\\.\\w{3})");
+        Matcher m = p.matcher(htmlContent);
+        if(m.find()){
+            article.setPic(m.group());
+        }
+        article.setTypeName(this.columnTypeSevice.getIdColumnMap().get(articleDraft.getTypeId()).getCnName());
+        article.setSummary(generatingSummary(htmlContent));
+        article.setContent(htmlContent);
+        article.setUpdateTime(articleDraft.getUpdateTime());
+        article.setAuthor(articleDraft.getAuthor());
+        article.setIsDelete(articleDraft.getIsDelete());
+        article.setTitle(articleDraft.getTitle());
+        article.setCreateTime(LocalDateTime.now());
+        article.setTypeId(articleDraft.getTypeId());
+        article.setVersion(articleDraft.getVersion());
+        article.setTags(articleDraft.getTags());
+        return article;
+    }
+    public String generatingSummary(String content) {
+        String replaceAll = content.replaceFirst("<h[1-9](.+)?</h[1-9]>","").replaceAll("</?.*?>", "");
+        return replaceAll.length() > 100 ? replaceAll.substring(0, 97) + "..." : replaceAll;
+    }
+
+
 }

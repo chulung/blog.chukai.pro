@@ -7,13 +7,13 @@ import com.chulung.website.mapper.UserTrackerMapper;
 import com.chulung.website.mapper.VisitorInfoMapper;
 import com.chulung.website.model.UserTracker;
 import com.chulung.website.model.VisitorInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.chulung.website.constant.Constants;
 import com.chulung.website.service.VisitorInfoService;
 import com.chulung.common.util.NetUtil;
-import com.chulung.common.util.StringUtil;
 
 @Service
 public class VisitorInfoServiceImpl implements VisitorInfoService {
@@ -33,7 +33,7 @@ public class VisitorInfoServiceImpl implements VisitorInfoService {
 	public void insertUserTracker(UserTracker articleVisitor) {
 		articleVisitor.setTuid(NetUtil.getCookieValue(Constants.TUID));
 		String href = articleVisitor.getHref();
-		if (StringUtil.isBlank(href)) {
+		if (StringUtils.isBlank(href)) {
 			return;
 		}
 		int indexOf = href.indexOf('?');
