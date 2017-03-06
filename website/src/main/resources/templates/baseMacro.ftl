@@ -9,7 +9,7 @@
     <meta name="description" content="chulung's craft">
     <meta name="keywords" content="${base_keywords}">
     <meta name="author" content="chulung">
-    <link rel="shortcut icon"	href="/craft/img/favicon.ico"	type="image/x-icon" />
+    <link rel="shortcut icon"	href="/favicon.ico"	type="image/x-icon" />
     <title>${base_title}-chulung's craft</title>
 
     <!-- Bootstrap -->
