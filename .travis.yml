@@ -1,15 +1,25 @@
-
 language: java
+
 jdk:
   - oraclejdk8
 
+addons:
+  sonarqube:
+    token:
+      secure: ${sonartocken}
+
 script:
   - "cd website"
-  - "mvn clean package"
+  - "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar"
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
+
 branches:
   only:
-    - master 
+    - master
 
-    
+
 after_success:
 - bash <(curl -s https://codecov.io/bash)
