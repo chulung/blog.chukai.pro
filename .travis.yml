@@ -1,11 +1,23 @@
 
 language: java
+
+addons:
+  sonarqube:
+    token:
+      secure: ${sonartocken}
+
 jdk:
   - oraclejdk8
 
 script:
   - "cd website"
-  - "mvn clean package"
+  - "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar"
+
+
+cache:
+  directories:
+- '$HOME/.sonar/cache'
+
 branches:
   only:
     - master 
