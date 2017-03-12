@@ -1,7 +1,7 @@
 {
   "name": "website-front",
   "version": "1.0.0",
-  "description": "The front module of site: chulung.com",
+  "description": "chulung.com front-end",
   "author": "chulung <chulung@chulung.com>",
   "private": true,
   "scripts": {
@@ -13,7 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "vue": "^2.2.1",
+    "vue": "^2.2.2",
     "vue-router": "^2.2.0"
   },
   "devDependencies": {
@@ -84,7 +84,7 @@
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserlist": [
+  "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"

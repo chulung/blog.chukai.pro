@@ -1,6 +1,6 @@
 # website-front
 
-> The front module of site: chulung.com
+> chulung.com front-end
 
 ## Build Setup
 
