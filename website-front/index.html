@@ -1,10 +1,1526 @@
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>website-front</title>
-  </head>
-  <body>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <title>初龙的世界 - ChuLung's Craft</title>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="chulung's craft">
+  <meta name="author" content="">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Web Fonts -->
+  <link rel='stylesheet' type='text/css' href='//fonts.css.network/css?family=Roboto+Slab:400,300,700'>
+
+  <!-- CSS Global Compulsory -->
+  <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/blog.style.css">
+
+  <!-- CSS Header and Footer -->
+  <link rel="stylesheet" href="assets/css/headers/header-v8.css">
+  <link rel="stylesheet" href="assets/css/footers/footer-v8.css">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="assets/plugins/animate.css">
+  <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+  <link rel="stylesheet" href="assets/plugins/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/plugins/login-signup-modal-window/css/style.css">
+
+  <link rel="stylesheet" href="assets/plugins/revolution-slider/revolution/css/settings.css">
+  <link rel="stylesheet" href="assets/plugins/revolution-slider/revolution/css/layers.css">
+  <link rel="stylesheet" href="assets/plugins/revolution-slider/revolution/css/navigation.css">
+
+  <!-- CSS Theme -->
+  <link rel="stylesheet" href="assets/css/theme-colors/aqua.css" id="style_color">
+  <link rel="stylesheet" href="assets/css/theme-skins/dark.css">
+
+  <!-- CSS Customization -->
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+
+<body class="header-fixed header-fixed-space-v2">
+
+<div class="wrapper">
+  <!--=== Header v8 ===-->
+  <div class="header-v8 header-sticky">
+    <!-- Topbar blog -->
+    <div class="blog-topbar">
+      <div class="topbar-search-block">
+        <div class="container">
+          <form action="">
+            <input type="text" class="form-control" placeholder="Search">
+            <div class="search-close"><i class="icon-close"></i></div>
+          </form>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-xs-8">
+            <div class="topbar-time">Friday, Mar 13th 2015</div>
+            <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
+            <ul class="topbar-list topbar-menu">
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Forums</a></li>
+              <li>
+                <a href="javascript:void(0);">Dropdown</a>
+                <ul class="topbar-dropdown">
+                  <li><a href="#">Dropdown</a></li>
+                  <li><a href="#">Dropdown</a></li>
+                  <li class="topbar-submenu">
+                    <a href="javascript:void(0);">Submenu</a>
+                    <ul class="topbar-submenu-in">
+                      <li><a href="#">Submenu</a></li>
+                      <li><a href="#">Submenu</a></li>
+                      <li class="topbar-submenu">
+                        <a href="javascript:void(0);">Submenu</a>
+                        <ul class="topbar-submenu-in">
+                          <li><a href="#">Submenu</a></li>
+                          <li><a href="#">Submenu</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Login</a></strong></li>
+              <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Register</a></strong></li>
+            </ul>
+          </div>
+          <div class="col-sm-4 col-xs-4 clearfix">
+            <i class="fa fa-search search-btn pull-right"></i>
+            <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
+              <li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Login</a></li>
+              <li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Register</a></li>
+            </ul>
+          </div>
+        </div><!--/end row-->
+      </div><!--/end container-->
+    </div>
+    <!-- End Topbar blog -->
+
+    <!-- Navbar -->
+    <div class="navbar mega-menu" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="res-container">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <div class="navbar-brand">
+            <a href="index.html">
+              <img src="assets/img/themes/logo-news-dark-aqua.png" alt="Logo">
+            </a>
+          </div>
+        </div><!--/end responsive container-->
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-responsive-collapse">
+          <div class="res-container">
+            <ul class="nav navbar-nav">
+              <!-- Home -->
+              <li class="dropdown home active">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                  Pages
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="index.html">Home Default Page</a></li>
+
+                  <!-- Post Layouts -->
+                  <li class="dropdown-submenu active">
+                    <a href="javascript:void(0);">Blog Page Layouts</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="blog_page_layouts1.html">Page Layouts v1</a></li>
+                      <li><a href="blog_page_layouts2.html">Page Layouts v2</a></li>
+                      <li><a href="blog_page_layouts3.html">Page Layouts v3</a></li>
+                      <li class="active"><a href="blog_page_layouts4.html">Page Layouts v4</a></li>
+                    </ul>
+                  </li>
+                  <!-- End Post Layouts -->
+
+                  <!-- Post Layouts -->
+                  <li class="dropdown-submenu">
+                    <a href="javascript:void(0);">Blog Post Layouts</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="blog_post_layouts1.html">Post Layout v1</a></li>
+                      <li><a href="blog_post_layouts2.html">Post Layout v2</a></li>
+                      <li><a href="blog_post_layouts3.html">Post Layout v3</a></li>
+                      <li><a href="blog_post_layouts4.html">Post Layout v4</a></li>
+                      <li><a href="blog_post_layouts5.html">Post Layout v5</a></li>
+                      <li><a href="blog_post_layouts6.html">Post Layout v6</a></li>
+                      <li><a href="blog_post_layouts7.html">Post Layout v7</a></li>
+                      <li><a href="blog_post_layouts8.html">Post Layout v8</a></li>
+                      <li><a href="blog_post_layouts9.html">Post Layout v9</a></li>
+                      <li><a href="blog_post_layouts_ls.html">Left Sidebar Example</a></li>
+                      <li><a href="blog_post_layouts_fw.html">Full Width Example</a></li>
+                    </ul>
+                  </li>
+                  <!-- End Post Layouts -->
+
+                  <!-- Grid Layouts -->
+                  <li class="dropdown-submenu">
+                    <a href="javascript:void(0);">Grid Layouts</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="blog_grid_1.html">Grid: 1 Col</a></li>
+                      <li><a href="blog_grid_2.html">Grid: 2 Col</a></li>
+                      <li><a href="blog_grid_3.html">Grid: 3 Col</a></li>
+                      <li><a href="blog_grid_4.html">Grid: 4 Col</a></li>
+                      <li><a href="blog_grid_4_fw.html">Grid: Full Width (4 Col)</a></li>
+                      <li><a href="blog_grid_2_rs.html">Grid: Right Sidebar (2 Col)</a></li>
+                      <li><a href="blog_grid_2_ls.html">Grid: Left Sidebar (2 Col)</a></li>
+                    </ul>
+                  </li>
+                  <!-- End Grid Layouts -->
+
+                  <li><a href="blog_single.html">Single Page</a></li>
+                  <li><a href="blog_home_boxed.html">Home Boxed Page</a></li>
+                  <li><a href="blog_home_boxed_space.html">Home Boxed Space Page</a></li>
+                </ul>
+              </li>
+              <!-- End Home -->
+
+              <!-- World -->
+              <li class="dropdown mega-menu-fullwidth">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                  World
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <div class="mega-menu-content">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-2 md-margin-bottom-30">
+                            <ul class="dropdown-link-list">
+                              <li><a href="#">World</a></li>
+                              <li><a href="#">Economy</a></li>
+                              <li><a href="#">Sport</a></li>
+                              <li><a href="#">Fashion</a></li>
+                              <li><a href="#">Health</a></li>
+                              <li><a href="#">Travel</a></li>
+                              <li><a href="#">Hi-Tech</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-md-5 md-margin-bottom-30">
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img36.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">You CAN be sensitive to gluten without having coeliac disease, study finds</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img27.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">Starbucks is introducing new coffee</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img25.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">The benefits of tea</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+                          </div>
+                          <div class="col-md-5">
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img26.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">Salted dessert recipes that walk the fine line of...</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img28.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-30">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img28.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- End World -->
+
+              <!-- Fashion -->
+              <li class="dropdown mega-menu-fullwidth">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                  Fashion
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <div class="mega-menu-content">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-3 md-margin-bottom-30">
+                            <ul class="dropdown-link-list">
+                              <li><a href="#">World</a></li>
+                              <li><a href="#">Economy</a></li>
+                              <li><a href="#">Sport</a></li>
+                              <li><a href="#">Fashion</a></li>
+                              <li><a href="#">Health</a></li>
+                              <li><a href="#">Travel</a></li>
+                              <li><a href="#">Lifestyle</a></li>
+                              <li><a href="#">Hi-Tech</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-md-5 md-margin-bottom-30">
+                            <!-- Blog Grid -->
+                            <div class="blog-grid">
+                              <img class="img-responsive" src="assets/img/blog/img9.jpg" alt="">
+                              <h3 class="blog-grid-title-sm"><a href="blog_single.html">Is this the end for fashion police?</a></h3>
+                            </div>
+                            <!-- End Blog Grid -->
+                          </div>
+                          <div class="col-md-4">
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img16.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">Nadège Vanhee-Cybulski makes Hermès debut</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="blog_single.html"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img15.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">Minimalism gives way to embroidery and crystals as Paris shows draw to a close</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="blog_single.html"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-30">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img17.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">In bed with Cara Delevingne as she talks bags, boys and bunnies</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="blog_single.html"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- End Fashion -->
+
+              <!-- Archives -->
+              <li class="dropdown mega-menu-fullwidth">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                  Archives
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <div class="mega-menu-content">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-3 md-margin-bottom-30">
+                            <h2>Title goes here</h2>
+                            <ul class="dropdown-link-list">
+                              <li><a href="#">World</a></li>
+                              <li><a href="#">Economy</a></li>
+                              <li><a href="#">Sport</a></li>
+                              <li><a href="#">Fashion</a></li>
+                              <li><a href="#">Health</a></li>
+                              <li><a href="#">Travel</a></li>
+                              <li><a href="#">Lifestyle</a></li>
+                              <li><a href="#">Hi-Tech</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-md-3 md-margin-bottom-30">
+                            <h2>Title goes here</h2>
+                            <ul class="dropdown-link-list">
+                              <li><a href="#">World</a></li>
+                              <li><a href="#">Economy</a></li>
+                              <li><a href="#">Sport</a></li>
+                              <li><a href="#">Fashion</a></li>
+                              <li><a href="#">Health</a></li>
+                              <li><a href="#">Travel</a></li>
+                              <li><a href="#">Lifestyle</a></li>
+                              <li><a href="#">Hi-Tech</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-md-3 md-margin-bottom-30">
+                            <h2>Title goes here</h2>
+                            <ul class="dropdown-link-list">
+                              <li><a href="#">World</a></li>
+                              <li><a href="#">Economy</a></li>
+                              <li><a href="#">Sport</a></li>
+                              <li><a href="#">Fashion</a></li>
+                              <li><a href="#">Health</a></li>
+                              <li><a href="#">Travel</a></li>
+                              <li><a href="#">Lifestyle</a></li>
+                              <li><a href="#">Hi-Tech</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-md-3 md-margin-bottom-30">
+                            <h2>Title goes here</h2>
+                            <ul class="dropdown-link-list">
+                              <li><a href="#">World</a></li>
+                              <li><a href="#">Economy</a></li>
+                              <li><a href="#">Sport</a></li>
+                              <li><a href="#">Fashion</a></li>
+                              <li><a href="#">Health</a></li>
+                              <li><a href="#">Travel</a></li>
+                              <li><a href="#">Lifestyle</a></li>
+                              <li><a href="#">Hi-Tech</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- End Archives -->
+
+              <!-- Lifestyle -->
+              <li class="dropdown mega-menu-fullwidth">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                  Lifestyle
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <div class="mega-menu-content">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-4 md-margin-bottom-30">
+                            <div class="blog-grid">
+                              <img class="img-responsive" src="assets/img/blog/img6.jpg" alt="">
+                              <h3 class="blog-grid-title-sm"><a href="blog_single.html">Malaika Firth tells all: 'I met my boyfriend through Twitter'</a></h3>
+                            </div>
+                          </div>
+                          <div class="col-md-4 md-margin-bottom-30">
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img36.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">You CAN be sensitive to gluten without having coeliac disease, study finds</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img27.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">Starbucks is introducing new coffee</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb md-margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img25.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">The benefits of tea</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+                          </div>
+                          <div class="col-md-4">
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img26.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">Salted dessert recipes that walk the fine line of...</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb margin-bottom-20">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img28.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+
+                            <!-- Blog Thumb -->
+                            <div class="blog-thumb md-margin-bottom-30">
+                              <div class="blog-thumb-hover">
+                                <img src="assets/img/blog/img28.jpg" alt="">
+                                <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+                              </div>
+                              <div class="blog-thumb-desc">
+                                <h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
+                                <ul class="blog-thumb-info">
+                                  <li>Mar 6, 2015</li>
+                                  <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End Blog Thumb -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- End Lifestyle -->
+
+              <!-- Life -->
+              <li class="dropdown mega-menu-fullwidth">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                  Life
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <div class="mega-menu-content">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-sm-3 md-margin-bottom-30">
+                            <div class="blog-grid">
+                              <img class="img-responsive" src="assets/img/blog/img1.jpg" alt="">
+                              <h3 class="blog-grid-title-sm"><a href="#">Learning as you're earning: The alternative to a degree</a></h3>
+                            </div>
+                          </div>
+                          <div class="col-sm-3 md-margin-bottom-30">
+                            <div class="blog-grid">
+                              <img class="img-responsive" src="assets/img/blog/img11.jpg" alt="">
+                              <h3 class="blog-grid-title-sm"><a href="#">Universities found to offer ‘unlawful’ terms to students</a></h3>
+                            </div>
+                          </div>
+                          <div class="col-sm-3 md-margin-bottom-30">
+                            <div class="blog-grid">
+                              <img class="img-responsive" src="assets/img/blog/img10.jpg" alt="">
+                              <h3 class="blog-grid-title-sm"><a href="#">Harvard tops list of world university rankings again</a></h3>
+                            </div>
+                          </div>
+                          <div class="col-sm-3 sm-margin-bottom-30">
+                            <div class="blog-grid">
+                              <img class="img-responsive" src="assets/img/blog/img21.jpg" alt="">
+                              <h3 class="blog-grid-title-sm"><a href="#">New 5 star hotel in Sydney</a></h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- End Life -->
+
+              <!-- Main Demo -->
+              <li><a href="../index.html">Main Demo</a></li>
+              <!-- Main Demo -->
+            </ul>
+          </div><!--/responsive container-->
+        </div><!--/navbar-collapse-->
+      </div><!--/end contaoner-->
+    </div>
+    <!-- End Navbar -->
+  </div>
+  <!--=== End Header v8 ===-->
+
+  <!-- Promo -->
+  <div class="promo-section">
+    <div class="rev_slider_wrapper fullwidthbanner-container" data-alias="news-gallery34">
+      <!-- START REVOLUTION SLIDER 5.0.7 fullwidth mode -->
+      <div id="rev_slider_34_1" class="rev_slider fullwidthabanner" data-version="5.0.7">
+        <ul>
+          <!-- SLIDE 1 -->
+          <li data-index="rs-129" data-transition="parallaxvertical" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="assets/img/newscarousel/newscarousel1-100x50.jpg"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off" data-title="A STUDY ON HAPPINESS" data-description="Science says that Women are generally happier">
+            <!-- MAIN IMAGE -->
+            <img src="assets/img/newscarousel/newscarousel1.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+            <!-- LAYERS -->
+            <!-- LAYER NR. 1 -->
+            <div class="tp-caption tp-shape tp-shapewrapper   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-129-layer-3"
+                 data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                 data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']"
+                 data-width="full"
+                 data-height="full"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                 data-start="1000"
+                 data-basealign="slide"
+                 data-responsive_offset="on"
+                 style="z-index: 5;background-color:rgba(0, 0, 0, 0.35);border-color:rgba(0, 0, 0, 1.00);">
+            </div>
+            <!-- LAYER NR. 2 -->
+            <div class="tp-caption Newspaper-Title   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-129-layer-1"
+                 data-x="['left','left','left','left']" data-hoffset="['50','50','50','30']"
+                 data-y="['top','top','top','top']" data-voffset="['165','135','105','130']"
+                 data-fontsize="['50','50','50','30']"
+                 data-lineheight="['55','55','55','35']"
+                 data-width="['600','600','600','420']"
+                 data-height="none"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                 data-mask_out="x:0;y:0;s:inherit;e:inherit;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 6; min-width: 600px; max-width: 600px; white-space: normal;">Science says that Women are generally happier
+            </div>
+            <!-- LAYER NR. 3 -->
+            <div class="tp-caption Newspaper-Subtitle tp-resizeme rs-parallaxlevel-0"
+                 id="slide-129-layer-2"
+                 data-x="['left','left','left','left']" data-hoffset="['50','50','50','30']"
+                 data-y="['top','top','top','top']" data-voffset="['140','110','80','100']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                 data-mask_out="x:0;y:0;s:inherit;e:inherit;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 7; white-space: nowrap;">A STUDY ON HAPPINESS
+            </div>
+            <!-- LAYER NR. 4 -->
+            <div class="tp-caption Newspaper-Button rev-btn  rs-parallaxlevel-0"
+                 id="slide-129-layer-5"
+                 data-x="['left','left','left','left']" data-hoffset="['53','53','53','30']"
+                 data-y="['top','top','top','top']" data-voffset="['361','331','301','245']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;"
+                 data-style_hover="c:rgba(0, 0, 0, 1.00);bg:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);cursor:pointer;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-mask_out="x:0;y:0;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 data-responsive="off"
+                 style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">READ MORE
+            </div>
+          </li>
+          <!-- SLIDE 2 -->
+          <li data-index="rs-130" data-transition="parallaxvertical" data-slotamount="default"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="assets/img/newscarousel/newscarousel2-100x50.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="THE REAL DEAL" data-description="Every right implies a responsibility.">
+            <!-- MAIN IMAGE -->
+            <img src="assets/img/newscarousel/newscarousel2.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+            <!-- LAYERS -->
+            <!-- LAYER NR. 1 -->
+            <div class="tp-caption tp-shape tp-shapewrapper   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-130-layer-3"
+                 data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                 data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']"
+                 data-width="full"
+                 data-height="full"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                 data-start="1000"
+                 data-basealign="slide"
+                 data-responsive_offset="on"
+                 style="z-index: 5;background-color:rgba(0, 0, 0, 0.35);border-color:rgba(0, 0, 0, 1.00);">
+            </div>
+
+            <!-- LAYER NR. 2 -->
+            <div class="tp-caption Newspaper-Title   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-130-layer-1"
+                 data-x="['left','left','left','left']" data-hoffset="['50','50','50','30']"
+                 data-y="['top','top','top','top']" data-voffset="['165','135','105','130']"
+                 data-fontsize="['50','50','50','30']"
+                 data-lineheight="['55','55','55','35']"
+                 data-width="['600','600','600','420']"
+                 data-height="none"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                 data-mask_out="x:0;y:0;s:inherit;e:inherit;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 6; min-width: 600px; max-width: 600px; white-space: normal;">Every right implies a responsibility.
+            </div>
+            <!-- LAYER NR. 3 -->
+            <div class="tp-caption Newspaper-Subtitle   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-130-layer-2"
+                 data-x="['left','left','left','left']" data-hoffset="['50','50','50','30']"
+                 data-y="['top','top','top','top']" data-voffset="['140','110','80','100']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                 data-mask_out="x:0;y:0;s:inherit;e:inherit;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 7; white-space: nowrap;">THE REAL DEAL
+            </div>
+            <!-- LAYER NR. 4 -->
+            <div class="tp-caption Newspaper-Button rev-btn  rs-parallaxlevel-0"
+                 id="slide-130-layer-5"
+                 data-x="['left','left','left','left']" data-hoffset="['53','53','53','30']"
+                 data-y="['top','top','top','top']" data-voffset="['361','331','301','245']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;"
+                 data-style_hover="c:rgba(0, 0, 0, 1.00);bg:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);cursor:pointer;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-mask_out="x:0;y:0;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 data-responsive="off"
+                 style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">READ MORE
+            </div>
+          </li>
+          <!-- SLIDE 3 -->
+          <li data-index="rs-131" data-transition="parallaxvertical" data-slotamount="default"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="assets/img/newscarousel/newscarousel6-100x50.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="NATURAL BEAUTY" data-description="There was never a night or a problem that could defeat sunrise or hope.">
+            <!-- MAIN IMAGE -->
+            <img src="assets/img/newscarousel/newscarousel6.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+            <!-- LAYERS -->
+            <!-- LAYER NR. 1 -->
+            <div class="tp-caption tp-shape tp-shapewrapper   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-131-layer-3"
+                 data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                 data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']"
+                 data-width="full"
+                 data-height="full"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                 data-start="1000"
+                 data-basealign="slide"
+                 data-responsive_offset="on"
+                 style="z-index: 5;background-color:rgba(0, 0, 0, 0.35);border-color:rgba(0, 0, 0, 1.00);">
+            </div>
+            <!-- LAYER NR. 2 -->
+            <div class="tp-caption Newspaper-Title   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-131-layer-1"
+                 data-x="['left','left','left','left']" data-hoffset="['50','50','50','30']"
+                 data-y="['top','top','top','top']" data-voffset="['165','135','105','130']"
+                 data-fontsize="['50','50','50','30']"
+                 data-lineheight="['55','55','55','35']"
+                 data-width="['600','600','600','420']"
+                 data-height="none"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                 data-mask_out="x:0;y:0;s:inherit;e:inherit;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 6; min-width: 600px; max-width: 600px; white-space: normal;">There was never a night or a problem that could defeat sunrise or hope.
+            </div>
+            <!-- LAYER NR. 3 -->
+            <div class="tp-caption Newspaper-Subtitle   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-131-layer-2"
+                 data-x="['left','left','left','left']" data-hoffset="['50','50','50','30']"
+                 data-y="['top','top','top','top']" data-voffset="['140','110','80','100']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                 data-mask_out="x:0;y:0;s:inherit;e:inherit;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 7; white-space: nowrap;">NATURAL BEAUTY
+            </div>
+            <!-- LAYER NR. 4 -->
+            <div class="tp-caption Newspaper-Button rev-btn  rs-parallaxlevel-0"
+                 id="slide-131-layer-5"
+                 data-x="['left','left','left','left']" data-hoffset="['53','53','53','30']"
+                 data-y="['top','top','top','top']" data-voffset="['361','331','301','245']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;"
+                 data-style_hover="c:rgba(0, 0, 0, 1.00);bg:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);cursor:pointer;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-mask_out="x:0;y:0;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 data-responsive="off"
+                 style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">READ MORE
+            </div>
+          </li>
+          <!-- SLIDE 4 -->
+          <li data-index="rs-132" data-transition="parallaxvertical" data-slotamount="default"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="assets/img/newscarousel/newscarousel5-100x50.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="WORDS OF WISDOM" data-description="Walking with a friend in the dark is better than alone in the light.">
+            <!-- MAIN IMAGE -->
+            <img src="assets/img/newscarousel/newscarousel5.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+            <!-- LAYERS -->
+            <!-- LAYER NR. 1 -->
+            <div class="tp-caption tp-shape tp-shapewrapper   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-132-layer-3"
+                 data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                 data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']"
+                 data-width="full"
+                 data-height="full"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                 data-start="1000"
+                 data-basealign="slide"
+                 data-responsive_offset="on"
+                 style="z-index: 5;background-color:rgba(0, 0, 0, 0.35);border-color:rgba(0, 0, 0, 1.00);">
+            </div>
+            <!-- LAYER NR. 2 -->
+            <div class="tp-caption Newspaper-Title   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-132-layer-1"
+                 data-x="['left','left','left','left']" data-hoffset="['50','50','50','30']"
+                 data-y="['top','top','top','top']" data-voffset="['165','135','105','130']"
+                 data-fontsize="['50','50','50','30']"
+                 data-lineheight="['55','55','55','35']"
+                 data-width="['600','600','600','420']"
+                 data-height="none"
+                 data-whitespace="normal"
+                 data-transform_idle="o:1;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-mask_out="x:0;y:0;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 6; min-width: 600px; max-width: 600px; white-space: normal;">Walking with a friend in the dark is better than alone in the light.
+            </div>
+            <!-- LAYER NR. 3 -->
+            <div class="tp-caption Newspaper-Subtitle   tp-resizeme rs-parallaxlevel-0"
+                 id="slide-132-layer-2"
+                 data-x="['left','left','left','left']" data-hoffset="['50','50','50','30']"
+                 data-y="['top','top','top','top']" data-voffset="['140','110','80','100']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;"
+                 data-mask_out="x:0;y:0;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 style="z-index: 7; white-space: nowrap;">WORDS OF WISDOM
+            </div>
+            <!-- LAYER NR. 4 -->
+            <div class="tp-caption Newspaper-Button rev-btn rs-parallaxlevel-0"
+                 id="slide-132-layer-5"
+                 data-x="['left','left','left','left']" data-hoffset="['53','53','53','30']"
+                 data-y="['top','top','top','top']" data-voffset="['361','331','301','245']"
+                 data-width="none"
+                 data-height="none"
+                 data-whitespace="nowrap"
+                 data-transform_idle="o:1;"
+                 data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;"
+                 data-style_hover="c:rgba(0, 0, 0, 1.00);bg:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);cursor:pointer;"
+                 data-transform_in="y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;s:1500;e:Power3.easeInOut;"
+                 data-transform_out="auto:auto;s:1000;e:Power3.easeInOut;"
+                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                 data-mask_out="x:0;y:0;s:inherit;e:inherit;"
+                 data-start="1000"
+                 data-splitin="none"
+                 data-splitout="none"
+                 data-responsive_offset="on"
+                 data-responsive="off"
+                 style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">READ MORE
+            </div>
+          </li>
+        </ul>
+        <div class="tp-bannertimer tp-bottom" style="height: 5px;"></div>
+      </div>
+    </div><!-- END REVOLUTION SLIDER -->
+  </div>
+  <!-- End Promo -->
+
+  <!-- Container Part -->
+  <div class="container content-sm"><div class="row">
+    <div class="col-md-9 md-margin-bottom-50">
+      <div class="masonry-box margin-bottom-50">
+        <!-- Blog Grid -->
+        <div class="blog-grid masonry-box-in col-2">
+          <img class="img-responsive" src="assets/img/blog/img3.jpg" alt="">
+          <h3><a href="blog_single.html">Learning technology: iMac</a></h3>
+          <ul class="blog-grid-info">
+            <li>Alex Amell</li>
+            <li>Mar 6, 2015</li>
+            <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+          </ul>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet sed eros sed tincidunt. Sed eu mauris iaculis, faucibus nisi a, ultrices ipsum. Donec auctor metus eget diam fermentum, et viverra erat semper. Mauris iaculis nisl eu ipsum dapibus pretium. Morbi quis justo non turpis cursus pharetra.</p>
+          <a class="r-more" href="blog_single.html">Read More</a>
+        </div>
+        <!-- End Blog Grid -->
+
+        <!-- Blog Grid -->
+        <div class="blog-grid masonry-box-in col-2">
+          <div class="carousel slide carousel-v2" id="portfolio-carousel">
+            <ol class="carousel-indicators">
+              <li class="rounded-x active" data-target="#portfolio-carousel" data-slide-to="0"></li>
+              <li class="rounded-x" data-target="#portfolio-carousel" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                <img class="img-responsive" src="assets/img/blog/img40.jpg" alt="">
+              </div>
+              <div class="item">
+                <img class="img-responsive" src="assets/img/blog/img24.jpg" alt="">
+              </div>
+            </div>
+          </div>
+          <h3><a href="blog_single.html">Is this the end for fashion police?</a></h3>
+          <ul class="blog-grid-info">
+            <li>Susie Lau</li>
+            <li>Mar 7, 2015</li>
+            <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+          </ul>
+          <p>Mauris iaculis nisl eu ipsum dapibus pretium. Morbi quis justo non turpis cursus pharetra. Cras ac ligula sem. Nulla facilisi. Curabitur vulputate cursus ornare.</p>
+          <a class="r-more" href="blog_single.html">Read More</a>
+        </div>
+        <!-- End Blog Grid -->
+
+        <!-- Blog Grid -->
+        <div class="blog-grid masonry-box-in col-2">
+          <div class="responsive-video margin-bottom-15">
+            <iframe src="//player.vimeo.com/video/93003441?color=567fc7" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+          <h3><a href="blog_single.html">Education news, opinion and guides</a></h3>
+          <ul class="blog-grid-info">
+            <li>Richard Garner</li>
+            <li>Mar 9, 2015</li>
+            <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+          </ul>
+          <p>Nulla gravida sit amet odio vel posuere. Proin maximus est diam, sed iaculis arcu ultrices sed. Quisque nisi diam, sodales sit amet diam ut, bibendum interdum metus.</p>
+          <a class="r-more" href="blog_single.html">Read More</a>
+        </div>
+        <!-- End Blog Grid -->
+
+        <!-- Blog Grid -->
+        <div class="blog-grid masonry-box-in col-2">
+          <img class="img-responsive" src="assets/img/blog/img20.jpg" alt="">
+          <h3><a href="blog_single.html">Dogs in the road - make your road safe for your dog</a></h3>
+          <ul class="blog-grid-info">
+            <li>Susie Lau</li>
+            <li>Mar 6, 2015</li>
+            <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+          </ul>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet sed eros sed tincidunt. Sed eu mauris iaculis, faucibus nisi a, ultrices ipsum.</p>
+          <a class="r-more" href="blog_single.html">Read More</a>
+        </div>
+        <!-- End Blog Grid -->
+
+        <!-- Blog Grid -->
+        <div class="blog-grid masonry-box-in col-2">
+          <img class="img-responsive" src="assets/img/blog/img13.jpg" alt="">
+          <h3><a href="blog_single.html">Learning technology: iMac</a></h3>
+          <ul class="blog-grid-info">
+            <li>Alex Amell</li>
+            <li>Mar 6, 2015</li>
+            <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+          </ul>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet sed eros sed tincidunt. Sed eu mauris iaculis, faucibus nisi a, ultrices ipsum. Donec auctor metus eget diam fermentum, et viverra erat semper. Mauris iaculis nisl eu ipsum dapibus pretium. Morbi quis justo non turpis cursus pharetra.</p>
+          <a class="r-more" href="blog_single.html">Read More</a>
+        </div>
+        <!-- End Blog Grid -->
+
+        <!-- Blog Grid -->
+        <div class="blog-grid masonry-box-in col-2">
+          <div class="carousel slide carousel-v2" id="portfolio-carousel-2">
+            <ol class="carousel-indicators">
+              <li class="rounded-x active" data-target="#portfolio-carousel-2" data-slide-to="0"></li>
+              <li class="rounded-x" data-target="#portfolio-carousel-2" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                <img class="img-responsive" src="assets/img/blog/img30.jpg" alt="">
+              </div>
+              <div class="item">
+                <img class="img-responsive" src="assets/img/blog/img34.jpg" alt="">
+              </div>
+            </div>
+          </div>
+          <h3><a href="blog_single.html">Is this the end for fashion police?</a></h3>
+          <ul class="blog-grid-info">
+            <li>Susie Lau</li>
+            <li>Mar 7, 2015</li>
+            <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+          </ul>
+          <p>Mauris iaculis nisl eu ipsum dapibus pretium. Morbi quis justo non turpis cursus pharetra. Cras ac ligula sem. Nulla facilisi. Curabitur vulputate cursus ornare. Sed enim sapien, sodales at augue vel, molestie commodo velit.</p>
+          <a class="r-more" href="blog_single.html">Read More</a>
+        </div>
+        <!-- End Blog Grid -->
+      </div>
+
+      <!-- Pager v4 -->
+      <ul class="pager pager-v4 margin-bottom-50">
+        <li class="previous"><a class="rounded-3x" href="#">&larr; Older</a></li>
+        <li class="page-amount">1 of 7</li>
+        <li class="next"><a class="rounded-3x" href="#">Newer &rarr;</a></li>
+      </ul>
+      <!-- End Pager v4 -->
+    </div>
+
+    <div class="col-md-3">
+      <!-- Blog Thumb v3 -->
+      <div class="margin-bottom-50">
+        <h2 class="title-v4">Blog &amp; Comments</h2>
+
+        <div class="blog-thumb-v3">
+          <small><a href="#">Evan Bartlett</a></small>
+          <h3><a href="#">Cameron's silence on defence is shameful</a></h3>
+        </div>
+
+        <hr class="hr-xs">
+
+        <div class="blog-thumb-v3">
+          <small><a href="#">Jonathan Owen</a></small>
+          <h3><a href="#">Architects plan to stop skyscrapers from blocking out sunlight</a></h3>
+        </div>
+
+        <hr class="hr-xs">
+
+        <div class="blog-thumb-v3">
+          <small><a href="#">Susie Lau</a></small>
+          <h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend for style blogging</a></h3>
+        </div>
+
+        <hr class="hr-xs">
+
+        <div class="blog-thumb-v3">
+          <small><a href="#">John Rentoul</a></small>
+          <h3><a href="#">How to run a country: A 10 point manifesto for leaders who stand – and want to deliver</a></h3>
+        </div>
+
+        <hr class="hr-xs">
+
+        <div class="blog-thumb-v3">
+          <small><a href="#">Richard Garner</a></small>
+          <h3><a href="#">Controversial plan to test new primary school pupils infuriates teachers</a></h3>
+        </div>
+      </div>
+      <!-- End Blog Thumb v3 -->
+
+      <!-- Social Shares -->
+      <div class="margin-bottom-50">
+        <h2 class="title-v4">Social</h2>
+        <ul class="blog-social-shares">
+          <li>
+            <i class="rounded-x fb fa fa-facebook"></i>
+            <a class="rounded-3x" href="#">Like</a>
+            <span class="counter">31,702</span>
+          </li>
+          <li>
+            <i class="rounded-x tw fa fa-twitter"></i>
+            <a class="rounded-3x" href="#">Follow Us</a>
+            <span class="counter">164,290</span>
+          </li>
+          <li>
+            <i class="rounded-x gp fa fa-google-plus"></i>
+            <a class="rounded-3x" href="#">Add to circle</a>
+            <span class="counter">5,425,764</span>
+          </li>
+        </ul>
+      </div>
+      <!-- End Social Shares -->
+
+      <!-- Blog Thumb v2 -->
+      <div class="margin-bottom-50">
+        <h2 class="title-v4">Recent News</h2>
+
+        <div class="blog-thumb blog-thumb-circle margin-bottom-15">
+          <div class="blog-thumb-hover">
+            <img class="rounded-x" src="assets/img/blog/img1.jpg" alt="">
+            <a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
+          </div>
+          <div class="blog-thumb-desc">
+            <h3><a href="blog_single.html">Misused words and how to use them correctly</a></h3>
+            <ul class="blog-thumb-info">
+              <li>Mar 6, 2015</li>
+              <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="blog-thumb blog-thumb-circle margin-bottom-15">
+          <div class="blog-thumb-hover">
+            <img class="rounded-x" src="assets/img/blog/img22.jpg" alt="">
+            <a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
+          </div>
+          <div class="blog-thumb-desc">
+            <h3><a href="blog_single.html">8 health benefits and drawbacks of coffee</a></h3>
+            <ul class="blog-thumb-info">
+              <li>Mar 6, 2015</li>
+              <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="blog-thumb blog-thumb-circle margin-bottom-15">
+          <div class="blog-thumb-hover">
+            <img class="rounded-x" src="assets/img/blog/img2.jpg" alt="">
+            <a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
+          </div>
+          <div class="blog-thumb-desc">
+            <h3><a href="blog_single.html">What are the top five books you must read?</a></h3>
+            <ul class="blog-thumb-info">
+              <li>Mar 6, 2015</li>
+              <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="blog-thumb blog-thumb-circle">
+          <div class="blog-thumb-hover">
+            <img class="rounded-x" src="assets/img/blog/img21.jpg" alt="">
+            <a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
+          </div>
+          <div class="blog-thumb-desc">
+            <h3><a href="blog_single.html">Stylish things to do, see and buy this week</a></h3>
+            <ul class="blog-thumb-info">
+              <li>Mar 6, 2015</li>
+              <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- End Blog Thumb v2 -->
+    </div></div>
+  </div>
+  <!--=== End Container Part ===-->
+
+  <!--=== Footer v8 ===-->
+  <div class="footer-v8">
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-6 column-one md-margin-bottom-50">
+            <a href="index.html"><img class="footer-logo" src="assets/img/themes/logo-news-light-aqua.png" alt=""></a>
+            <p class="margin-bottom-20">Unify is an ultra fully responsive template with modern and smart design.</p>
+            <span>Headquarters:</span>
+            <p>795 Folsom Ave, Suite 600, San Francisco, CA 94107</p>
+            <hr>
+            <span>Phone:</span>
+            <p>(+123) 456 7890</p>
+            <p>(+123) 456 7891</p>
+            <hr>
+            <span>Email Address:</span>
+            <a href="#">support@htmlstream.com</a>
+          </div>
+
+          <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+            <h2>Tags</h2>
+            <!-- Tag Links v4 -->
+            <ul class="tags-v4 margin-bottom-40">
+              <li><a class="rounded-4x" href="#">java</a></li>
+              <li><a class="rounded-4x" href="#">featured</a></li>
+              <li><a class="rounded-4x" href="#">pattern</a></li>
+              <li><a class="rounded-4x" href="#">web</a></li>
+              <li><a class="rounded-4x" href="#">fashion</a></li>
+              <li><a class="rounded-4x" href="#">wrapbootstrap</a></li>
+              <li><a class="rounded-4x" href="#">css3</a></li>
+              <li><a class="rounded-4x" href="#">foto</a></li>
+              <li><a class="rounded-4x" href="#">google</a></li>
+              <li><a class="rounded-4x" href="#">html5</a></li>
+            </ul>
+            <!-- End Tag Links v4 -->
+
+            <h2>Useful Links</h2>
+            <!-- Footer Lists -->
+            <ul class="footer-lists">
+              <li><i class="fa fa-angle-right"></i><a href="#">Wrapbootstrap</a></li>
+              <li><i class="fa fa-angle-right"></i><a href="#">Google</a></li>
+              <li><i class="fa fa-angle-right"></i><a href="#">Marketing</a></li>
+              <li><i class="fa fa-angle-right"></i><a href="#">Support Forum</a></li>
+              <li><i class="fa fa-angle-right"></i><a href="#">Themes</a></li>
+            </ul>
+            <!-- End Footer Lists -->
+          </div>
+
+          <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+            <h2>Latest News</h2>
+            <!-- Latest News -->
+            <div class="latest-news margin-bottom-20">
+              <img src="assets/img/thumb/img-thumb1.jpg" alt="">
+              <h3><a href="#">Standard post with video.</a></h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+            <hr>
+
+            <div class="latest-news margin-bottom-20">
+              <img src="assets/img/thumb/img-thumb2.jpg" alt="">
+              <h3><a href="#">Standard post with video.</a></h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+            <hr>
+
+            <div class="latest-news">
+              <img src="assets/img/thumb/img-thumb3.jpg" alt="">
+              <h3><a href="#">Standard post with video.</a></h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <!-- End Latest News -->
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <h2>Newsletter</h2>
+            <p><strong>Subscribe</strong> to our newsletter and stay up to date with the latest news and deals!</p><br>
+
+            <!-- Form Group -->
+            <div class="input-group margin-bottom-50">
+              <input class="form-control" type="email" placeholder="Enter email">
+              <div class="input-group-btn">
+                <button type="button" class="btn-u input-btn">Subscribe</button>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <h2>Social Network</h2>
+            <p><strong>Follow Us</strong> If you want to be kept up to date about what’s going on, minute by minute, then search for Grant and give us a follow!</p><br>
+
+            <!-- Social Icons -->
+            <ul class="social-icon-list margin-bottom-20">
+              <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="rounded-x fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="rounded-x fa fa-dribbble"></i></a></li>
+            </ul>
+            <!-- End Social Icons -->
+          </div>
+        </div><!--/end row-->
+      </div><!--/end container-->
+    </footer>
+
+    <footer class="copyright">
+      <div class="container">
+        <ul class="list-inline terms-menu">
+          <li>2015 &copy; All Rights Reserved.</li>
+          <li class="home"><a href="#">Terms of Use</a></li>
+          <li><a href="#">Privacy and Policy</a></li>
+        </ul>
+      </div><!--/end container-->
+    </footer>
+  </div>
+  <!--=== End Footer v8 ===-->
+
+  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+      <ul class="cd-switcher">
+        <li><a href="javascript:void(0);">Login</a></li>
+        <li><a href="javascript:void(0);">Register</a></li>
+      </ul>
+
+      <div id="cd-login"> <!-- log in form -->
+        <form class="cd-form">
+          <p class="social-login">
+            <span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>
+            <span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>
+            <span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>
+          </p>
+
+          <div class="lined-text"><span>Or use your account on Blog</span><hr></div>
+
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="signin-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace cd-password" for="signin-password">Password</label>
+            <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+            <a href="javascript:void(0);" class="hide-password">Hide</a>
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <input type="checkbox" id="remember-me" checked>
+            <label for="remember-me">Remember me</label>
+          </p>
+
+          <p class="fieldset">
+            <input class="full-width" type="submit" value="Login">
+          </p>
+        </form>
+
+        <p class="cd-form-bottom-message"><a href="javascript:void(0);">Forgot your password?</a></p>
+        <!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-login -->
+
+      <div id="cd-signup"> <!-- sign up form -->
+        <form class="cd-form">
+          <p class="social-login">
+            <span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>
+            <span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>
+            <span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>
+          </p>
+
+          <div class="lined-text"><span>Or register your new account on Blog</span><hr></div>
+
+          <p class="fieldset">
+            <label class="image-replace cd-username" for="signup-username">Username</label>
+            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="signup-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace cd-password" for="signup-password">Password</label>
+            <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+            <a href="javascript:void(0);" class="hide-password">Hide</a>
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <input type="checkbox" id="accept-terms">
+            <label for="accept-terms">I agree to the <a href="javascript:void(0);">Terms</a></label>
+          </p>
+
+          <p class="fieldset">
+            <input class="full-width has-padding" type="submit" value="Create account">
+          </p>
+        </form>
+
+        <!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-signup -->
+
+      <div id="cd-reset-password"> <!-- reset password form -->
+        <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+        <form class="cd-form">
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="reset-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <input class="full-width has-padding" type="submit" value="Reset password">
+          </p>
+        </form>
+
+        <p class="cd-form-bottom-message"><a href="javascript:void(0);">Back to log-in</a></p>
+      </div> <!-- cd-reset-password -->
+      <a href="javascript:void(0);" class="cd-close-form">Close</a>
+    </div> <!-- cd-user-modal-container -->
+  </div> <!-- cd-user-modal -->
+</div><!--/wrapper-->
+
+<!-- JS Global Compulsory -->
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+<script src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="assets/plugins/back-to-top.js"></script>
+<script src="assets/plugins/smoothScroll.js"></script>
+<script src="assets/plugins/counter/waypoints.min.js"></script>
+<script src="assets/plugins/counter/jquery.counterup.min.js"></script>
+<script src="assets/plugins/modernizr.js"></script>
+<script src="assets/plugins/login-signup-modal-window/js/main.js"></script>
+<script src="assets/plugins/masonry/masonry.pkgd.min.js"></script>
+<script src="assets/plugins/masonry/imagesloaded.pkgd.min.js"></script>
+<script src="assets/plugins/revolution-slider/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="assets/plugins/revolution-slider/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script src="assets/plugins/revolution-slider/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="assets/plugins/revolution-slider/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="assets/plugins/revolution-slider/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="assets/plugins/revolution-slider/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+
+<!-- JS Customization -->
+<script src="assets/js/custom.js"></script>
+
+<!-- JS Page Level -->
+<script src="assets/js/app.js"></script>
+<script src="assets/js/plugins/fancy-box.js"></script>
+<script src="assets/js/plugins/owl-carousel.js"></script>
+<script src="assets/js/plugins/blog-masonry.js"></script>
+<script src="assets/js/plugins/revo-slider.js"></script>
+<script>
+  jQuery(document).ready(function() {
+    App.init();
+    App.initCounter();
+    MasonryBox.initMasonryBox();
+  });
+</script>
+<!--[if lt IE 9]>
+<script src="assets/plugins/respond.js"></script>
+<script src="assets/plugins/html5shiv.js"></script>
+<script src="assets/plugins/placeholder-IE-fixes.js"></script>
+<![endif]-->
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
