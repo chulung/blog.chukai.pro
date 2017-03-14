@@ -1,0 +1,190 @@
+/*
+* Aqua Color: #5bc0de;
+* Aqua Hover Color: #26bac8;
+* rgba(39,215,231,1);
+*/
+a {
+	color: #5bc0de;
+}
+a:hover {
+	color: #5bc0de;
+}
+.header-v8 .dropdown-menu {
+	border-top: solid 3px #5bc0de;
+}
+.header-v8 .dropdown-menu .active > a,
+.header-v8 .dropdown-menu li > a:hover {
+	color: #5bc0de;
+}
+.header-v8 .navbar-nav .open .dropdown-menu > li > a:hover,
+.header-v8 .navbar-nav .open .dropdown-menu > li > a:focus {
+	color: #5bc0de;
+}
+.header-v8 .navbar-nav .open .dropdown-menu > .active > a,
+.header-v8 .navbar-nav .open .dropdown-menu > .active > a:hover,
+.header-v8 .navbar-nav .open .dropdown-menu > .active > a:focus {
+	color: #5bc0de;
+}
+
+.header-v8 .navbar-nav .open .dropdown-menu > .disabled > a,
+.header-v8 .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+.header-v8 .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+	color: #5bc0de;
+}
+.header-v8 .navbar-nav > li > a:hover {
+	color: #5bc0de;
+}
+.header-v8 .navbar-nav > .active > a{
+
+}
+.header-v8 .navbar-nav > .active > a:hover,
+.header-v8 .navbar-nav > .active > a:focus {
+	color: #5bc0de !important;
+}
+.header-v8 .mega-menu .mega-menu-fullwidth .dropdown-link-list li a:hover {
+	color: #5bc0de;
+}
+.footer-v8 .footer .column-one a:hover {
+	color: #5bc0de;
+}
+.footer-v8 .footer .tags-v4 a:hover {
+	border-color: #5bc0de;
+	background-color: #5bc0de;
+}
+.footer-v8 .footer .footer-lists li a:hover {
+	color: #5bc0de;
+}
+.footer-v8 .footer .latest-news h3 a:hover {
+	color: #5bc0de;
+}
+.footer-v8 .footer .input-group-btn .input-btn {
+	background: #5bc0de;
+}
+.footer-v8 .footer .social-icon-list li i:hover {
+	background: #5bc0de;
+	border-color: #5bc0de;
+}
+.blog-slider span.blog-slider-badge {
+	background: #5bc0de;
+}
+.blog-slider .blog-slider-title h2 a:hover {
+	color: #5bc0de;
+}
+.blog-ms-v2 .ms-thumb-frame-selected .ms-thumb h3 {
+	color: #5bc0de;
+}
+.tab-v4 .tab-heading h2 {
+	color: #5bc0de;
+}
+.title-v4 {
+	color: #5bc0de;
+}
+.tab-v4 .nav-tabs > .active > a,
+.tab-v4 .nav-tabs > .active > a:hover,
+.tab-v4 .nav-tabs > .active > a:focus {
+	color: #5bc0de;
+}
+.blog-grid h3 a:hover {
+	color: #5bc0de;
+}
+.blog-grid .blog-grid-info li a:hover {
+	color: #5bc0de;
+}
+.blog-grid a.r-more {
+	color: #5bc0de;
+}
+.blog-grid a.r-more {
+	border-bottom: 1px solid #5bc0de;
+}
+.blog-thumb .blog-thumb-desc h3 a:hover {
+	color: #5bc0de;
+}
+.blog-thumb .blog-thumb-info li a:hover {
+	color: #5bc0de;
+	text-decoration: none;
+}
+.tab-v5 .nav-tabs li.active a {
+	color: #5bc0de;
+}
+.blog-thumb-v3 h3 a:hover {
+	color: #5bc0de;
+}
+.blog-video span.category-badge {
+	background: #5bc0de;
+}
+.twitter-posts .twitter-posts-in a.link {
+	color: #5bc0de;
+}
+.blog-social-shares li a:hover {
+	color: #5bc0de;
+}
+.tab-v4 .nav-tabs > li > a:hover {
+	color: #5bc0de;
+}
+.blog-cars-heading .owl-navigation .owl-btn:focus,
+.blog-cars-heading .owl-navigation .owl-btn:hover {
+	color: #5bc0de;
+}
+.blog-cars-heading h2 {
+	color: #5bc0de;
+}
+.blog-thumb-v4 h3 a:hover {
+	color: #5bc0de;
+}
+.blog-thumb-v2 .blog-thumb-desc h3 a:hover {
+	color: #5bc0de;
+}
+.blog-thumb-v2 .blog-thumb-info li a:hover {
+	color: #5bc0de;
+}
+.breadcrumb li.active,
+.breadcrumb li a:hover {
+	color: #5bc0de;
+}
+.single-page-quote:after {
+	background: #5bc0de;
+}
+.single-page-quote p {
+	color: #5bc0de;
+}
+.source-list li a {
+	color: #5bc0de;
+}
+.blog-grid-tags li a:hover {
+	background: #5bc0de;
+}
+
+.btn-u.btn-u-default {
+	background: #5bc0de;
+}
+.btn-u.btn-u-default:hover,
+.btn-u.btn-u-default:focus,
+.btn-u.btn-u-default:active,
+.btn-u.btn-u-default.active,
+.open .dropdown-toggle.btn-u.btn-u-default {
+	background: #26bac8;
+}
+.btn-u.btn-u-split-default.dropdown-toggle {
+	border-left: solid 1px #26bac8;
+}
+
+.blog-thumb .blog-thumb-hover:hover:after {
+	background: rgba(39,215,231,0.9);
+}
+#topcontrol:hover {
+	background: rgba(39,215,231,0.9);
+}
+.blog-video h4 {
+	background: rgba(39,215,231,0.8);
+}
+.blog-grid .blog-grid-grad i:hover {
+	background: rgba(39,215,231,1);
+}
+.blog-thumb-v2 .blog-thumb-grad i:hover {
+	background: rgba(39,215,231,1);
+}
+
+/*added in v1.9*/
+.tp-bannertimer {
+	background: #5bc0de;
+}

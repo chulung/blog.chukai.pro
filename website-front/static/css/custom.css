@@ -1,0 +1,46 @@
+@import "app.css";
+@import "blog.style.css";
+@import "aqua.css";
+
+/* Add here all your css styles (customizations) */
+body,.wrapper{
+  background: #f4f4f4 none repeat scroll 0 0;
+}
+.wrapper .container.content-sm {
+  background: #fff;
+}
+h1.logo,.footer-v8 .footer .column-one a{
+  font-weight: 700;!important;
+  color: #5bc0de; !important;
+  font-size: 28px; !important;
+}
+
+/*Tags v4
+------------------------------------*/
+.tags-v4 {
+  padding-left: 0;
+  list-style: none;
+}
+
+.tags-v4 li {
+  padding: 3px 2px;
+  line-height: 28px;
+  display: inline-block;
+}
+
+.tags-v4 a {
+  color: #bbb;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 4px 10px;
+  border: 1px solid #bbb;
+}
+
+.tags-v4 a:hover {
+  color: #fff;
+  background: #e74c3c;
+  border-color: #e74c3c;
+  text-decoration: none;
+  transition: all 0.25s,
+  transform 0.25s;
+}
