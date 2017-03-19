@@ -1,72 +1,90 @@
 <template>
-  <div class="col-md-3">
-    <!--search-->
-    <div class="margin-bottom-50">
-      <section class="widget widget_search">
-        <form role="search" method="get" action="/search" class="search-form">
-          <label>
-            <input placeholder="CSearch …" value="" name="word" title="Search for:" class="search-field" type="search">
-          </label>
-          <input value="Search" class="search-submit" type="submit">
-        </form>
-      </section>
-    </div>
-    <!--end search-->
+  <div class="col-md-4" id="sidebar-div">
+    <section class="widget widget_search">
+      <form role="search" method="get" class="search-form" action="/search">
+        <label>
+          <span class="screen-reader-text">Search for:</span>
+          <input class="search-field" placeholder="CSearch …" value="" name="word" title="Search for:"
+                 type="search">
+        </label>
+        <input class="search-submit" value="Search" type="submit">
+      </form><!-- search-form -->
+    </section><!-- .widget_search -->
 
-    <!-- Social Shares -->
-    <div class="margin-bottom-50">
-      <h2 class="title-v4">一起玩耍</h2>
-      <ul class="blog-social-shares">
-        <li>
-          <i class="rounded-x git fa fa-github"></i>
-          <a class="rounded-3x" href="https://github.com/chulung" target="_blank" rel="external nofollow">Github</a>
-          <!--<span class="counter">31,702</span>-->
-        </li>
-        <li>
-          <i class="rounded-x wb fa  fa-weibo"></i>
-          <a class="rounded-3x" href="http://weibo.com/chulung" target="_blank" rel="external nofollow">微博</a>
-        </li>
-        <li>
-          <i class="rounded-x mail fa fa-envelope"></i>
-          <a class="rounded-3x" href="mailto:chulung@chulung.com" target="_blank" rel="external nofollow">Email</a>
-        </li>
-      </ul>
-    </div>
-    <!-- End Social Shares -->
-    <!-- Blog Thumb v2 -->
-    <div class="margin-bottom-50">
-      <h2 class="title-v4">热门</h2>
-      <template v-for="item in popularArticles">
-        <div class="blog-thumb blog-thumb-circle" :class="{'margin-bottom-15':index<popularArticles.length-1}">
-          <div class="blog-thumb-hover">
-            <img class="rounded-x" :src="item.pic || '/static/logo.jpg'" alt="">
-            <a class="hover-grad" :href="'/article/'+item.id"><i class="fa fa-link"></i></a>
-          </div>
-          <div class="blog-thumb-desc">
-            <h3><a :href="'/article/'+item.id">{{item.title}}</a></h3>
-            <ul class="blog-thumb-info">
-              <li>Mar 6, 2015</li>
-              <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-            </ul>
-          </div>
-        </div>
-      </template>
-    </div>
-    <!-- End Blog Thumb v2 -->
-    <template v-if="recentlyComments">
-      <div class="margin-bottom-50">
-        <h2 class="title-v4">最新评论</h2>
-        <template v-for="item in recentlyComments">
-          <div class="blog-thumb-v3">
-            <small><a :href="item.website || 'javascript:;'" rel="external nofollow">{{item.userName}}</a></small>
-            <h3><a :href="'/article/'+item.articleId+'#comments'+item.id">{{item.comment}}</a></h3>
-          </div>
-          <hr class="hr-xs">
-        </template>
-      </div>
+    <section class="widget danish_widget_about">
+      <div class="about-author-container">
+        <div class="about-author-info">
+          <h2 class="widget-title">chulung</h2>
+          <span class="author-subtitle">Developer</span>
+          <div class="author-description">
+            <p>目前从事后端开发，关注网站架构，平时也从前端折腾到数据库，感觉正在走向全栈，业余时会下厨，旅行，健身...</p>
+            <a href="/about" class="more-link"><span class="moretext">More</span></a>
+          </div><!-- .author-description -->
+          <div class="author-footer">
+            <div class="author-social">
+              <a href="https://github.com/chulung" target="_blank" rel="external nofollow"><i
+                class="fa fa-github"></i></a>
+              <a href="mailto:chulung@chulung.com" rel="external nofollow" target="_blank"><i
+                class="fa fa-envelope"></i></a>
+              <a href="http://weibo.com/chulung" target="_blank" rel="external nofollow"><i
+                class="fa fa-weibo"></i></a>
+            </div><!-- .author-social -->
+          </div><!-- .author-footer -->
+        </div><!-- .about-author-info -->
+      </div><!-- .about-author-container -->
+    </section><!-- .danish_widget_about -->
+
+    <template v-if="popularArticles && popularArticles.length">
+      <section class="widget danish_widget_popular_entries ">
+        <h2 class="widget-title">热门</h2>
+        <ul>
+          <li style="display: list-item;" v-for="item in popularArticles">
+            <div class="popular-entry-container">
+              <div class="entry-image"><img :src="defaultPic(item.pic)"></div>
+              <div class="entry-content">
+                <h4 class="entry-title"><a ref="bookmark" :href="'/article/'+item.id">{{item.title}}</a>
+                </h4>
+                <span class="entry-category"><a
+                  :href="'/articles?page=1&typeId='+item.typeId+'#content'">{{item.typeName}}</a></span>
+                <span class="entry-datetime">{{item.createTime}}</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section><!-- .danish_widget_popular_entries -->
     </template>
-    <!-- End Blog Thumb v3 -->
-  </div>
+    <template v-if="articleFilings && articleFilings.length">
+      <section class="widget widget_archive">
+        <h2 class="widget-title">归档</h2>
+        <ul id="articleFilings">
+          <li v-for="item in articleFilings"><a
+            :href="'/monthFilings/'+ yearMonth(item)">{{yearMonth(item)}}</a>({{item.count}})
+          </li>
+        </ul>
+      </section><!-- .widget_archive -->
+    </template>
+    <section class="widget widget_text">
+      <h2 class="widget-title">常用网址</h2>
+      <div class="textwidget">
+        <ul>
+          <li><a href="https://github.com/chulung" rel="external nofollow" target="_blank">GitHub</a></li>
+          <li><a href="http://www.cnblogs.com/chulung/" rel="external nofollow" target="_blank">博客园</a></li>
+        </ul>
+      </div><!-- .textwidget -->
+    </section>
+    <template v-if="recentlyComments">
+      <section class="widget widget_recent_comments">
+        <h2 class="widget-title">最新评论</h2>
+        <ul id="recentcomments">
+          <li style="display: list-item;" v-for="item in recentlyComments">
+            <span class="comment-author-link">{{item.userName}}</span> :
+            <a :href="'/article/'+item.articleId+'#comments'+item.id">{{item.comment}}
+            </a>
+          </li>
+        </ul>
+      </section><!-- .widget_recent_comments -->
+    </template>
+  </div><!-- .col-md-4 -->
 </template>
 <script>
   export default{
@@ -212,72 +230,14 @@
         }]
       }
       return data
+    },
+    methods: {
+      defaultPic: function (pic) {
+        return pic || 'static/logo.jpg'
+      },
+      yearMonth: function (item) {
+        return item.yearMonth.year + '-' + item.yearMonth.monthValue
+      }
     }
   }
 </script>
-<style>
-  .search-submit {
-    background-color: #5bc0de;
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(49, 176, 213);
-  }
-
-  .search-field {
-    color: #5bc0de;
-  }
-
-  /*--------------------------------------------------
-  [Blog Social Shares]
-  ----------------------------------------------------*/
-
-  .blog-social-shares {
-    padding-left: 0;
-    list-style: none;
-  }
-
-  .blog-social-shares li {
-    width: 100%;
-    margin-bottom: 10px;
-    display: inline-block;
-  }
-
-  .blog-social-shares li i {
-    color: #fff;
-    width: 30px;
-    height: 30px;
-    font-size: 18px;
-    line-height: 30px;
-    margin-right: 10px;
-    text-align: center;
-    display: inline-block;
-  }
-
-  .blog-social-shares li i.git {
-    background: #000000;
-  }
-
-  .blog-social-shares li i.mail {
-    background: #159ceb;
-  }
-
-  .blog-social-shares li i.wb {
-    background: #dc4a38;
-  }
-
-  .blog-social-shares li a {
-    top: -1px;
-    color: #777;
-    position: relative;
-  }
-
-  .blog-social-shares li a:hover {
-    text-decoration: none;
-  }
-
-  .blog-social-shares li span {
-    float: right;
-    display: block;
-    margin-top: 6px;
-  }
-
-</style>

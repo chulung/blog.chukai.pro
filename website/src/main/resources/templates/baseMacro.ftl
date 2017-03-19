@@ -1,7 +1,7 @@
 <#compress>
 <#macro base base_title mainjs="" base_css=[] base_keywords="" base_showHeader="" >
 <!DOCTYPE html>
-<html class="csstransforms csstransforms3d csstransitions" lang="zh-CN">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

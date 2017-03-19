@@ -1,83 +1,65 @@
 
 <template>
-  <div class="header-v8 header-sticky" :class="{ 'header-fixed-shrink': shrink }">
-    <!-- Navbar -->
-    <div class="navbar mega-menu" role="navigation">
+  <div class="site-header-affix-wrapper" style="min-height: 90px;">
+    <header id="masthead" class="site-header header-dark" role="banner">
       <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="res-container">
-          <div class="navbar-brand">
-            <h1 class="logo"><a href="index.html">CHULUNG.</a></h1>
-          </div>
-        </div><!--/end responsive container-->
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="site-branding">
+              <!-- //site-title when you use logo image.
+              <h1 class="site-title title-image"><a href="index.html" rel="home"><img src="assets/img/danish-image-logo.png" alt="Danish."></a></h1>
+              -->
+              <h1 class="site-title"><a href="/" rel="home">ChuLung.</a></h1>
+              <p class="site-description">Minecraft //</p>
+            </div><!-- .site-branding -->
+          </div><!-- .col-sm-4 -->
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-responsive-collapse">
-          <div class="res-container">
-            <ul class="nav navbar-nav">
-              <!-- Home -->
-              <li class="home active">
-                <a href="/">首页</a>
-              </li>
-              <!-- End Home -->
-              <!-- Specialty -->
-              <li class="dropdown mega-menu-fullwidth">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                  专业
-                </a>
-              </li>
-              <!-- End Specialty -->
-              <!-- Amateur -->
-              <li class="dropdown mega-menu-fullwidth">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                  随笔
-                </a>
-              </li>
-              <!-- End Amateur -->
+          <div class="col-sm-9">
+            <nav id="site-navigation" class="main-navigation" role="navigation">
+              <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><i class="fa fa-align-left"></i><span class="sr-only">Primary Menu</span></button>
 
-              <!-- Life -->
-              <li class="dropdown mega-menu-fullwidth">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                  生活
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="index.html">健身</a></li>
-                  <li><a href="index.html">烹饪</a></li>
-                  <li><a href="index.html">旅行</a></li>
+              <div class="menu-testing-menu-container">
+                <ul id="primary-menu" class="menu nav-menu" aria-expanded="false">
+                  <li class="menu-item"><a href="/">首页</a></li>
+                  <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">专业</a>
+                    <ul class="sub-menu">
+                      <li class="menu-item"><a href="/column/skills ">技能</a></li>
+                    </ul>
+                  </li>
+                  <li class="menu-item"><a href="/column/sensibility">心悟</a></li>
+                  <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">其他</a>
+                    <ul class="sub-menu">
+                      <li class="menu-item"><a href="/column/doc">手册</a></li>
+                      <li class="menu-item"><a href="/column/reprints">他山之石</a></li>
+                    </ul>
+                  </li>
+                  <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">业余</a>
+                    <ul class="sub-menu">
+                      <li class="menu-item"><a href="/column/cooking ">烹饪</a></li>
+                      <li class="menu-item"><a href="/column/exercise">健身</a></li>
+                      <li class="menu-item"><a href="/column/travel">旅行</a></li>
+                    </ul>
+                  </li>
+                  <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">关于</a>
+                    <ul class="sub-menu">
+                      <li class="menu-item"><a href="/about">关于我</a></li>
+                      <li class="menu-item"><a href="#">简历</a></li>
+                    </ul>
+                  </li>
                 </ul>
-              </li>
-              <!-- End Life -->
+              </div>
+            </nav><!-- #site-navigation -->
+          </div><!-- .col-sm-8 -->
+        </div><!-- .row -->
+      </div><!-- .container -->
+    </header><!-- #masthead -->
+  </div><!-- .site-header-affix-wrapper -->
 
-              <!-- About -->
-              <li class="dropdown mega-menu-fullwidth">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                  关于
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="index.html">本站</a></li>
-                  <li><a href="index.html">初龙</a></li>
-                  <!--<li><a href="index.html">初龙</a></li>-->
-                </ul>
-              </li>
-              <!-- End About -->
-
-            </ul>
-          </div><!--/responsive container-->
-        </div><!--/navbar-collapse-->
-      </div><!--/end contaoner-->
-    </div>
-    <!-- End Navbar -->
-  </div>
 </template>
 <script>
   export default{
     data: function () {
-      return {shrink: false}
-    },
-    mounted: function () {
-      window.addEventListener('scroll', () => {
-        this.shrink = window.scrollY > 100
-      })
+      return {}
     }
   }
 </script>

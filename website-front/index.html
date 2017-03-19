@@ -8,28 +8,48 @@
   <meta name="description" content="chulung's craft">
   <meta name="author" content="chulung">
   <!-- Favicon -->
-  <link rel="shortcut icon" href="static/favicon.ico">
-  <!-- Web Fonts -->
-  <link rel='stylesheet' type='text/css' href='//fonts.css.network/css?family=Roboto+Slab:400,300,700'>
-  <!-- CSS Global Compulsory -->
+  <link rel="shortcut icon" href="static/img/favicon.ico">
   <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-  <!-- CSS Theme -->
-  <link rel="stylesheet" href="static/css/custom.css" id="style_color">
+  <link href="//cdn.bootcss.com/magnific-popup.js/1.0.1/magnific-popup.min.css" rel="stylesheet">
+  <link href="static/css/site.css" rel="stylesheet">
 </head>
-<body class="header-fixed header-fixed-space-v2">
-<div id="app" class="wrapper">
-  <navigation></navigation>
-  <div class="container content-sm">
-    <div class="row">
-       <router-view></router-view>
-       <sidebar></sidebar>
-    </div>
-  </div>
-  <sitefooter></sitefooter>
-</div>
+<body >
+  <div id="app" class="site">
+    <navigation></navigation>
+    <!-- content -->
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <div class="container">
+            <div class="row">
+              <router-view></router-view>
+               <sidebar></sidebar>
+            </div><!-- .row -->
+          </div><!-- .container -->
+        </main><!-- #main -->
+      </div><!-- #primary -->
+    </div><!-- #content -->
+    <sitefooter></sitefooter>
+    <copyright></copyright>
+  </div><!-- #page -->
   <script src="//apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script src="static/js/app.js"></script>
+  <script type="text/javascript"  src="//cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.js"></script>
+  <script type="text/javascript"  src="//cdn.bootcss.com/magnific-popup.js/1.0.1/jquery.magnific-popup.min.js"></script>
+  <script type="text/javascript"  src="//cdn.bootcss.com/jquery.isotope/1.5.25/jquery.isotope.min.js"></script>
+  <script type="text/javascript"  src="static/js/lib/navigation.js"></script>
+  <script type="text/javascript"  src="static/js/lib/script.js"></script>
+  <script>
+    (function(){
+      var e = /([http|https]:\/\/chulung\.com)/gi;
+      if (e.test(window.location.href)) {
+        var bp = document.createElement('script');
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      }
+    })();
+  </script>
 </body>
 </html>
