@@ -1,21 +1,14 @@
 package com.chulung.website.controller;
 
+import com.chulung.website.dto.out.CommentsOut;
+import com.chulung.website.dto.out.PageOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import com.chulung.website.constant.Constants;
-import com.chulung.website.dto.PageIn;
 import com.chulung.website.model.Comments;
-import com.chulung.website.model.PaginationResult;
 import com.chulung.website.service.CommentsService;
 
-/**
- * 评论
- * 
- * @author ChuKai
- *
- */
 @RequestMapping("/comments")
 @RestController
 public class CommentsController extends BaseController {
@@ -28,8 +21,8 @@ public class CommentsController extends BaseController {
 	}
 
 	@RequestMapping(value = { "/list/{articleId}" }, method = RequestMethod.GET)
-	public @ResponseBody PaginationResult<Comments> listComments(Integer page,@PathVariable Integer articleId) {
-		PageIn<Comments> pageIn=new PageIn<Comments>(0, Constants.DEFAULT_PAGE_SIZE, new Comments(articleId));
-		return commentsService.listComments(pageIn);
+	public @ResponseBody
+	PageOut<CommentsOut> listComments(Integer page, @PathVariable Integer articleId) {
+		return commentsService.listComments(page,articleId);
 	}
 }

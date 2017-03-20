@@ -1,6 +1,8 @@
 package com.chulung.website.service;
 
-import com.chulung.website.dto.PageIn;
+import com.chulung.website.dto.in.PageIn;
+import com.chulung.website.dto.out.CommentsOut;
+import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.model.Comments;
 import com.chulung.website.model.PaginationResult;
 
@@ -10,7 +12,7 @@ public interface CommentsService {
 	
 	boolean postComments(Comments comments);
 
-	PaginationResult<Comments> listComments(PageIn<Comments> pageIn);
+	PageOut<CommentsOut> listComments(int pageNum, int articleId);
 
 	List<Comments> listRecentlyComments();
 }

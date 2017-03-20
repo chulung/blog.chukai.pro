@@ -1,5 +1,39 @@
 package com.chulung.website.service.impl;
 
+import com.chulung.search.ArticlesSearchHandler;
+import com.chulung.website.dto.ArticleFiling;
+import com.chulung.website.dto.out.ArticleOut;
+import com.chulung.website.dto.out.CommonInfo;
+import com.chulung.website.dto.in.PageIn;
+import com.chulung.website.dto.in.ArticleIn;
+import com.chulung.website.dto.out.PageOut;
+import com.chulung.website.enumerate.ConfigKeyEnum;
+import com.chulung.website.enumerate.IsDeleteEnum;
+import com.chulung.website.enumerate.PublishStatusEnum;
+import com.chulung.website.exception.MethodRuntimeExcetion;
+import com.chulung.website.mapper.ArticleDraftHistoryMapper;
+import com.chulung.website.mapper.ArticleDraftMapper;
+import com.chulung.website.mapper.ArticleMapper;
+import com.chulung.website.mapper.ArticleTagMapper;
+import com.chulung.website.model.Article;
+import com.chulung.website.model.ArticleDraft;
+import com.chulung.website.model.ArticleTag;
+import com.chulung.website.model.User;
+import com.chulung.website.service.*;
+import com.chulung.website.session.WebSessionSupport;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Range;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -9,41 +43,6 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import javax.annotation.Resource;
-
-import com.chulung.website.mapper.ArticleTagMapper;
-import com.chulung.website.model.ArticleTag;
-import com.chulung.website.model.User;
-import com.chulung.website.service.*;
-import com.chulung.website.dto.ArticleDto;
-import com.chulung.website.dto.CommonInfo;
-import com.chulung.website.enumerate.ConfigKeyEnum;
-import com.chulung.website.enumerate.IsDeleteEnum;
-import com.chulung.website.mapper.ArticleMapper;
-import com.chulung.website.model.Article;
-import com.chulung.website.model.ArticleDraft;
-import com.chulung.search.ArticlesSearchHandler;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.google.common.collect.Range;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.chulung.website.dto.ArticleFiling;
-import com.chulung.website.dto.PageIn;
-import com.chulung.website.enumerate.PublishStatusEnum;
-import com.chulung.website.exception.MethodRuntimeExcetion;
-import com.chulung.website.mapper.ArticleDraftHistoryMapper;
-import com.chulung.website.mapper.ArticleDraftMapper;
-import com.chulung.website.session.WebSessionSupport;
 
 @Service
 public class ArticleServiceImpl extends BaseService implements ArticleService {
@@ -221,17 +220,15 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     }
 
 
-    public PageInfo<Article> selectBySelectiveForArticle(Optional<Integer> startPage, Integer typeId) {
-        ArticleDto bean = new ArticleDto();
+    public PageOut<ArticleOut> selectBySelectiveForArticle(Integer startPage, Integer typeId) {
+        ArticleIn bean = new ArticleIn();
         bean.setTypeId(typeId);
         bean.setIsDelete(IsDeleteEnum.N);
-        PageHelper.startPage(startPage.orElse(1), PAGE_SIZE);
+        PageHelper.startPage(startPage==null?1:startPage, PAGE_SIZE);
         Page<Article> page = (Page<Article>) articleMapper.selectSummarys(bean);
-        PageInfo<Article> info = new PageInfo<>();
-        info.setList(page);
-        info.setTotal(page.getTotal());
-        info.setPages(page.getPages());
-        return info;
+        PageOut<ArticleOut> pageOut=new PageOut<>(page.getPageNum(),page.getPages());
+        pageOut.setList(page.stream().map(a->new ArticleOut().buildFromModel(a)).collect(Collectors.toList()));
+        return pageOut;
     }
 
     @Override
@@ -239,7 +236,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         if (!Range.atLeast(2014).contains(year) || !Range.open(1,12).contains(month)) {
             return Collections.emptyList();
         }
-        ArticleDto bean = new ArticleDto();
+        ArticleIn bean = new ArticleIn();
         bean.setCreateTimeStart(LocalDateTime.of(year, month, 1, 0, 0));
         bean.setCreateTimeEnd(LocalDateTime.of(year, month, 1, 0, 0).plus(1, ChronoUnit.MONTHS));
         return articleMapper.selectSummarys(bean);
@@ -250,7 +247,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     public CommonInfo getCommonInfo() {
         // 归档信息
         List<ArticleFiling> list = new ArrayList<>();
-        ArticleDto bean = new ArticleDto();
+        ArticleIn bean = new ArticleIn();
         bean.setIsDelete(IsDeleteEnum.N);
         //按月统计文章数量
         articleMapper.selectSummarys(bean).parallelStream().map(Article::getCreateTime)
@@ -263,7 +260,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         commonInfo.setTags(this.articleTagMapper.selectAllTags());
         String recommendedArticleIds = this.configService.getValueBykey(ConfigKeyEnum.RECOMMENDED_ARTICLE_IDS);
         if (StringUtils.isNotBlank(recommendedArticleIds)) {
-            ArticleDto dto = new ArticleDto();
+            ArticleIn dto = new ArticleIn();
             dto.setIds(Arrays.asList(recommendedArticleIds.split(",")).stream().map(s -> {
                 return Integer.valueOf(s);
             }).collect(Collectors.toList()));
@@ -293,7 +290,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
             return t.getArticleId();
         }).collect(Collectors.toList());
         if (CollectionUtils.isEmpty(articleIds)) return Collections.emptyList();
-        ArticleDto art = new ArticleDto();
+        ArticleIn art = new ArticleIn();
         art.setIds(articleIds);
         return this.articleMapper.selectSummarys(art);
     }

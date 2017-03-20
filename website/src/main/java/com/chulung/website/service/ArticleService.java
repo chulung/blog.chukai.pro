@@ -1,13 +1,13 @@
 package com.chulung.website.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.chulung.website.dto.CommonInfo;
-import com.chulung.website.dto.PageIn;
+import com.chulung.website.dto.out.CommonInfo;
+import com.chulung.website.dto.in.PageIn;
+import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.model.Article;
 import com.chulung.website.model.ArticleDraft;
-import com.github.pagehelper.PageInfo;
+import com.chulung.website.dto.out.PageOut;
 
 /**
  * 
@@ -30,7 +30,7 @@ public interface ArticleService {
 	 *
 	 * @return
 	 */
-	PageInfo<Article> selectBySelectiveForArticle(Optional<Integer> ofNullable, Integer typeId);
+	PageOut<ArticleOut> selectBySelectiveForArticle(Integer page, Integer typeId);
 
 	CommonInfo getCommonInfo();
 

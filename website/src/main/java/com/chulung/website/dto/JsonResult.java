@@ -28,7 +28,7 @@ public class JsonResult<T> {
 	}
 
 	public static <T> JsonResult<T> ofFailure(T result, String msg) {
-		return new JsonResult<T>(0, result, msg);
+		return new JsonResult<T>(-1, result, msg);
 	}
 
 	public int getCode() {

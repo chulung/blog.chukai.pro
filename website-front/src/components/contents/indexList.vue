@@ -33,11 +33,11 @@
     <nav class="navigation posts-navigation" role="navigation">
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
-        <div class="nav-previous"><a
-          href="<#if prePage?? >/articles?page=${prePage}&typeId=<#if column??>${column.id}</#if></#if>#content">
-          前一页</a></div>
-        <div class="nav-next"><a
-          href="<#if nextPage?? >/articles?page=${nextPage}&typeId=<#if column??>${column.id}</#if></#if>#content">后一页</a>
+        <div class="nav-previous" v-if="prePage">
+          <a :href="'/articles?page='+prePage+'&typeId='+typeId">前一页</a>
+        </div>
+        <div class="nav-next" v-if="nextPage">
+          <a :href="'/articles?page='+nextPage+'&typeId='+typeId">前一页</a>
         </div>
       </div>
     </nav><!-- .navigation -->
@@ -46,12 +46,14 @@
 <script>
   export default{
     data: function () {
-      return {articles: []}
+      return {articles: {}, nextPage: null, prePage: null}
     },
     created: function () {
-      for (let i = 0; i < 10; i++) {
-        this.articles.push({'pic': '/static/logo.png'})
-      }
+      this.ajax.get('https://blog.chulung.com/articles').then(response => {
+        this.articles = response.data.list
+        this.nextPage = response.data.netxPage
+        this.prePage = response.data.prePage
+      })
     }
   }
 
