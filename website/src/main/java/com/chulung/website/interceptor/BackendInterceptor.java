@@ -13,7 +13,7 @@ import com.chulung.website.session.WebSessionSupport;
 /**
  * backend登录拦截器
  * 
- * @author ChuKai
+ * @author chulung
  *
  */
 @Component

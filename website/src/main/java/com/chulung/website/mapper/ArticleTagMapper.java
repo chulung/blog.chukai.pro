@@ -6,7 +6,7 @@ import com.chulung.mybatis.mapper.BaseMapper;
 import java.util.List;
 
 /**
- * Created by chukai on 2017/2/18.
+ * Created by chulung on 2017/2/18.
  */
 public interface ArticleTagMapper extends BaseMapper<ArticleTag> {
 

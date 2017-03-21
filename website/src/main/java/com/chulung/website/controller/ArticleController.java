@@ -1,6 +1,5 @@
 package com.chulung.website.controller;
 
-import com.chulung.website.dto.JsonResult;
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.exception.PageNotFoundException;
@@ -38,7 +37,7 @@ public class ArticleController extends BaseController {
     public
     @ResponseBody
     List<Article> relevancy(@PathVariable Integer id) {
-        return this.articleService.listRelevancy(id);
+        return this.articleService.findRelevancyByArticleId(id);
     }
 
     /**
@@ -51,7 +50,7 @@ public class ArticleController extends BaseController {
     public
     @ResponseBody
     PageOut<ArticleOut> getArticlePage(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer typeId) {
-        return articleService.selectBySelectiveForArticle(page, typeId);
+        return articleService.findArticlePage(page, typeId);
     }
 
     /**
@@ -66,5 +65,12 @@ public class ArticleController extends BaseController {
         ColumnType c = this.columnTypeSevice.getEnNameColumnMap().get(columnType);
         if (c == null) throw new PageNotFoundException();
         return getArticlePage(1, c.getId());
+    }
+
+    @RequestMapping(value = "/monthFilings/{year}-{month}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Article> getMonthFilings(@PathVariable Integer year, @PathVariable Integer month) {
+        return articleService.getArticlesByYearMonth(year, month);
     }
 }

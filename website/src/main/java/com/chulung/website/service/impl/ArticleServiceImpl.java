@@ -3,7 +3,7 @@ package com.chulung.website.service.impl;
 import com.chulung.search.ArticlesSearchHandler;
 import com.chulung.website.dto.ArticleFiling;
 import com.chulung.website.dto.out.ArticleOut;
-import com.chulung.website.dto.out.CommonInfo;
+import com.chulung.website.dto.out.SideBarInfo;
 import com.chulung.website.dto.in.PageIn;
 import com.chulung.website.dto.in.ArticleIn;
 import com.chulung.website.dto.out.PageOut;
@@ -23,7 +23,6 @@ import com.chulung.website.service.*;
 import com.chulung.website.session.WebSessionSupport;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Range;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -60,7 +59,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
     @Autowired
     private ConfigService configService;
-
 
     @Autowired
     private CommentsService commentsService;
@@ -114,10 +112,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         return true;
     }
 
-    @Override
-    /**
-     * 根据草稿更新文章表
-     */
     public Article updateArticle(ArticleDraft articleDraft) {
         if (articleDraft.getArticleId() != null) {
             //清除tag
@@ -220,20 +214,21 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     }
 
 
-    public PageOut<ArticleOut> selectBySelectiveForArticle(Integer startPage, Integer typeId) {
+    @Override
+    public PageOut<ArticleOut> findArticlePage(Integer startPage, Integer typeId) {
         ArticleIn bean = new ArticleIn();
         bean.setTypeId(typeId);
         bean.setIsDelete(IsDeleteEnum.N);
-        PageHelper.startPage(startPage==null?1:startPage, PAGE_SIZE);
+        PageHelper.startPage(startPage == null ? 1 : startPage, PAGE_SIZE);
         Page<Article> page = (Page<Article>) articleMapper.selectSummarys(bean);
-        PageOut<ArticleOut> pageOut=new PageOut<>(page.getPageNum(),page.getPages());
-        pageOut.setList(page.stream().map(a->new ArticleOut().buildFromModel(a)).collect(Collectors.toList()));
+        PageOut<ArticleOut> pageOut = new PageOut<>(page.getPageNum(), page.getPages());
+        pageOut.setList(page.stream().map(a -> new ArticleOut().buildFromModel(a)).collect(Collectors.toList()));
         return pageOut;
     }
 
     @Override
     public List<Article> getArticlesByYearMonth(Integer year, Integer month) {
-        if (!Range.atLeast(2014).contains(year) || !Range.open(1,12).contains(month)) {
+        if (!Range.atLeast(2014).contains(year) || !Range.open(1, 12).contains(month)) {
             return Collections.emptyList();
         }
         ArticleIn bean = new ArticleIn();
@@ -242,9 +237,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         return articleMapper.selectSummarys(bean);
     }
 
+
     @Override
-    @Cacheable(cacheNames = "halfhour")
-    public CommonInfo getCommonInfo() {
+    public List<ArticleFiling> getArticleFilings() {
         // 归档信息
         List<ArticleFiling> list = new ArrayList<>();
         ArticleIn bean = new ArticleIn();
@@ -254,19 +249,20 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
                 .map(localDate -> YearMonth.of(localDate.getYear(), localDate.getMonthValue()))
                 .collect(Collectors.groupingBy(yearMonth -> yearMonth, Collectors.counting())).forEach((k, v) -> list.add(new ArticleFiling(k, v.intValue())));
         list.sort((o1, o2) -> o2.compareTo(o1));
-        CommonInfo commonInfo = new CommonInfo(list);
-        commonInfo.setPopularArticles(this.listPopularArticles());
-        commonInfo.setRecentlyComments(this.commentsService.listRecentlyComments());
-        commonInfo.setTags(this.articleTagMapper.selectAllTags());
+        return list;
+    }
+
+    @Override
+    public List<ArticleOut> findRecommendedArticles() {
         String recommendedArticleIds = this.configService.getValueBykey(ConfigKeyEnum.RECOMMENDED_ARTICLE_IDS);
         if (StringUtils.isNotBlank(recommendedArticleIds)) {
             ArticleIn dto = new ArticleIn();
             dto.setIds(Arrays.asList(recommendedArticleIds.split(",")).stream().map(s -> {
                 return Integer.valueOf(s);
             }).collect(Collectors.toList()));
-            commonInfo.setRecommendedArticles(this.articleMapper.selectSummarys(dto));
+            return this.articleMapper.selectSummarys(dto).stream().map(article -> new ArticleOut().buildFromModel(article)).collect(Collectors.toList());
         }
-        return commonInfo;
+        return Collections.emptyList();
     }
 
     @Override
@@ -276,7 +272,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     }
 
     @Override
-    public List<Article> listPopularArticles() {
+    public List<Article> findPopularArticles() {
         PageHelper.startPage(1, 4);
         return this.articleMapper.listPopularArticles();
 
@@ -296,20 +292,20 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     }
 
     @Override
-    public List<Article> listRelevancy(Integer id) {
+    public List<Article> findRelevancyByArticleId(Integer id) {
         List<Article> list = this.articleMapper.listRelevancy(id);
         if (list.size() <= 4) return list;
         Collections.shuffle(list);
         return list.subList(0, 4);
     }
 
-    public  Article buildeFromDraft(ArticleDraft articleDraft){
+    public Article buildeFromDraft(ArticleDraft articleDraft) {
         Article article = new Article();
         article.setId(articleDraft.getArticleId());
         String htmlContent = articleDraft.getHtmlContent();
         Pattern p = Pattern.compile("(https:)?//(\\w+\\.)?chulung.com.+?(\\.\\w{3})");
         Matcher m = p.matcher(htmlContent);
-        if(m.find()){
+        if (m.find()) {
             article.setPic(m.group());
         }
         article.setTypeName(this.columnTypeSevice.getIdColumnMap().get(articleDraft.getTypeId()).getCnName());
@@ -325,8 +321,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         article.setTags(articleDraft.getTags());
         return article;
     }
+
     public String generatingSummary(String content) {
-        String replaceAll = content.replaceFirst("<h[1-9](.+)?</h[1-9]>","").replaceAll("</?.*?>", "");
+        String replaceAll = content.replaceFirst("<h[1-9](.+)?</h[1-9]>", "").replaceAll("</?.*?>", "");
         return replaceAll.length() > 100 ? replaceAll.substring(0, 97) + "..." : replaceAll;
     }
 

@@ -18,7 +18,7 @@ import com.chulung.common.util.NetUtil;
 /**
  * web 会话 请求支持，用于登陆拦截
  * 
- * @author ChuKai
+ * @author chulung
  *
  */
 @Component
@@ -90,7 +90,9 @@ public class WebSessionSupport{
 	 * @return
 	 */
 	public String logIn(User user) {
-		return gegenerateSessionId(user);
+		String sessionId = gegenerateSessionId(user);
+		this.cache.put(sessionId,user);
+		return sessionId;
 	}
 
 	/**

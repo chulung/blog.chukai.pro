@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by wenchukai1 on 2017/3/3.
+ * Created by chulung on 2017/3/3.
  */
 @Configuration
 @EnableCaching(proxyTargetClass = true)

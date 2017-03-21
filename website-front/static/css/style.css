@@ -287,7 +287,7 @@ hr { border-top-color: rgb(247, 247, 247); }
 .entry-list .entry-list-title h2 { margin-top: 10px; margin-bottom: 15px; }
 .entry-list .entry-list-title h2 a { font-size: 28px; line-height: 28px; font-weight: 700; color: rgb(43, 43, 43); }
 .entry-list .entry-list-title h2 a:hover { color: rgb(107, 110, 128); }
-.more-link { display: block; margin-top: 30px; margin-left: auto; margin-right: auto; text-align: center; background-image: url("read_more_001.png"); background-repeat: repeat-x; background-position: 10px center; }
+.more-link { display: block; margin-top: 30px; margin-left: auto; margin-right: auto; text-align: center; background-image: url("../img/read_more.png"); background-repeat: repeat-x; background-position: 10px center; }
 .more-link:focus, .more-link:hover { color: rgb(60, 75, 120); }
 .more-link:focus > .moretext, .more-link:hover > .moretext { color: rgb(60, 75, 120); border-radius: 14px; transition: all 0.3s linear 0s; }
 .more-link .moretext { display: inline-block; padding: 0px 12px; font-size: 12px; text-transform: uppercase; color: rgb(107, 110, 128); border: 1px solid rgb(224, 224, 224); border-radius: 4px; background-color: rgb(255, 255, 255); transition: all 0.3s linear 0s; }
@@ -613,7 +613,7 @@ img[class*="wp-image-"] { max-width: 100%; height: auto; }
 .justified-gallery > .jg-filtered { display: none; }
 .justified-gallery > .spinner { position: absolute; bottom: 0px; margin-left: -24px; padding: 10px 0px; left: 50%; opacity: initial; filter: initial; overflow: initial; }
 .justified-gallery > .spinner > span { display: inline-block; opacity: 0; width: 8px; height: 8px; margin: 0px 4px; background-color: rgb(0, 0, 0); border-radius: 6px; }
-.site-footer { width: 100%; padding: 80px 0px 60px; color: rgb(219, 219, 219); background-color: rgb(22, 31, 41); background-image: url("footer-background_001.png"); background-size: cover; background-repeat: no-repeat; background-position: center top; }
+.site-footer { width: 100%; padding: 80px 0px 60px; color: rgb(219, 219, 219); background-color: rgb(22, 31, 41); background-size: cover; background-repeat: no-repeat; background-position: center top; }
 .site-footer .widget ul li { padding: 5px 5px 5px 0px; }
 .site-footer .widget ul li a { color: rgb(242, 242, 242); }
 .site-footer .widget ul li a:hover { color: rgb(63, 80, 127); }

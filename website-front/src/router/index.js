@@ -1,15 +1,36 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import indexList from '@/components/contents/indexList.vue'
-
+import content from '../components/content.vue'
+// import article from '@/components/contents/article.vue'
+import summaries from '../components/contents/summaries.vue'
 Vue.use(Router)
-
 export default new Router({
-  routes: [
+  routes: [// content
     {
       path: '/',
-      name: 'index',
-      component: indexList
+      component: content,
+      children: [
+        {
+          path: '',
+          name: 'index',
+          component: summaries
+        }
+      ]
     }
   ]
 })
+
+// }, // about
+// {
+//   path: '/article/20',
+//   name: 'about',
+//   component: article
+// }, // article
+// {
+//   path: '/article/:id',
+//   component: content,
+//   children: [{
+//     path: '', name: 'article', component: article
+//   }]
+// }
+

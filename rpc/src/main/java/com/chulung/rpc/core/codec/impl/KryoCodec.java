@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Created by wenchukai1 on 2017/3/9.
+ * Created by chulung on 2017/3/9.
  */
 public class KryoCodec extends AbstractRpcCodec {
     @Override

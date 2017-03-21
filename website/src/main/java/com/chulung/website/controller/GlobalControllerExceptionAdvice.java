@@ -19,7 +19,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 /**
  * 全局异常处理
- * @author ChuKai
+ * @author chulung
  *
  */
 

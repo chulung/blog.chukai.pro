@@ -17,7 +17,7 @@ import com.chulung.website.constant.Constants;
 /**
  * 全局tracker 拦截器 拦截所有请求，包括搜索引擎
  * 
- * @author ChuKai
+ * @author chulung
  *
  */
 @Component

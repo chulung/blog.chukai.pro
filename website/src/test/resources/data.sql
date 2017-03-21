@@ -46,7 +46,7 @@ CREATE TABLE `article` (
 -- ----------------------------
 -- Records of article
 -- ----------------------------
-
+INSERT INTO article VALUES(1,'title','test content',now(),now(),'chulung',1,'技术','',1,'N',1,1,'','','summary',0,null,100);
 -- ----------------------------
 -- Table structure for `article_draft`
 -- ----------------------------

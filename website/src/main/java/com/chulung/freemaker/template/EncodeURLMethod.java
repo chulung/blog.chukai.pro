@@ -9,7 +9,7 @@ import java.net.URLEncoder;
 import java.util.List;
 
 /**
- * Created by chukai on 2017/2/25.
+ * Created by chulung on 2017/2/25.
  */
 public class EncodeURLMethod implements TemplateMethodModelEx {
     @Override

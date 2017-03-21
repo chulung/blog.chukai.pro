@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
- * Created by chukai on 2017/2/28.
+ * Created by chulung on 2017/2/28.
  */
 @EnableWebMvc
 @SpringBootApplication

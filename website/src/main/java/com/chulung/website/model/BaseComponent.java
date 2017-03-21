@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 通用组件基类
- * @author ChuKai
+ * @author chulung
  *
  */
 public abstract class BaseComponent {

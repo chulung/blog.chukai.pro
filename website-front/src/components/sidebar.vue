@@ -10,7 +10,6 @@
         <input class="search-submit" value="Search" type="submit">
       </form><!-- search-form -->
     </section><!-- .widget_search -->
-
     <section class="widget danish_widget_about">
       <div class="about-author-container">
         <div class="about-author-info">
@@ -34,7 +33,6 @@
       </div><!-- .about-author-container -->
     </section><!-- .danish_widget_about -->
 
-    <template v-if="popularArticles && popularArticles.length">
       <section class="widget danish_widget_popular_entries ">
         <h2 class="widget-title">热门</h2>
         <ul>
@@ -52,8 +50,6 @@
           </li>
         </ul>
       </section><!-- .danish_widget_popular_entries -->
-    </template>
-    <template v-if="articleFilings && articleFilings.length">
       <section class="widget widget_archive">
         <h2 class="widget-title">归档</h2>
         <ul id="articleFilings">
@@ -62,7 +58,6 @@
           </li>
         </ul>
       </section><!-- .widget_archive -->
-    </template>
     <section class="widget widget_text">
       <h2 class="widget-title">常用网址</h2>
       <div class="textwidget">
@@ -72,7 +67,6 @@
         </ul>
       </div><!-- .textwidget -->
     </section>
-    <template v-if="recentlyComments">
       <section class="widget widget_recent_comments">
         <h2 class="widget-title">最新评论</h2>
         <ul id="recentcomments">
@@ -83,78 +77,19 @@
           </li>
         </ul>
       </section><!-- .widget_recent_comments -->
-    </template>
   </div><!-- .col-md-4 -->
 </template>
 <script>
   export default{
     data: function () {
-      let data = {
+      return {
         'articleFilings': [{
           'yearMonth': {'year': 2017, 'month': 'FEBRUARY', 'leapYear': false, 'monthValue': 2},
           'count': 5
         }, {
           'yearMonth': {'year': 2016, 'month': 'DECEMBER', 'leapYear': true, 'monthValue': 12},
           'count': 1
-        }, {
-          'yearMonth': {'year': 2016, 'month': 'NOVEMBER', 'leapYear': true, 'monthValue': 11},
-          'count': 3
-        }, {
-          'yearMonth': {'year': 2016, 'month': 'OCTOBER', 'leapYear': true, 'monthValue': 10},
-          'count': 1
-        }, {
-          'yearMonth': {'year': 2016, 'month': 'JULY', 'leapYear': true, 'monthValue': 7},
-          'count': 1
-        }, {
-          'yearMonth': {'year': 2016, 'month': 'APRIL', 'leapYear': true, 'monthValue': 4},
-          'count': 2
-        }, {
-          'yearMonth': {'year': 2016, 'month': 'MARCH', 'leapYear': true, 'monthValue': 3},
-          'count': 2
-        }, {
-          'yearMonth': {'year': 2016, 'month': 'FEBRUARY', 'leapYear': true, 'monthValue': 2},
-          'count': 1
-        }, {
-          'yearMonth': {'year': 2016, 'month': 'JANUARY', 'leapYear': true, 'monthValue': 1},
-          'count': 2
-        }, {
-          'yearMonth': {'year': 2015, 'month': 'DECEMBER', 'leapYear': false, 'monthValue': 12},
-          'count': 2
-        }, {
-          'yearMonth': {'year': 2015, 'month': 'SEPTEMBER', 'leapYear': false, 'monthValue': 9},
-          'count': 1
-        }, {'yearMonth': {'year': 2014, 'month': 'JULY', 'leapYear': false, 'monthValue': 7}, 'count': 1}],
-        'tags': [{'tagName': '规划', 'count': 4}, {'tagName': '原理', 'count': 3}, {
-          'tagName': '性能优化',
-          'count': 3
-        }, {'tagName': 'nginx', 'count': 2}, {'tagName': '架构', 'count': 2}, {
-          'tagName': '分布式',
-          'count': 2
-        }, {'tagName': '年度总结', 'count': 2}, {'tagName': '数学', 'count': 1}, {
-          'tagName': 'FastDFS',
-          'count': 1
-        }, {'tagName': '前端', 'count': 1}, {'tagName': '序列化', 'count': 1}, {
-          'tagName': '文件系统',
-          'count': 1
-        }, {'tagName': '设计模式', 'count': 1}, {'tagName': 'Freemarker', 'count': 1}, {
-          'tagName': 'Tomcat',
-          'count': 1
-        }, {'tagName': '单例模式', 'count': 1}, {'tagName': '影响力', 'count': 1}, {
-          'tagName': '项目总结',
-          'count': 1
-        }, {'tagName': 'HTTP2', 'count': 1}, {'tagName': '全栈', 'count': 1}, {
-          'tagName': '单元测试',
-          'count': 1
-        }, {'tagName': '心理学', 'count': 1}, {'tagName': '模块化编程', 'count': 1}, {
-          'tagName': '高并发',
-          'count': 1
-        }, {'tagName': 'java', 'count': 1}, {'tagName': '内网穿透', 'count': 1}, {
-          'tagName': '热部署',
-          'count': 1
-        }, {'tagName': 'lucene', 'count': 1}, {'tagName': '函数式编程', 'count': 1}, {
-          'tagName': '安全',
-          'count': 1
-        }, {'tagName': '搜索', 'count': 1}, {'tagName': '算法', 'count': 1}, {'tagName': 'memcached', 'count': 1}],
+        }],
         'recentlyComments': [{
           'id': 30,
           'articleId': 36,
@@ -229,7 +164,6 @@
           'summary': '这篇文章算是我在工作的第一个年头里关于架构方面的收获与思考的一篇总结性的文章吧，感觉还是有些深度的，所以尝试投稿到InfoQ上，果真被收录了，很开心。从7月底开始动笔，中间因为各种偷懒和一些难以...'
         }]
       }
-      return data
     },
     methods: {
       defaultPic: function (pic) {

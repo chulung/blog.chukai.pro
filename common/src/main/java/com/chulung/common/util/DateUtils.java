@@ -10,7 +10,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 /**
  * 扩展增加一个默认格式化日期方法
  * 
- * @author ChuKai
+ * @author chulung
  *
  */
 public class DateUtils extends DateFormatUtils {

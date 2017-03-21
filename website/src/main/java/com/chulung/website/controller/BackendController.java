@@ -22,7 +22,7 @@ import com.chulung.website.session.WebSessionSupport;
 /**
  * backend后台
  * 
- * @author ChuKai
+ * @author chulung
  *
  */
 @RestController

@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
  * 
- * @author ChuKai
+ * @author chulung
  *
  */
 
@@ -40,7 +40,7 @@ public class EscapeFilter implements Filter {
 	/**
 	 * 防xss注入
 	 * 
-	 * @author ChuKai
+	 * @author chulung
 	 *
 	 */
 	public static class XssRequestWrapper extends HttpServletRequestWrapper {

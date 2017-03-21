@@ -5,7 +5,7 @@ import org.assertj.core.util.Maps;
 import java.util.Map;
 
 /**
- * Created by wenchukai1 on 2017/3/9.
+ * Created by chulung on 2017/3/9.
  */
 public class TestBean {
     private String string;

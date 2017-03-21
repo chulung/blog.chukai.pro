@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 /**
  * Controller基类
  *
- * @author ChuKai
+ * @author chulung
  */
 public abstract class BaseController extends BaseComponent {
 

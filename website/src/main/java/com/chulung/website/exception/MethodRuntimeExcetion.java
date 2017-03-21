@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * 全局方法校验异常
  * 
- * @author ChuKai
+ * @author chulung
  *
  */
 public class MethodRuntimeExcetion extends RuntimeException {

@@ -10,9 +10,9 @@
           <span class="byline"> by <span class="author vcard"><a class="url fn n"
                                                                  href="javascript:;">{{article.author}}</a></span></span>
           <span class="meta-viewer">{{article.visitCount}} 点击</span>
-          <span class="reading-estimation">{{article.commentCount!'0'}} 评论</span>
+          <span class="reading-estimation">{{article.commentCount||0}} 评论</span>
           <span class="">分享至:<a
-            :href="'http://service.weibo.com/share/share.php?url=https://chulung.com/article/'+article.id+'&appkey=2897075133&title=【'+article.title'】'+article.summary+'&pic='+article.pic"
+            :href="'http://service.weibo.com/share/share.php?url=https://chulung.com/article/'+article.id+'&appkey=2897075133&title=【'+article.title+'】'+article.summary+'&pic='+article.pic"
             target="_blank">
                 <i class="fa fa-weibo"></i></a></span>
         </div><!-- .entry-meta -->
@@ -20,7 +20,7 @@
 
       <div class="entry-content">
         {{article.content}}
-        <p>原文链接:<a :href="https://chulung.com/article/'+article.id">https://chulung.com/article/{{article.id}}</a>
+        <p>原文链接:<a :href="'https://chulung.com/article/'+article.id">https://chulung.com/article/{{article.id}}</a>
         </p>
       </div><!-- .entry-content -->
 
@@ -99,3 +99,15 @@
     </div><!-- #comments -->
   </div>
 </template>
+<script>
+  export default {
+    data () {
+      return {article: {}}
+    },
+    beforeRouteEnter (to, from, next) {
+      this.ajax.get('/article/' + to.pramas.id).then(response => {
+        this.article = response.data
+      })
+    }
+  }
+</script>

@@ -22,10 +22,11 @@
               </span><!-- .byline -->
             <span class="reading-estimation">{{article.visitCount}} 点击</span>
           </div><!-- .post-meta -->
-          <p>{{article.summary}}.
-            <a :href="'/article/'+article.id" class="more-link">
+          <p>
+            {{article.summary}}.
+            <router-link to="'/article/'+artichle.id" class="more-link">
               <span class="moretext">阅读全文</span>
-            </a><!-- .more-link -->
+            </router-link><!-- .more-link -->
           </p>
         </div><!-- .post-content -->
       </div><!-- .post-container -->
@@ -44,17 +45,19 @@
   </div><!-- .col-md-8 -->
 </template>
 <script>
+  import axios from 'axios'
   export default{
-    data: function () {
+    data () {
       return {articles: {}, nextPage: null, prePage: null}
     },
-    created: function () {
-      this.ajax.get('https://blog.chulung.com/articles').then(response => {
-        this.articles = response.data.list
-        this.nextPage = response.data.netxPage
-        this.prePage = response.data.prePage
+    beforeRouteEnter (to, from, next) {
+      axios.get('/articles').then(response => {
+        next(vm => {
+          vm.articles = response.data.list
+          vm.nextPage = response.data.netxPage
+          vm.prePage = response.data.prePage
+        })
       })
     }
   }
-
 </script>

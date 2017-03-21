@@ -21,6 +21,7 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.RAMDirectory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,7 +39,7 @@ import static com.chulung.search.core.CSearchDocument.TITLE;
  */
 
 @Component
-public class CSearchImpl implements InitializingBean,CSearch {
+public class CSearchImpl implements InitializingBean,DisposableBean,CSearch {
 
     private static final int DEFAULT_ROW = 10;
     private Logger logger= LoggerFactory.getLogger(this.getClass());
@@ -182,5 +183,11 @@ public class CSearchImpl implements InitializingBean,CSearch {
     @Override
     public List<CSearchDocument> search(String key) throws Exception {
         return  this.search(key, DEFAULT_ROW);
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        indexWriter.close();
+        directory.close();
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by ChuKai on 2016/11/6.
+ * Created by chulung on 2016/11/6.
  */
 public interface ColumnTypeSevice {
 

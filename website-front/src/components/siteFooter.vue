@@ -1,7 +1,9 @@
 <template>
 
   <!-- site-footer -->
-  <footer id="colophon" class="site-footer" style="background-image: url('https://chulung.github.io/assets/theme/img/footer-background.png');" role="contentinfo">
+  <footer id="colophon" class="site-footer"
+          style="background-image: url('https://chulung.github.io/assets/theme/img/footer-background.png');"
+          role="contentinfo">
     <div class="container">
       <div class="row">
         <div class="col-sm-3">
@@ -43,3 +45,10 @@
   </footer><!-- #site-footer -->
 
 </template>
+<script>
+  export default{
+    data () {
+      return {tags: {}, recommendedArticles: {}}
+    }
+  }
+</script>

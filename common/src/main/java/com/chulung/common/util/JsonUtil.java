@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by chukai on 2017/3/5.
+ * Created by chulung on 2017/3/5.
  */
 public class JsonUtil {
     private static final ObjectMapper objectMapper = new ObjectMapper();

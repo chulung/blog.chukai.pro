@@ -60,7 +60,7 @@ public class CommentsServiceImpl extends BaseService implements CommentsService 
     }
 
     @Override
-    public List<Comments> listRecentlyComments() {
+    public List<Comments> findRecentlyComments() {
         PageHelper.startPage(1, 3);
         Page<Comments> page = (Page<Comments>) commentsMapper.selectAll();
         // 防暴露email

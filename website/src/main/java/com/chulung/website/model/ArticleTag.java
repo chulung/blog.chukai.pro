@@ -7,7 +7,7 @@ import javax.persistence.Transient;
 import java.io.Serializable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ArticleTag implements Serializable{
+public class ArticleTag extends BaseModel implements Serializable{
 
     @Id
     private Integer id;

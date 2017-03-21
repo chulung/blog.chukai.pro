@@ -14,5 +14,5 @@ public interface CommentsService {
 
 	PageOut<CommentsOut> listComments(int pageNum, int articleId);
 
-	List<Comments> listRecentlyComments();
+	List<Comments> findRecentlyComments();
 }
