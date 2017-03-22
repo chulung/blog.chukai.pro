@@ -1,10 +1,9 @@
-package com.chulung.website.dto.in;
+package com.chulung.website.dto;
 
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.model.Article;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDateTime;
 

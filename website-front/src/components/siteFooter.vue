@@ -46,9 +46,16 @@
 
 </template>
 <script>
+  import axios from 'axios'
   export default{
     data () {
       return {tags: {}, recommendedArticles: {}}
+    },
+    create () {
+      axios.get('siteFooterInfo').then((response) => {
+        this.tags = response.data.tags
+        this.recommendedArticles = response.data.recommendedArticles
+      })
     }
   }
 </script>

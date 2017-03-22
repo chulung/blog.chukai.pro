@@ -2,7 +2,7 @@ package com.chulung.website.mapper;
 
 import java.util.List;
 
-import com.chulung.website.dto.in.ArticleIn;
+import com.chulung.website.dto.ArticleIn;
 import com.chulung.website.model.Article;
 import com.chulung.mybatis.mapper.BaseMapper;
 

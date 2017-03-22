@@ -91,7 +91,7 @@ public class WebSessionSupport{
 	 */
 	public String logIn(User user) {
 		String sessionId = gegenerateSessionId(user);
-		this.cache.put(sessionId,user);
+		this.cache.put(this.getSessionCacheKey(sessionId),user);
 		return sessionId;
 	}
 

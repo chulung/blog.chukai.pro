@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 /**
  * 针对java8 的LocalDateTime 进行自定义的序列化
  * 
- * @author chulung1
+ * @author chulung
  *
  */
 public class LocalDateTimeSerializer extends JsonSerializer<Object> {

@@ -9,7 +9,9 @@
           <div class="heading-title heading-small">
               <span class="post-meta-cat"><a
                 :href="'/articles?typeId='+article.typeId+'#content'">{{article.typeName}}</a></span>
-            <h2><a href="'/article/'+article.id" rel="bookmark">{{article.title}}</a></h2>
+            <h2>
+              <router-link :to="'/article/'+article.id" rel="bookmark">{{article.title}}</router-link>
+            </h2>
           </div><!-- .heading-small -->
 
           <div class="post-meta">

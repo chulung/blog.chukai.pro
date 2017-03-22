@@ -18,12 +18,9 @@
         </div><!-- .entry-meta -->
       </header><!-- .entry-header -->
 
-      <div class="entry-content">
-        {{article.content}}
-        <p>原文链接:<a :href="'https://chulung.com/article/'+article.id">https://chulung.com/article/{{article.id}}</a>
-        </p>
+      <div class="entry-content" v-html="article.content">
       </div><!-- .entry-content -->
-
+      <p>原文链接:<a :href="'https://chulung.com/article/'+article.id">https://chulung.com/article/{{article.id}}</a></p>
       <footer class="entry-footer">
         <span class="cat-links">发表在 <a href="https://chulung.com">chulung's craft</a></span>
         <template v-if="article.tags">
@@ -100,13 +97,17 @@
   </div>
 </template>
 <script>
+  import axios from 'axios'
   export default {
     data () {
       return {article: {}}
     },
     beforeRouteEnter (to, from, next) {
-      this.ajax.get('/article/' + to.pramas.id).then(response => {
-        this.article = response.data
+      axios.get('/article/' + to.params.id).then(response => {
+        console.log(response)
+        next(vm => {
+          vm.article = response.data
+        })
       })
     }
   }

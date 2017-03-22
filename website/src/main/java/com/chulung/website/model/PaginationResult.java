@@ -2,7 +2,7 @@ package com.chulung.website.model;
 
 import java.util.List;
 
-import com.chulung.website.dto.in.PageIn;
+import com.chulung.website.dto.PageIn;
 import com.github.pagehelper.Page;
 
 public class PaginationResult<T> {

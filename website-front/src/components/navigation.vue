@@ -20,29 +20,29 @@
 
               <div class="menu-testing-menu-container">
                 <ul id="primary-menu" class="menu nav-menu" aria-expanded="false">
-                  <li class="menu-item active"><a href="/">首页</a></li>
+                  <li class="menu-item active"><router-link to="/">首页</router-link></li>
                   <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">专业</a>
                     <ul class="sub-menu">
-                      <li class="menu-item"><a href="/column/skills ">技能</a></li>
+                      <li class="menu-item"><router-link to="/column/skills">技能</router-link></li>
                     </ul>
                   </li>
-                  <li class="menu-item"><a href="/column/sensibility">心悟</a></li>
+                  <li class="menu-item"><router-link to="/column/sensibility">心悟</router-link></li>
                   <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">其他</a>
                     <ul class="sub-menu">
-                      <li class="menu-item"><a href="/column/doc">手册</a></li>
-                      <li class="menu-item"><a href="/column/reprints">他山之石</a></li>
+                      <li class="menu-item"><router-link to="/column/doc">手册</router-link></li>
+                      <li class="menu-item"><router-link to="/column/reprints">他山之石</router-link></li>
                     </ul>
                   </li>
                   <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">业余</a>
                     <ul class="sub-menu">
-                      <li class="menu-item"><a href="/column/cooking ">烹饪</a></li>
-                      <li class="menu-item"><a href="/column/exercise">健身</a></li>
-                      <li class="menu-item"><a href="/column/travel">旅行</a></li>
+                      <li class="menu-item"><router-link to="/column/cooking ">烹饪</router-link></li>
+                      <li class="menu-item"><router-link to="/column/exercise">健身</router-link></li>
+                      <li class="menu-item"><router-link to="/column/travel">旅行</router-link></li>
                     </ul>
                   </li>
                   <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">关于</a>
                     <ul class="sub-menu">
-                      <li class="menu-item"><a href="/about">关于我</a></li>
+                      <li class="menu-item"><router-link to="/about">关于我</router-link></li>
                       <li class="menu-item"><a href="#">简历</a></li>
                     </ul>
                   </li>

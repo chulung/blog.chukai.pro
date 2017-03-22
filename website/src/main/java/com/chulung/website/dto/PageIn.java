@@ -1,4 +1,4 @@
-package com.chulung.website.dto.in;
+package com.chulung.website.dto;
 
 public class PageIn<T> {
 	private int page;

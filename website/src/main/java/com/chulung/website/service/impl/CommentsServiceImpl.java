@@ -10,13 +10,11 @@ import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.exception.MethodRuntimeExcetion;
 import com.chulung.website.mapper.CommentsMapper;
 import com.chulung.website.model.Comments;
-import com.chulung.website.model.PaginationResult;
 import com.chulung.website.service.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.stereotype.Service;
 
-import com.chulung.website.dto.in.PageIn;
 import com.chulung.common.util.NetUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;

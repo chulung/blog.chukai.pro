@@ -1,8 +1,10 @@
 package com.chulung.website.service.impl;
 
 import static org.assertj.core.api.Assertions.*;
+
 import com.chulung.BaseTest;
-import com.chulung.website.dto.in.PageIn;
+import com.chulung.common.util.NetUtil;
+import com.chulung.website.dto.PageIn;
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.enumerate.ConfigKeyEnum;
@@ -10,6 +12,7 @@ import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.website.enumerate.PublishStatusEnum;
 import com.chulung.website.mapper.ArticleMapper;
 import com.chulung.website.model.ArticleDraft;
+import com.chulung.website.model.Config;
 import com.chulung.website.model.User;
 import com.chulung.website.service.ArticleService;
 import com.chulung.website.service.ConfigService;
@@ -19,6 +22,9 @@ import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
@@ -29,6 +35,7 @@ import java.time.LocalDate;
  */
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@PrepareForTest(NetUtil.class)
 public class ArticleServiceImplTest extends BaseTest {
 
     @Autowired
@@ -48,22 +55,26 @@ public class ArticleServiceImplTest extends BaseTest {
     public void setUp() throws Exception {
         User user = new User();
         user.setNickName("chulung");
-        webSessionSupport.logIn(user);
+        PowerMockito.mockStatic(NetUtil.class);
+        PowerMockito.when(NetUtil.getCookieValue(Mockito.anyString())).thenReturn(webSessionSupport.logIn(user));
         for (int i = 0; i < 50; i++) {
             publish = new ArticleDraft();
             publish.setTitle("title" + i);
-            publish.setTypeId(i % 4);
+            publish.setTypeId(i % 4 + 1);
             publish.setContent("content");
             publish.setHtmlContent("<p>asdasd<p>");
             publish.setTags("aaa,bbb,ccc");
             publish.setIsPublish(PublishStatusEnum.Y);
+            this.articleService.insert(publish);
         }
-        this.articleService.insert(publish);
         notPublish = new ArticleDraft();
         PropertyUtils.copyProperties(notPublish, publish);
-        this.articleService.insert(notPublish);
+        notPublish.setTitle("title name");
+        notPublish.setId(null);
+        notPublish.setId(this.articleService.insert(notPublish));
         publish.setTypeId(4);
-        this.articleService.insert(publish);
+        publish.setId(null);
+        publish.setId(this.articleService.insert(publish));
     }
 
     @Test
@@ -85,7 +96,7 @@ public class ArticleServiceImplTest extends BaseTest {
     @Rollback
     public void deleteArticleDraft() throws Exception {
         this.articleService.deleteArticleDraft(publish.getId());
-        assertThat(this.articleService.findArticleById(publish.getId()).getIsDelete()).isEqualTo(IsDeleteEnum.Y);
+        assertThat(this.articleService.findArticleById(publish.getArticleId()).getIsDelete()).isEqualTo(IsDeleteEnum.Y);
         assertThat(this.articleService.findArticleDraft(publish.getId()).getIsDelete()).isEqualTo(IsDeleteEnum.Y);
     }
 
@@ -114,7 +125,6 @@ public class ArticleServiceImplTest extends BaseTest {
 
     @Test
     public void findRecommendedArticles() throws Exception {
-        configService.getValueBykey(ConfigKeyEnum.RECOMMENDED_ARTICLE_IDS, publish.getId().toString());
         assertThat(this.articleService.findRecommendedArticles().size()).isEqualTo(1);
     }
 
@@ -130,7 +140,7 @@ public class ArticleServiceImplTest extends BaseTest {
 
     @Test
     public void listRelevancy() throws Exception {
-        assertThat(this.articleService.findRelevancyByArticleId(publish.getId())).isNotEmpty();
+        assertThat(this.articleService.findRelevancyByArticleId(publish.getArticleId())).isNotEmpty();
     }
 
 }

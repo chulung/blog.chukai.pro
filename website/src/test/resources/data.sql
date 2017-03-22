@@ -177,7 +177,7 @@ CREATE TABLE `config` (
 -- ----------------------------
 INSERT INTO `config` VALUES ('ARTICLE_LICENSE', '<p>本文基于 <a href=\"https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh\">知识共享-署名-非商业性使用-禁止演绎 4.0 国际</a>许可协议发布，转载必须保留署名及链接。', '默认版权声明');
 INSERT INTO `config` VALUES ('RESET_SEARCH_INDEX', 'false', '重置索引标志');
-INSERT INTO `config` VALUES ('RECOMMENDED_ARTICLE_IDS', '67,63', '推荐文章');
+INSERT INTO `config` VALUES ('RECOMMENDED_ARTICLE_IDS', '1', '推荐文章');
 
 -- ----------------------------
 -- Table structure for `meta_cl_blog_log`
