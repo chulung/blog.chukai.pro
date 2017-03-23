@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import com.chulung.website.model.Comments;
-import com.chulung.website.service.CommentsService;
+import com.chulung.website.model.Comment;
+import com.chulung.website.service.CommentService;
 
 @RequestMapping("/comments")
 @RestController
 public class CommentsController extends BaseController {
 	@Autowired
-	private CommentsService commentsService;
+	private CommentService commentsService;
 
 	@RequestMapping(value = { "" }, method = RequestMethod.POST)
-	public ModelMap post(Comments comments) {
+	public ModelMap post(Comment comments) {
 		return commentsService.postComments(comments) ? successMap() : errorMap();
 	}
 

@@ -72,7 +72,7 @@
         'recommendedArticles': []
       }
     },
-    create () {
+    created () {
       axios.get('sidebarInfo').then((response) => {
         this.articleFilings = response.data.articleFilings
         this.recentlyComments = response.data.recentlyComments

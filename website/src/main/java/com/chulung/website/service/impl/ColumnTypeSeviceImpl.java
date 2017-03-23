@@ -1,8 +1,8 @@
 package com.chulung.website.service.impl;
 
-import com.chulung.website.mapper.ColumnTypeMapper;
-import com.chulung.website.model.ColumnType;
-import com.chulung.website.service.ColumnTypeSevice;
+import com.chulung.website.mapper.ColumnMapper;
+import com.chulung.website.model.Column;
+import com.chulung.website.service.ColumnSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -18,26 +18,29 @@ import java.util.stream.Collectors;
 
 @Service
 @CacheConfig(cacheNames = "forever")
-public class ColumnTypeSeviceImpl implements ColumnTypeSevice {
+public class ColumnTypeSeviceImpl implements ColumnSevice {
 
     @Autowired
-    private ColumnTypeMapper columnTypeMapper;
+    private ColumnMapper columnTypeMapper;
 
 
     @Override
-    public List<ColumnType> getAllColumns(){
+    public List<Column> getAllColumns() {
         return this.columnTypeMapper.selectAll();
     }
 
     @Override
-   @Cacheable
-    public Map<Integer,ColumnType> getIdColumnMap(){
-        return this.columnTypeMapper.selectAll().stream().collect(Collectors.toMap(ColumnType::getId,c->c));
+    @Cacheable(cacheNames = "halfhour",key = "'idColumnMap'")
+    public Map<Integer, Column> getIdColumnMap() {
+        List<Column> columns = this.columnTypeMapper.selectAll();
+        return columns.stream().collect(
+                Collectors.toMap(Column::getId, c -> c)
+        );
     }
 
     @Override
-   @Cacheable
-    public Map<String,ColumnType> getEnNameColumnMap(){
-        return this.columnTypeMapper.selectAll().stream().collect(Collectors.toMap(ColumnType::getEnName,c->c));
+    @Cacheable(cacheNames = "halfhour",key = "'enNameColumnMap'")
+    public Map<String, Column> getEnNameColumnMap() {
+        return this.columnTypeMapper.selectAll().stream().collect(Collectors.toMap(Column::getEnName, c -> c));
     }
 }

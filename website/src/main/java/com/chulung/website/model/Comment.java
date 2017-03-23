@@ -2,16 +2,14 @@ package com.chulung.website.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OrderBy;
+import javax.persistence.*;
 
 import com.chulung.jackson.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Comments extends BaseModel {
+@Table(name = "comments")
+public class Comment extends BaseModel {
 	/**
 	 * 
 	 */
@@ -41,9 +39,9 @@ public class Comments extends BaseModel {
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	public Comments() {
+	public Comment() {
 	}
-	public Comments(Integer articleId) {
+	public Comment(Integer articleId) {
 		this.articleId = articleId;
 	}
 

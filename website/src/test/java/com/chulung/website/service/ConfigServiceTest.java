@@ -1,4 +1,4 @@
-package com.chulung.website.service.impl;
+package com.chulung.website.service;
 
 import com.chulung.BaseTest;
 import com.chulung.website.enumerate.ConfigKeyEnum;
@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ConfigServiceImplTest extends BaseTest {
+public class ConfigServiceTest extends BaseTest {
 
     @Autowired
     private ConfigService configService;

@@ -50,8 +50,8 @@ CREATE TABLE `article` (
 `create_time`  datetime NOT NULL ,
 `update_time`  datetime NOT NULL ,
 `author`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '作者' ,
-`type_id`  int(10) NOT NULL COMMENT '文章类型' ,
-`type_name`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '类型名' ,
+`column_id`  int(10) NOT NULL COMMENT '文章类型' ,
+`column_name`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '类型名' ,
 `derivation_url`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '转载原文链接' ,
 `version`  int(10) NOT NULL DEFAULT 0 COMMENT '版本' ,
 `is_delete`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N' ,
@@ -66,7 +66,7 @@ CREATE TABLE `article` (
 PRIMARY KEY (`id`),
 UNIQUE INDEX `uk_title` USING BTREE (`title`) ,
 INDEX `idx_createtime` USING BTREE (`create_time`) ,
-INDEX `idx_typeid` USING BTREE (`type_id`) 
+INDEX `idx_typeid` USING BTREE (`column_id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
@@ -94,7 +94,7 @@ CREATE TABLE `article_draft` (
 `update_time`  datetime NOT NULL ,
 `author`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `is_publish`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '是否已发布' ,
-`type_id`  int(10) NOT NULL ,
+`column_id`  int(10) NOT NULL ,
 `is_delete`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N' ,
 `version`  int(11) NOT NULL DEFAULT 1 ,
 `licence`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
@@ -102,7 +102,7 @@ CREATE TABLE `article_draft` (
 PRIMARY KEY (`id`),
 UNIQUE INDEX `uk_title` USING BTREE (`title`) ,
 INDEX `idx_createtime` USING BTREE (`create_time`) ,
-INDEX `idx_typeid` USING BTREE (`type_id`) 
+INDEX `idx_typeid` USING BTREE (`column_id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
@@ -131,14 +131,14 @@ CREATE TABLE `article_draft_history` (
 `update_time`  datetime NULL DEFAULT NULL ,
 `author`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `is_publish`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否已发布' ,
-`type_id`  int(10) NULL DEFAULT NULL ,
+`column_id`  int(10) NULL DEFAULT NULL ,
 `is_delete`  char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `version`  int(11) NULL DEFAULT 1 ,
 `licence`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 `tags`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
 PRIMARY KEY (`history_id`),
 INDEX `idx_createtime` USING BTREE (`create_time`) ,
-INDEX `idx_typeid` USING BTREE (`type_id`) 
+INDEX `idx_typeid` USING BTREE (`column_id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
@@ -207,10 +207,10 @@ BEGIN;
 COMMIT;
 
 -- ----------------------------
--- Table structure for `column_type`
+-- Table structure for `columns`
 -- ----------------------------
-DROP TABLE IF EXISTS `column_type`;
-CREATE TABLE `column_type` (
+DROP TABLE IF EXISTS `columns`;
+CREATE TABLE `columns` (
 `id`  int(10) NOT NULL AUTO_INCREMENT ,
 `cn_name`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 `en_name`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
@@ -224,10 +224,10 @@ AUTO_INCREMENT=9
 ;
 
 -- ----------------------------
--- Records of column_type
+-- Records of columns
 -- ----------------------------
 BEGIN;
-INSERT INTO `column_type` VALUES ('1', '技能', 'skills', '技术改变世界，那就让世界看到你的影响力。'), ('2', '心悟', 'sensibility', '路漫漫其修远兮 吾将上下而求索。'), ('3', '转载', 'reprints', '他山之石，可以攻玉。'), ('4', '未归类', 'other', null), ('5', '烹饪', 'cooking', '黑暗料理十八式菜谱精要(:з」∠)'), ('6', '健身', 'exercise', '好羡慕喝凉水都会胖的人，我只是想增个肌~'), ('7', '摄影', 'photography', null), ('8', '旅行', 'travel', '世界那么大，有空去看看！');
+INSERT INTO `columns` VALUES ('1', '技能', 'skills', '技术改变世界，那就让世界看到你的影响力。'), ('2', '心悟', 'sensibility', '路漫漫其修远兮 吾将上下而求索。'), ('3', '转载', 'reprints', '他山之石，可以攻玉。'), ('4', '未归类', 'other', null), ('5', '烹饪', 'cooking', '黑暗料理十八式菜谱精要(:з」∠)'), ('6', '健身', 'exercise', '好羡慕喝凉水都会胖的人，我只是想增个肌~'), ('7', '摄影', 'photography', null), ('8', '旅行', 'travel', '世界那么大，有空去看看！');
 COMMIT;
 
 -- ----------------------------
@@ -414,9 +414,9 @@ ALTER TABLE `article_tag` AUTO_INCREMENT=86;
 ALTER TABLE `ciki` AUTO_INCREMENT=41;
 
 -- ----------------------------
--- Auto increment value for `column_type`
+-- Auto increment value for `columns`
 -- ----------------------------
-ALTER TABLE `column_type` AUTO_INCREMENT=9;
+ALTER TABLE `columns` AUTO_INCREMENT=9;
 
 -- ----------------------------
 -- Auto increment value for `comments`

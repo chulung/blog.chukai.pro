@@ -10,22 +10,29 @@ import com.chulung.website.model.ArticleDraft;
 import com.chulung.website.dto.out.PageOut;
 
 /**
- * 
  * @author chulung
- *
  */
 public interface ArticleService {
-	void deleteArticleDraft(Integer id);
-	Article findArticleById(Integer id);
-	List<ArticleOut> findRecommendedArticles();
-	List<Article> findPopularArticles();
-	List<Article> findRelevancyByArticleId(Integer id);
-	List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn);
-	ArticleDraft findArticleDraft(Integer id);
-	List<Article> getArticlesByYearMonth(Integer year, Integer month);
-	Integer insert(ArticleDraft articleDraft);
-	boolean update(ArticleDraft articleDraft);
-	PageOut<ArticleOut> findArticlePage(Integer page, Integer typeId);
-	List<ArticleFiling> getArticleFilings();
-	List<Article> getArticlesByTagName(String tagName);
+    void deleteArticleDraft(Integer id);
+
+    Article findArticleById(Integer id);
+
+    List<ArticleOut> findRecommendedArticles();
+
+    List<Article> findPopularArticles();
+
+    List<Article> findRelevancyByArticleId(Integer id);
+
+    List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn);
+
+    ArticleDraft findArticleDraft(Integer id);
+
+    Integer insert(ArticleDraft articleDraft);
+
+    boolean update(ArticleDraft articleDraft);
+    List<ArticleFiling> getArticleFilings();
+
+    List<Article> getArticlesByTagName(String tagName);
+
+    PageOut<ArticleOut> findArticlePage(Integer page, String column, Integer yearMonth, Integer month);
 }

@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import content from '../components/content.vue'
-import article from '@/components/contents/article.vue'
+import article from '../components/contents/article.vue'
 import summaries from '../components/contents/summaries.vue'
+import notFound from '../components/404.vue'
 Vue.use(Router)
 export default new Router({
+  mode: 'history',
   routes: [
     // content
     {
@@ -14,15 +16,30 @@ export default new Router({
         {
           path: '',
           name: 'index',
+          component: summaries,
+          alias: '/articles'
+        }
+      ]
+    },
+    // column
+    {
+      path: '/column/:column',
+      component: content,
+      children: [
+        {
+          path: '',
+          name: 'column',
           component: summaries
         }
       ]
     },
     // about
     {
-      path: '/article/20',
-      name: 'about',
-      component: article
+      path: '/about',
+      component: content,
+      children: [{
+        path: '', component: article, meta: {id: 20}
+      }]
     },
     // article
     {
@@ -31,6 +48,11 @@ export default new Router({
       children: [{
         path: '', name: 'article', component: article
       }]
+    },
+    // 404
+    {
+      path: '*',
+      component: notFound
     }
   ]
 })

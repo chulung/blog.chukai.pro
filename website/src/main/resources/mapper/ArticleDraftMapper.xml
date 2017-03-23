@@ -9,19 +9,19 @@
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" typeHandler="com.chulung.mybatis.typehandler.LocalDateTimeTypeHandler" />
 		<result column="author" property="author" jdbcType="VARCHAR" />
 		<result column="is_publish" property="isPublish" jdbcType="CHAR" />
-		<result column="type_id" property="typeId" jdbcType="INTEGER" />
+		<result column="column_id" property="columnId" jdbcType="INTEGER" />
 		<result column="is_delete" property="isDelete" jdbcType="CHAR" />
 		<result column="version" property="version" jdbcType="INTEGER" />
 		<result column="content" property="content" jdbcType="LONGVARCHAR" />
 		<result column="html_content" property="htmlContent" jdbcType="LONGVARCHAR" />
 	</resultMap>
 	<select id="selectTileList" resultMap="BaseResultMap" parameterType="com.chulung.website.model.ArticleDraft">
-		select id,article_id, title, create_time, update_time, author,is_publish,type_id,
+		select id,article_id, title, create_time, update_time, author,is_publish,column_id,
 		version
 		from article_draft  
 		<where >
-			<if test="typeId != null">
-				 type_id= #{typeId,jdbcType=INTEGER}
+			<if test="columnId != null">
+				 column_id= #{columnId,jdbcType=INTEGER}
 			</if>
 		</where>
 	</select>

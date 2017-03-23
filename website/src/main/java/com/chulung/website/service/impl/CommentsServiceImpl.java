@@ -8,9 +8,9 @@ import com.chulung.website.constant.Constants;
 import com.chulung.website.dto.out.CommentsOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.exception.MethodRuntimeExcetion;
-import com.chulung.website.mapper.CommentsMapper;
-import com.chulung.website.model.Comments;
-import com.chulung.website.service.CommentsService;
+import com.chulung.website.mapper.CommentMapper;
+import com.chulung.website.model.Comment;
+import com.chulung.website.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.stereotype.Service;
@@ -22,16 +22,16 @@ import com.github.pagehelper.PageHelper;
 import javax.annotation.Resource;
 
 @Service
-public class CommentsServiceImpl extends BaseService implements CommentsService {
+public class CommentsServiceImpl extends BaseService implements CommentService {
 
     @Autowired
-    private CommentsMapper commentsMapper;
+    private CommentMapper commentsMapper;
 
     @Resource(name = "oneMin")
     private Cache cache;
 
     @Override
-    public boolean postComments(Comments comments) {
+    public boolean postComments(Comment comments) {
         String curSessionId = NetUtil.getCurSessionId() + "_cmts";
         Integer count = cache.get(curSessionId, () -> 0);
         if (count > 1) {
@@ -49,18 +49,18 @@ public class CommentsServiceImpl extends BaseService implements CommentsService 
     @Override
     public PageOut<CommentsOut> listComments(int pageNum, int articleId) {
         PageHelper.startPage(pageNum, Constants.DEFAULT_PAGE_SIZE);
-        Comments record = new Comments();
+        Comment record = new Comment();
         record.setArticleId(articleId);
-        Page<Comments> page = (Page<Comments>) commentsMapper.select(record);
+        Page<Comment> page = (Page<Comment>) commentsMapper.select(record);
         PageOut<CommentsOut> pageOut = new PageOut<>(page.getPageNum(), page.getPages());
         pageOut.setList(page.stream().map(a->new CommentsOut().buildFromModel(a)).collect(Collectors.toList()));
         return pageOut;
     }
 
     @Override
-    public List<Comments> findRecentlyComments() {
+    public List<Comment> findRecentlyComments() {
         PageHelper.startPage(1, 3);
-        Page<Comments> page = (Page<Comments>) commentsMapper.selectAll();
+        Page<Comment> page = (Page<Comment>) commentsMapper.selectAll();
         // 防暴露email
         return page.stream().map(p -> {
             p.setEmail(null);

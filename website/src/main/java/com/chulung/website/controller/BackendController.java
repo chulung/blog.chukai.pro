@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chulung.website.service.ColumnTypeSevice;
+import com.chulung.website.service.ColumnSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,7 +37,7 @@ public class BackendController extends BaseController {
 	private WebSessionSupport webSessionSupport;
 
 	@Autowired
-	private ColumnTypeSevice columnTypeSevice;
+	private ColumnSevice columnTypeSevice;
 
 
 	/**

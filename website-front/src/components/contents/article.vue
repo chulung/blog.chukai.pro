@@ -103,8 +103,7 @@
       return {article: {}}
     },
     beforeRouteEnter (to, from, next) {
-      axios.get('/article/' + to.params.id).then(response => {
-        console.log(response)
+      axios.get('/article/' + (to.params.id || to.meta.id)).then(response => {
         next(vm => {
           vm.article = response.data
         })

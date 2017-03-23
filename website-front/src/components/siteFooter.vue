@@ -51,7 +51,7 @@
     data () {
       return {tags: {}, recommendedArticles: {}}
     },
-    create () {
+    created () {
       axios.get('siteFooterInfo').then((response) => {
         this.tags = response.data.tags
         this.recommendedArticles = response.data.recommendedArticles

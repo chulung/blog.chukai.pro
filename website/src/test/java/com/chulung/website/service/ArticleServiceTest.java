@@ -1,4 +1,4 @@
-package com.chulung.website.service.impl;
+package com.chulung.website.service;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,15 +7,11 @@ import com.chulung.common.util.NetUtil;
 import com.chulung.website.dto.PageIn;
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
-import com.chulung.website.enumerate.ConfigKeyEnum;
 import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.website.enumerate.PublishStatusEnum;
 import com.chulung.website.mapper.ArticleMapper;
 import com.chulung.website.model.ArticleDraft;
-import com.chulung.website.model.Config;
 import com.chulung.website.model.User;
-import com.chulung.website.service.ArticleService;
-import com.chulung.website.service.ConfigService;
 import com.chulung.website.session.WebSessionSupport;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.Before;
@@ -28,15 +24,13 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
-import java.time.LocalDate;
-
 /**
  * Created by chulung on 2017/3/21.
  */
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @PrepareForTest(NetUtil.class)
-public class ArticleServiceImplTest extends BaseTest {
+public class ArticleServiceTest extends BaseTest {
 
     @Autowired
     private ArticleService articleService;
@@ -44,6 +38,8 @@ public class ArticleServiceImplTest extends BaseTest {
     private ArticleMapper mapper;
     private ArticleDraft publish;
     private ArticleDraft notPublish;
+    @Autowired
+    private ColumnSevice columnSevice;
 
     @Autowired
     private ConfigService configService;
@@ -60,7 +56,7 @@ public class ArticleServiceImplTest extends BaseTest {
         for (int i = 0; i < 50; i++) {
             publish = new ArticleDraft();
             publish.setTitle("title" + i);
-            publish.setTypeId(i % 4 + 1);
+            publish.setColumnId(i % 4 + 1);
             publish.setContent("content");
             publish.setHtmlContent("<p>asdasd<p>");
             publish.setTags("aaa,bbb,ccc");
@@ -72,7 +68,7 @@ public class ArticleServiceImplTest extends BaseTest {
         notPublish.setTitle("title name");
         notPublish.setId(null);
         notPublish.setId(this.articleService.insert(notPublish));
-        publish.setTypeId(4);
+        publish.setColumnId(4);
         publish.setId(null);
         publish.setId(this.articleService.insert(publish));
     }
@@ -102,20 +98,11 @@ public class ArticleServiceImplTest extends BaseTest {
 
     @Test
     public void findArticlePage() throws Exception {
-        PageOut<ArticleOut> pageOut = this.articleService.findArticlePage(1, null);
+        PageOut<ArticleOut> pageOut = this.articleService.findArticlePage(1, this.columnSevice.getIdColumnMap().get(1).getEnName(), null, null);
         assertThat(pageOut.getList()).isNotEmpty();
         pageOut.getList().forEach(articleOut -> {
-            assertThat(articleOut.getTypeId()).isNotEqualTo(4);
+            assertThat(articleOut.getColumnId()).isEqualTo(1);
         });
-        pageOut = this.articleService.findArticlePage(1, 1);
-        assertThat(pageOut.getList()).isNotEmpty();
-        pageOut.getList().forEach(articleOut -> assertThat(articleOut.getTypeId()).isEqualTo(1));
-    }
-
-    @Test
-    public void getArticlesByYearMonth() throws Exception {
-        LocalDate localDate = LocalDate.now();
-        assertThat(this.articleService.getArticlesByYearMonth(localDate.getYear(), localDate.getMonthValue())).isNotEmpty();
     }
 
     @Test

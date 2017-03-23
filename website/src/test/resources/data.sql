@@ -27,8 +27,8 @@ CREATE TABLE `article` (
   `create_time` datetime NOT NULL,
   `update_time` datetime NOT NULL,
   `author` varchar(20) NOT NULL COMMENT '作者',
-  `type_id` int(10) NOT NULL COMMENT '文章类型',
-  `type_name` varchar(20) NOT NULL DEFAULT '' COMMENT '类型名',
+  `column_id` int(10) NOT NULL COMMENT '文章类型',
+  `column_name` varchar(20) NOT NULL DEFAULT '' COMMENT '类型名',
   `derivation_url` varchar(200) DEFAULT NULL COMMENT '转载原文链接',
   `version` int(10) NOT NULL DEFAULT '0' COMMENT '版本',
   `is_delete` char(1) NOT NULL DEFAULT 'N',
@@ -61,7 +61,7 @@ CREATE TABLE `article_draft` (
   `update_time` datetime NOT NULL,
   `author` varchar(20) NOT NULL,
   `is_publish` char(1) NOT NULL COMMENT '是否已发布',
-  `type_id` int(10) NOT NULL,
+  `column_id` int(10) NOT NULL,
   `is_delete` char(1) NOT NULL DEFAULT 'N',
   `version` int(11) NOT NULL DEFAULT '1',
   `licence` varchar(200) DEFAULT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE `article_draft_history` (
   `update_time` datetime DEFAULT NULL,
   `author` varchar(20) DEFAULT NULL,
   `is_publish` char(1) DEFAULT NULL COMMENT '是否已发布',
-  `type_id` int(10) DEFAULT NULL,
+  `column_id` int(10) DEFAULT NULL,
   `is_delete` char(1) DEFAULT NULL,
   `version` int(11) DEFAULT '1',
   `licence` varchar(200) DEFAULT NULL,
@@ -114,12 +114,12 @@ CREATE TABLE `article_tag` (
 -- ----------------------------
 -- Records of article_tag
 -- ----------------------------
-
+INSERT INTO article_tag VALUES(1,'java',1);
 -- ----------------------------
--- Table structure for `column_type`
+-- Table structure for `columns`
 -- ----------------------------
-DROP TABLE IF EXISTS `column_type`;
-CREATE TABLE `column_type` (
+DROP TABLE IF EXISTS `columns`;
+CREATE TABLE `columns` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `cn_name` varchar(20) NOT NULL,
   `en_name` varchar(20) NOT NULL,
@@ -128,17 +128,17 @@ CREATE TABLE `column_type` (
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of column_type
+-- Records of columns
 -- ----------------------------
-INSERT INTO `column_type` VALUES ('1', '技能', 'skills', '技术改变世界，那就让世界看到你的影响力。');
-INSERT INTO `column_type` VALUES ('2', '心悟', 'sensibility', '路漫漫其修远兮 吾将上下而求索。');
-INSERT INTO `column_type` VALUES ('3', '转载', 'reprints', '他山之石，可以攻玉。');
-INSERT INTO `column_type` VALUES ('4', '未归类', 'other', null);
-INSERT INTO `column_type` VALUES ('5', '烹饪', 'cooking', '黑暗料理十八式菜谱精要(:з」∠)');
-INSERT INTO `column_type` VALUES ('6', '健身', 'exercise', '好羡慕喝凉水都会胖的人，我只是想增个肌~');
-INSERT INTO `column_type` VALUES ('7', '摄影', 'photography', null);
-INSERT INTO `column_type` VALUES ('8', '旅行', 'travel', '世界那么大，有空去看看！');
-INSERT INTO `column_type` VALUES ('9', '文档', 'doc', null);
+INSERT INTO `columns` VALUES ('1', '技能', 'skills', '技术改变世界，那就让世界看到你的影响力。');
+INSERT INTO `columns` VALUES ('2', '心悟', 'sensibility', '路漫漫其修远兮 吾将上下而求索。');
+INSERT INTO `columns` VALUES ('3', '转载', 'reprints', '他山之石，可以攻玉。');
+INSERT INTO `columns` VALUES ('4', '未归类', 'other', null);
+INSERT INTO `columns` VALUES ('5', '烹饪', 'cooking', '黑暗料理十八式菜谱精要(:з」∠)');
+INSERT INTO `columns` VALUES ('6', '健身', 'exercise', '好羡慕喝凉水都会胖的人，我只是想增个肌~');
+INSERT INTO `columns` VALUES ('7', '摄影', 'photography', null);
+INSERT INTO `columns` VALUES ('8', '旅行', 'travel', '世界那么大，有空去看看！');
+INSERT INTO `columns` VALUES ('9', '文档', 'doc', null);
 
 -- ----------------------------
 -- Table structure for `comments`

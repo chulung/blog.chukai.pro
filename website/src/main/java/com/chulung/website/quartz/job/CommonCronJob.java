@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.chulung.website.mapper.CommentsMapper;
+import com.chulung.website.mapper.CommentMapper;
 
 import java.time.ZoneId;
 import java.util.List;
@@ -20,7 +20,7 @@ public class CommonCronJob extends AbstractCronJob {
     private ArticleMapper articleMapper;
 
     @Autowired
-    private CommentsMapper commentsMapper;
+    private CommentMapper commentsMapper;
 
     @Scheduled(cron = "0 0 1 * * ?")
     public void execute() throws Exception {

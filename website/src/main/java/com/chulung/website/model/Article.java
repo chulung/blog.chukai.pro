@@ -2,10 +2,6 @@ package com.chulung.website.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.jackson.databind.LocalDateTimeSerializer;
 import com.chulung.search.DocType;
@@ -31,7 +27,7 @@ public class Article extends BaseModel implements Indexable{
 
     private String author;
 
-    private Integer typeId;
+    private Integer columnId;
 
     private String derivationUrl;
 
@@ -47,8 +43,6 @@ public class Article extends BaseModel implements Indexable{
 
     private String pic;
 
-    private String typeName;
-
     private String license;
 
     private String summary;
@@ -57,6 +51,15 @@ public class Article extends BaseModel implements Indexable{
 
     private String tags;
 
+    private  String columnName;
+
+    public String getColumnName() {
+        return columnName;
+    }
+
+    public void setColumnName(String columnName) {
+        this.columnName = columnName;
+    }
     public String getTags() {
         return tags;
     }
@@ -79,14 +82,6 @@ public class Article extends BaseModel implements Indexable{
 
     public void setLicense(String license) {
         this.license = license;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
     }
 
     public void setPic(String pic) {
@@ -150,12 +145,12 @@ public class Article extends BaseModel implements Indexable{
         this.author = author == null ? null : author.trim();
     }
 
-    public Integer getTypeId() {
-        return typeId;
+    public Integer getColumnId() {
+        return columnId;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setColumnId(Integer columnId) {
+        this.columnId = columnId;
     }
 
     public String getDerivationUrl() {

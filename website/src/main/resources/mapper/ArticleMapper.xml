@@ -10,9 +10,9 @@
 			typeHandler="com.chulung.mybatis.typehandler.LocalDateTimeTypeHandler" />
 		<result column="author" property="author" jdbcType="VARCHAR" />
 		<result column="pic" property="pic" jdbcType="VARCHAR" />
-		<result column="type_name" property="typeName" jdbcType="VARCHAR" />
+		<result column="column_name" property="columnName" jdbcType="VARCHAR" />
 		<result column="summary" property="summary" jdbcType="VARCHAR" />
-		<result column="type_id" property="typeId" jdbcType="INTEGER" />
+		<result column="column_id" property="columnId" jdbcType="INTEGER" />
 		<result column="derivation_Url" property="derivationUrl"
 			jdbcType="VARCHAR" />
 		<result column="version" property="version" jdbcType="INTEGER" />
@@ -30,22 +30,22 @@
 	</select>
 	<select id="listPopularArticles" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
-		select id, title, type_name,create_time,type_id,pic
+		select id, title, column_name,create_time,column_id,pic
 		from article ORDER  by index_rank desc
 	</select>
 	<select id="selectSummarys" resultMap="BaseResultMap">
 		select id, title, create_time,
 		update_time, author,
-		type_id, derivation_url,pic,summary,type_name,
+		column_id, derivation_url,pic,summary,column_name,
 		is_delete,visit_count,comment_count
 		from
 		article
-		where type_id !=4
-		<if test="typeId != null">
-			and type_id= #{typeId,jdbcType=INTEGER}
+		where 1=1
+		<if test="columnId != null">
+			and column_id= #{columnId,jdbcType=INTEGER}
 		</if>
-		<if test="typeId == null and ids == null">
-			and type_id in (1,2)
+		<if test="columnId == null and ids == null">
+			and column_id in (1,2)
 		</if>
 		<if test="createTimeStart != null and createTimeEnd!=null">
 			and create_time between
@@ -69,7 +69,7 @@
 		where a.id NOT IN(
 			SELECT article_id from meta_cl_blog_log m,article a 
 			where a.id=m.article_id and a.update_time < m.lastest_post_time and site=#{siteName}
-		) and type_id in(1,2)
+		) and column_id in(1,2)
 	 ]]>
 	</select>
 	<update id="incrementVisitCount" parameterType="integer">

@@ -10,14 +10,12 @@ import com.chulung.website.enumerate.ConfigKeyEnum;
 import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.website.enumerate.PublishStatusEnum;
 import com.chulung.website.exception.MethodRuntimeExcetion;
+import com.chulung.website.exception.PageNotFoundException;
 import com.chulung.website.mapper.ArticleDraftHistoryMapper;
 import com.chulung.website.mapper.ArticleDraftMapper;
 import com.chulung.website.mapper.ArticleMapper;
 import com.chulung.website.mapper.ArticleTagMapper;
-import com.chulung.website.model.Article;
-import com.chulung.website.model.ArticleDraft;
-import com.chulung.website.model.ArticleTag;
-import com.chulung.website.model.User;
+import com.chulung.website.model.*;
 import com.chulung.website.service.*;
 import com.chulung.website.session.WebSessionSupport;
 import com.github.pagehelper.Page;
@@ -59,7 +57,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     private ConfigService configService;
 
     @Autowired
-    private CommentsService commentsService;
+    private CommentService commentService;
 
     @Autowired
     private MetaClBlogLogService metaClBlogLogService;
@@ -68,7 +66,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     private ArticlesSearchHandler articlesSearchHandler;
 
     @Autowired
-    private ColumnTypeSevice columnTypeSevice;
+    private ColumnSevice columnSevice;
 
     @Autowired
     private ArticleTagMapper articleTagMapper;
@@ -87,8 +85,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
                     / 31536000);
             a.setContent(String.format(a.getContent(), pinyin, wook));
         }
-        if (a.getTypeId() == 1) {
-            a.setContent(a.getContent() + (a.getTypeId() != 3 && StringUtils.isBlank(a.getLicense()) ? configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()) : a.getLicense()));
+        if (a.getColumnId() == 1) {
+            a.setContent(a.getContent() + (a.getColumnId() != 3 && StringUtils.isBlank(a.getLicense()) ? configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()) : a.getLicense()));
         }
         return a;
     }
@@ -213,28 +211,31 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 
     @Override
-    public PageOut<ArticleOut> findArticlePage(Integer startPage, Integer typeId) {
+    public PageOut<ArticleOut> findArticlePage(Integer page, String column, Integer year, Integer month) {
         ArticleIn bean = new ArticleIn();
-        bean.setTypeId(typeId);
         bean.setIsDelete(IsDeleteEnum.N);
-        PageHelper.startPage(startPage == null ? 1 : startPage, PAGE_SIZE);
-        Page<Article> page = (Page<Article>) articleMapper.selectSummarys(bean);
-        PageOut<ArticleOut> pageOut = new PageOut<>(page.getPageNum(), page.getPages());
-        pageOut.setList(page.stream().map(a -> new ArticleOut().buildFromModel(a)).collect(Collectors.toList()));
+        if (column != null) {
+            Column c = this.columnSevice.getEnNameColumnMap().get(column);
+            if (c == null) throw new PageNotFoundException();
+            bean.setColumnId(c.getId());
+        }
+        if (year != null && Range.atLeast(2014).contains(year)) {
+            if (month != null && Range.open(1, 12).contains(month)) {
+                bean.setCreateTimeStart(LocalDateTime.of(year, month, 1, 0, 0));
+                bean.setCreateTimeEnd(LocalDateTime.of(year, month, 1, 0, 0).plus(1, ChronoUnit.MONTHS));
+            } else {
+                bean.setCreateTimeStart(LocalDateTime.of(year, 1, 1, 0, 0));
+                bean.setCreateTimeEnd(LocalDateTime.of(year, 1, 1, 0, 0).plus(1, ChronoUnit.YEARS));
+            }
+        }
+        PageHelper.startPage(page == null ? 1 : page, PAGE_SIZE);
+        Page<Article> articles = (Page<Article>) articleMapper.selectSummarys(bean);
+        PageOut<ArticleOut> pageOut = new PageOut<>(articles.getPageNum(), articles.getPages());
+        pageOut.setList(articles.stream().map(a ->
+                new ArticleOut().buildFromModel(a)
+        ).collect(Collectors.toList()));
         return pageOut;
     }
-
-    @Override
-    public List<Article> getArticlesByYearMonth(Integer year, Integer month) {
-        if (!Range.atLeast(2014).contains(year) || !Range.open(1, 12).contains(month)) {
-            return Collections.emptyList();
-        }
-        ArticleIn bean = new ArticleIn();
-        bean.setCreateTimeStart(LocalDateTime.of(year, month, 1, 0, 0));
-        bean.setCreateTimeEnd(LocalDateTime.of(year, month, 1, 0, 0).plus(1, ChronoUnit.MONTHS));
-        return articleMapper.selectSummarys(bean);
-    }
-
 
     @Override
     public List<ArticleFiling> getArticleFilings() {
@@ -306,7 +307,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         if (m.find()) {
             article.setPic(m.group());
         }
-        article.setTypeName(this.columnTypeSevice.getIdColumnMap().get(articleDraft.getTypeId()).getCnName());
+        article.setColumnName(this.columnSevice.getIdColumnMap().get(articleDraft.getColumnId()).getCnName());
         article.setSummary(generatingSummary(htmlContent));
         article.setContent(htmlContent);
         article.setUpdateTime(articleDraft.getUpdateTime());
@@ -314,7 +315,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         article.setIsDelete(articleDraft.getIsDelete());
         article.setTitle(articleDraft.getTitle());
         article.setCreateTime(LocalDateTime.now());
-        article.setTypeId(articleDraft.getTypeId());
+        article.setColumnId(articleDraft.getColumnId());
         article.setVersion(articleDraft.getVersion());
         article.setTags(articleDraft.getTags());
         return article;

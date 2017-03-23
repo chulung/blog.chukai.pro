@@ -8,7 +8,7 @@
           </template>
           <div class="heading-title heading-small">
               <span class="post-meta-cat"><a
-                :href="'/articles?typeId='+article.typeId+'#content'">{{article.typeName}}</a></span>
+                :href="'/articles?columnId='+article.columnId+'#content'">{{article.columnName}}</a></span>
             <h2>
               <router-link :to="'/article/'+article.id" rel="bookmark">{{article.title}}</router-link>
             </h2>
@@ -37,10 +37,10 @@
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         <div class="nav-previous" v-if="prePage">
-          <a :href="'/articles?page='+prePage+'&typeId='+typeId">前一页</a>
+          <a :href="'/articles?page='+prePage+'&columnId='+columnId">前一页</a>
         </div>
         <div class="nav-next" v-if="nextPage">
-          <a :href="'/articles?page='+nextPage+'&typeId='+typeId">前一页</a>
+          <a :href="'/articles?page='+nextPage+'&columnId='+columnId">前一页</a>
         </div>
       </div>
     </nav><!-- .navigation -->
@@ -52,14 +52,29 @@
     data () {
       return {articles: {}, nextPage: null, prePage: null}
     },
-    beforeRouteEnter (to, from, next) {
-      axios.get('/articles').then(response => {
-        next(vm => {
-          vm.articles = response.data.list
-          vm.nextPage = response.data.netxPage
-          vm.prePage = response.data.prePage
+    created () {
+      this.fetchData()
+    },
+    watch: {
+      '$route' (to, from) {
+        this.fetchData()
+      }
+    },
+    methods: {
+      fetchData () {
+        const column = this.$route.params.column
+        const page = this.$route.query.page
+        axios.get('/articles', {
+          params: {
+            page: page,
+            column: column
+          }
+        }).then(response => {
+          this.articles = response.data.list
+          this.nextPage = response.data.netxPage
+          this.prePage = response.data.prePage
         })
-      })
+      }
     }
   }
 </script>

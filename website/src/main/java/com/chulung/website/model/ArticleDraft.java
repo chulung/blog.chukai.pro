@@ -2,7 +2,6 @@ package com.chulung.website.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import com.chulung.website.enumerate.IsDeleteEnum;
@@ -29,7 +28,7 @@ public class ArticleDraft extends BaseModel {
 
     private PublishStatusEnum isPublish;
 
-    private Integer typeId;
+    private Integer columnId;
 
     private IsDeleteEnum isDelete;
 
@@ -124,12 +123,12 @@ public class ArticleDraft extends BaseModel {
         this.isPublish = isPublish;
     }
 
-    public Integer getTypeId() {
-        return typeId;
+    public Integer getColumnId() {
+        return columnId;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setColumnId(Integer columnId) {
+        this.columnId = columnId;
     }
 
     public IsDeleteEnum getIsDelete() {

@@ -3,13 +3,15 @@ package com.chulung.website.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 网站文章栏目类型
  * Created by chulung on 2016/11/6.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ColumnType extends  BaseModel{
+@Table(name = "columns")
+public class Column extends  BaseModel{
     private String cnName;
     private String enName;
     private String slogans;
