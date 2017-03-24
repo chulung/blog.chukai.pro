@@ -1,5 +1,4 @@
 <template>
-
   <!-- site-footer -->
   <footer id="colophon" class="site-footer"
           style="background-image: url('https://chulung.github.io/assets/theme/img/footer-background.png');"
@@ -10,9 +9,8 @@
           <section class="widget widget_tag_cloud">
             <h3 class="widget-title">全部标签</h3>
             <div id="all-tag" class="tagcloud">
-              <template>
-                <a v-for="item in tags" :href="'/tag/' + item.tagName">{{item.tagName}}({{item.count}})</a>
-              </template>
+              <router-link v-for="item in tags" :to="'/tag/' + item.tagName" key="item.id">{{item.tagName}}({{item.count}})
+              </router-link>
             </div>
           </section><!-- .widget_tag_cloud -->
         </div><!-- .col-sm-3 -->
@@ -23,7 +21,7 @@
             <template v-if="recommendedArticles">
               <ul>
                 <li v-for="item in recommendedArticles">
-                  <a :href="'/article/'+item.id">{{item.title}}</a>
+                  <router-link :to="'/article/'+item.id">{{item.title}}</router-link>
                   <span class="post-date">{{item.createTime}}</span>
                 </li>
               </ul>

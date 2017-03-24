@@ -33,34 +33,32 @@
       </footer><!-- .entry-footer -->
     </article><!-- .post -->
     <div id="related-top"></div>
-    <template v-if="result && result.length">
-      <div class="related-posts none" id="related-posts">
-        <h3>猜你喜欢</h3>
-        <div class="row">
-          <div class="col-md-3 col-sm-6" v-for="item in result">
-            <div class="post-container">
-              <div class="post-thumbnail">
-                <a :href="'/article/'+item.id"><img :src="defaultPic(item.pic)" :alt="item.title"/></a>
-              </div><!-- .post-thumbnail -->
-              <span class="post-meta">{{item.createTime}}</span>
-              <h2 class="post-title"><a :href="'/article/'+item.id">{{item.title}}</a></h2>
-            </div><!-- .post-container -->
-          </div><!-- .col-md-3 -->
-        </div><!-- .row -->
-      </div>
-    </template>
-    <div id="comments" class="comments-area">
-      <div id="respond" class="comment-respond">
-        <h3 id="reply-title" class="comment-reply-title">评论
+    <div class="related-posts none" id="related-posts" v-if="relevancies">
+      <h3>相似文章</h3>
+      <div class="row">
+        <div class="col-md-3 col-sm-6" v-for="item in relevancies">
+          <div class="post-container">
+            <div class="post-thumbnail">
+              <a :href="'/article/'+item.id"><img :src="defaultPic(item.pic)" :alt="item.title"/></a>
+            </div><!-- .post-thumbnail -->
+            <span class="post-meta">{{item.createTime}}</span>
+            <h2 class="post-title">
+              <router-link :to="'/article/'+item.id">{{item.title}}</router-link>
+            </h2>
+          </div><!-- .post-container -->
+        </div><!-- .col-md-3 -->
+      </div><!-- .row -->
+    </div>
+    <div class="comments-area">
+      <div class="comment-respond">
+        <h3 class="comment-reply-title">评论
           <small></small>
         </h3>
         <section class="widget widget_recent_comments">
-          <ul id="ul_comments">
-            <template>
-              <li style="display: list-item;" v-for="item in list"><span class="comment-author-link"><a
-                :href="item.website">{{item.userName}}:</a></span>
-                <p>{{item.comment}}</p></li>
-            </template>
+          <ul v-if="comments">
+            <li style="display: list-item;" v-for="item in comments"><span class="comment-author-link"><a
+              :href="item.website">{{item.userName}}:</a></span>
+              <p>{{item.comment}}</p></li>
           </ul>
         </section>
 
@@ -100,14 +98,43 @@
   import axios from 'axios'
   export default {
     data () {
-      return {article: {}}
+      return {article: {}, comments: {}, relevancies: {}}
     },
-    beforeRouteEnter (to, from, next) {
-      axios.get('/article/' + (to.params.id || to.meta.id)).then(response => {
-        next(vm => {
-          vm.article = response.data
+    created () {
+      this.fetchArticleData()
+    },
+    watch: {
+      article (newValue, oldValue) {
+        this.fetchComments()
+        this.fetchRelevancy()
+      },
+      $route (to, from) {
+        this.fetchArticleData()
+      }
+    },
+    methods: {
+      fetchArticleData () {
+        axios.get('/article/' + (this.$route.params.id || this.$route.meta.id)).then(response => {
+          this.article = response.data
         })
-      })
+      },
+      fetchComments () {
+        axios.get('/comments/list/' + this.article.id, {
+          params: {
+            page: 1
+          }
+        }).then(response => {
+          this.comments = response.data.list
+        })
+      },
+      fetchRelevancy () {
+        axios.get('/article/relevancy/' + this.article.id).then(response => {
+          this.relevancies = response.data
+        })
+      },
+      defaultPic: function (pic) {
+        return pic || '/static/img/logo.jpg'
+      }
     }
   }
 </script>

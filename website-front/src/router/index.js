@@ -7,6 +7,13 @@ import notFound from '../components/404.vue'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return {x: 0, y: 0}
+    }
+  },
   routes: [
     // content
     {
@@ -18,6 +25,18 @@ export default new Router({
           name: 'index',
           component: summaries,
           alias: '/articles'
+        }
+      ]
+    },
+    // tag
+    {
+      path: '/tag/:tag',
+      component: content,
+      children: [
+        {
+          path: '',
+          name: 'tag',
+          component: summaries
         }
       ]
     },

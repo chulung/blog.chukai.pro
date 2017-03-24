@@ -53,27 +53,24 @@
       return {articles: {}, nextPage: null, prePage: null}
     },
     created () {
-      this.fetchData()
+      this.fetchArticleData()
     },
     watch: {
-      '$route' (to, from) {
-        this.fetchData()
+      $route (to, from) {
+        this.fetchArticleData()
       }
     },
     methods: {
-      fetchData () {
+      fetchArticleData () {
         const column = this.$route.params.column
         const page = this.$route.query.page
-        axios.get('/articles', {
-          params: {
-            page: page,
-            column: column
-          }
-        }).then(response => {
-          this.articles = response.data.list
-          this.nextPage = response.data.netxPage
-          this.prePage = response.data.prePage
-        })
+        const tag = this.$route.params.tag
+        axios.get(tag ? '/tag/' + tag : '/articles', {params: {page: page, column: column}})
+          .then(response => {
+            this.articles = response.data.list
+            this.nextPage = response.data.netxPage
+            this.prePage = response.data.prePage
+          })
       }
     }
   }

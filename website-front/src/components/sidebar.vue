@@ -36,8 +36,8 @@
     <section class="widget widget_archive">
       <h2 class="widget-title">归档</h2>
       <ul id="articleFilings">
-        <li v-for="item in articleFilings"><a
-          :href="'/monthFilings/'+ yearMonth(item)">{{yearMonth(item)}}</a>({{item.count}})
+        <li v-for="item in articleFilings"><router-link
+          :href="'/monthFilings/'+ yearMonth(item)">{{yearMonth(item)}}</router-link>({{item.count}})
         </li>
       </ul>
     </section><!-- .widget_archive -->
@@ -81,7 +81,7 @@
     },
     methods: {
       defaultPic: function (pic) {
-        return pic || 'static/logo.jpg'
+        return pic || '/static/logo.jpg'
       },
       yearMonth: function (item) {
         return item.yearMonth.year + '-' + item.yearMonth.monthValue

@@ -37,6 +37,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -278,16 +279,16 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     }
 
     @Override
-    public List<Article> getArticlesByTagName(String tagName) {
+    public PageOut<ArticleOut> getArticlesByTagName(String tagName) {
         ArticleTag record = new ArticleTag();
         record.setTagName(tagName);
         List<Integer> articleIds = this.articleTagMapper.select(record).stream().map(t -> {
             return t.getArticleId();
         }).collect(Collectors.toList());
-        if (CollectionUtils.isEmpty(articleIds)) return Collections.emptyList();
+        if (CollectionUtils.isEmpty(articleIds)) return new PageOut();
         ArticleIn art = new ArticleIn();
         art.setIds(articleIds);
-        return this.articleMapper.selectSummarys(art);
+        return new PageOut<>(this.articleMapper.selectSummarys(art).stream().map(article -> new ArticleOut().buildFromModel(article)).collect(Collectors.toList()));
     }
 
     @Override

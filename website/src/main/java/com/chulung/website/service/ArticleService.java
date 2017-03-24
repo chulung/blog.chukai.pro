@@ -32,7 +32,7 @@ public interface ArticleService {
     boolean update(ArticleDraft articleDraft);
     List<ArticleFiling> getArticleFilings();
 
-    List<Article> getArticlesByTagName(String tagName);
+    PageOut<ArticleOut> getArticlesByTagName(String tagName);
 
     PageOut<ArticleOut> findArticlePage(Integer page, String column, Integer yearMonth, Integer month);
 }

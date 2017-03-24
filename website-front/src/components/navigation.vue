@@ -8,7 +8,7 @@
               <!-- //site-title when you use logo image.
               <h1 class="site-title title-image"><a href="index.html" rel="home"><img src="assets/img/danish-image-logo.png" alt="Danish."></a></h1>
               -->
-              <h1 class="site-title"><a href="/" rel="home">ChuLung.</a></h1>
+              <h1 class="site-title"><router-link to="/" rel="home">ChuLung.</router-link></h1>
               <p class="site-description">Minecraft //</p>
             </div><!-- .site-branding -->
           </div><!-- .col-sm-4 -->

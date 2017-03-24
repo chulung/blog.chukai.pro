@@ -122,7 +122,7 @@ public class ArticleServiceTest extends BaseTest {
 
     @Test
     public void getArticlesByTagName() throws Exception {
-        assertThat(this.articleService.getArticlesByTagName("aaa")).isNotEmpty();
+        assertThat(this.articleService.getArticlesByTagName("aaa").getList()).isNotEmpty();
     }
 
     @Test

@@ -44,11 +44,4 @@ public class SiteFrontController extends BaseController {
         return this.siteService.getSiteFooteInfo();
     }
 
-
-    @RequestMapping(value = "/tag/{tagName}", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    JsonResult<List<Article>> getArticlesByTag(@PathVariable String tagName) {
-        return ofSuccess(this.articleService.getArticlesByTagName(tagName));
-    }
 }

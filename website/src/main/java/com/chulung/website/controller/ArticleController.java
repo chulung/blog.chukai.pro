@@ -52,4 +52,11 @@ public class ArticleController extends BaseController {
     PageOut<ArticleOut> getArticlePage(@RequestParam(required = false) Integer page, @RequestParam(required = false) String column, @RequestParam(required = false) Integer year, @RequestParam(required = false) Integer month) {
         return articleService.findArticlePage(page, column, year, month);
     }
+
+    @RequestMapping(value = "/tag/{tagName}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    PageOut<ArticleOut> getArticlesByTag(@PathVariable String tagName) {
+        return this.articleService.getArticlesByTagName(tagName);
+    }
 }
