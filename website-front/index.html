@@ -14,34 +14,37 @@
   <link href="//cdn.bootcss.com/magnific-popup.js/1.0.1/magnific-popup.min.css" rel="stylesheet">
   <link href="/static/css/site.css" rel="stylesheet">
 </head>
-<body >
-  <div id="app" class="site">
-    <navigation></navigation>
-    <!-- content -->
-    <router-view></router-view>
-    <!-- #content -->
-    <keep-alive>
-      <sitefooter></sitefooter>
-    </keep-alive>
-    <copyright></copyright>
-  </div><!-- #page -->
-  <script src="//apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script type="text/javascript"  src="//cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.js"></script>
-  <script type="text/javascript"  src="//cdn.bootcss.com/magnific-popup.js/1.0.1/jquery.magnific-popup.min.js"></script>
-  <script type="text/javascript"  src="//cdn.bootcss.com/jquery.isotope/1.5.25/jquery.isotope.min.js"></script>
-  <script type="text/javascript"  src="/static/js/lib/navigation.js"></script>
-  <script type="text/javascript"  src="/static/js/lib/script.js"></script>
-  <script>
-    (function(){
-      var e = /([http|https]:\/\/chulung\.com)/gi;
-      if (e.test(window.location.href)) {
-        var bp = document.createElement('script');
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-      }
-    })();
-  </script>
+<body>
+<div id="app" class="site">
+  <navigation></navigation>
+  <!-- content -->
+  <router-view></router-view>
+  <!-- #content -->
+  <keep-alive>
+    <sitefooter></sitefooter>
+  </keep-alive>
+  <copyright></copyright>
+</div><!-- #page -->
+<script src="//apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/velocity/1.5.0/velocity.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/justifiedGallery/3.6.1/js/jquery.justifiedGallery.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/magnific-popup.js/1.0.1/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery.isotope/1.5.25/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/vue-validator/2.1.6/vue-validator.min.js"></script>
+<script type="text/javascript" src="/static/js/lib/navigation.js"></script>
+<script type="text/javascript" src="/static/js/lib/script.js"></script>
+
+<script>
+  (function () {
+    var e = /([http|https]:\/\/chulung\.com)/gi;
+    if (e.test(window.location.href)) {
+      var bp = document.createElement('script');
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    }
+  })();
+</script>
 </body>
 </html>

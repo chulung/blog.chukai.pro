@@ -1,7 +1,11 @@
-package com.chulung.website.service;
+package com.chulung.website.service.impl;
 
 import com.chulung.website.dto.out.SideBarInfo;
 import com.chulung.website.dto.out.SiteFooteInfo;
+import com.chulung.website.service.ArticleService;
+import com.chulung.website.service.ArticleTagService;
+import com.chulung.website.service.CommentService;
+import com.chulung.website.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -34,7 +38,7 @@ public class SiteServiceImpl implements SiteService {
     @Cacheable(cacheNames = "halfhour",key = "'sideBarInfo'")
     public SideBarInfo getSideBarInfo() {
         SideBarInfo sideBarInfo = new SideBarInfo();
-        sideBarInfo.setArticleFilings(this.articleService.getArticleFilings());
+        sideBarInfo.setArchives(this.articleService.getArchive());
         sideBarInfo.setPopularArticles(this.articleService.findPopularArticles());
         sideBarInfo.setRecentlyComments(this.commentsService.findRecentlyComments());
         return sideBarInfo;

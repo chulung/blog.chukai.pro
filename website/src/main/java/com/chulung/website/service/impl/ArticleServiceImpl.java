@@ -1,10 +1,10 @@
 package com.chulung.website.service.impl;
 
 import com.chulung.search.ArticlesSearchHandler;
-import com.chulung.website.dto.ArticleFiling;
+import com.chulung.website.dto.out.Archive;
+import com.chulung.website.dto.in.ArticleIn;
+import com.chulung.website.dto.in.PageIn;
 import com.chulung.website.dto.out.ArticleOut;
-import com.chulung.website.dto.PageIn;
-import com.chulung.website.dto.ArticleIn;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.enumerate.ConfigKeyEnum;
 import com.chulung.website.enumerate.IsDeleteEnum;
@@ -34,10 +34,12 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -239,15 +241,15 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     }
 
     @Override
-    public List<ArticleFiling> getArticleFilings() {
+    public List<Archive> getArchive() {
         // 归档信息
-        List<ArticleFiling> list = new ArrayList<>();
+        List<Archive> list = new ArrayList<>();
         ArticleIn bean = new ArticleIn();
         bean.setIsDelete(IsDeleteEnum.N);
         //按月统计文章数量
         articleMapper.selectSummarys(bean).parallelStream().map(Article::getCreateTime)
                 .map(localDate -> YearMonth.of(localDate.getYear(), localDate.getMonthValue()))
-                .collect(Collectors.groupingBy(yearMonth -> yearMonth, Collectors.counting())).forEach((k, v) -> list.add(new ArticleFiling(k, v.intValue())));
+                .collect(Collectors.groupingBy(yearMonth -> yearMonth, Collectors.counting())).forEach((k, v) -> list.add(new Archive(k, v.intValue())));
         list.sort((o1, o2) -> o2.compareTo(o1));
         return list;
     }
@@ -285,7 +287,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         List<Integer> articleIds = this.articleTagMapper.select(record).stream().map(t -> {
             return t.getArticleId();
         }).collect(Collectors.toList());
-        if (CollectionUtils.isEmpty(articleIds)) return new PageOut();
+        if (CollectionUtils.isEmpty(articleIds)) return new PageOut<ArticleOut>();
         ArticleIn art = new ArticleIn();
         art.setIds(articleIds);
         return new PageOut<>(this.articleMapper.selectSummarys(art).stream().map(article -> new ArticleOut().buildFromModel(article)).collect(Collectors.toList()));

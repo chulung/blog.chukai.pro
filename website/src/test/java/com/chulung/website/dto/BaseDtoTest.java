@@ -1,5 +1,6 @@
 package com.chulung.website.dto;
 
+import com.chulung.website.dto.in.ArticleIn;
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.model.Article;
 import org.junit.Before;

@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.chulung.website.dto.JsonResult;
-import com.chulung.website.dto.PageIn;
+import com.chulung.website.dto.out.JsonResult;
+import com.chulung.website.dto.in.PageIn;
 import com.chulung.website.model.ArticleDraft;
 import com.chulung.website.model.User;
 import com.chulung.website.service.ArticleService;

@@ -2,8 +2,7 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
-
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -63,5 +62,9 @@ module.exports = {
         }
       }
     ]
+  },
+  externals: {
+    Velocity: 'jQuery.Velocity', //Velocity通过cdn引入，注入全局
+    VueValidator: 'VueValidator', //Velocity通过cdn引入，注入全局
   }
 }

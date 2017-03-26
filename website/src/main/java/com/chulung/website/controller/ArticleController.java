@@ -2,17 +2,13 @@ package com.chulung.website.controller;
 
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
-import com.chulung.website.exception.PageNotFoundException;
 import com.chulung.website.model.Article;
-import com.chulung.website.model.Column;
 import com.chulung.website.service.ArticleService;
 import com.chulung.website.service.ColumnSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static com.chulung.website.dto.JsonResult.ofSuccess;
 
 /**
  * @author chulung

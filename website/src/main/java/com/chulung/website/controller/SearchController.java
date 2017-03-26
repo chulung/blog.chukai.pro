@@ -1,7 +1,7 @@
 package com.chulung.website.controller;
 
 import com.chulung.search.ArticlesSearchHandler;
-import com.chulung.website.dto.JsonResult;
+import com.chulung.website.dto.out.JsonResult;
 import com.chulung.website.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

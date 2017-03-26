@@ -1,5 +1,6 @@
-package com.chulung.website.dto;
+package com.chulung.website.dto.in;
 
+import com.chulung.website.dto.BaseDto;
 import com.chulung.website.model.Article;
 
 import java.time.LocalDateTime;

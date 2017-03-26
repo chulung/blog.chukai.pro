@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import com.chulung.BaseTest;
 import com.chulung.common.util.NetUtil;
-import com.chulung.website.dto.PageIn;
+import com.chulung.website.dto.in.PageIn;
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.enumerate.IsDeleteEnum;
@@ -107,7 +107,7 @@ public class ArticleServiceTest extends BaseTest {
 
     @Test
     public void getArticleFilings() throws Exception {
-        assertThat(this.articleService.getArticleFilings()).isNotEmpty();
+        assertThat(this.articleService.getArchive()).isNotEmpty();
     }
 
     @Test

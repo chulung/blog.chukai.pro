@@ -1,7 +1,6 @@
 package com.chulung.website.service;
 
 import com.chulung.BaseTest;
-import com.chulung.search.ArticlesSearchHandler;
 import com.chulung.website.dto.out.SideBarInfo;
 import com.chulung.website.dto.out.SiteFooteInfo;
 import org.junit.Test;
@@ -34,7 +33,7 @@ public class SiteServiceImplTest extends BaseTest {
     @Test
     public void getSideBarInfo() throws Exception {
         SideBarInfo sideBarInfo = siteService.getSideBarInfo();
-        assertThat(sideBarInfo.getArticleFilings().get(0)).isEqualToComparingFieldByField(this.articleService.getArticleFilings().get(0));
+        assertThat(sideBarInfo.getArchives().get(0)).isEqualToComparingFieldByField(this.articleService.getArchive().get(0));
         assertThat(sideBarInfo.getPopularArticles().get(0)).isEqualToComparingFieldByField(this.articleService.findPopularArticles().get(0));
         assertThat(sideBarInfo.getRecentlyComments().get(0)).isEqualToComparingFieldByField(this.commentService.findRecentlyComments().get(0));
     }
