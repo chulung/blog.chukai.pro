@@ -4,8 +4,6 @@ import content from '../components/content.vue'
 import article from '../components/contents/article.vue'
 import summaries from '../components/contents/summaries.vue'
 import notFound from '../components/404.vue'
-var VueValidator = require('VueValidator')
-Vue.use(VueValidator)
 Vue.use(Router)
 export default new Router({
   mode: 'history',

@@ -66,8 +66,6 @@
                   <p>{{item.comment}}</p></li>
               </ul>
             </section>
-
-            <validator name="validation">
               <form class="form-horizontal comment-form">
                 <div class="form-group">
                   <div class="col-sm-12">
@@ -94,7 +92,6 @@
                          type="button">
                 </p>
               </form><!-- #commentform -->
-            </validator>
           </div><!-- #respond -->
         </div><!-- #comments -->
       </div>
