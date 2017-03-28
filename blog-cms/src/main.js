@@ -3,12 +3,11 @@
 import Vue from 'vue'
 import router from './router'
 import axios from 'axios'
-
+import login from '@/components/login.vue'
 Vue.config.productionTip = false
 axios.defaults.baseURL = 'https://blog.chulung.com/api/cms'
-
 /* eslint-disable no-new */
 new Vue({
   router,
-  components: {}
+  components: {login}
 }).$mount('#app')

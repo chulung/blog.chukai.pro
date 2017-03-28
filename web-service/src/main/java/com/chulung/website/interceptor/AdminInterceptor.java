@@ -1,14 +1,13 @@
 package com.chulung.website.interceptor;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.chulung.website.exception.ForbiddenException;
+import com.chulung.website.session.WebSessionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.chulung.website.session.WebSessionSupport;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * backend登录拦截器
@@ -17,7 +16,7 @@ import com.chulung.website.session.WebSessionSupport;
  *
  */
 @Component
-public class BackendInterceptor extends HandlerInterceptorAdapter {
+public class AdminInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private WebSessionSupport webSessionSupport;
 
@@ -27,8 +26,7 @@ public class BackendInterceptor extends HandlerInterceptorAdapter {
 		if (webSessionSupport.islogIn()) {
 			return super.preHandle(request, response, handler);
 		} else {
-			response.sendRedirect("/backend/logIn?reUrl=" + request.getRequestURL() + "?" + request.getQueryString());
-			return false;
+			throw new ForbiddenException();
 		}
 	}
 

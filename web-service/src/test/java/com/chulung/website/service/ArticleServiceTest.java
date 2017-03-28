@@ -1,10 +1,7 @@
 package com.chulung.website.service;
 
-import static org.assertj.core.api.Assertions.*;
-
 import com.chulung.BaseTest;
 import com.chulung.common.util.NetUtil;
-import com.chulung.website.dto.in.PageIn;
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.enumerate.IsDeleteEnum;
@@ -23,6 +20,8 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by chulung on 2017/3/21.
@@ -117,7 +116,7 @@ public class ArticleServiceTest extends BaseTest {
 
     @Test
     public void findArticleDraftsList() throws Exception {
-        assertThat(articleService.findArticleDraftsList(new PageIn<ArticleDraft>(1, 10, new ArticleDraft()))).isNotEmpty();
+        assertThat(articleService.findArticleDraftsList(1, null).getList()).isNotEmpty();
     }
 
     @Test

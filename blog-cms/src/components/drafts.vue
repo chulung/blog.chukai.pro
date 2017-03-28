@@ -11,7 +11,11 @@
             <th>ID</th>
             <th>文章ID</th>
             <th>标题</th>
-            <th>类型</th>
+            <th><select v-model="columnId">
+              <option value="">全部</option>
+              <option v-for="item in columns" :value="item.id">{{item.cnName}}</option>
+            </select>栏目
+            </th>
             <th>作者</th>
             <th>创建日期</th>
             <th>修改日期</th>
@@ -29,9 +33,11 @@
             <th>{{item.author}}</th>
             <th>{{item.createTime}}</th>
             <th>{{item.updateTime}}</th>
-            <th @click="changePublish">{{item.publish}}</th>
+            <th @click="changePublish">{{item.isPublish}}</th>
             <th>{{item.version}}</th>
-            <th><router-link :to="'/editor?id='+item.id" target="_blank">编辑</router-link></th>
+            <th>
+              <router-link :to="'/editor?id='+item.id" >编辑</router-link>
+            </th>
           </tr>
           </tbody>
         </table>
@@ -42,21 +48,31 @@
 <script>
   import axios from 'axios'
   export default{
-    data(){
-      return {articleDrafts: null}
+    data () {
+      return {articleDrafts: null, columns: {}, columnId: ''}
     },
-    created(){
+    created () {
+      axios.get('/columns').then(response => {
+        this.columns = response.data
+      })
       this.fetchArticleData()
-
+    },
+    watch: {
+      columnId () {
+        this.fetchArticleData()
+      }
     },
     methods: {
-      fetchArticleData(){
-        axios.get('/articleDrafts').then(response => {
-          this.articleDrafts = response.data;
+      fetchArticleData () {
+        axios.get('/articleDrafts', {
+          params: {
+            columnId: this.columnId
+          }
+        }).then(response => {
+          this.articleDrafts = response.data.list
         })
       },
-      changePublish(){
-
+      changePublish () {
       }
     }
   }

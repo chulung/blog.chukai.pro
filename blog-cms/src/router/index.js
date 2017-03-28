@@ -19,11 +19,11 @@ export default new Router({
       component: index
     },
     {
-      path: '/drafts',
+      path: '/articleDrafts',
       component: drafts
     },
     {
-      path: 'editor',
+      path: '/editor',
       component: editor
     }
   ]

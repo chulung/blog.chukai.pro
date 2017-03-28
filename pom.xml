@@ -15,7 +15,7 @@
         <version>2.0.0.BUILD-SNAPSHOT</version>
     </parent>
     <modules>
-        <module>website</module>
+        <module>web-service</module>
         <module>rpc</module>
         <module>common</module>
     </modules>

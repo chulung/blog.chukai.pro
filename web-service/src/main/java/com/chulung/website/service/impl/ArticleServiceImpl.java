@@ -3,7 +3,7 @@ package com.chulung.website.service.impl;
 import com.chulung.search.ArticlesSearchHandler;
 import com.chulung.website.dto.out.Archive;
 import com.chulung.website.dto.in.ArticleIn;
-import com.chulung.website.dto.in.PageIn;
+import com.chulung.website.dto.out.ArticleDraftOut;
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.enumerate.ConfigKeyEnum;
@@ -188,8 +188,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     }
 
     @Override
-    public ArticleDraft findArticleDraft(Integer id) {
-        return id == null ? null : this.articleDraftMapper.selectByPrimaryKey(id);
+    public ArticleDraftOut findArticleDraft(Integer id) {
+        return id == null ? null : new ArticleDraftOut().buildFromModel(this.articleDraftMapper.selectByPrimaryKey(id));
     }
 
     @Override
@@ -268,9 +268,19 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     }
 
     @Override
-    public List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn) {
-        PageHelper.startPage(pageIn.getPage(), pageIn.getPageSize());
-        return this.articleDraftMapper.selectTileList(new ArticleDraft());
+    public PageOut<ArticleDraftOut> findArticleDraftsList(Integer page, Integer columnId) {
+        PageHelper.startPage(page, 20);
+        ArticleDraft record = new ArticleDraft();
+        record.setColumnId(columnId);
+        Page<ArticleDraft> articleDrafts = (Page<ArticleDraft>) this.articleDraftMapper.selectTileList(record);
+        PageOut<ArticleDraftOut> pageOut = new PageOut<>(articleDrafts.getPageNum(), articleDrafts.getPages());
+        pageOut.setList(articleDrafts.stream().map(a -> {
+                    ArticleDraftOut out = new ArticleDraftOut().buildFromModel(a);
+                    out.setColumnName(this.columnSevice.getIdColumnMap().get(a.getColumnId()).getCnName());
+                    return out;
+                }
+        ).collect(Collectors.toList()));
+        return pageOut;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.chulung.website.service;
 
-import com.chulung.website.dto.in.PageIn;
 import com.chulung.website.dto.out.Archive;
+import com.chulung.website.dto.out.ArticleDraftOut;
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.model.Article;
@@ -23,13 +23,14 @@ public interface ArticleService {
 
     List<Article> findRelevancyByArticleId(Integer id);
 
-    List<ArticleDraft> findArticleDraftsList(PageIn<ArticleDraft> pageIn);
+    PageOut<ArticleDraftOut> findArticleDraftsList(Integer pageIn, Integer columnId);
 
-    ArticleDraft findArticleDraft(Integer id);
+    ArticleDraftOut findArticleDraft(Integer id);
 
     Integer insert(ArticleDraft articleDraft);
 
     boolean update(ArticleDraft articleDraft);
+
     List<Archive> getArchive();
 
     PageOut<ArticleOut> getArticlesByTagName(String tagName);
