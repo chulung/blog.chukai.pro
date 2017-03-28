@@ -24,16 +24,16 @@
     <div id="editor-div" class="panel-body">
     </div>
     <link rel="stylesheet" href="https://chulung.github.com/assets/assets/markdown/css/css/editormd.css"/>
-    <script src="https://chulung.github.io/assets/assets/markdown/editormd.min.js"/>
   </div>
 </template>
+<script src="https://chulung.github.io/assets/assets/markdown/editormd.min.js"/>
 <script>
   import jQuery from 'jQuery'
   export default{
-    data(){
+    data () {
       return {}
     },
-    created(){
+    created () {
       jQuery(function () {
         editormd("editor-div", {
           width: "100%",
