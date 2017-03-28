@@ -40,6 +40,18 @@ export default new Router({
         }
       ]
     },
+    // search
+    {
+      path: '/search',
+      component: content,
+      children: [
+        {
+          path: '',
+          name: 'search',
+          component: summaries
+        }
+      ]
+    },
     // column
     {
       path: '/column/:column',

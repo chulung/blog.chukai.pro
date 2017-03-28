@@ -50,6 +50,13 @@
   import axios from 'axios'
   const Velocity = require('Velocity')
   const delayCoefficient = 750 // 延迟系数
+  const paths = {
+    'index': '/articles',
+    'articles': '/articles',
+    'tag': '/tag/:tag',
+    'column': '/articles',
+    'search': '/search'
+  }
   export default{
     data () {
       return {articles: {}, nextPage: null, columnId: null, loading: false, hideNav: true}
@@ -68,9 +75,8 @@
         this.fetchArticleData(true)
       },
       fetchArticleData (loadMore) {
-        this.column = this.$route.params.column
-        const tag = this.$route.params.tag
-        axios.get(tag ? '/tag/' + tag : '/articles', {
+        let path = paths[this.$route.name].replace(':tag', this.$route.params.tag)
+        axios.get(path, {
           params: {
             page: loadMore ? this.nextPage : this.$route.query.page,
             column: this.$route.params.column,

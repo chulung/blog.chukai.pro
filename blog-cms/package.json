@@ -1,7 +1,7 @@
 {
-  "name": "blog",
+  "name": "blog-cms",
   "version": "1.0.0",
-  "description": "chulung.com blog",
+  "description": "chulung.com blog-cms",
   "author": "chulung <chulung@chulung.com>",
   "private": true,
   "scripts": {
