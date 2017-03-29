@@ -9,8 +9,7 @@ import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.enumerate.ConfigKeyEnum;
 import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.website.enumerate.PublishStatusEnum;
-import com.chulung.website.exception.MethodRuntimeExcetion;
-import com.chulung.website.exception.PageNotFoundException;
+import com.chulung.website.exception.HttpStatusException;
 import com.chulung.website.mapper.ArticleDraftHistoryMapper;
 import com.chulung.website.mapper.ArticleDraftMapper;
 import com.chulung.website.mapper.ArticleMapper;
@@ -25,6 +24,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,7 +77,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     public Article findArticleById(Integer id) {
         Article a = articleMapper.selectByPrimaryKey(id);
         if (a == null) {
-            throw new MethodRuntimeExcetion("拒绝访问");
+            throw HttpStatusException.of(HttpStatus.NOT_FOUND);
         }
         if (id == 20) {
             double wook = (Instant.now().getEpochSecond() - Instant.parse("2015-03-01T09:00:00.00Z").getEpochSecond())
@@ -106,7 +106,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         articleDraft.setVersion(oldDraft.getVersion() + 1);
         this.updateArticle(articleDraft);
         if (!(articleDraftMapper.updateByPrimaryKeySelective(articleDraft) == 1)) {
-            throw new MethodRuntimeExcetion("修改草稿失败");
+            throw HttpStatusException.of(HttpStatus.INTERNAL_SERVER_ERROR, "修改草稿失败");
         }
         return true;
     }
@@ -179,11 +179,11 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
             articleDraft.setCreateTime(LocalDateTime.now());
             this.updateArticle(articleDraft);
             if (this.articleDraftMapper.insertSelective(articleDraft) <= 0) {
-                throw new MethodRuntimeExcetion("插入草稿失败");
+                throw HttpStatusException.of(HttpStatus.INTERNAL_SERVER_ERROR, "插入草稿失败");
             }
             return articleDraft.getId();
         } catch (DuplicateKeyException e) {
-            throw new MethodRuntimeExcetion("文章已存在");
+            throw HttpStatusException.of(HttpStatus.CONFLICT, "文章已存在");
         }
     }
 
@@ -208,7 +208,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
             record.setIsDelete(IsDeleteEnum.Y);
             this.articleDraftMapper.updateByPrimaryKeySelective(record);
         } else {
-            throw new MethodRuntimeExcetion("草稿不存在,id=" + id);
+            throw HttpStatusException.of(HttpStatus.NOT_FOUND, "草稿不存在,id=" + id);
         }
     }
 
@@ -219,7 +219,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         bean.setIsDelete(IsDeleteEnum.N);
         if (column != null) {
             Column c = this.columnSevice.getEnNameColumnMap().get(column);
-            if (c == null) throw new PageNotFoundException();
+            if (c == null) throw HttpStatusException.of(HttpStatus.NOT_FOUND);
             bean.setColumnId(c.getId());
         }
         if (year != null && Range.atLeast(2014).contains(year)) {

@@ -58,12 +58,12 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         Assert.notNull(adminInterceptor,"bean backendInterceptor canot found");
         Assert.notNull(globalTrackerInterceptor,"bean globalTrackerInterceptor canot found");
         registry.addInterceptor(globalTrackerInterceptor).addPathPatterns("/**");
-        registry.addInterceptor(adminInterceptor).addPathPatterns("/api/cms/**").excludePathPatterns("/api/cms/logIn");
+        registry.addInterceptor(adminInterceptor).addPathPatterns("/api/cms/**").excludePathPatterns("/api/cms/login");
         super.addInterceptors(registry);
     }
 
     @Bean
-    public FilterRegistrationBean someFilterRegistration() {
+    public FilterRegistrationBean addFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(escapeFilter());
         registration.addUrlPatterns("/comments/*");

@@ -13,13 +13,13 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">用户名</label>
               <div class="col-sm-10">
-                <input type="email" class="form-control" placeholder="Email" v-model="userName">
+                <input type="text" class="form-control" placeholder="UserName" v-model="user.userName">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">密码</label>
               <div class="col-sm-10">
-                <input type="password" class="form-control" placeholder="Password" v-model="password">
+                <input type="password" class="form-control" placeholder="Password" v-model="user.password">
               </div>
             </div>
             <div class="form-group">
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">登录</button>
+                <button @click="postLogin" class="btn btn-default">登录</button>
               </div>
             </div>
           </form>
@@ -43,13 +43,37 @@
   </div>
 </template>
 <script>
+  import {mapMutations, mapState} from 'vuex'
   import jQuery from 'jQuery'
+  import axios from 'axios'
   export default {
     data () {
-      return {userName: null, password: {}}
+      return {user: {userName: '', password: ''}}
+    },
+    computed: mapState({logined: state => state.logined}),
+    watch: {
+      logined (newV, oldV) {
+        if (newV === false && oldV === true) {
+          jQuery('#myModal').modal()
+        }
+      }
     },
     created () {
-      jQuery('#myModal').modal()
+      axios.get('/login').then(response => {
+        this.changeLogined(response.data.logined)
+        if (!response.data.logined) {
+          jQuery('#myModal').modal()
+        }
+      })
+    },
+    methods: {
+      ...mapMutations(['changeLogined']),
+      postLogin () {
+        console.log(this.user)
+        axios.post('/login', axios.toJson(this.user)).then(response => {
+          this.changeLogined(true)
+        })
+      }
     }
   }
 </script>

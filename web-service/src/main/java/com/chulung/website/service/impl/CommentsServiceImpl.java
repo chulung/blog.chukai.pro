@@ -7,12 +7,13 @@ import java.util.stream.Collectors;
 import com.chulung.website.constant.Constants;
 import com.chulung.website.dto.out.CommentsOut;
 import com.chulung.website.dto.out.PageOut;
-import com.chulung.website.exception.MethodRuntimeExcetion;
+import com.chulung.website.exception.HttpStatusException;
 import com.chulung.website.mapper.CommentMapper;
 import com.chulung.website.model.Comment;
 import com.chulung.website.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.chulung.common.util.NetUtil;
@@ -35,7 +36,7 @@ public class CommentsServiceImpl extends BaseService implements CommentService {
         String curSessionId = NetUtil.getCurSessionId() + "_cmts";
         Integer count = cache.get(curSessionId, () -> 0);
         if (count > 1) {
-            throw new MethodRuntimeExcetion("评论过于频繁，请稍候!");
+            throw HttpStatusException.of(HttpStatus.CONFLICT, "评论过于频繁，请稍候1分钟!");
         } else {
             cache.put(curSessionId, ++count);
         }
@@ -53,7 +54,7 @@ public class CommentsServiceImpl extends BaseService implements CommentService {
         record.setArticleId(articleId);
         Page<Comment> page = (Page<Comment>) commentsMapper.select(record);
         PageOut<CommentsOut> pageOut = new PageOut<>(page.getPageNum(), page.getPages());
-        pageOut.setList(page.stream().map(a->new CommentsOut().buildFromModel(a)).collect(Collectors.toList()));
+        pageOut.setList(page.stream().map(a -> new CommentsOut().buildFromModel(a)).collect(Collectors.toList()));
         return pageOut;
     }
 

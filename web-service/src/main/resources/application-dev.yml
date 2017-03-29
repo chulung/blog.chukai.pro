@@ -9,19 +9,12 @@ logging:
         com.chulung.mapper: info
 
 spring:
-    mvc:
-        view:
-            prefix: /templates/
-            suffix: .ftl
-    freemarker:
-        cache: false
-        request-context-attribute: request
     jmx :
       enabled: false
     datasource:
       type: org.apache.commons.dbcp.BasicDataSource
       driverClassName : com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
+      url: jdbc:mysql://127.0.0.1:3306/craft?useUnicode=true&characterEncoding=UTF-8
       username: testuser
       password: 123456
       dbcp2:

@@ -25,6 +25,7 @@
 <!--<script src="https://chulung.github.io/assets/assets/markdown/editormd.min.js"/>-->
 <script>
   import axios from 'axios'
+  import {mapMutations} from 'vuex'
   export default{
     data () {
       return {draft: {}, columns: {}, pushBlog: false}
@@ -60,8 +61,8 @@
       save () {
         this.draft.content = window.editor.getMarkdown()
         this.draft.htmlContent = window.editor.getHTML()
-        console.log(JSON.parse(JSON.stringify(this.draft)))
-      }
+      },
+      ...mapMutations(['changeLogined'])
     }
   }
 </script>

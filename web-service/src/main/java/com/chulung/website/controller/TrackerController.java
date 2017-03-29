@@ -14,13 +14,12 @@ import com.chulung.website.service.VisitorInfoService;
 @RestController
 @RequestMapping("/api/tracker")
 public class TrackerController extends BaseController {
-	@Resource
-	private VisitorInfoService visitorInfoService;
+    @Resource
+    private VisitorInfoService visitorInfoService;
 
-	@RequestMapping(value = "/userTracker", method = RequestMethod.POST)
-	public ModelMap postUserTracker(UserTracker userTracker, HttpServletRequest request) {
-		visitorInfoService.insertUserTracker(userTracker);
-		return successMap();
-	}
+    @RequestMapping(value = "/userTracker", method = RequestMethod.POST)
+    public void postUserTracker(UserTracker userTracker, HttpServletRequest request) {
+        visitorInfoService.insertUserTracker(userTracker);
+    }
 
 }

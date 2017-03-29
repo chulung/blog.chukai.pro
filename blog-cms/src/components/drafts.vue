@@ -36,7 +36,7 @@
             <th @click="changePublish">{{item.isPublish}}</th>
             <th>{{item.version}}</th>
             <th>
-              <router-link :to="'/editor?id='+item.id" >编辑</router-link>
+              <router-link :to="'/editor?id='+item.id">编辑</router-link>
             </th>
           </tr>
           </tbody>
@@ -47,6 +47,7 @@
 </template>
 <script>
   import axios from 'axios'
+  import {mapMutations} from 'vuex'
   export default{
     data () {
       return {articleDrafts: null, columns: {}, columnId: ''}
@@ -73,7 +74,8 @@
         })
       },
       changePublish () {
-      }
+      },
+      ...mapMutations(['changeLogined'])
     }
   }
 </script>

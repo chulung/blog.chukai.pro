@@ -105,7 +105,7 @@
         Velocity(el, options)
       },
       enter: function (el, done) {
-        var delay = el.dataset.index * delayCoefficient
+        let delay = el.dataset.index * delayCoefficient
         setTimeout(function () {
           Velocity(
             el,
