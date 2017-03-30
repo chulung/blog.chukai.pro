@@ -1,5 +1,5 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-  <div class="col-md-8 page-default">
+  <div class="page-default">
     <transition-group
       :css="false"
       @before-enter="beforeEnter"
@@ -59,7 +59,7 @@
   }
   export default{
     data () {
-      return {articles: {}, nextPage: null, columnId: null, loading: false, hideNav: true}
+      return {articles: [], nextPage: null, columnId: null, loading: false, hideNav: true, preDelay: 0}
     },
     created () {
       this.fetchArticleData()
@@ -71,10 +71,10 @@
     },
     methods: {
       loadMore () {
-        this.loading = true
         this.fetchArticleData(true)
       },
       fetchArticleData (loadMore) {
+        this.loading = true
         let path = paths[this.$route.name].replace(':tag', this.$route.params.tag)
         axios.get(path, {
           params: {
@@ -84,6 +84,7 @@
             month: this.$route.query.month
           }
         }).then(response => {
+          this.preDelay = this.articles.length * delayCoefficient
           if (loadMore) {
             this.articles.push.apply(this.articles, response.data.list)
           } else {
@@ -91,9 +92,13 @@
           }
           this.nextPage = response.data.nextPage
           setTimeout(() => {
+            this.hideNav = true
+            this.loading = false
+          }, 1000)
+          setTimeout(() => {
             this.hideNav = false
             this.loading = false
-          }, delayCoefficient * this.articles.length)
+          }, delayCoefficient * this.articles.length - this.preDelay)
         }).catch(e => {
           console.log(e)
         })
@@ -105,7 +110,7 @@
         Velocity(el, options)
       },
       enter: function (el, done) {
-        let delay = el.dataset.index * delayCoefficient
+        let delay = el.dataset.index * delayCoefficient - this.preDelay
         setTimeout(function () {
           Velocity(
             el,
@@ -117,7 +122,7 @@
       leave: function (el, done) {
         Velocity(
           el,
-          {opacity: 0, translateY: 125},
+          {opacity: 0, height: 0},
           {duration: 500, complete: done}
         )
       }

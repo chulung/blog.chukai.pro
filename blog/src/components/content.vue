@@ -4,7 +4,9 @@
       <main id="main" class="site-main" role="main">
         <div class="container">
           <div class="row">
-            <router-view></router-view>
+              <div class="col-md-8 ">
+                <router-view></router-view>
+              </div>
             <sidebar></sidebar>
           </div><!-- .row -->
         </div><!-- .container -->

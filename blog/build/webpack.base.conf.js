@@ -65,5 +65,6 @@ module.exports = {
   },
   externals: {
     Velocity: 'jQuery.Velocity', //Velocity通过cdn引入，注入全局
+    jQuery: 'jQuery', //jQuery通过cdn引入，注入全局
   }
 }

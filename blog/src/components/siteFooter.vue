@@ -1,6 +1,6 @@
 <template>
   <!-- site-footer -->
-  <footer id="colophon" class="site-footer"
+  <footer id="colophon" class="site-footer" :class="{none:none}"
           style="background-image: url('https://chulung.github.io/assets/theme/img/footer-background.png');"
           role="contentinfo">
     <div class="container">
@@ -9,7 +9,8 @@
           <section class="widget widget_tag_cloud">
             <h3 class="widget-title">全部标签</h3>
             <div id="all-tag" class="tagcloud">
-              <router-link v-for="item in tags" :to="'/tag/' + item.tagName" key="item.id">{{item.tagName}}({{item.count}})
+              <router-link v-for="item in tags" :to="'/tag/' + item.tagName" key="item.id">
+                {{item.tagName}}({{item.count}})
               </router-link>
             </div>
           </section><!-- .widget_tag_cloud -->
@@ -41,19 +42,21 @@
       </div><!-- .row -->
     </div><!-- .container -->
   </footer><!-- #site-footer -->
-
 </template>
 <script>
   import axios from 'axios'
   export default{
     data () {
-      return {tags: {}, recommendedArticles: {}}
+      return {tags: {}, recommendedArticles: {}, none: true}
     },
     created () {
       axios.get('siteFooterInfo').then((response) => {
         this.tags = response.data.tags
         this.recommendedArticles = response.data.recommendedArticles
       })
+      setTimeout(() => {
+        this.none = false
+      }, 2000)
     }
   }
 </script>

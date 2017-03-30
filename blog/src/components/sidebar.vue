@@ -3,7 +3,9 @@
     <transition-group
       :css="false"
       @before-enter="beforeEnter"
-      @enter="enter">
+      @enter="enter"
+      @before-appear="beforeEnter"
+      @appear="enter">
       <section class="widget widget_search transition-item" key="search">
         <form role="search" method="get" class="search-form" action="/search">
           <label>
@@ -61,7 +63,7 @@
         <ul id="recentcomments">
           <li style="display: list-item;" v-for="item in recentlyComments">
             <span class="comment-author-link">{{item.userName}}</span> :
-            <router-link :to="'/article/'+item.articleId+'#comments'+item.id">{{item.comment}}
+            <router-link :to="'/article/'+item.articleId">{{item.comment}}
             </router-link>
           </li>
         </ul>
