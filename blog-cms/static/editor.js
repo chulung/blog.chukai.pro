@@ -2,7 +2,7 @@ $(function () {
   editormd("editor-div", {
     width: "100%",
     height: 740,
-    path: 'https://chulung.github.com/assets/markdown/lib/',
+    path: 'https://static.chulung.com/assets/markdown/lib/',
     theme: "dark",
     previewTheme: "",
     editorTheme: "eclipse",

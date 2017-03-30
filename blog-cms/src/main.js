@@ -5,20 +5,23 @@ import router from './router'
 import axios from 'axios'
 import Vuex from 'vuex'
 import login from '@/components/login.vue'
+import VeeValidate from 'VeeValidate'
+Vue.use(VeeValidate)
 Vue.config.productionTip = false
 axios.defaults.baseURL = 'https://blog.chulung.com/api/cms'
 axios.toJson = function (data) {
   return JSON.parse(JSON.stringify(data))
 }
-axios.interceptors.response.use(function (response) {
+axios.interceptors.response.use(response => {
   return response
-}, function (error) {
+}, error => {
   // 对响应错误做点什么
   if (error.response && error.response.status === 401) {
     store.commit('changeLogined', false)
   }
   return Promise.reject(error)
 })
+
 Vue.use(Vuex)
 const store = new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',

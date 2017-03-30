@@ -5,7 +5,7 @@ import drafts from '@/components/drafts.vue'
 import editor from '@/components/editor.vue'
 Vue.use(Router)
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
@@ -16,15 +16,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: index
+      component: index,
+      alias: '/cms'
     },
     {
       path: '/articleDrafts',
-      component: drafts
+      component: drafts,
+      alias: '/cms/articleDrafts'
     },
     {
       path: '/editor',
-      component: editor
+      component: editor,
+      alias: '/cms/editor'
     }
   ]
 })

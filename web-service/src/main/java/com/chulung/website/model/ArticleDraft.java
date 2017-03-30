@@ -4,10 +4,12 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Transient;
 
+import com.chulung.jackson.databind.LocalDateTimeDeserializer;
 import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.website.enumerate.PublishStatusEnum;
 import com.chulung.jackson.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -20,8 +22,12 @@ public class ArticleDraft extends BaseModel {
 
     private String title;
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime createTime;
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime updateTime;
 
     private String author;

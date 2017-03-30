@@ -1,6 +1,6 @@
 <template>
   <div>
-    <link rel="stylesheet" href="https://chulung.github.com/assets/markdown/css/editormd.min.css"/>
+    <link rel="stylesheet" href="https://static.chulung.com/assets/markdown/css/editormd.min.css"/>
     <div class="col-md-12">
       <div class="panel-heading">
         <div class="panel-title">
@@ -32,10 +32,10 @@
     },
     created () {
       let script = document.createElement('script')
-      script.src = 'https://chulung.github.com/assets/markdown/editormd.min.js'
+      script.src = 'https://static.chulung.com/assets/markdown/editormd.min.js'
       script.onload = function () {
         script = document.createElement('script')
-        script.src = 'http://localhost:8086/static/editor.js'
+        script.src = '/cms/static/editor.js'
         document.body.appendChild(script)
       }
       document.body.appendChild(script)
@@ -61,6 +61,15 @@
       save () {
         this.draft.content = window.editor.getMarkdown()
         this.draft.htmlContent = window.editor.getHTML()
+        const ajax = this.draft.id ? axios.put : axios.post
+        const param = axios.toJson(this.draft)
+        console.log(param)
+        ajax('/articleDraft', param).then(response => {
+          alert('保存成功')
+        }).catch(error => {
+          console.log(error)
+          alert(`message:${error.message},data:${error.response.data}`)
+        })
       },
       ...mapMutations(['changeLogined'])
     }

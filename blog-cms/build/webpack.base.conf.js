@@ -64,6 +64,7 @@ module.exports = {
     ]
   },
   externals: {
-    jQuery: 'jQuery'
+    jQuery: 'jQuery',
+    VeeValidate: 'VeeValidate'
   }
 }

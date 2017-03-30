@@ -101,6 +101,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         // 备份老版本
         articleDraftHistoryMapper.insertToArticleDraftHistory(articleDraft.getId());
         ArticleDraft oldDraft = this.articleDraftMapper.selectByPrimaryKey(articleDraft.getId());
+        articleDraft.setCreateTime(null);
         articleDraft.setArticleId(oldDraft.getArticleId());
         articleDraft.setUpdateTime(LocalDateTime.now());
         articleDraft.setVersion(oldDraft.getVersion() + 1);

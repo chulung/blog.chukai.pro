@@ -1,6 +1,7 @@
 package com.chulung.website.controller;
 
 import com.chulung.website.session.WebSessionSupport;
+import org.apache.commons.collections.MapUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -23,7 +24,7 @@ public abstract class BaseController extends BaseComponent {
 
 
     protected ResponseEntity success() {
-        return new ResponseEntity(HttpStatus.OK);
+        return success(MapUtils.EMPTY_MAP, HttpStatus.OK);
     }
 
     protected ResponseEntity success(Object key, Object value) {

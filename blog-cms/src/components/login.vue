@@ -13,27 +13,35 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">用户名</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="UserName" v-model="user.userName">
+                <input type="text" v-validate="'required|alpha'" class="form-control" placeholder="UserName" name="userName"
+                       v-model="user.userName">
+                <i v-show="errors.has('userName')" class="fa fa-warning"></i>
+                <span v-show="errors.has('userName')"
+                      class="help is-danger">{{ errors.first('userName') }}</span>
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">密码</label>
               <div class="col-sm-10">
-                <input type="password" class="form-control" placeholder="Password" v-model="user.password">
+                <input type="password" v-validate="'required'" class="form-control" placeholder="Password" name="password"
+                       v-model="user.password">
+                <i v-show="errors.has('password')" class="fa fa-warning"></i>
+                <span v-show="errors.has('password')"
+                      class="help is-danger">{{ errors.first('password') }}</span>
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> 记住我
+                    <input type="checkbox"/> 记住我
                   </label>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
-                <button @click="postLogin" class="btn btn-default">登录</button>
+                <button @click="validateBeforeSubmit" class="btn btn-default">登录</button>
               </div>
             </div>
           </form>
@@ -69,9 +77,14 @@
     methods: {
       ...mapMutations(['changeLogined']),
       postLogin () {
-        console.log(this.user)
         axios.post('/login', axios.toJson(this.user)).then(response => {
           this.changeLogined(true)
+        })
+      },
+      validateBeforeSubmit () {
+        this.$validator.validateAll().then(() => {
+          this.postLogin()
+        }).catch(() => {
         })
       }
     }
