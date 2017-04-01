@@ -74,7 +74,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     @Autowired
     private ArticleTagMapper articleTagMapper;
 
-    public Article findArticleById(Integer id) {
+    @Override
+    public Article findArticleById(String uri) {
+        Article reco=new Article();
+        reco.setUri(uri);
         Article a = articleMapper.selectByPrimaryKey(id);
         if (a == null) {
             throw HttpStatusException.of(HttpStatus.NOT_FOUND);

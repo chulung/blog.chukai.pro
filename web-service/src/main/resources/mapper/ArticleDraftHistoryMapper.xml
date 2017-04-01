@@ -4,6 +4,7 @@
     <insert id="insertToArticleDraftHistory">
   	insert into article_draft_history(
 id,
+uri,
 article_id,
 title,
 content,

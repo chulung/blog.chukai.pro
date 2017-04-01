@@ -74,7 +74,7 @@ export default new Router({
     },
     // article
     {
-      path: '/article/:id',
+      path: '/article/:uri',
       component: content,
       children: [{
         path: '', name: 'article', component: article

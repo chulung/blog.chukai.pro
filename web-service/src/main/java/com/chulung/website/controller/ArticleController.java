@@ -25,7 +25,7 @@ public class ArticleController extends BaseController {
     @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
     public
     @ResponseBody
-    Article getArticleById(@PathVariable Integer id) {
+    Article getArticleById(@PathVariable String id) {
         return articleService.findArticleById(id);
     }
 

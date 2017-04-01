@@ -22,19 +22,13 @@
 		<result column="comment_count" property="commentCount"
 			jdbcType="INTEGER" />
 	</resultMap>
-	<select id="selectTileList" resultMap="BaseResultMap"
-		parameterType="java.lang.Integer">
-		select id, title, create_time, update_time, author,
-		version
-		from article
-	</select>
 	<select id="listPopularArticles" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select id, title, column_name,create_time,column_id,pic
 		from article ORDER  by index_rank desc
 	</select>
 	<select id="selectSummarys" resultMap="BaseResultMap">
-		select id, title, create_time,
+		select id, title,uri, create_time,
 		update_time, author,
 		column_id, derivation_url,pic,summary,column_name,
 		is_delete,visit_count,comment_count

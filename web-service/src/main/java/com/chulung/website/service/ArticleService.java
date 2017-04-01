@@ -15,7 +15,7 @@ import java.util.List;
 public interface ArticleService {
     void deleteArticleDraft(Integer id);
 
-    Article findArticleById(Integer id);
+    Article findArticleById(String id);
 
     List<ArticleOut> findRecommendedArticles();
 

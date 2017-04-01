@@ -13,7 +13,7 @@
               <span class="post-meta-cat"><router-link
                 :to="'/articles?columnId='+article.columnId+'#content'">{{article.columnName}}</router-link></span>
               <h2>
-                <router-link :to="'/article/'+article.id" rel="bookmark">{{article.title}}</router-link>
+                <router-link :to="'/article/'+article.uri" rel="bookmark">{{article.title}}</router-link>
               </h2>
             </div><!-- .heading-small -->
 
@@ -29,7 +29,7 @@
             </div><!-- .post-meta -->
             <p>
               {{article.summary}}.
-              <router-link :to="'/article/'+article.id" class="more-link">
+              <router-link :to="'/article/'+article.uri" class="more-link">
                 <span class="moretext">阅读全文</span>
               </router-link><!-- .more-link -->
             </p>

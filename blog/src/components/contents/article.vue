@@ -18,14 +18,14 @@
             <span class="meta-viewer">{{article.visitCount}} 点击</span>
             <span class="reading-estimation">{{article.commentCount||0}} 评论</span>
             <span class="">分享至:<a
-              :href="'http://service.weibo.com/share/share.php?url=https://chulung.com/article/'+article.id+'&appkey=2897075133&title=【'+article.title+'】'+article.summary+'&pic='+article.pic"
+              :href="'http://service.weibo.com/share/share.php?url=https://chulung.com/article/'+article.uri+'&appkey=2897075133&title=【'+article.title+'】'+article.summary+'&pic='+article.pic"
               target="_blank">
                 <i class="fa fa-weibo"></i></a></span>
           </div><!-- .entry-meta -->
         </header><!-- .entry-header -->
         <div class="entry-content" v-html="article.content">
         </div><!-- .entry-content -->
-        <p>原文链接:<a :href="'https://chulung.com/article/'+article.id">https://chulung.com/article/{{article.id}}</a>
+        <p>原文链接:<a :href="'https://chulung.com/article/'+article.uri">https://chulung.com/article/{{article.uri}}</a>
         </p>
         <footer class="entry-footer">
           <span class="cat-links">发表在 <a href="https://chulung.com">chulung's craft</a></span>
@@ -86,7 +86,7 @@
               </div>
               <div class="col-sm-4">
                 <input v-model="comment.website" name="website" type="url" value="" class="form-control" maxlength="100"
-                       placeholder="你的网址 :" title="sdasda"/>
+                       placeholder="你的网址 :" title=""/>
               </div>
             </div>
             <p class="form-submit">
@@ -103,6 +103,7 @@
   import axios from 'axios'
   const $ = require('jQuery')
   const Velocity = require('Velocity')
+  const config =require('@/blog-config.js')
   export default {
     data () {
       return {
@@ -127,10 +128,11 @@
     },
     methods: {
       fetchArticleData () {
-        axios.get('/article/' + (this.$route.params.id || this.$route.meta.id)).then(response => {
+        axios.get('/article/' + (this.$route.params.uri)).then(response => {
           this.article = response.data
           this.comment.articleId = this.article.id
           this.loading = false
+          document.title=`${this.article.title}-${config.name}`
         })
       },
       fetchComments () {
@@ -149,7 +151,7 @@
       },
       submitComment () {
         this.$validator.validateAll().then(() => {
-          axios.put('/', JSON.parse(JSON.stringify(this.$data.comment))).then(response => {
+          axios.post('/', JSON.parse(JSON.stringify(this.$data.comment))).then(response => {
             console.log('put')
           }).catch(e => {
             console.log(e)
