@@ -57,6 +57,16 @@ public class Article extends BaseModel implements Indexable{
 
     private  String columnName;
 
+    private String uri;
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
     public String getColumnName() {
         return columnName;
     }

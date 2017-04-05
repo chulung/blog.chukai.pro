@@ -19,6 +19,7 @@ cache:
 branches:
   only:
     - master
+    - dev
 
 
 after_success:

@@ -3,7 +3,7 @@
 
 整站源码:[chulung's craft](https://chulung.com) 
 
-##chulung's craft v2.x
+## chulung's craft v2.x
 
 我的博客第二版，比起上一版预计有这么些改动：
 
@@ -29,13 +29,11 @@
 
 目前完成了1，2，3，正在做4，5，6
 
+## 表结构 
 
+[data.sql](/web-service/src/test/resources/data.sql)
 
-##表结构 
-
-[chulung_craft.sql](/website/src/test/resources/data.sql)
-
-##致谢以下开源项目
+## 致谢以下开源项目
 
 markdown编辑器:[editor.md](https://github.com/pandao/editor.md)
 

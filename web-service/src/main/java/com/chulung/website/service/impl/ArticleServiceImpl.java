@@ -75,14 +75,18 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     private ArticleTagMapper articleTagMapper;
 
     @Override
-    public Article findArticleById(String uri) {
-        Article reco=new Article();
-        reco.setUri(uri);
-        Article a = articleMapper.selectByPrimaryKey(id);
+    public Article findArticleById(Integer id) {
+        Article record = new Article();
+        record.setId(id);
+        return selectOne(record);
+    }
+
+    private Article selectOne(Article record) {
+        Article a = articleMapper.selectOne(record);
         if (a == null) {
             throw HttpStatusException.of(HttpStatus.NOT_FOUND);
         }
-        if (id == 20) {
+        if (a.getId() == 20) {
             double wook = (Instant.now().getEpochSecond() - Instant.parse("2015-03-01T09:00:00.00Z").getEpochSecond())
                     / 31536000.0;
             wook = new BigDecimal(wook).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
@@ -214,6 +218,13 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         } else {
             throw HttpStatusException.of(HttpStatus.NOT_FOUND, "草稿不存在,id=" + id);
         }
+    }
+
+    @Override
+    public Article findArticleByUri(String uri) {
+        Article record = new Article();
+        record.setUri(uri);
+        return this.selectOne(record);
     }
 
 

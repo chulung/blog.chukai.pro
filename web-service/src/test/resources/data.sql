@@ -6,14 +6,10 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `app_log`;
 CREATE TABLE `app_log` (
   `id`          INT(10)     NOT NULL AUTO_INCREMENT,
-  `type`        VARCHAR(20) NOT NULL
-  COMMENT '日志类型',
-  `level`       VARCHAR(20) NOT NULL
-  COMMENT '日志级别',
-  `log`         TEXT        NOT NULL
-  COMMENT '日志内容',
-  `create_time` DATETIME    NOT NULL
-  COMMENT '创建时间',
+  `type`        VARCHAR(20) NOT NULL  COMMENT '日志类型',
+  `level`       VARCHAR(20) NOT NULL  COMMENT '日志级别',
+  `log`         TEXT        NOT NULL  COMMENT '日志内容',
+  `create_time` DATETIME    NOT NULL  COMMENT '创建时间',
   PRIMARY KEY (`id`)
 )
   ENGINE = MyISAM
@@ -28,39 +24,25 @@ CREATE TABLE `app_log` (
 -- ----------------------------
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
-  `id`             INT(10)      NOT NULL AUTO_INCREMENT
-  COMMENT 'id',
-  `title`          VARCHAR(200) NOT NULL
-  COMMENT '标题',
+  `id`             INT(10)      NOT NULL AUTO_INCREMENT  COMMENT 'id',
+  `uri` varchar(100) NOT NULL DEFAULT '' COMMENT '唯一标识符，title转英文生成',
+  `title`          VARCHAR(200) NOT NULL  COMMENT '标题',
   `content`        TEXT COMMENT '内容',
   `create_time`    DATETIME     NOT NULL,
   `update_time`    DATETIME     NOT NULL,
-  `author`         VARCHAR(20)  NOT NULL
-  COMMENT '作者',
-  `column_id`      INT(10)      NOT NULL
-  COMMENT '文章类型',
-  `column_name`    VARCHAR(20)  NOT NULL DEFAULT ''
-  COMMENT '类型名',
-  `derivation_url` VARCHAR(200)          DEFAULT NULL
-  COMMENT '转载原文链接',
-  `version`        INT(10)      NOT NULL DEFAULT '0'
-  COMMENT '版本',
-  `is_delete`      CHAR(1)      NOT NULL DEFAULT 'N',
-  `comment_count`  INT(10)      NOT NULL DEFAULT '0'
-  COMMENT '评论数',
-  `visit_count`    INT(10)      NOT NULL DEFAULT '0'
-  COMMENT '查看数',
-  `pic`            VARCHAR(100)          DEFAULT NULL
-  COMMENT '文章默认图片',
-  `license`        VARCHAR(200) NOT NULL DEFAULT ''
-  COMMENT '版权声明',
-  `summary`        VARCHAR(400) NOT NULL DEFAULT ''
-  COMMENT '摘要',
-  `index_rank`     INT(5) UNSIGNED       DEFAULT '0',
-  `tags`           VARCHAR(100)          DEFAULT NULL
-  COMMENT '标签',
-  `length`         INT(10)      NOT NULL DEFAULT '0'
-  COMMENT '字数',
+  `author`         VARCHAR(20)  NOT NULL  COMMENT '作者',
+  `column_id`      INT(10)      NOT NULL  COMMENT '文章类型',
+  `column_name`    VARCHAR(20)  NOT NULL DEFAULT ''  COMMENT '类型名',
+  `derivation_url` VARCHAR(200)          DEFAULT NULL  COMMENT '转载原文链接',
+  `version`        INT(10)      NOT NULL DEFAULT '0'  COMMENT '版本',
+  `is_delete`      CHAR(1)      NOT NULL DEFAULT 'N',  `comment_count`  INT(10)      NOT NULL DEFAULT '0'
+  COMMENT '评论数',  `visit_count`    INT(10)      NOT NULL DEFAULT '0'
+  COMMENT '查看数',  `pic`            VARCHAR(100)          DEFAULT NULL
+  COMMENT '文章默认图片',  `license`        VARCHAR(200) NOT NULL DEFAULT ''
+  COMMENT '版权声明',  `summary`        VARCHAR(400) NOT NULL DEFAULT ''
+  COMMENT '摘要',  `index_rank`     INT(5) UNSIGNED       DEFAULT '0',
+  `tags`           VARCHAR(100)          DEFAULT NULL  COMMENT '标签',
+  `length`         INT(10)      NOT NULL DEFAULT '0'  COMMENT '字数',
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -71,25 +53,21 @@ CREATE TABLE `article` (
 -- Records of article
 -- ----------------------------
 INSERT INTO article VALUES
-  (1, 'title', 'test content', now(), now(), 'chulung', 1, '技术', '', 1, 'N', 1, 1, '', '', 'summary', 0, NULL, 100);
+  (1, 'uri','title', 'test content', now(), now(), 'chulung', 1, '技术', '', 1, 'N', 1, 1, '', '', 'summary', 0, NULL, 100);
 -- ----------------------------
 -- Table structure for `article_draft`
 -- ----------------------------
 DROP TABLE IF EXISTS `article_draft`;
 CREATE TABLE `article_draft` (
-  `id`           INT(10)      NOT NULL AUTO_INCREMENT
-  COMMENT 'id',
-  `article_id`   INT(10)               DEFAULT NULL
-  COMMENT '文章id',
-  `title`        VARCHAR(200) NOT NULL
-  COMMENT '标题',
-  `content`      TEXT COMMENT '内容',
-  `html_content` TEXT,
+  `id`           INT(10)      NOT NULL AUTO_INCREMENT  COMMENT 'id',
+  `uri` varchar(100) NOT NULL DEFAULT '' COMMENT '唯一标识符，title转英文生成',
+  `article_id`   INT(10)               DEFAULT NULL  COMMENT '文章id',
+  `title`        VARCHAR(200) NOT NULL  COMMENT '标题',
+  `content`      TEXT COMMENT '内容',  `html_content` TEXT,
   `create_time`  DATETIME     NOT NULL,
   `update_time`  DATETIME     NOT NULL,
   `author`       VARCHAR(20)  NOT NULL,
-  `is_publish`   CHAR(1)      NOT NULL
-  COMMENT '是否已发布',
+  `is_publish`   CHAR(1)      NOT NULL  COMMENT '是否已发布',
   `column_id`    INT(10)      NOT NULL,
   `is_delete`    CHAR(1)      NOT NULL DEFAULT 'N',
   `version`      INT(11)      NOT NULL DEFAULT '1',
@@ -111,19 +89,16 @@ CREATE TABLE `article_draft` (
 DROP TABLE IF EXISTS `article_draft_history`;
 CREATE TABLE `article_draft_history` (
   `history_id`   INT(10) NOT NULL AUTO_INCREMENT,
-  `id`           INT(10)          DEFAULT NULL
-  COMMENT 'id',
-  `article_id`   INT(10)          DEFAULT NULL
-  COMMENT '文章id',
-  `title`        VARCHAR(200)     DEFAULT NULL
-  COMMENT '标题',
+  `id`           INT(10)          DEFAULT NULL  COMMENT 'id',
+  `uri` varchar(100) NOT NULL DEFAULT '' COMMENT '唯一标识符，title转英文生成',
+  `article_id`   INT(10)          DEFAULT NULL  COMMENT '文章id',
+  `title`        VARCHAR(200)     DEFAULT NULL  COMMENT '标题',
   `content`      TEXT COMMENT '内容',
   `html_content` TEXT,
   `create_time`  DATETIME         DEFAULT NULL,
   `update_time`  DATETIME         DEFAULT NULL,
   `author`       VARCHAR(20)      DEFAULT NULL,
-  `is_publish`   CHAR(1)          DEFAULT NULL
-  COMMENT '是否已发布',
+  `is_publish`   CHAR(1)          DEFAULT NULL  COMMENT '是否已发布',
   `column_id`    INT(10)          DEFAULT NULL,
   `is_delete`    CHAR(1)          DEFAULT NULL,
   `version`      INT(11)          DEFAULT '1',
@@ -145,10 +120,8 @@ CREATE TABLE `article_draft_history` (
 DROP TABLE IF EXISTS `article_tag`;
 CREATE TABLE `article_tag` (
   `id`         INT(18)     NOT NULL AUTO_INCREMENT,
-  `tag_name`   VARCHAR(10) NOT NULL
-  COMMENT '标签名',
-  `article_id` INT(18)     NOT NULL
-  COMMENT '文章id',
+  `tag_name`   VARCHAR(10) NOT NULL  COMMENT '标签名',
+  `article_id` INT(18)     NOT NULL  COMMENT '文章id',
   PRIMARY KEY (`id`)
 )
   ENGINE = MyISAM
@@ -193,16 +166,13 @@ INSERT INTO `columns` VALUES ('9', '文档', 'doc', NULL);
 DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id`          INT(10)      NOT NULL AUTO_INCREMENT,
-  `article_id`  INT(10)      NOT NULL
-  COMMENT '文章id',
-  `reply_id`    INT(10)               DEFAULT NULL
-  COMMENT '回复的comment.id',
+  `article_id`  INT(10)      NOT NULL  COMMENT '文章id',
+  `reply_id`    INT(10)               DEFAULT NULL  COMMENT '回复的comment.id',
   `comment`     VARCHAR(500) NOT NULL DEFAULT '',
   `create_time` DATETIME     NOT NULL,
   `user_name`   VARCHAR(50)  NOT NULL,
   `email`       VARCHAR(50)           DEFAULT NULL,
-  `is_delete`   VARCHAR(1)   NOT NULL DEFAULT 'N'
-  COMMENT '是否删除',
+  `is_delete`   VARCHAR(1)   NOT NULL DEFAULT 'N'  COMMENT '是否删除',
   `website`     VARCHAR(200)          DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
@@ -239,14 +209,10 @@ INSERT INTO `config` VALUES ('RECOMMENDED_ARTICLE_IDS', '1', '推荐文章');
 DROP TABLE IF EXISTS `meta_cl_blog_log`;
 CREATE TABLE `meta_cl_blog_log` (
   `id`                INT(10)     NOT NULL AUTO_INCREMENT,
-  `site`              VARCHAR(10) NOT NULL
-  COMMENT '站点',
-  `article_id`        INT(10)     NOT NULL
-  COMMENT '文章id',
-  `post_id`           VARCHAR(20) NOT NULL
-  COMMENT '对应站点文章id',
-  `lastest_post_time` DATETIME    NOT NULL
-  COMMENT '最后推送时间',
+  `site`              VARCHAR(10) NOT NULL  COMMENT '站点',
+  `article_id`        INT(10)     NOT NULL  COMMENT '文章id',
+  `post_id`           VARCHAR(20) NOT NULL  COMMENT '对应站点文章id',
+  `lastest_post_time` DATETIME    NOT NULL  COMMENT '最后推送时间',
   PRIMARY KEY (`id`)
 )
   ENGINE = MyISAM
@@ -266,10 +232,8 @@ CREATE TABLE `user` (
   `user_name`  VARCHAR(50) NOT NULL,
   `password`   VARCHAR(50) NOT NULL,
   `nick_name`  VARCHAR(50) NOT NULL,
-  `session_id` VARCHAR(50)          DEFAULT NULL
-  COMMENT '最后一次登陆时sessionid,用于自动登陆',
-  `authority`  CHAR(1)     NOT NULL DEFAULT '0'
-  COMMENT 'A:管理员 V:游客',
+  `session_id` VARCHAR(50)          DEFAULT NULL  COMMENT '最后一次登陆时sessionid,用于自动登陆',
+  `authority`  CHAR(1)     NOT NULL DEFAULT '0'  COMMENT 'A:管理员 V:游客',
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -288,8 +252,7 @@ DROP TABLE IF EXISTS `user_tracker`;
 CREATE TABLE `user_tracker` (
   `id`            INT(10)      NOT NULL AUTO_INCREMENT,
   `href`          VARCHAR(100) NOT NULL,
-  `tuid`          VARCHAR(50)  NOT NULL
-  COMMENT '用户追踪标识',
+  `tuid`          VARCHAR(50)  NOT NULL  COMMENT '用户追踪标识',
   `referer`       VARCHAR(1000)         DEFAULT NULL,
   `create_time`   DATETIME     NOT NULL,
   `params_string` VARCHAR(1000)         DEFAULT NULL,
@@ -312,8 +275,7 @@ CREATE TABLE `visitor_info` (
   `user_agent`  VARCHAR(2000)    DEFAULT NULL,
   `access_time` DATETIME         DEFAULT NULL,
   `access_url`  VARCHAR(2000)    DEFAULT NULL,
-  `tuid`        VARCHAR(50)      DEFAULT NULL
-  COMMENT '用户追踪标识',
+  `tuid`        VARCHAR(50)      DEFAULT NULL  COMMENT '用户追踪标识',
   `server_name` VARCHAR(30)      DEFAULT NULL,
   PRIMARY KEY (`id`)
 )

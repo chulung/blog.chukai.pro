@@ -15,7 +15,7 @@ import java.util.List;
 public interface ArticleService {
     void deleteArticleDraft(Integer id);
 
-    Article findArticleById(String id);
+    Article findArticleByUri(String uri);
 
     List<ArticleOut> findRecommendedArticles();
 
@@ -28,6 +28,8 @@ public interface ArticleService {
     ArticleDraftOut findArticleDraft(Integer id);
 
     Integer insert(ArticleDraft articleDraft);
+
+    Article findArticleById(Integer id);
 
     boolean update(ArticleDraft articleDraft);
 

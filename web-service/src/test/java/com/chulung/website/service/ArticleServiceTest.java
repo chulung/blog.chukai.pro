@@ -74,7 +74,7 @@ public class ArticleServiceTest extends BaseTest {
 
     @Test
     public void findArticleById() throws Exception {
-        assertThat(this.articleService.findArticleById(1)).isNotNull();
+        assertThat(this.articleService.findArticleByUri("uri")).isNotNull();
     }
 
     @Test
