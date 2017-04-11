@@ -16,7 +16,6 @@
     </parent>
     <modules>
         <module>web-service</module>
-        <module>rpc</module>
         <module>common</module>
     </modules>
     <properties>
