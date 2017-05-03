@@ -48,12 +48,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     private GlobalTrackerInterceptor globalTrackerInterceptor;
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/","classpath:/static/");
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/siteroot/");
-    }
-
-    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         Assert.notNull(adminInterceptor,"bean backendInterceptor canot found");
         Assert.notNull(globalTrackerInterceptor,"bean globalTrackerInterceptor canot found");

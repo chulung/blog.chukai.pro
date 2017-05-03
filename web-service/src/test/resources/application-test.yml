@@ -20,7 +20,7 @@ spring:
       enabled: false
     datasource:
       type: org.apache.commons.dbcp.BasicDataSource
-      driverClassName : org.h2.Driver
+      driver-class-name : org.h2.Driver
       initialize: true
       schema : classpath:data.sql
 
