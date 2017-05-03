@@ -6,6 +6,7 @@ import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.website.enumerate.PublishStatusEnum;
+import com.chulung.website.exception.HttpStatusException;
 import com.chulung.website.mapper.ArticleMapper;
 import com.chulung.website.model.ArticleDraft;
 import com.chulung.website.model.User;
@@ -19,9 +20,11 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.annotation.Rollback;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 /**
  * Created by chulung on 2017/3/21.
@@ -91,7 +94,14 @@ public class ArticleServiceTest extends BaseTest {
     @Rollback
     public void deleteArticleDraft() throws Exception {
         this.articleService.deleteArticleDraft(publish.getId());
-        assertThat(this.articleService.findArticleById(publish.getArticleId()).getIsDelete()).isEqualTo(IsDeleteEnum.Y);
+        HttpStatusException t = null;
+        try {
+            assertThat(this.articleService.findArticleById(publish.getArticleId()));
+            fail("must throw HttpStatuExcetion");
+        } catch (HttpStatusException e) {
+            t = e;
+        }
+        assertThat(t.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(this.articleService.findArticleDraft(publish.getId()).getIsDelete()).isEqualTo(IsDeleteEnum.Y);
     }
 

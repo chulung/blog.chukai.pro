@@ -82,6 +82,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     }
 
     private Article selectOne(Article record) {
+        record.setIsDelete(IsDeleteEnum.N);
         Article a = articleMapper.selectOne(record);
         if (a == null) {
             throw HttpStatusException.of(HttpStatus.NOT_FOUND);
