@@ -5,6 +5,7 @@ jdk:
 
 addons:
   sonarqube:
+    organization: "chulung"
     token:
       secure: ${sonartocken}
 
