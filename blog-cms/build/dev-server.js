@@ -65,7 +65,6 @@ app.use(hotMiddleware)
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-// var uri = 'http://blog.chulung.com:' + port + '/cms/index.html'
 var uri = 'http://localhost:'+port
 
 devMiddleware.waitUntilValid(function () {

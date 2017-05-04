@@ -7,7 +7,7 @@ addons:
   sonarqube:
     organization: "chulung"
     token:
-      secure: ${sonartocken}
+      secure: ${SONAR_TOKEN}
 
 script:
   - "cd web-service"
