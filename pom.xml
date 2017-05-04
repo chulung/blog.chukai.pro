@@ -33,7 +33,7 @@
         <chulung-common.version>1.0-snapshot</chulung-common.version>
         <chulung-rpc.version>1.0-snapshot</chulung-rpc.version>
         <curator.version>2.8.0</curator.version>
-        <powermock.version>1.7.0RC2</powermock.version>
+        <powermock.version>1.6.6</powermock.version>
         <commons-lang3.version>3.5</commons-lang3.version>
     </properties>
 
@@ -75,7 +75,7 @@
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
-            <artifactId>powermock-api-mockito2</artifactId>
+            <artifactId>powermock-api-mockito</artifactId>
             <version>${powermock.version}</version>
             <scope>test</scope>
         </dependency>
@@ -99,6 +99,11 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.7.201606060606</version>
+                <configuration>
+                    <excludes>
+                        <exclude>com/chulung/website/model/**/*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
