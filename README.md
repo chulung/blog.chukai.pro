@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/chulung/chulung.com.svg?branch=master)](https://travis-ci.org/chulung/chulung.com)[![codecov](https://codecov.io/gh/chulung/chulung.com/branch/master/graph/badge.svg)](https://codecov.io/gh/chulung/chulung.com)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.chulung:website)](https://sonarqube.com/dashboard/index/com.chulung:website)
+[![Build Status](https://travis-ci.org/chulung/chulung.com.svg?branch=master)](https://travis-ci.org/chulung/chulung.com)[![codecov](https://codecov.io/gh/chulung/chulung.com/branch/master/graph/badge.svg)](https://codecov.io/gh/chulung/chulung.com)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.chulung:web-service)](https://sonarqube.com/dashboard/index/com.chulung:web-service)
 
 
 整站源码:[chulung's craft](https://chulung.com) 
