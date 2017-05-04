@@ -103,7 +103,7 @@
   import axios from 'axios'
   const $ = require('jQuery')
   const Velocity = require('Velocity')
-  const config =require('@/blog-config.js')
+  const config = require('@/blog-config.js')
   export default {
     data () {
       return {
@@ -132,7 +132,7 @@
           this.article = response.data
           this.comment.articleId = this.article.id
           this.loading = false
-          document.title=`${this.article.title}-${config.name}`
+          document.title = `${this.article.title}-${config.name}`
         })
       },
       fetchComments () {

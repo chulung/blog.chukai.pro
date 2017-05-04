@@ -74,7 +74,7 @@ public class GlobalExceptionAdvice extends BaseController {
     @ExceptionHandler(Exception.class)
     public
     @ResponseBody
-    ResponseEntity Excetion(Exception excetion) throws IOException {
+    ResponseEntity excetion(Exception excetion) throws IOException {
         errorLog(excetion);
         ByteArrayOutputStream buf = new java.io.ByteArrayOutputStream();
         excetion.printStackTrace(new PrintWriter(buf, true));
