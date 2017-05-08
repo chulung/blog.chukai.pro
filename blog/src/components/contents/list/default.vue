@@ -1,6 +1,5 @@
 <template>
-  <article class="post format-standard hentry" v-for="article in articles"
-  >
+  <article class="post format-standard hentry" v-for="article in articles">
     <div class="post-container">
       <div class="post-content">
         <div class="heading-title heading-small">

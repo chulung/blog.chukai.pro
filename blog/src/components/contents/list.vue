@@ -29,7 +29,7 @@
     data () {
       return {currentView:'defaultView',articles: [], nextPage: null, columnId: null, loading: false, preDelay: 0}
     },
-    components:{c,manualView,travelView},
+    components:{defaultView,manualView,travelView},
     created () {
       this.fetchArticleData()
     },

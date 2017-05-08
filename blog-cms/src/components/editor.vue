@@ -71,7 +71,7 @@
           alert(`message:${error.message},data:${error.response.data}`)
         })
       },
-      ...mapMutations(['changeLogined'])
+      ...mapMutations(['changeLoginedStatus'])
     }
   }
 </script>

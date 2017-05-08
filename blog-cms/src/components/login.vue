@@ -68,17 +68,17 @@
     },
     created () {
       axios.get('/login').then(response => {
-        this.changeLogined(response.data.logined)
+        this.changeLoginedStatus(response.data.logined)
         if (!response.data.logined) {
           jQuery('#myModal').modal()
         }
       })
     },
     methods: {
-      ...mapMutations(['changeLogined']),
+      ...mapMutations(['changeLoginedStatus']),
       postLogin () {
         axios.post('/login', axios.toJson(this.user)).then(response => {
-          this.changeLogined(true)
+          this.changeLoginedStatus(true)
         })
       },
       validateBeforeSubmit () {

@@ -75,7 +75,7 @@
       },
       changePublish () {
       },
-      ...mapMutations(['changeLogined'])
+      ...mapMutations(['changeLoginedStatus'])
     }
   }
 </script>

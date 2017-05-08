@@ -12,11 +12,12 @@ axios.defaults.baseURL = 'https://chulung.com/api/cms'
 axios.toJson = function (data) {
   return JSON.parse(JSON.stringify(data))
 }
+//登录拦截
 axios.interceptors.response.use(response => {
   return response
 }, error => {
   if (error.response && error.response.status === 401) {
-    store.commit('changeLogined', false)
+    store.commit('changeLoginedStatus', false)
   }
   return Promise.reject(error)
 })
@@ -28,7 +29,7 @@ const store = new Vuex.Store({
     logined: false
   },
   mutations: {
-    changeLogined (state) {
+    changeLoginedStatus (state) {
       state.logined = state
     }
   }
