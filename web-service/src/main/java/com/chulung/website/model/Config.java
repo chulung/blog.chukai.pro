@@ -5,9 +5,8 @@ import com.chulung.website.enumerate.ConfigKeyEnum;
 import javax.persistence.Id;
 
 public class Config {
-    /**
-     *
-     */
+
+
     private static final long serialVersionUID = 1126303022719698976L;
 
     @Id

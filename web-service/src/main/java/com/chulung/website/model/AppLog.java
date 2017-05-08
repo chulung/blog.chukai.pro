@@ -8,12 +8,8 @@ import com.chulung.website.enumerate.LogLevel;
 import com.chulung.website.enumerate.LogType;
 
 public class AppLog extends BaseModel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1775282535859780116L;
-	@Id
-	private Integer id;
 	private LogType type;
 	private LogLevel level;
 	private String log;
@@ -31,14 +27,6 @@ public class AppLog extends BaseModel {
 		this.level = level;
 		this.log = log;
 		this.setCreateTime(createTime);
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public LogType getType() {

@@ -14,13 +14,11 @@ import javax.persistence.Id;
 
 public class BaseModel implements Serializable {
 
+	private static final long serialVersionUID = -6831595989095431471L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -6831595989095431471L;
 	public Integer getId() {
 		return id;
 	}

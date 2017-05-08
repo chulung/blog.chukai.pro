@@ -9,6 +9,8 @@ import java.util.Map;
  * Created by chulung on 2017/3/29.
  */
 public class HttpStatusException extends RuntimeException {
+
+    private static final long serialVersionUID = -5604578012991146390L;
     private HttpStatus status;
 
     private Map<Object, Object> body;

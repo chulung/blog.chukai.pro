@@ -6,9 +6,6 @@ import javax.persistence.Id;
 
 public class UserTracker extends BaseModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2330020531291304589L;
 	private String ip;
 	private String tuid;

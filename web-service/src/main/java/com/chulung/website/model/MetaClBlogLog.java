@@ -8,6 +8,7 @@ import com.chulung.website.enumerate.SiteEnum;
 
 public class MetaClBlogLog extends BaseModel{
 
+	private static final long serialVersionUID = -6471507434982033703L;
 	private String postId;
 	private Integer articleId;
 	private LocalDateTime lastestPostTime;

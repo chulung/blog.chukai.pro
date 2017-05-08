@@ -41,8 +41,9 @@ import static com.chulung.search.core.CSearchDocument.TITLE;
 @Component
 public class CSearchImpl implements InitializingBean,DisposableBean,CSearch {
 
-    private static final int DEFAULT_ROW = 10;
     private Logger logger= LoggerFactory.getLogger(this.getClass());
+
+    private static final int DEFAULT_RESULT_SIZE = 10;
 
     private Directory directory;
     @Autowired
@@ -82,7 +83,8 @@ public class CSearchImpl implements InitializingBean,DisposableBean,CSearch {
             try {
                 if (writer!=null)
                 writer.rollback();
-            } catch (Exception ignored) {
+            } catch (Exception e1) {
+                logger.error("",e1);
             }
             return false;
         } finally {
@@ -90,7 +92,7 @@ public class CSearchImpl implements InitializingBean,DisposableBean,CSearch {
                 try {
                     writer.commit();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.error("",e);
                 }
 
         }
@@ -105,7 +107,7 @@ public class CSearchImpl implements InitializingBean,DisposableBean,CSearch {
             writer.deleteAll();
             writer.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("",e);
         }
     }
 
@@ -176,13 +178,13 @@ public class CSearchImpl implements InitializingBean,DisposableBean,CSearch {
          indexWriter=new IndexWriter(directory, new IndexWriterConfig(analyzer));
     }
 
-    private IndexWriter getIndexWriter() throws Exception {
+    private IndexWriter getIndexWriter() {
         return indexWriter;
     }
 
     @Override
     public List<CSearchDocument> search(String key) throws Exception {
-        return  this.search(key, DEFAULT_ROW);
+        return  this.search(key, DEFAULT_RESULT_SIZE);
     }
 
     @Override

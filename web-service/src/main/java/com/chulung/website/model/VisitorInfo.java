@@ -9,9 +9,8 @@ import com.chulung.website.constant.Constants;
 import com.chulung.common.util.NetUtil;
 
 public class VisitorInfo extends BaseModel {
-	/**
-	 * 
-	 */
+
+
 	private static final long serialVersionUID = 3076762908203898932L;
 
 	private String ip;

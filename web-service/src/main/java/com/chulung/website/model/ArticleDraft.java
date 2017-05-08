@@ -14,10 +14,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArticleDraft extends BaseModel {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = -8858052175630827783L;
+
     private Integer articleId;
 
     private String title;

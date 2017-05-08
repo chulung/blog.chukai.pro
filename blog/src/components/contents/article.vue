@@ -1,12 +1,7 @@
 <template>
-  <transition :css="false"
-              @before-enter="beforeEnter"
-              @enter="enter"
-              @before-appear="beforeEnter"
-              @appear="enter"
-              @leave="leave" mode="out-in">
+
     <div>
-      <article class="post format-standard hentry transition-item" key="article" v-if="article">
+      <article class="post format-standard hentry " v-if="article">
         <header class="entry-header">
           <div class="heading-title">
             <h1 class="entry-title">{{article.title}}</h1>
@@ -97,7 +92,6 @@
         </div><!-- #respond -->
       </div><!-- #comments -->
     </div>
-  </transition>
 </template>
 <script>
   import axios from 'axios'
@@ -168,24 +162,6 @@
       },
       defaultPic: function (pic) {
         return pic || '/static/img/logo.jpg'
-      },
-      beforeEnter: function (el) {
-        el.style.opacity = 0
-        Velocity(el, {translateX: -250})
-      },
-      enter: function (el, done) {
-        Velocity(
-          el,
-          {opacity: 1, height: '100%', duration: 1000, translateX: 0},
-          {duration: 1000, complete: done}
-        )
-      },
-      leave: function (el, done) {
-        Velocity(
-          el,
-          {opacity: 0, height: 0, translateY: 500},
-          {duration: 1000, complete: done}
-        )
       }
     }
   }

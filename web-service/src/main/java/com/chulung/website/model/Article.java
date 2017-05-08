@@ -14,9 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Article extends BaseModel implements Indexable{
-    /**
-     *
-     */
+
     private static final long serialVersionUID = -1692088776366835421L;
 
     private String title;

@@ -10,9 +10,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "comments")
 public class Comment extends BaseModel {
-	/**
-	 * 
-	 */
+
+
 	private static final long serialVersionUID = -8033788015527222581L;
 	private Integer articleId;
 

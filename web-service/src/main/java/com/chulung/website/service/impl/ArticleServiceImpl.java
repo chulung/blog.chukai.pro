@@ -34,10 +34,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -87,19 +84,23 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         if (a == null) {
             throw HttpStatusException.of(HttpStatus.NOT_FOUND);
         }
+        handleAboutMe(a);
+        if (a.getColumnId() == 1) {
+            a.setContent(a.getContent() + (a.getColumnId() != 3 && StringUtils.isBlank(a.getLicense()) ? configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()) : a.getLicense()));
+        }
+        return a;
+    }
+
+    private void handleAboutMe(Article a) {
         if (a.getId() == 20) {
             double wook = (Instant.now().getEpochSecond() - Instant.parse("2015-03-01T09:00:00.00Z").getEpochSecond())
                     / 31536000.0;
-            wook = new BigDecimal(wook).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+            wook = BigDecimal.valueOf(wook).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 
             int pinyin = (int) ((Instant.now().getEpochSecond() - Instant.parse("1867-01-01T00:00:00.00Z").getEpochSecond())
                     / 31536000);
             a.setContent(String.format(a.getContent(), pinyin, wook));
         }
-        if (a.getColumnId() == 1) {
-            a.setContent(a.getContent() + (a.getColumnId() != 3 && StringUtils.isBlank(a.getLicense()) ? configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()) : a.getLicense()));
-        }
-        return a;
     }
 
     @Override
@@ -114,7 +115,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         articleDraft.setUpdateTime(LocalDateTime.now());
         articleDraft.setVersion(oldDraft.getVersion() + 1);
         this.updateArticle(articleDraft);
-        if (!(articleDraftMapper.updateByPrimaryKeySelective(articleDraft) == 1)) {
+        if ((articleDraftMapper.updateByPrimaryKeySelective(articleDraft) != 1)) {
             throw HttpStatusException.of(HttpStatus.INTERNAL_SERVER_ERROR, "修改草稿失败");
         }
         return true;
@@ -180,7 +181,11 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     @Transactional
     public Integer insert(ArticleDraft articleDraft) {
         try {
-            User user = this.webSessionSupport.getCurUser().get();
+            Optional<User> userOptional = this.webSessionSupport.getCurUser();
+            if (!userOptional.isPresent()) {
+                throw HttpStatusException.of(HttpStatus.UNAUTHORIZED);
+            }
+            User user = userOptional.get();
             articleDraft.setUpdateTime(LocalDateTime.now());
             articleDraft.setVersion(1);
             articleDraft.setAuthor(user.getNickName());
@@ -250,9 +255,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         PageHelper.startPage(page == null ? 1 : page, PAGE_SIZE);
         Page<Article> articles = (Page<Article>) articleMapper.selectSummarys(bean);
         PageOut<ArticleOut> pageOut = new PageOut<>(articles.getPageNum(), articles.getPages());
-        pageOut.setList(articles.stream().map(a ->
-                new ArticleOut().buildFromModel(a)
-        ).collect(Collectors.toList()));
+        pageOut.setList(articles.stream().map(new ArticleOut()::buildFromModel).collect(Collectors.toList()));
         return pageOut;
     }
 
@@ -263,7 +266,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         ArticleIn bean = new ArticleIn();
         bean.setIsDelete(IsDeleteEnum.N);
         //按月统计文章数量
-        articleMapper.selectSummarys(bean).parallelStream().map(Article::getCreateTime)
+        articleMapper.selectSummarys(bean).parallelStream().map((article) -> article.getCreateTime())
                 .map(localDate -> YearMonth.of(localDate.getYear(), localDate.getMonthValue()))
                 .collect(Collectors.groupingBy(yearMonth -> yearMonth, Collectors.counting())).forEach((k, v) -> list.add(new Archive(k, v.intValue())));
         list.sort((o1, o2) -> o2.compareTo(o1));
@@ -275,10 +278,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         String recommendedArticleIds = this.configService.getValueBykey(ConfigKeyEnum.RECOMMENDED_ARTICLE_IDS);
         if (StringUtils.isNotBlank(recommendedArticleIds)) {
             ArticleIn dto = new ArticleIn();
-            dto.setIds(Arrays.asList(recommendedArticleIds.split(",")).stream().map(s -> {
-                return Integer.valueOf(s);
-            }).collect(Collectors.toList()));
-            return this.articleMapper.selectSummarys(dto).stream().map(article -> new ArticleOut().buildFromModel(article)).collect(Collectors.toList());
+            dto.setIds(Arrays.asList(recommendedArticleIds.split(",")).stream().map(Integer::valueOf).collect(Collectors.toList()));
+            return this.articleMapper.selectSummarys(dto).stream().map(new ArticleOut()::buildFromModel).collect(Collectors.toList());
         }
         return Collections.emptyList();
     }
@@ -313,10 +314,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         List<Integer> articleIds = this.articleTagMapper.select(record).stream().map(t -> {
             return t.getArticleId();
         }).collect(Collectors.toList());
-        if (CollectionUtils.isEmpty(articleIds)) return new PageOut<ArticleOut>();
+        if (CollectionUtils.isEmpty(articleIds)) return new PageOut<>();
         ArticleIn art = new ArticleIn();
         art.setIds(articleIds);
-        return new PageOut<>(this.articleMapper.selectSummarys(art).stream().map(article -> new ArticleOut().buildFromModel(article)).collect(Collectors.toList()));
+        return new PageOut<>(this.articleMapper.selectSummarys(art).stream().map(new ArticleOut()::buildFromModel).collect(Collectors.toList()));
     }
 
     @Override

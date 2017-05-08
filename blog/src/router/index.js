@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import content from '../components/content.vue'
 import article from '../components/contents/article.vue'
-import summaries from '../components/contents/summaries.vue'
+import list from '../components/contents/list.vue'
 import notFound from '../components/404.vue'
 Vue.use(Router)
 export default new Router({
@@ -23,7 +23,7 @@ export default new Router({
         {
           path: '',
           name: 'articles',
-          component: summaries,
+          component: list,
           alias: '/articles'
         }
       ]
@@ -36,7 +36,7 @@ export default new Router({
         {
           path: '',
           name: 'tag',
-          component: summaries
+          component: list
         }
       ]
     },
@@ -48,7 +48,7 @@ export default new Router({
         {
           path: '',
           name: 'search',
-          component: summaries
+          component: list
         }
       ]
     },
@@ -60,7 +60,7 @@ export default new Router({
         {
           path: '',
           name: 'column',
-          component: summaries
+          component: list
         }
       ]
     },

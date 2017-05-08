@@ -23,7 +23,7 @@ public class CommonCronJob extends AbstractCronJob {
     private CommentMapper commentsMapper;
 
     @Scheduled(cron = "0 0 1 * * ?")
-    public void execute() throws Exception {
+    public void execute() {
         List<Article> articles = articleMapper.selectAll();
         // 重新计算评论数
         recalcCommentsCount(articles);
@@ -35,9 +35,7 @@ public class CommonCronJob extends AbstractCronJob {
     private void recalcIndexRank(List<Article> articles) {
         double[] timePoint = new double[articles.size()];
         double[] commentsPoint = new double[articles.size()];
-        ;
         double[] visitorCountPoint = new double[articles.size()];
-        ;
         for (int i = 0; i < articles.size(); i++) {
             timePoint[i] = articles.get(i).getCreateTime().atZone(ZoneId.systemDefault()).toEpochSecond() - Constants.FIRST_ARTICLE_CREATE_TIME;
             commentsPoint[i] = articles.get(i).getCommentCount();
@@ -68,7 +66,8 @@ public class CommonCronJob extends AbstractCronJob {
      */
     private void normalization(double[] arr) {
         if (ArrayUtils.isEmpty(arr)) return;
-        double max = arr[0], min = arr[0];
+        double max = arr[0];
+        double min = arr[0];
         for (int i = 1; i < arr.length; i++) {
             max = arr[i] > max ? arr[i] : max;
             min = arr[i] < min ? arr[i] : min;

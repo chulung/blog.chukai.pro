@@ -10,9 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArticleDraftHistory extends BaseModel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 442964929728441887L;
 
 	private Integer articleId;

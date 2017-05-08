@@ -15,8 +15,6 @@ import org.apache.xmlrpc.XmlRpcException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,8 +22,8 @@ import java.util.List;
  * Created by chulung on 2016/11/8.
  */
 @Service
-public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogService,InitializingBean{
-    public static String METACKBLOG_COMMENTS = "<p>作者：chulung</p><p>原文链接:<a href=\"https://chulung.com/article/%s\">https://chulung.com/article/%s</a></p><p>本文由<a href=\"https://github.com/chulung/MetaCLblog\">MetaCLBlog</a>于%s自动同步至%s</p>";
+public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogService{
+    public static final String METACKBLOG_COMMENTS = "<p>作者：chulung</p><p>原文链接:<a href=\"https://chulung.com/article/%s\">https://chulung.com/article/%s</a></p><p>本文由<a href=\"https://github.com/chulung/MetaCLblog\">MetaCLBlog</a>于%s自动同步至%s</p>";
 
     @Autowired
     protected AppLogMapper cronJobLogMapper;
@@ -92,10 +90,6 @@ public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogS
 
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-    }
-
     private class PushTask extends Thread{
         private MetaWeblog metaWeblog ;
         public PushTask(MetaWeblog metaWeblog ) {
@@ -108,13 +102,11 @@ public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogS
                 try {
                     pushArticle(article, metaWeblog);
                     Thread.sleep(60000);//每60秒推一次
-                } catch (XmlRpcException e) {
+                } catch (Exception e) {
                     logger.error("", e);
                     cronJobLogMapper.insertSelective(
                             new AppLog(LogType.CRON_JOB_LOG, LogLevel.ERROR, e.toString(), LocalDateTime.now()));
                     return;
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
         }

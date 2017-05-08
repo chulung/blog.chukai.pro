@@ -5,9 +5,7 @@ import javax.persistence.Id;
 import com.chulung.website.enumerate.AuthorityEnum;
 
 public class User extends BaseModel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -6451695282340873011L;
 
 	private String userName;
