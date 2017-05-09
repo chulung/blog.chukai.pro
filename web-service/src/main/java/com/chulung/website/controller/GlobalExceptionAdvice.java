@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.chulung.website.exception.FileUploadExcetion;
 import com.chulung.website.exception.HttpStatusException;
+import com.chulung.website.exception.ServerRuntimeException;
 import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,7 +54,7 @@ public class GlobalExceptionAdvice extends BaseController {
     public
     @ResponseBody
     ResponseEntity httpStatusException(HttpStatusException excetion) {
-        return new ResponseEntity(MapUtils.EMPTY_MAP,excetion.getStatus())
+        return new ResponseEntity(MapUtils.EMPTY_MAP, excetion.getStatus())
                 ;
     }
 
@@ -61,17 +62,17 @@ public class GlobalExceptionAdvice extends BaseController {
     public
     @ResponseBody
     ResponseEntity httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException excetion) {
-        return new ResponseEntity(MapUtils.EMPTY_MAP,HttpStatus.METHOD_NOT_ALLOWED);
+        return new ResponseEntity(MapUtils.EMPTY_MAP, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public
     @ResponseBody
     ResponseEntity methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException excetion) {
-        return new ResponseEntity(MapUtils.EMPTY_MAP,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(MapUtils.EMPTY_MAP, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(value = {ServerRuntimeException.class, Exception.class})
     public
     @ResponseBody
     ResponseEntity excetion(Exception excetion) throws IOException {
@@ -86,7 +87,7 @@ public class GlobalExceptionAdvice extends BaseController {
         }
         AppLog record = new AppLog(LogType.EXCEPTION, LogLevel.ERROR, expMessage, LocalDateTime.now());
         appLogMapper.insertSelective(record);
-        return new ResponseEntity(MapUtils.EMPTY_MAP,HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity(MapUtils.EMPTY_MAP, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     protected HttpServletRequest currentRequest() throws IllegalStateException {

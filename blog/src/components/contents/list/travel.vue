@@ -1,6 +1,6 @@
 <template>
   <div class="row container-post">
-    <div class="col-sm-6 col-xs-12" v-for="article in articles" >
+    <div class="col-sm-6 col-xs-12" v-for="article in articles">
       <article class="post format-standard hentry post-type-portfolio">
         <div class="post-container">
           <div class="post-content">
@@ -18,6 +18,6 @@
 </template>
 <script>
   export default{
-      props:['articles']
+    props: ['articles']
   }
 </script>

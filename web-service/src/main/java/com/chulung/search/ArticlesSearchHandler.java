@@ -87,12 +87,9 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         new Thread(() -> {
-            if (!Boolean.FALSE.toString().equals(configService.getValueBykey(ConfigKeyEnum.RESET_SEARCH_INDEX, Boolean.TRUE.toString()))) {
-                logger.info("开始重建索引......");
-                this.resetIndex();
-                this.configService.updateByKey(new Config(ConfigKeyEnum.RESET_SEARCH_INDEX, Boolean.FALSE.toString()));
-                logger.info("重建索引完毕......");
-            }
+            logger.info("开始重建索引......");
+            this.resetIndex();
+            logger.info("重建索引完毕......");
         }).start();
     }
 }

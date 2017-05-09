@@ -1,4 +1,4 @@
-package com.chulung.website.service;
+package com.chulung.website.service.impl;
 
 import com.chulung.common.util.DateUtils;
 import com.chulung.website.enumerate.*;
@@ -8,6 +8,8 @@ import com.chulung.website.mapper.MetaClBlogLogMapper;
 import com.chulung.website.model.AppLog;
 import com.chulung.website.model.Article;
 import com.chulung.website.model.MetaClBlogLog;
+import com.chulung.website.service.ConfigService;
+import com.chulung.website.service.MetaClBlogLogService;
 import com.chulung.website.service.impl.BaseService;
 import com.chulung.metaweblog.MetaWeblog;
 import com.chulung.metaweblog.struct.Post;
@@ -22,7 +24,7 @@ import java.util.List;
  * Created by chulung on 2016/11/8.
  */
 @Service
-public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogService{
+public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogService {
     public static final String METACKBLOG_COMMENTS = "<p>作者：chulung</p><p>原文链接:<a href=\"https://chulung.com/article/%s\">https://chulung.com/article/%s</a></p><p>本文由<a href=\"https://github.com/chulung/MetaCLblog\">MetaCLBlog</a>于%s自动同步至%s</p>";
 
     @Autowired

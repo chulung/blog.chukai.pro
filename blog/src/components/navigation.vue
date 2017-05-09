@@ -29,15 +29,15 @@
                   <li class="menu-item"><router-link to="/column/sensibility">心悟</router-link></li>
                   <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">其他</a>
                     <ul class="sub-menu">
-                      <li class="menu-item"><router-link to="/column/doc">手册</router-link></li>
+                      <li class="menu-item"><router-link to="/column/manual">手册</router-link></li>
                       <li class="menu-item"><router-link to="/column/reprints">他山之石</router-link></li>
                     </ul>
                   </li>
                   <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">业余</a>
                     <ul class="sub-menu">
-                      <li class="menu-item"><router-link to="/column/cooking ">烹饪</router-link></li>
-                      <li class="menu-item"><router-link to="/column/exercise">健身</router-link></li>
                       <li class="menu-item"><router-link to="/column/travel">旅行</router-link></li>
+                      <li class="menu-item"><router-link to="/column/exercise">健身</router-link></li>
+                      <li class="menu-item"><router-link to="/column/cooking ">烹饪</router-link></li>
                     </ul>
                   </li>
                   <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">关于</a>

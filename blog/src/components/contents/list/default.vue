@@ -1,4 +1,5 @@
 <template>
+  <div>
   <article class="post format-standard hentry" v-for="article in articles">
     <div class="post-container">
       <div class="post-content">
@@ -29,9 +30,10 @@
       </div><!-- .post-content -->
     </div><!-- .post-container -->
   </article><!-- .post -->
+  </div>
 </template>
 <script>
   export default{
-    props:['articles']
+    props: ['articles']
   }
 </script>

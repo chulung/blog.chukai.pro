@@ -3,7 +3,7 @@
     <component :is="currentView" :articles="articles">
       <!-- 组件在 vm.currentview 变化时改变！展示不同样式的列表 -->
     </component>
-    <nav class="navigation posts-navigation" role="navigation" >
+    <nav class="navigation posts-navigation" role="navigation">
       <div class="nav-links" style="z-index: -1">
         <div class="nav-next" v-if="nextPage">
           <a @click="loadMore">加载更多<i class="fa fa-spinner" :class="{'fa-pulse':loading}"></i></a>
@@ -17,7 +17,6 @@
   import defaultView from './list/default.vue'
   import manualView from './list/manual.vue'
   import travelView from './list/travel.vue'
-  const Velocity = require('Velocity')
   const paths = {
     'index': '/articles',
     'articles': '/articles',
@@ -27,9 +26,9 @@
   }
   export default{
     data () {
-      return {currentView:'defaultView',articles: [], nextPage: null, columnId: null, loading: false, preDelay: 0}
+      return {currentView: 'defaultView', articles: [], nextPage: null, columnId: null, loading: false, preDelay: 0}
     },
-    components:{defaultView,manualView,travelView},
+    components: {defaultView, manualView, travelView},
     created () {
       this.fetchArticleData()
     },
@@ -50,7 +49,8 @@
             page: loadMore ? this.nextPage : this.$route.query.page,
             column: this.$route.params.column,
             year: this.$route.query.year,
-            month: this.$route.query.month
+            month: this.$route.query.month,
+            word: this.$route.query.word
           }
         }).then(response => {
           if (loadMore) {

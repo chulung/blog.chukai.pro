@@ -101,7 +101,7 @@
                 <version>0.7.7.201606060606</version>
                 <configuration>
                     <excludes>
-                        <exclude>com/chulung/website/model/**/*</exclude>
+                        <exclude>com/chulung/website/model/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

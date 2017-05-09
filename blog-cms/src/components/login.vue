@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
-                <button @click="validateBeforeSubmit" class="btn btn-default">登录</button>
+                <a @click="validateBeforeSubmit" class="btn btn-default">登录</a>
               </div>
             </div>
           </form>
