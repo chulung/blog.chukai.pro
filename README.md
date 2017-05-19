@@ -29,9 +29,11 @@
 
 目前完成了1，2，3，正在做4，5，6
 
+## Build setUp
+
 ## 表结构 
 
-[data.sql](/web-service/src/test/resources/data.sql)
+[data.sql](/web-service/webapp/src/test/resources/data.sql)
 
 ## 致谢以下开源项目
 

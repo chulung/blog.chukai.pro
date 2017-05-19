@@ -6,21 +6,12 @@
 
     <parent>
         <groupId>com.chulung</groupId>
-        <artifactId>parent-pom</artifactId>
+        <artifactId>web-service</artifactId>
         <version>1.0-snapshot</version>
     </parent>
 
     <groupId>com.chulung</groupId>
-    <artifactId>web-service</artifactId>
-    <version>1.0-snapshot</version>
+    <artifactId>common</artifactId>
+    <version>${commom.version}</version>
 
-    <modules>
-        <module>webapp</module>
-        <module>common</module>
-        <module>test</module>
-    </modules>
-    <properties>
-        <commom.version>1.0-snapshot</commom.version>
-        <test.version>1.0-snapshot</test.version>
-    </properties>
 </project>

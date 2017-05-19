@@ -8,3 +8,4 @@ node_modules/
 application-local.yml
 parent-pom.iml
 rpc/rpc.iml
+*.iml
