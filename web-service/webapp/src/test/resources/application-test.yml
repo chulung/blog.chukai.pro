@@ -10,13 +10,6 @@ logging:
         com.chulung.mapper: info
 
 spring:
-    mvc:
-        view:
-            prefix: /templates/
-            suffix: .ftl
-    freemarker:
-        cache: false
-        request-context-attribute: request
     jmx :
       enabled: false
     datasource:
@@ -50,9 +43,9 @@ fdfs:
 
 #搜索 start
 #索引存储目录
-csearch:
-      indexStorePath: /indexstore
-      ramDirectory : true #true 使用内存索引 否则使用上面路径的文件索引
+search:
+      directoryType : RAM # RAM 内存索引 FILE 文件索引
+      storePath: /indexstore  # 文件索引路径
 
 #metaweblog 可选
 metaweblog:

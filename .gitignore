@@ -9,3 +9,6 @@ application-local.yml
 parent-pom.iml
 rpc/rpc.iml
 *.iml
+metaweblog/target/
+search/target/
+test/target/

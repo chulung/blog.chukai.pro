@@ -1,16 +1,13 @@
 package com.chulung.search;
 
 import com.chulung.website.dto.out.ArticleOut;
-import com.chulung.website.enumerate.ConfigKeyEnum;
 import com.chulung.website.model.BaseComponent;
-import com.chulung.website.model.Config;
 import com.chulung.website.service.ConfigService;
-import com.chulung.search.core.CSearch;
-import com.chulung.search.core.CSearchDocument;
+import com.chulung.search.core.Search;
+import com.chulung.search.core.SearchDocument;
 import com.chulung.website.mapper.ArticleMapper;
 import com.chulung.website.model.Article;
 import com.github.pagehelper.PageHelper;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -30,7 +27,7 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
     private ArticleMapper articleMapper;
 
     @Autowired
-    private CSearch cSearchIndex;
+    private Search cSearchIndex;
 
     @Autowired
     private ConfigService configService;
@@ -48,7 +45,7 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
         int pageNum = 1;
         PageHelper.startPage(pageNum, 10);
         while (!(list = this.articleMapper.selectAll()).isEmpty()) {
-            cSearchIndex.createIndex(list.parallelStream().map(article -> new CSearchDocument(article.docId(), article.getTitle(), replaceHtmlTag(article))
+            cSearchIndex.createIndex(list.parallelStream().map(article -> new SearchDocument(article.getId().toString(), article.getTitle(), replaceHtmlTag(article))
             ).collect(Collectors.toList()));
             PageHelper.startPage(++pageNum, 10);
         }
@@ -66,14 +63,14 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
     public void index(Integer articleId) {
         Article article = this.articleMapper.selectByPrimaryKey(articleId);
         if (article == null) return;
-        this.cSearchIndex.createIndex(new CSearchDocument(article.docId(), article.getTitle(), replaceHtmlTag(article)));
+        this.cSearchIndex.createIndex(new SearchDocument(article.getId().toString(), article.getTitle(), replaceHtmlTag(article)));
     }
 
     public List<ArticleOut> search(String key) {
         try {
             return this.cSearchIndex.search(key).stream().map(cSearchDocument -> {
                 ArticleOut article = new ArticleOut();
-                article.setIdFromDocId(cSearchDocument.getId());
+                article.setId(Integer.parseInt(cSearchDocument.getId()));
                 article.setTitle(cSearchDocument.getTitle());
                 article.setContent(cSearchDocument.getContent());
                 return article;

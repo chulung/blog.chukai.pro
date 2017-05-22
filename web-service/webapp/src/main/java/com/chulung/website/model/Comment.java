@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
-import com.chulung.jackson.databind.LocalDateTimeSerializer;
+import com.chulung.common.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @JsonInclude(JsonInclude.Include.NON_NULL)

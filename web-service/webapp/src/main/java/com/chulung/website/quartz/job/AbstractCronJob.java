@@ -1,15 +1,9 @@
 package com.chulung.website.quartz.job;
 
-import java.time.LocalDateTime;
-
-import com.chulung.website.enumerate.LogType;
-import com.chulung.website.model.AppLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.chulung.website.enumerate.LogLevel;
 import com.chulung.website.mapper.AppLogMapper;
 
 public abstract class AbstractCronJob {

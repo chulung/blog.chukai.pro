@@ -79,6 +79,7 @@
       postLogin () {
         axios.post('/login', axios.toJson(this.user)).then(response => {
           this.changeLoginedStatus(true)
+          jQuery('#myModal').modal('hide')
         })
       },
       validateBeforeSubmit () {

@@ -16,6 +16,10 @@
         <version>1.5.3.RELEASE</version>
     </parent>
     <modules>
+        <module>test</module>
+        <module>common</module>
+        <module>metaweblog</module>
+        <module>search</module>
         <module>web-service</module>
     </modules>
     <licenses>
@@ -98,6 +102,37 @@
                 <artifactId>commons-httpclient</artifactId>
                 <version>${commons-httpclient.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.chulung</groupId>
+                <artifactId>metaweblog</artifactId>
+                <version>1.0-snapshot</version>
+            </dependency>
+            <dependency>
+                <groupId>com.chulung</groupId>
+                <artifactId>common</artifactId>
+                <version>1.0-snapshot</version>
+            </dependency>
+            <dependency>
+                <groupId>com.chulung</groupId>
+                <artifactId>test</artifactId>
+                <version>1.0-snapshot</version>
+            </dependency>
+            <dependency>
+                <groupId>com.chulung</groupId>
+                <artifactId>search</artifactId>
+                <version>1.0-snapshot</version>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${powermock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito</artifactId>
+                <version>${powermock.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -106,19 +141,12 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
 
-        <dependency>
-            <groupId>com.chulung</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-snapshot</version>
-        </dependency>
-        <dependency>
-            <groupId>com.chulung</groupId>
-            <artifactId>test</artifactId>
-            <version>1.0-snapshot</version>
-        </dependency>
     </dependencies>
-
 
     <build>
         <plugins>

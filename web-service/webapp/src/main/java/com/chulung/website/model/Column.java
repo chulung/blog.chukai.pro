@@ -2,7 +2,6 @@ package com.chulung.website.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**

@@ -3,7 +3,6 @@ package com.chulung.website.service;
 import com.chulung.BaseTest;
 import com.chulung.website.enumerate.ConfigKeyEnum;
 import com.chulung.website.model.Config;
-import com.chulung.website.service.ConfigService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;

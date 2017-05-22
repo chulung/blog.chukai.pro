@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Transient;
 
-import com.chulung.jackson.databind.LocalDateTimeDeserializer;
+import com.chulung.common.databind.LocalDateTimeDeserializer;
 import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.website.enumerate.PublishStatusEnum;
-import com.chulung.jackson.databind.LocalDateTimeSerializer;
+import com.chulung.common.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

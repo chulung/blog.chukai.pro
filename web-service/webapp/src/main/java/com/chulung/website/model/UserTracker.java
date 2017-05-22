@@ -2,8 +2,6 @@ package com.chulung.website.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Id;
-
 public class UserTracker extends BaseModel {
 
 	private static final long serialVersionUID = -2330020531291304589L;

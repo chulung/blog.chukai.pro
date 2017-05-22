@@ -7,10 +7,8 @@ import javax.annotation.Resource;
 
 import com.chulung.website.mapper.UserMapper;
 import com.chulung.website.model.User;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Component;
 
 import com.chulung.common.util.NetUtil;

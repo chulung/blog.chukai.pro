@@ -2,8 +2,6 @@ package com.chulung.website.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Id;
-
 import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.website.enumerate.PublishStatusEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;

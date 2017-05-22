@@ -9,10 +9,11 @@ import VeeValidate from 'VeeValidate'
 Vue.use(VeeValidate)
 Vue.config.productionTip = false
 axios.defaults.baseURL = 'https://chulung.com/api/cms'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 axios.toJson = function (data) {
   return JSON.parse(JSON.stringify(data))
 }
-//登录拦截
+// 登录拦截
 axios.interceptors.response.use(response => {
   return response
 }, error => {

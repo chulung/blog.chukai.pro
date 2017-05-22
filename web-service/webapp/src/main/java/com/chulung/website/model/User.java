@@ -1,7 +1,5 @@
 package com.chulung.website.model;
 
-import javax.persistence.Id;
-
 import com.chulung.website.enumerate.AuthorityEnum;
 
 public class User extends BaseModel {

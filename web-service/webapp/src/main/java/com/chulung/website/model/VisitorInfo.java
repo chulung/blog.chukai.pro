@@ -2,7 +2,6 @@ package com.chulung.website.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 
 import com.chulung.website.constant.Constants;

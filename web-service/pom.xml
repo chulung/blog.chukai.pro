@@ -13,14 +13,21 @@
     <groupId>com.chulung</groupId>
     <artifactId>web-service</artifactId>
     <version>1.0-snapshot</version>
-
+    <packaging>pom</packaging>
     <modules>
         <module>webapp</module>
-        <module>common</module>
-        <module>test</module>
     </modules>
     <properties>
-        <commom.version>1.0-snapshot</commom.version>
-        <test.version>1.0-snapshot</test.version>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.chulung</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chulung</groupId>
+            <artifactId>test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

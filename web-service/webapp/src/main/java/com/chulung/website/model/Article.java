@@ -2,18 +2,16 @@ package com.chulung.website.model;
 
 import java.time.LocalDateTime;
 
-import com.chulung.jackson.databind.LocalDateTimeDeserializer;
+import com.chulung.common.databind.LocalDateTimeDeserializer;
 import com.chulung.website.enumerate.IsDeleteEnum;
-import com.chulung.jackson.databind.LocalDateTimeSerializer;
-import com.chulung.search.DocType;
-import com.chulung.search.Indexable;
+import com.chulung.common.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Article extends BaseModel implements Indexable{
+public class Article extends BaseModel{
 
     private static final long serialVersionUID = -1692088776366835421L;
 
@@ -118,11 +116,6 @@ public class Article extends BaseModel implements Indexable{
 
     public void setVisitCount(Integer visitCount) {
         this.visitCount = visitCount;
-    }
-
-    @Override
-    public DocType docType() {
-        return DocType.ART;
     }
 
     public String getTitle() {
