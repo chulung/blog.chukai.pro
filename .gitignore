@@ -1,13 +1,8 @@
-/website.iml
 /.idea
-chulung.com.iml
-common/common.iml
 common/target/
 rpc/target/
 node_modules/
 application-local.yml
-parent-pom.iml
-rpc/rpc.iml
 *.iml
 metaweblog/target/
 search/target/

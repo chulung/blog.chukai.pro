@@ -70,7 +70,7 @@ public class ReflectUtil {
                     fieldValue = fieldValue == null ? new HashMap<>() : toXMLRPCParams((Struct<Post>) fieldValue);
                 } else if (field.getType().isArray()) {
                     // 字符串数组处理
-                    fieldValue = fieldValue == null ? new String[]{} : (String[]) fieldValue;
+                    fieldValue = fieldValue == null ? new String[]{} : fieldValue;
                 }
 
                 map.put(field.getName(), fieldValue == null ? "" : fieldValue);
