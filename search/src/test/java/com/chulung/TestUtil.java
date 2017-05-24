@@ -1,9 +1,9 @@
-package com.chulung.search.core;
+package com.chulung;
 
 import java.io.*;
 
 /**
- * Created by ChuKai on 2016/12/4.
+ * Created by chulung on 2016/12/4.
  */
 public class TestUtil {
     public static String readToString(String fileName) {

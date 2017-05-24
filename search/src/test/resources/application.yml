@@ -1,8 +1,6 @@
 #单元测试配置
-
 #搜索 start
 #索引存储目录
 search:
       directoryType : RAM # RAM 内存索引 FILE 文件索引
       storePath: /indexstore  # 文件索引路径
-

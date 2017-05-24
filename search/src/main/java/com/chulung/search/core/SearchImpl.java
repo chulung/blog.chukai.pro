@@ -45,9 +45,9 @@ import static com.chulung.search.core.SearchDocument.*;
  */
 
 @Component
-public class SearchImpl implements InitializingBean,DisposableBean, com.chulung.search.core.Search {
+public class SearchImpl implements Search, InitializingBean, DisposableBean {
 
-    private Logger logger= LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private static final int DEFAULT_RESULT_SIZE = 10;
 
@@ -64,8 +64,8 @@ public class SearchImpl implements InitializingBean,DisposableBean, com.chulung.
 
 
     @Override
-    public boolean createIndex(SearchDocument doc){
-       return this.createIndex(Collections.singletonList(doc));
+    public boolean createIndex(SearchDocument doc) {
+        return this.createIndex(Collections.singletonList(doc));
     }
 
     @Override
@@ -73,24 +73,24 @@ public class SearchImpl implements InitializingBean,DisposableBean, com.chulung.
         IndexWriter writer = null;
         try {
             writer = this.getIndexWriter();
-            for (SearchDocument doc:docs){
+            for (SearchDocument doc : docs) {
                 //创建前尝试先删除已有的
-                logger.info("tryDelete id={}",doc.getId());
-                writer.deleteDocuments(new Term(ID,doc.getId()));
+                logger.info("tryDelete id={}", doc.getId());
+                writer.deleteDocuments(new Term(ID, doc.getId()));
                 Document document = new Document();
                 document.add(new StringField(ID, doc.getId(), Field.Store.YES));
                 //HanLp区分大小写，所以全转小写
                 document.add(new TextField(TITLE, doc.getTitle().toLowerCase(), Field.Store.YES));
                 document.add(new TextField(CONTEXT, doc.getContent().toLowerCase(), Field.Store.YES));
                 writer.addDocument(document);
-                logger.info("createIndex id={}",doc.getId());
+                logger.info("createIndex id={}", doc.getId());
             }
         } catch (Exception e) {
             try {
-                if (writer!=null)
-                writer.rollback();
+                if (writer != null)
+                    writer.rollback();
             } catch (Exception e1) {
-                logger.error("",e1);
+                logger.error("", e1);
             }
             return false;
         } finally {
@@ -98,7 +98,7 @@ public class SearchImpl implements InitializingBean,DisposableBean, com.chulung.
                 try {
                     writer.commit();
                 } catch (Exception e) {
-                    logger.error("",e);
+                    logger.error("", e);
                 }
 
         }
@@ -113,7 +113,7 @@ public class SearchImpl implements InitializingBean,DisposableBean, com.chulung.
             writer.deleteAll();
             writer.commit();
         } catch (Exception e) {
-            logger.error("",e);
+            logger.error("", e);
         }
     }
 
@@ -142,31 +142,33 @@ public class SearchImpl implements InitializingBean,DisposableBean, com.chulung.
             String highContext = highlighter.getBestFragment(analyzer, CONTEXT, content);
             String title = doc.get(TITLE).replaceAll("\\s*", "");
             String highTitle = highlighter.getBestFragment(analyzer, TITLE, title);
-            result.add(new SearchDocument(doc.get(SearchDocument.ID), highTitle==null?title:highTitle, highContext==null?subContext(content):highContext));
+            result.add(new SearchDocument(doc.get(SearchDocument.ID), highTitle == null ? title : highTitle, highContext == null ? subContext(content) : highContext));
         }
         return result;
     }
 
     /**
      * 根据 {@link SearchConfig#fragmentSize}截取片段长度
+     *
      * @param content
      * @return
      */
     private String subContext(String content) {
-        return  content.length()>searchConfig.getFragmentSize()?content.substring(0,searchConfig.getFragmentSize()):content;
+        return content.length() > searchConfig.getFragmentSize() ? content.substring(0, searchConfig.getFragmentSize()) : content;
     }
 
     /**
      * reader 返回当前reader 如果文档有更新则新打开一个
+     *
      * @return
      * @throws Exception
      */
     private DirectoryReader getReader() throws Exception {
-        if (reader==null){
-            this.reader=DirectoryReader.open(directory);
+        if (reader == null) {
+            this.reader = DirectoryReader.open(directory);
         }
         //有更新则重新打开,读入新增加的增量索引内容，满足实时查询需求
-        DirectoryReader newReader = DirectoryReader.openIfChanged((DirectoryReader)reader,  getIndexWriter(), false);
+        DirectoryReader newReader = DirectoryReader.openIfChanged((DirectoryReader) reader, getIndexWriter(), false);
         if (newReader != null) {
             reader.close();
             reader = newReader;
@@ -176,12 +178,12 @@ public class SearchImpl implements InitializingBean,DisposableBean, com.chulung.
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if (searchConfig.getDirectoryType()== DirectoryType.RAM){
+        if (searchConfig.getDirectoryType() == DirectoryType.RAM) {
             directory = new RAMDirectory();
-        }else{
-             directory = FSDirectory.open(Paths.get(this.searchConfig.getStorePath()));
+        } else {
+            directory = FSDirectory.open(Paths.get(this.searchConfig.getStorePath()));
         }
-         indexWriter=new IndexWriter(directory, new IndexWriterConfig(analyzer));
+        indexWriter = new IndexWriter(directory, new IndexWriterConfig(analyzer));
     }
 
     private IndexWriter getIndexWriter() {
@@ -190,7 +192,7 @@ public class SearchImpl implements InitializingBean,DisposableBean, com.chulung.
 
     @Override
     public List<SearchDocument> search(String key) throws Exception {
-        return  this.search(key, DEFAULT_RESULT_SIZE);
+        return this.search(key, DEFAULT_RESULT_SIZE);
     }
 
     @Override

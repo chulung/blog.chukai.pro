@@ -1,7 +1,8 @@
 package com.chulung.search.core;
 
 import com.chulung.search.config.SearchConfig;
-import com.chulung.test.SpringbootBaseTest;
+import com.chulung.SpringbootBaseTest;
+import com.chulung.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -15,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by chulung on 2016/11/10.
  */
-public class SearchTest extends SpringbootBaseTest {
+public class SearchTest extends SpringbootBaseTest{
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private Search search;
