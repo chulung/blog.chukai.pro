@@ -1,6 +1,6 @@
 package com.chulung.website.service;
 
-import com.chulung.BaseTest;
+import com.chulung.test.SpringbootBaseTest;
 import com.chulung.website.exception.HttpStatusException;
 import com.chulung.website.model.Comment;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by chulung on 2017/4/6.
  */
-public class CommentServiceTest extends BaseTest {
+public class CommentServiceTest extends SpringbootBaseTest {
     @Autowired
     private CommentService commentService;
 

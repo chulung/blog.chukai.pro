@@ -1,7 +1,7 @@
 package com.chulung.website.service;
 
-import com.chulung.BaseTest;
 import com.chulung.common.util.NetUtil;
+import com.chulung.test.SpringbootBaseTest;
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.enumerate.IsDeleteEnum;
@@ -32,7 +32,7 @@ import static org.assertj.core.api.Assertions.fail;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @PrepareForTest(NetUtil.class)
-public class ArticleServiceTest extends BaseTest {
+public class ArticleServiceTest extends SpringbootBaseTest {
 
     @Autowired
     private ArticleService articleService;

@@ -171,6 +171,7 @@
                 <configuration>
                     <excludes>
                         <exclude>com/chulung/website/model/*</exclude>
+                        <exclude>com/chulung/metaweblog/struct/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

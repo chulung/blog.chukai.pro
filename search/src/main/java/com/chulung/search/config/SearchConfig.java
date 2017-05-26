@@ -1,13 +1,10 @@
 package com.chulung.search.config;
 
-import com.chulung.search.config.DirectoryType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.search.highlight.Formatter;
 import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,12 +23,12 @@ public class SearchConfig implements InitializingBean {
     /**
      * 高亮标签
      */
-    private String highlighterOpening;
+    private String highlighterOpening="<em>";
 
     /**
      * 高亮标签
      */
-    private String highlighterClosing;
+    private String highlighterClosing="</em>";
 
     /**
      * 搜索结果片段长度
@@ -92,11 +89,7 @@ public class SearchConfig implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         if (!this.isRamDirectory() && StringUtils.isBlank(storePath)) throw  new IllegalArgumentException("storePath can't be empty");
-        if (StringUtils.isBlank(this.highlighterOpening)||StringUtils.isBlank(this.highlighterClosing)){
-            this.highLighterFormatter=new SimpleHTMLFormatter("<em>","</em>");
-        }else {
-            this.highLighterFormatter=new SimpleHTMLFormatter(this.highlighterOpening,this.highlighterClosing);
-        }
+        this.highLighterFormatter=new SimpleHTMLFormatter(this.highlighterOpening,this.highlighterClosing);
         if (fragmentSize==null){
             fragmentSize=150;
         }

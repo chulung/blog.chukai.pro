@@ -10,5 +10,4 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @PowerMockRunnerDelegate(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = TestApplication.class)
 public abstract class SpringbootBaseTest extends BaseTest {
-
 }

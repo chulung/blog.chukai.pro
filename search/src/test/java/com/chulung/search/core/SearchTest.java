@@ -28,6 +28,7 @@ public class SearchTest extends SpringbootBaseTest{
 
     @Before
     public void setUp() {
+        search.clearAll();
         String context = TestUtil.readToString("src/test/resources/test.html").replaceAll("</?[^<]+>", "");
         String id = "1";
         String title = "什么是" + "函数" + "式编程";

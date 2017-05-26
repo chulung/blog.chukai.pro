@@ -1,6 +1,6 @@
 package com.chulung.website.service;
 
-import com.chulung.BaseTest;
+import com.chulung.test.SpringbootBaseTest;
 import com.chulung.website.enumerate.ConfigKeyEnum;
 import com.chulung.website.model.Config;
 import org.junit.FixMethodOrder;
@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ConfigServiceTest extends BaseTest {
+public class ConfigServiceTest extends SpringbootBaseTest {
 
     @Autowired
     private ConfigService configService;

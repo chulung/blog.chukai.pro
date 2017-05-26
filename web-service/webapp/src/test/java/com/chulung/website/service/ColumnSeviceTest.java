@@ -1,6 +1,6 @@
 package com.chulung.website.service;
 
-import com.chulung.BaseTest;
+import com.chulung.test.SpringbootBaseTest;
 import com.chulung.website.model.Column;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by chulung on 2017/3/23.
  */
-public class ColumnSeviceTest extends BaseTest {
+public class ColumnSeviceTest extends SpringbootBaseTest {
     @Autowired
     private ColumnSevice columnSevice;
 

@@ -20,7 +20,7 @@ public class ArticleController extends BaseController {
     private ArticleService articleService;
 
     @Autowired
-    private ColumnSevice columnTypeSevice;
+    private ColumnSevice columnSevice;
 
     @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
     public

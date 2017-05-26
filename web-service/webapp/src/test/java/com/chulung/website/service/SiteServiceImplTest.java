@@ -1,6 +1,6 @@
 package com.chulung.website.service;
 
-import com.chulung.BaseTest;
+import com.chulung.test.SpringbootBaseTest;
 import com.chulung.website.dto.out.SideBarInfo;
 import com.chulung.website.dto.out.SiteFooteInfo;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by chulung on 2017/3/23.
  */
-public class SiteServiceImplTest extends BaseTest {
+public class SiteServiceImplTest extends SpringbootBaseTest {
     @Autowired
     private SiteService siteService;
     @Autowired
