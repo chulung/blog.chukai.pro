@@ -16,15 +16,18 @@ public class CommentsController extends BaseController {
     private CommentService commentsService;
 
     @RequestMapping(value = {""}, method = RequestMethod.POST)
-    public @ResponseBody  ResponseEntity post(Comment comments) {
+    public
+    @ResponseBody
+    ResponseEntity post(Comment comments) {
         commentsService.postComments(comments);
         return success();
     }
 
-    @RequestMapping(value = {"/list/{articleId}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {""}, method = RequestMethod.GET)
     public
     @ResponseBody
-    PageOut<CommentsOut> listComments(Integer page, @PathVariable Integer articleId) {
+    PageOut<CommentsOut> get(Integer page, Integer articleId) {
         return commentsService.listComments(page, articleId);
     }
+
 }

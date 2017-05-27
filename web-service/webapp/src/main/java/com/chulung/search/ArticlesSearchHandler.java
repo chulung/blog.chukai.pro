@@ -8,8 +8,11 @@ import com.chulung.search.core.SearchDocument;
 import com.chulung.website.mapper.ArticleMapper;
 import com.chulung.website.model.Article;
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +25,9 @@ import java.util.stream.Collectors;
  * Created by chulung on 2016/11/10.
  */
 @Component
-public class ArticlesSearchHandler extends BaseComponent implements ApplicationListener<ContextRefreshedEvent> {
+@ConfigurationProperties(prefix = "search")
+public class ArticlesSearchHandler extends BaseComponent implements InitializingBean{
+    private boolean lazy;
     @Autowired
     private ArticleMapper articleMapper;
 
@@ -33,7 +38,9 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
     private ConfigService configService;
 
     private void resetIndex() {
+        logger.info("开始重建索引......");
         cSearchIndex.clearAll();
+        logger.info("重建索引完毕......");
         indexAll();
     }
 
@@ -61,12 +68,14 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
      * @param articleId articleId
      */
     public void index(Integer articleId) {
+        checkLazyLoad();
         Article article = this.articleMapper.selectByPrimaryKey(articleId);
         if (article == null) return;
         this.cSearchIndex.createIndex(new SearchDocument(article.getId().toString(), article.getTitle(), replaceHtmlTag(article)));
     }
 
     public List<ArticleOut> search(String key) {
+        checkLazyLoad();
         try {
             return this.cSearchIndex.search(key).stream().map(cSearchDocument -> {
                 ArticleOut article = new ArticleOut();
@@ -81,12 +90,27 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
         }
     }
 
+    private void checkLazyLoad() {
+        if (lazy){
+            resetIndex();
+            lazy=false;
+        }
+    }
+
     @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+    public void afterPropertiesSet() {
+        if (lazy) return;
         new Thread(() -> {
-            logger.info("开始重建索引......");
             this.resetIndex();
-            logger.info("重建索引完毕......");
         }).start();
     }
+
+    public boolean isLazy() {
+        return lazy;
+    }
+
+    public void setLazy(boolean lazy) {
+        this.lazy = lazy;
+    }
+
 }

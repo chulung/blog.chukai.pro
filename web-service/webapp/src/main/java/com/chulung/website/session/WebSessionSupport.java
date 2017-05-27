@@ -21,7 +21,6 @@ import com.chulung.common.util.NetUtil;
  */
 @Component
 public class WebSessionSupport{
-	public final String SESSION_ID = "session_id";
 	@Autowired
 	private UserMapper userMapper;
 
@@ -38,21 +37,12 @@ public class WebSessionSupport{
 	}
 
 	/**
-	 * 从cookie中获取当前用户的sessionId
-	 * 
-	 * @return
-	 */
-	public String getCurSessionId() {
-		return NetUtil.getCookieValue(SESSION_ID);
-	}
-
-	/**
 	 * 获取当前用户对象信息
 	 * 
 	 * @return
 	 */
 	public Optional<User> getCurUser() {
-		String sessionId = getCurSessionId();
+		String sessionId = NetUtil.getCurSessionId();
 		User user = null;
 		if (sessionId != null) {
 			user = cache.get(getSessionCacheKey(sessionId),User.class);
@@ -88,19 +78,9 @@ public class WebSessionSupport{
 	 * @return
 	 */
 	public String logIn(User user) {
-		String sessionId = gegenerateSessionId(user);
+		String sessionId = NetUtil.getCurSessionId();
 		this.cache.put(this.getSessionCacheKey(sessionId),user);
 		return sessionId;
-	}
-
-	/**
-	 * 通过uuid和userId生成唯一sessionId
-	 * 
-	 * @param user
-	 * @return
-	 */
-	private String gegenerateSessionId(User user) {
-		return UUID.randomUUID().toString() + user.getId();
 	}
 
 	/**
@@ -110,14 +90,14 @@ public class WebSessionSupport{
 	 * @return
 	 */
 	private String getSessionCacheKey(String sessionId) {
-		return SESSION_ID + sessionId;
+		return NetUtil.SESSION_ID + sessionId;
 	}
 
 	/**
 	 * 注销,清空缓存及持久化的session
 	 */
 	public void logOut() {
-		String sessionId = getCurSessionId();
+		String sessionId = NetUtil.getCurSessionId();
 		if (sessionId == null) {
 			return;
 		}

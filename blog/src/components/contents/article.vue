@@ -128,9 +128,10 @@
         })
       },
       fetchComments () {
-        axios.get('/comments/list/' + this.article.id, {
+        axios.get('/comments', {
           params: {
-            page: 1
+            page: 1,
+            articleId: this.article.id
           }
         }).then(response => {
           this.comments = response.data.list

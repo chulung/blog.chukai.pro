@@ -38,7 +38,7 @@ public class VisitorInfo extends BaseModel {
 	public VisitorInfo(HttpServletRequest request) {
 		this(NetUtil.getIpAddr(request), request.getHeader("User-Agent"),
 					LocalDateTime.now(), NetUtil.getAccessUrl(request), request.getServerName(),
-					NetUtil.getCookieValue(Constants.TUID));
+					NetUtil.getCurSessionId());
 	}
 
 	public String getIp() {

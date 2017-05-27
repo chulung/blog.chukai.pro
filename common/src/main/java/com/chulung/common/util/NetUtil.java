@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class NetUtil {
 
+	public final static String SESSION_ID = "session_id";
 	public static String getIpAddr(HttpServletRequest request) {
 		String ipAddress;
 		ipAddress = request.getHeader("x-forwarded-for");
@@ -37,9 +38,7 @@ public class NetUtil {
 	}
 
 	public static String getCurSessionId() {
-		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder
-				.getRequestAttributes();
-		return servletRequestAttributes.getSessionId();
+		return NetUtil.getCookieValue(SESSION_ID);
 
 	}
 

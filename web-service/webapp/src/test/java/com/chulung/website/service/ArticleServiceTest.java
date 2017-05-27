@@ -54,7 +54,8 @@ public class ArticleServiceTest extends SpringbootBaseTest {
         User user = new User();
         user.setNickName("chulung");
         PowerMockito.mockStatic(NetUtil.class);
-        PowerMockito.when(NetUtil.getCookieValue(Mockito.anyString())).thenReturn(webSessionSupport.logIn(user));
+        PowerMockito.when(NetUtil.getCurSessionId()).thenReturn("sessionid");
+        webSessionSupport.logIn(user);
         for (int i = 0; i < 50; i++) {
             publish = new ArticleDraft();
             publish.setTitle("title" + i);

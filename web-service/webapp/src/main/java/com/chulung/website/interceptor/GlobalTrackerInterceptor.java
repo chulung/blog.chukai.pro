@@ -6,6 +6,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chulung.common.util.NetUtil;
 import com.chulung.website.tracker.Tracker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,12 +38,12 @@ public class GlobalTrackerInterceptor extends HandlerInterceptorAdapter {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if (Constants.TUID.equals(cookie.getName())) {
+				if (NetUtil.SESSION_ID.equals(cookie.getName())) {
 					return;
 				}
 			}
 		}
-		Cookie cookie = new Cookie(Constants.TUID, UUID.randomUUID().toString());
+		Cookie cookie = new Cookie(NetUtil.SESSION_ID, UUID.randomUUID().toString());
 		cookie.setDomain("chulung.com");
 		cookie.setPath("/");
 		cookie.setMaxAge(Integer.MAX_VALUE);

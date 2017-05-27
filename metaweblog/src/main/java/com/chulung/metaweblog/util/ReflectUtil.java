@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,9 +16,9 @@ import java.util.Map;
  */
 public class ReflectUtil {
 
-    private static  final Logger LOGGER= LoggerFactory.getLogger(ReflectUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReflectUtil.class);
 
-   public  static <T> T reflectFields(T obj, Map<String,Object> valueMap){
+    public static <T> T reflectFields(T obj, Map<String, Object> valueMap) {
         Field[] fields = obj.getClass().getDeclaredFields();
         for (Field field : fields) {
             Object value = valueMap.get(field.getName());
@@ -30,21 +31,23 @@ public class ReflectUtil {
                         field.set(obj, value.toString());
                     } else if (field.getType().getSuperclass() == Struct.class) {
                         Object struct = field.getType().getConstructor().newInstance();
-                        reflectFields(struct,(Map<String, Object>)value);
+                        reflectFields(struct, (Map<String, Object>) value);
                         field.set(obj, struct);
-                    }else if (value.getClass()==Object[].class){
-                        Object[] arr=(Object[])value;
-                        String [] ss=new String[arr.length];
-                        for (int i=0;i<arr.length;i++){
-                            ss[i]=arr[i].toString();
+                    } else if (value.getClass() == Object[].class) {
+                        Object[] arr = (Object[]) value;
+                        String[] ss = new String[arr.length];
+                        for (int i = 0; i < arr.length; i++) {
+                            ss[i] = arr[i].toString();
                         }
-                        field.set(obj,ss);
-                    }else {
+                        field.set(obj, ss);
+                    } else if (field.getType()== Date.class && value.getClass()==Long.class) {
+                        field.set(obj,new Date((long)value));
+                    } else {
                         field.set(obj, field.getType().getConstructor(value.getClass()).newInstance(value));
                     }
                 }
             } catch (Exception e) {
-                LOGGER.error("\nfield={}\nvalue={}\nvalueType={}\nerror={}",new Object[]{field,value, value.getClass(),e});
+                LOGGER.error("\nfield={}\nvalue={}\nvalueType={}\nerror={}", new Object[]{field, value, value.getClass(), e});
             }
         }
         return obj;

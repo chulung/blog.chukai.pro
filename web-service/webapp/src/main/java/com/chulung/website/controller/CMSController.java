@@ -1,5 +1,6 @@
 package com.chulung.website.controller;
 
+import com.chulung.common.util.NetUtil;
 import com.chulung.website.dto.out.ArticleDraftOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.model.ArticleDraft;
@@ -52,11 +53,6 @@ public class CMSController extends BaseController {
     public ResponseEntity logIn(@RequestBody User user, @RequestParam(required = false) String reUrl,
                                 HttpServletResponse response) {
         User backend = userService.logInbackend(user);
-        // 回写sessionId cookie
-        Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, backend.getSessionId());
-        cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie
-        cookie.setMaxAge(600000);
-        response.addCookie(cookie);
         return success();
     }
 
@@ -134,7 +130,7 @@ public class CMSController extends BaseController {
     @RequestMapping("/logOut")
     public ResponseEntity logout(HttpServletResponse response) {
         webSessionSupport.logOut();
-        Cookie cookie = new Cookie(webSessionSupport.SESSION_ID, "");
+        Cookie cookie = new Cookie(NetUtil.SESSION_ID, "");
         cookie.setPath("/");// cookie 必须设置为根路径,否则会导致其他子路径无法拿到cookie
         response.addCookie(cookie);
         return success();

@@ -46,7 +46,7 @@ fdfs:
 search:
       directoryType: RAM # RAM 内存索引 FILE 文件索引
       storePath: /indexstore  # 文件索引路径
-
+      lazy: true
 #metaweblog 可选
 metaweblog:
     configInfos :

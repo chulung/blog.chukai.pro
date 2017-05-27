@@ -31,7 +31,7 @@ public class VisitorInfoServiceImpl implements VisitorInfoService {
 
 	@Override
 	public void insertUserTracker(UserTracker articleVisitor) {
-		articleVisitor.setTuid(NetUtil.getCookieValue(Constants.TUID));
+		articleVisitor.setTuid(NetUtil.getCookieValue(NetUtil.SESSION_ID));
 		String href = articleVisitor.getHref();
 		if (StringUtils.isBlank(href)) {
 			return;
@@ -46,7 +46,7 @@ public class VisitorInfoServiceImpl implements VisitorInfoService {
 		if (href.matches(".*/article/\\d+$")) {
 			Integer articleId = Integer.valueOf(href.substring(href.lastIndexOf('/') + 1));
 			UserTracker record = new UserTracker();
-			record.setTuid(NetUtil.getCookieValue(Constants.TUID));
+			record.setTuid(NetUtil.getCookieValue(NetUtil.SESSION_ID));
 			record.setHref(href);
 			if (userTrackerMapper.selectCount(record) <= 1) {
 				//自增阅读次数
