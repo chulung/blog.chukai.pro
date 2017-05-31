@@ -20,9 +20,13 @@
         <div class="about-author-container">
           <div class="about-author-info">
             <h2 class="widget-title">chulung</h2>
-            <span class="author-subtitle">Developer</span>
+            <span class="author-subtitle">Developer & Writer</span>
             <div class="author-description">
-              <p>目前从事后端开发，关注网站架构，平时也从前端折腾到数据库，感觉正在走向全栈，业余时会下厨，旅行，健身...</p>
+              <p>初龙，Web开发者/作者，这是我的博客，不仅仅是技术博客，因为技术不再是我惟一的追求，也可以与你谈谈人生...</p>
+            </div><!-- .author-description -->
+            <span class="author-subtitle">微信公众号</span>
+            <div class="author-description">
+              <img src="/static/img/weixin.jpg" />
               <router-link to="/about" class="more-link"><span class="moretext">More</span></router-link>
             </div><!-- .author-description -->
             <div class="author-footer">

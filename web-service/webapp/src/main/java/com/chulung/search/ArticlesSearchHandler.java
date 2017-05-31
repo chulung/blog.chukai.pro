@@ -1,19 +1,16 @@
 package com.chulung.search;
 
-import com.chulung.website.dto.out.ArticleOut;
-import com.chulung.website.model.BaseComponent;
-import com.chulung.website.service.ConfigService;
 import com.chulung.search.core.Search;
 import com.chulung.search.core.SearchDocument;
+import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.mapper.ArticleMapper;
 import com.chulung.website.model.Article;
+import com.chulung.website.model.BaseComponent;
+import com.chulung.website.service.ConfigService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -26,22 +23,22 @@ import java.util.stream.Collectors;
  */
 @Component
 @ConfigurationProperties(prefix = "search")
-public class ArticlesSearchHandler extends BaseComponent implements InitializingBean{
+public class ArticlesSearchHandler extends BaseComponent implements InitializingBean {
     private boolean lazy;
     @Autowired
     private ArticleMapper articleMapper;
 
     @Autowired
-    private Search cSearchIndex;
+    private Search search;
 
     @Autowired
     private ConfigService configService;
 
     private void resetIndex() {
         logger.info("开始重建索引......");
-        cSearchIndex.clearAll();
-        logger.info("重建索引完毕......");
+        search.clearAll();
         indexAll();
+        logger.info("重建索引完毕......");
     }
 
     /**
@@ -52,7 +49,7 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
         int pageNum = 1;
         PageHelper.startPage(pageNum, 10);
         while (!(list = this.articleMapper.selectAll()).isEmpty()) {
-            cSearchIndex.createIndex(list.parallelStream().map(article -> new SearchDocument(article.getId().toString(), article.getTitle(), replaceHtmlTag(article))
+            search.createIndex(list.parallelStream().map(article -> new SearchDocument(article.getId().toString(), article.getTitle(), replaceHtmlTag(article))
             ).collect(Collectors.toList()));
             PageHelper.startPage(++pageNum, 10);
         }
@@ -71,13 +68,13 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
         checkLazyLoad();
         Article article = this.articleMapper.selectByPrimaryKey(articleId);
         if (article == null) return;
-        this.cSearchIndex.createIndex(new SearchDocument(article.getId().toString(), article.getTitle(), replaceHtmlTag(article)));
+        this.search.createIndex(new SearchDocument(article.getId().toString(), article.getTitle(), replaceHtmlTag(article)));
     }
 
     public List<ArticleOut> search(String key) {
         checkLazyLoad();
         try {
-            return this.cSearchIndex.search(key).stream().map(cSearchDocument -> {
+            return this.search.search(key).stream().map(cSearchDocument -> {
                 ArticleOut article = new ArticleOut();
                 article.setId(Integer.parseInt(cSearchDocument.getId()));
                 article.setTitle(cSearchDocument.getTitle());
@@ -91,9 +88,9 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
     }
 
     private void checkLazyLoad() {
-        if (lazy){
+        if (lazy) {
             resetIndex();
-            lazy=false;
+            lazy = false;
         }
     }
 

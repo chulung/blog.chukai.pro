@@ -255,7 +255,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         PageHelper.startPage(page == null ? 1 : page, PAGE_SIZE);
         Page<Article> articles = (Page<Article>) articleMapper.selectSummarys(bean);
         PageOut<ArticleOut> pageOut = new PageOut<>(articles.getPageNum(), articles.getPages());
-        pageOut.setList(articles.stream().map(new ArticleOut()::buildFromModel).collect(Collectors.toList()));
+        pageOut.setList(articles.stream().map(a ->
+                new ArticleOut().buildFromModel(a)
+        ).collect(Collectors.toList()));
         return pageOut;
     }
 
@@ -279,7 +281,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         if (StringUtils.isNotBlank(recommendedArticleIds)) {
             ArticleIn dto = new ArticleIn();
             dto.setIds(Arrays.asList(recommendedArticleIds.split(",")).stream().map(Integer::valueOf).collect(Collectors.toList()));
-            return this.articleMapper.selectSummarys(dto).stream().map(new ArticleOut()::buildFromModel).collect(Collectors.toList());
+            return this.articleMapper.selectSummarys(dto).stream().map(a -> new ArticleOut().buildFromModel(a)).collect(Collectors.toList());
         }
         return Collections.emptyList();
     }

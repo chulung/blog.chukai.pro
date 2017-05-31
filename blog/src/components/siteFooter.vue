@@ -22,7 +22,7 @@
             <template v-if="recommendedArticles">
               <ul>
                 <li v-for="item in recommendedArticles">
-                  <router-link :to="'/article/'+item.id">{{item.title}}</router-link>
+                  <router-link :to="'/article/'+item.uri">{{item.title}}</router-link>
                   <span class="post-date">{{item.createTime}}</span>
                 </li>
               </ul>
