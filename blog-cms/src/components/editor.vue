@@ -5,13 +5,13 @@
       <div class="panel-heading">
         <div class="panel-title">
           <span>标题</span>
-          <input id="title" class="title" type="text" v-model="draft.title"/>
-          <input id="isPublish" type="checkBox" checked>发布</input>
+          <input class="title" type="text" v-model="draft.title"/>
+          <input type="checkbox" v-model="publishCheck" >发布</input>
           <select v-model="draft.columnId">
             <option value="">全部</option>
             <option v-for="item in columns" :value="item.id">{{item.cnName}}</option>
           </select>
-          <input type="checkBox" v-model="pushBlog">推送</input>
+          <input type="checkbox" v-model="pushBlog">推送</input>
           <span>tags</span>
           <input type="text" v-model="draft.tags"/>
           <button @click="save">保存</button>
@@ -28,7 +28,7 @@
   import {mapMutations} from 'vuex'
   export default{
     data () {
-      return {draft: {}, columns: {}, pushBlog: false}
+      return {draft: {}, columns: {}, pushBlog: false, publishCheck: true}
     },
     created () {
       let script = document.createElement('script')
@@ -43,6 +43,11 @@
       axios.get('/columns').then(response => {
         this.columns = response.data
       })
+    },
+    watch: {
+      publishCheck: function (newVal) {
+        this.draft.isPublish = newVal ? 'Y' : 'N'
+      }
     },
     methods: {
       initEditor () {
