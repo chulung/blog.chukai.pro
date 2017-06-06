@@ -1,16 +1,13 @@
 package com.chulung.website.controller;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.chulung.website.enumerate.LogLevel;
+import com.chulung.website.enumerate.LogType;
 import com.chulung.website.exception.FileUploadExcetion;
 import com.chulung.website.exception.HttpStatusException;
 import com.chulung.website.exception.ServerRuntimeException;
+import com.chulung.website.mapper.AppLogMapper;
+import com.chulung.website.model.AppLog;
+import com.chulung.website.model.VisitorInfo;
 import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,11 +21,13 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
-import com.chulung.website.enumerate.LogLevel;
-import com.chulung.website.enumerate.LogType;
-import com.chulung.website.mapper.AppLogMapper;
-import com.chulung.website.model.AppLog;
-import com.chulung.website.model.VisitorInfo;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionAdvice extends BaseController {
@@ -87,6 +86,7 @@ public class GlobalExceptionAdvice extends BaseController {
         }
         AppLog record = new AppLog(LogType.EXCEPTION, LogLevel.ERROR, expMessage, LocalDateTime.now());
         appLogMapper.insertSelective(record);
+        logger.error("",excetion);
         return new ResponseEntity(MapUtils.EMPTY_MAP, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

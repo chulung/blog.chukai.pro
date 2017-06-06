@@ -1,16 +1,15 @@
 package com.chulung.website.model;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Transient;
-
 import com.chulung.common.databind.LocalDateTimeDeserializer;
+import com.chulung.common.databind.LocalDateTimeSerializer;
 import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.website.enumerate.PublishStatusEnum;
-import com.chulung.common.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import javax.persistence.Transient;
+import java.time.LocalDateTime;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArticleDraft extends BaseModel {
@@ -53,6 +52,8 @@ public class ArticleDraft extends BaseModel {
      */
     @Transient
     private int pushBlog;
+
+    private String uri;
 
     public String getTags() {
         return tags;
@@ -166,5 +167,11 @@ public class ArticleDraft extends BaseModel {
 
     public void setHtmlContent(String htmlContent) {
         this.htmlContent = htmlContent == null ? null : htmlContent.trim();
+    }
+    public String getUri() {
+        return uri;
+    }
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 }

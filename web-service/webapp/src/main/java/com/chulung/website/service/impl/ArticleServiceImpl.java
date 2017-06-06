@@ -350,6 +350,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         article.setColumnId(articleDraft.getColumnId());
         article.setVersion(articleDraft.getVersion());
         article.setTags(articleDraft.getTags());
+        article.setUri(articleDraft.getUri());
         return article;
     }
 

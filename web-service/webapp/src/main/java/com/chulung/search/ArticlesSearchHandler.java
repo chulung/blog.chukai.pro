@@ -8,9 +8,10 @@ import com.chulung.website.model.Article;
 import com.chulung.website.model.BaseComponent;
 import com.chulung.website.service.ConfigService;
 import com.github.pagehelper.PageHelper;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -23,8 +24,10 @@ import java.util.stream.Collectors;
  */
 @Component
 @ConfigurationProperties(prefix = "search")
-public class ArticlesSearchHandler extends BaseComponent implements InitializingBean {
+public class ArticlesSearchHandler extends BaseComponent implements ApplicationListener<ContextRefreshedEvent>{
+
     private boolean lazy;
+
     @Autowired
     private ArticleMapper articleMapper;
 
@@ -94,14 +97,6 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
         }
     }
 
-    @Override
-    public void afterPropertiesSet() {
-        if (lazy) return;
-        new Thread(() -> {
-            this.resetIndex();
-        }).start();
-    }
-
     public boolean isLazy() {
         return lazy;
     }
@@ -110,4 +105,11 @@ public class ArticlesSearchHandler extends BaseComponent implements Initializing
         this.lazy = lazy;
     }
 
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        if (lazy) return;
+        new Thread(() -> {
+            this.resetIndex();
+        }).start();
+    }
 }

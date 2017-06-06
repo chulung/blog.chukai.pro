@@ -14,6 +14,8 @@
           <input type="checkbox" v-model="pushBlog">推送</input>
           <span>tags</span>
           <input type="text" v-model="draft.tags"/>
+          <span>uri</span>
+          <input type="text" v-model="draft.uri"/>
           <button @click="save">保存</button>
         </div>
       </div>
@@ -28,7 +30,9 @@
   import {mapMutations} from 'vuex'
   export default{
     data () {
-      return {draft: {}, columns: {}, pushBlog: false, publishCheck: true}
+      return {draft: {
+        isPublish:'N'
+      }, columns: {}, pushBlog: false, publishCheck: false}
     },
     created () {
       let script = document.createElement('script')
@@ -68,7 +72,6 @@
         this.draft.htmlContent = window.editor.getHTML()
         const ajax = this.draft.id ? axios.put : axios.post
         const param = axios.toJson(this.draft)
-        console.log(param)
         ajax('/articleDraft', param).then(response => {
           alert('保存成功')
         }).catch(error => {
