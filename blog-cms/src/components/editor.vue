@@ -6,7 +6,7 @@
         <div class="panel-title">
           <span>标题</span>
           <input class="title" type="text" v-model="draft.title"/>
-          <input type="checkbox" v-model="publishCheck" >发布</input>
+          <input type="checkbox" v-model="publishCheck">发布</input>
           <select v-model="draft.columnId">
             <option value="">全部</option>
             <option v-for="item in columns" :value="item.id">{{item.cnName}}</option>
@@ -30,9 +30,14 @@
   import {mapMutations} from 'vuex'
   export default{
     data () {
-      return {draft: {
-        isPublish:'N'
-      }, columns: {}, pushBlog: false, publishCheck: false}
+      return {
+        draft: {
+          isPublish: 'N'
+        },
+        columns: {},
+        pushBlog: false,
+        publishCheck: false
+      }
     },
     created () {
       let script = document.createElement('script')

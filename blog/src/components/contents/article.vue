@@ -57,7 +57,7 @@
         <section class="widget widget_recent_comments">
           <ul v-if="comments">
             <li style="display: list-item;" v-for="item in comments"><span class="comment-author-link"><a
-              :href="item.website">{{item.userName}}:</a></span>
+              :href="item.website || '#'">{{item.userName}}:</a></span>
               <p>{{item.comment}}</p></li>
           </ul>
         </section>
@@ -144,8 +144,8 @@
       },
       submitComment () {
         this.$validator.validateAll().then(() => {
-          axios.post('/', JSON.parse(JSON.stringify(this.$data.comment))).then(response => {
-            console.log('put')
+          axios.post('/comments', JSON.parse(JSON.stringify(this.$data.comment))).then(response => {
+            this.fetchComments()
           }).catch(e => {
             console.log(e)
           })

@@ -18,7 +18,7 @@ public class CommentsController extends BaseController {
     @RequestMapping(value = {""}, method = RequestMethod.POST)
     public
     @ResponseBody
-    ResponseEntity post(Comment comments) {
+    ResponseEntity post(@RequestBody Comment comments) {
         commentsService.postComments(comments);
         return success();
     }

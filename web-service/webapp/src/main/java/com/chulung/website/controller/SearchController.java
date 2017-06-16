@@ -2,6 +2,7 @@ package com.chulung.website.controller;
 
 import com.chulung.search.ArticlesSearchHandler;
 import com.chulung.website.dto.out.ArticleOut;
+import com.chulung.website.dto.out.PageOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class SearchController extends BaseController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<ArticleOut> search(@RequestParam(defaultValue = "CSearch") String word) {
+    PageOut<ArticleOut> search(@RequestParam(defaultValue = "CSearch") String word) {
         if (word.length() > 20) word = word.substring(0, 20);
         return this.articlesSearchHandler.search(word);
     }

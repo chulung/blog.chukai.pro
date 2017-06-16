@@ -6,6 +6,7 @@ import java.util.List;
  * Created by chulung on 2017/3/25.
  */
 public class PageOut<T> {
+    public static final PageOut<ArticleOut> EMPTY = new PageOut<>();
     private List<T> list;
     private Integer page;
     private Integer prePage;
@@ -15,8 +16,8 @@ public class PageOut<T> {
     public PageOut(Integer page, Integer totalPage) {
         this.page = page;
         this.totalPage = totalPage;
-        this.prePage=page==1?null:page-1;
-        this.nextPage=page<totalPage?page+1:null;
+        this.prePage = page == 1 ? null : page - 1;
+        this.nextPage = page < totalPage ? page + 1 : null;
     }
 
     public PageOut(List<T> list) {
@@ -29,6 +30,11 @@ public class PageOut<T> {
 
     public PageOut() {
 
+    }
+
+    public PageOut(int page, int size, List<T> list) {
+        this(page, size);
+        this.list = list;
     }
 
     public List<T> getList() {

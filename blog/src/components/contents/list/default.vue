@@ -7,7 +7,7 @@
               <span class="post-meta-cat"><router-link
                 :to="'/articles?columnId='+article.columnId+'#content'">{{article.columnName}}</router-link></span>
           <h2>
-            <router-link :to="'/article/'+article.uri" rel="bookmark">{{article.title}}</router-link>
+            <router-link :to="'/article/'+article.uri" rel="bookmark" v-html="article.title" class="high-light"></router-link>
           </h2>
         </div><!-- .heading-small -->
 
@@ -21,8 +21,7 @@
               </span><!-- .byline -->
           <span class="reading-estimation">{{article.visitCount}} 点击</span>
         </div><!-- .post-meta -->
-        <p>
-          {{article.summary}}.
+          <p v-html="article.summary" class="high-light">
           <router-link :to="'/article/'+article.uri" class="more-link">
             <span class="moretext">阅读全文</span>
           </router-link><!-- .more-link -->
@@ -37,3 +36,10 @@
     props: ['articles']
   }
 </script>
+<style>
+  .high-light em {
+    color: #ff0000;
+    font-style: normal;
+    font-weight: 100;
+  }
+</style>

@@ -2,7 +2,9 @@ package com.chulung.search;
 
 import com.chulung.search.core.Search;
 import com.chulung.search.core.SearchDocument;
+import com.chulung.website.dto.in.ArticleIn;
 import com.chulung.website.dto.out.ArticleOut;
+import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.mapper.ArticleMapper;
 import com.chulung.website.model.Article;
 import com.chulung.website.model.BaseComponent;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -24,7 +28,7 @@ import java.util.stream.Collectors;
  */
 @Component
 @ConfigurationProperties(prefix = "search")
-public class ArticlesSearchHandler extends BaseComponent implements ApplicationListener<ContextRefreshedEvent>{
+public class ArticlesSearchHandler extends BaseComponent implements ApplicationListener<ContextRefreshedEvent> {
 
     private boolean lazy;
 
@@ -74,19 +78,31 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
         this.search.createIndex(new SearchDocument(article.getId().toString(), article.getTitle(), replaceHtmlTag(article)));
     }
 
-    public List<ArticleOut> search(String key) {
+    public PageOut<ArticleOut> search(String key) {
         checkLazyLoad();
         try {
-            return this.search.search(key).stream().map(cSearchDocument -> {
+            List<SearchDocument> search = this.search.search(key);
+            ArticleIn record = new ArticleIn();
+            record.setIds(search.stream().map(a -> Integer.parseInt(a.getId())).collect(Collectors.toList()));
+            Map<Integer, Article> map = this.articleMapper.selectSummarys(record).stream().collect(Collectors.toMap(Article::getId, Function.identity()));
+            List<ArticleOut> list = search.stream().map(cSearchDocument -> {
                 ArticleOut article = new ArticleOut();
                 article.setId(Integer.parseInt(cSearchDocument.getId()));
                 article.setTitle(cSearchDocument.getTitle());
-                article.setContent(cSearchDocument.getContent());
-                return article;
+                article.setSummary(cSearchDocument.getContent());
+                Article ext = map.get(article.getId());
+                article.setCreateTime(ext.getCreateTime());
+                article.setUri(ext.getUri());
+                article.setAuthor(ext.getAuthor());
+                article.setColumnName(ext.getColumnName());
+                article.setColumnId(ext.getColumnId());
+                article.setVisitCount(ext.getVisitCount());
+                return new ArticleOut().buildFromModel(article);
             }).collect(Collectors.toList());
+            return new PageOut<ArticleOut>(1, list.size(), list);
         } catch (Exception e) {
             errorLog(e);
-            return Collections.emptyList();
+            return PageOut.EMPTY;
         }
     }
 

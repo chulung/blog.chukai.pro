@@ -33,6 +33,7 @@ public class CommentsServiceImpl extends BaseService implements CommentService {
 
     @Override
     public boolean postComments(Comment comments) {
+        checkExistBlank(comments.getArticleId(), comments.getComment(), comments.getUserName());
         String curSessionId = NetUtil.getCurSessionId() + "_cmts";
         Integer count = cache.get(curSessionId, () -> 0);
         if (count > 1) {
@@ -40,7 +41,6 @@ public class CommentsServiceImpl extends BaseService implements CommentService {
         } else {
             cache.put(curSessionId, ++count);
         }
-        checkExistBlank(comments.getArticleId(), comments.getComment(), comments.getUserName());
         comments.setCreateTime(LocalDateTime.now());
         commentsMapper.insertSelective(comments);
         commentsMapper.recalcCommentsCountForArticle(comments.getArticleId());
