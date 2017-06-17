@@ -1,11 +1,12 @@
 package com.chulung.website.service;
 
+import com.chulung.website.model.ArticleVisit;
 import com.chulung.website.model.UserTracker;
-import com.chulung.website.model.VisitorInfo;
 
+/**
+ * Created by chulung on 2017/6/17.
+ */
 public interface VisitorInfoService {
 
-	void insertVisitorInfo(VisitorInfo visitorInfo);
-
-	void insertUserTracker(UserTracker articleVisitor);
+    void handArticleVisit(ArticleVisit articleVisit);
 }

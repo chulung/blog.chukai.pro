@@ -303,9 +303,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     }
 
     @Override
-    public List<Article> findPopularArticles() {
+    public List<Article> recentUpdateArticles() {
         PageHelper.startPage(1, 4);
-        return this.articleMapper.listPopularArticles();
+        return this.articleMapper.recentUpdateArticles();
 
     }
 

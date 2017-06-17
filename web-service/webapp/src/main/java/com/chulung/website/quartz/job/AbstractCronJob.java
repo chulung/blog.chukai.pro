@@ -9,5 +9,5 @@ import com.chulung.website.mapper.AppLogMapper;
 public abstract class AbstractCronJob {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
-	protected AppLogMapper cronJobLogMapper;
+	protected AppLogMapper appLogMapper;
 }

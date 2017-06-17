@@ -25,10 +25,11 @@
                   <li class="menu-item active">
                     <router-link to="/">首页</router-link>
                   </li>
-                  <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">专业</a>
+                  <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">深度</a>
                     <ul class="sub-menu">
                       <li class="menu-item">
-                        <router-link to="/column/skills">技能</router-link>
+                        <router-link to="/column/tech">技术</router-link>
+                        <router-link to="/column/wiki">Wiki</router-link>
                       </li>
                     </ul>
                   </li>
@@ -38,10 +39,9 @@
                   <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">其他</a>
                     <ul class="sub-menu">
                       <li class="menu-item">
-                        <router-link to="/column/manual">手册</router-link>
+                        <router-link to="/column/reprints">他山之石</router-link>
                       </li>
                       <li class="menu-item">
-                        <router-link to="/column/reprints">他山之石</router-link>
                       </li>
                     </ul>
                   </li>

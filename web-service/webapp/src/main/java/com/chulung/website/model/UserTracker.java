@@ -6,7 +6,7 @@ public class UserTracker extends BaseModel {
 
 	private static final long serialVersionUID = -2330020531291304589L;
 	private String ip;
-	private String tuid;
+	private String sessionId;
 	private String href;
 	private String referer;
 	private LocalDateTime createTime;
@@ -20,12 +20,12 @@ public class UserTracker extends BaseModel {
 		this.ip = ip;
 	}
 
-	public String getTuid() {
-		return tuid;
+	public String getSessionId() {
+		return sessionId;
 	}
 
-	public void setTuid(String tuid) {
-		this.tuid = tuid;
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
 	public String getHref() {

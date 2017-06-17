@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class SideBarInfo {
     private List<Archive> archives;
-    private List<Article> popularArticles;
+    private List<Article> recentUpdateArticles;
     private List<Comment> recentlyComments;
 
     public List<Archive> getArchives() {
@@ -21,16 +21,16 @@ public class SideBarInfo {
         this.archives = archives;
     }
 
-    public void setPopularArticles(List<Article> popularArticles) {
-        this.popularArticles = popularArticles;
+    public void setRecentUpdateArticles(List<Article> recentUpdateArticles) {
+        this.recentUpdateArticles = recentUpdateArticles;
     }
 
     public void setRecentlyComments(List<Comment> recentlyComments) {
         this.recentlyComments = recentlyComments;
     }
 
-    public List<Article> getPopularArticles() {
-        return popularArticles;
+    public List<Article> getRecentUpdateArticles() {
+        return recentUpdateArticles;
     }
 
     public List<Comment> getRecentlyComments() {

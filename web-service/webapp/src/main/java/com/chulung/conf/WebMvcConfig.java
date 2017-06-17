@@ -26,7 +26,7 @@ package com.chulung.conf;
 
 import com.chulung.website.filter.EscapeFilter;
 import com.chulung.website.interceptor.AdminInterceptor;
-import com.chulung.website.interceptor.GlobalTrackerInterceptor;
+import com.chulung.website.interceptor.CookieInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -44,13 +44,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     private AdminInterceptor adminInterceptor;
 
     @Autowired
-    private GlobalTrackerInterceptor globalTrackerInterceptor;
+    private CookieInterceptor cookieInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         Assert.notNull(adminInterceptor,"bean backendInterceptor canot found");
-        Assert.notNull(globalTrackerInterceptor,"bean globalTrackerInterceptor canot found");
-        registry.addInterceptor(globalTrackerInterceptor).addPathPatterns("/**");
+        Assert.notNull(cookieInterceptor,"bean cookieInterceptor canot found");
+        registry.addInterceptor(cookieInterceptor).addPathPatterns("/**");
         registry.addInterceptor(adminInterceptor).addPathPatterns("/api/cms/**").excludePathPatterns("/api/cms/login");
         super.addInterceptors(registry);
     }

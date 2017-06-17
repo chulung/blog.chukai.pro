@@ -19,7 +19,7 @@ public interface ArticleService {
 
     List<ArticleOut> findRecommendedArticles();
 
-    List<Article> findPopularArticles();
+    List<Article> recentUpdateArticles();
 
     List<Article> findRelevancyByArticleId(Integer id);
 

@@ -22,7 +22,7 @@ public interface ArticleMapper extends BaseMapper<Article> {
 	 * 查询热门文章
 	 * @return
 	 */
-    List<Article> listPopularArticles();
+    List<Article> recentUpdateArticles();
 
 	/**
 	 *  根据文章id查询关联文章 标签相同

@@ -3,56 +3,33 @@ package com.chulung.website.service.impl;
 import java.time.LocalDateTime;
 
 import com.chulung.website.mapper.ArticleMapper;
-import com.chulung.website.mapper.UserTrackerMapper;
-import com.chulung.website.mapper.VisitorInfoMapper;
-import com.chulung.website.model.UserTracker;
-import com.chulung.website.model.VisitorInfo;
-import org.apache.commons.lang3.StringUtils;
+import com.chulung.website.mapper.ArticleVisitMapper;
+import com.chulung.website.model.ArticleVisit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
-import com.chulung.website.constant.Constants;
 import com.chulung.website.service.VisitorInfoService;
-import com.chulung.common.util.NetUtil;
 
 @Service
-public class VisitorInfoServiceImpl implements VisitorInfoService {
-	@Autowired
-	private VisitorInfoMapper visitorMapper;
-	@Autowired
-	private UserTrackerMapper userTrackerMapper;
-	@Autowired
-	private ArticleMapper articleMapper;
+public class VisitorInfoServiceImpl extends BaseService implements VisitorInfoService {
+    @Autowired
+    private ArticleVisitMapper articleVisitMapper;
+    @Autowired
+    private ArticleMapper articleMapper;
 
-	@Override
-	public void insertVisitorInfo(VisitorInfo visitorInfo) {
-		visitorMapper.insertSelective(visitorInfo);
-	}
-
-	@Override
-	public void insertUserTracker(UserTracker articleVisitor) {
-		articleVisitor.setTuid(NetUtil.getCookieValue(NetUtil.SESSION_ID));
-		String href = articleVisitor.getHref();
-		if (StringUtils.isBlank(href)) {
-			return;
-		}
-		int indexOf = href.indexOf('?');
-		if (indexOf > 0) {
-			articleVisitor.setParamsString(href.substring(indexOf));
-			articleVisitor.setHref((href = href.substring(0, indexOf)));
-		}
-		articleVisitor.setCreateTime(LocalDateTime.now());
-		userTrackerMapper.insertSelective(articleVisitor);
-		if (href.matches(".*/article/\\d+$")) {
-			Integer articleId = Integer.valueOf(href.substring(href.lastIndexOf('/') + 1));
-			UserTracker record = new UserTracker();
-			record.setTuid(NetUtil.getCookieValue(NetUtil.SESSION_ID));
-			record.setHref(href);
-			if (userTrackerMapper.selectCount(record) <= 1) {
-				//自增阅读次数
-				articleMapper.incrementVisitCount(articleId);
-			}
-		}
-	}
+    @Override
+    public void handArticleVisit(ArticleVisit articleVisitor) {
+        checkExistBlank(articleVisitor.getArticleId(), articleVisitor.getSessionId());
+        articleVisitor.setCreateTime(LocalDateTime.now());
+        articleVisitor.setType(1);
+        try {
+            articleVisitMapper.insertSelective(articleVisitor);
+            //自增阅读次数
+            articleMapper.incrementVisitCount(articleVisitor.getArticleId());
+        } catch (DuplicateKeyException e) {
+            //igron
+        }
+    }
 
 }

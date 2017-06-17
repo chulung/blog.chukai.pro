@@ -39,7 +39,7 @@ public class SiteServiceImpl implements SiteService {
     public SideBarInfo getSideBarInfo() {
         SideBarInfo sideBarInfo = new SideBarInfo();
         sideBarInfo.setArchives(this.articleService.getArchive());
-        sideBarInfo.setPopularArticles(this.articleService.findPopularArticles());
+        sideBarInfo.setRecentUpdateArticles(this.articleService.recentUpdateArticles());
         sideBarInfo.setRecentlyComments(this.commentsService.findRecentlyComments());
         return sideBarInfo;
     }

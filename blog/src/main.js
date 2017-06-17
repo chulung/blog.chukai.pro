@@ -8,7 +8,6 @@ import router from './router'
 import axios from 'axios'
 import Vuex from 'Vuex'
 import VeeValidate from 'vee-validate'
-import cookie from 'js-cookie'
 Vue.config.productionTip = false
 axios.defaults.baseURL = process.env.NODE_ENV !== 'production' ? 'http://test.com/api' : 'https://chulung.com/api'
 Vue.use(VeeValidate)

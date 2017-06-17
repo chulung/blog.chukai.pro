@@ -94,6 +94,8 @@
 </template>
 <script>
   import axios from 'axios'
+  import common from '@/common'
+  import lscache from 'lscache'
   const $ = require('jQuery')
   const config = require('@/blog-config.js').default
   export default {
@@ -125,6 +127,7 @@
           this.comment.articleId = this.article.id
           this.loading = false
           document.title = `${this.article.title}-${config.name}`
+          this.postUT()
         })
       },
       fetchComments () {
@@ -161,6 +164,21 @@
       },
       defaultPic: function (pic) {
         return pic || '/static/img/logo.jpg'
+      },
+      postUT: function () {
+        if (!this.article.id) {
+          return
+        }
+        let articleKey = `art_${this.article.id}`
+        if (lscache.get(articleKey)) {
+          return
+        }
+        axios.post('/tracker/articleClick', {
+          'articleId': this.article.id,
+          'sessionId': common.getSessionId()
+        }).then(response => {
+          lscache.set(articleKey, '1')
+        })
       }
     }
   }

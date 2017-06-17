@@ -1,7 +1,10 @@
 package com.chulung.website.quartz.job;
 
 import com.chulung.website.constant.Constants;
+import com.chulung.website.enumerate.LogLevel;
+import com.chulung.website.enumerate.LogType;
 import com.chulung.website.mapper.ArticleMapper;
+import com.chulung.website.model.AppLog;
 import com.chulung.website.model.Article;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.chulung.website.mapper.CommentMapper;
 
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -24,12 +28,13 @@ public class CommonCronJob extends AbstractCronJob {
 
     @Scheduled(cron = "0 0 1 * * ?")
     public void execute() {
+        appLogMapper.insert(new AppLog(LogType.CRON_JOB_LOG, LogLevel.INFO,"common cron start"));
         List<Article> articles = articleMapper.selectAll();
         // 重新计算评论数
         recalcCommentsCount(articles);
         //重新计算热门排行
-
         recalcIndexRank(articles);
+        appLogMapper.insert(new AppLog(LogType.CRON_JOB_LOG, LogLevel.INFO,"common cron end"));
     }
 
     private void recalcIndexRank(List<Article> articles) {

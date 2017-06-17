@@ -34,7 +34,7 @@ public class SiteServiceImplTest extends SpringbootBaseTest {
     public void getSideBarInfo() throws Exception {
         SideBarInfo sideBarInfo = siteService.getSideBarInfo();
         assertThat(sideBarInfo.getArchives().get(0)).isEqualToComparingFieldByField(this.articleService.getArchive().get(0));
-        assertThat(sideBarInfo.getPopularArticles().get(0)).isEqualToComparingFieldByField(this.articleService.findPopularArticles().get(0));
+        assertThat(sideBarInfo.getRecentUpdateArticles().get(0)).isEqualToComparingFieldByField(this.articleService.recentUpdateArticles().get(0));
         assertThat(sideBarInfo.getRecentlyComments().get(0)).isEqualToComparingFieldByField(this.commentService.findRecentlyComments().get(0));
     }
 }
