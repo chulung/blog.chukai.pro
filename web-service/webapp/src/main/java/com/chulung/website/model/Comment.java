@@ -21,6 +21,8 @@ public class Comment extends BaseModel {
 
 	private String website;
 
+	private String uri;
+
 	//按时间倒序
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@OrderBy("desc")
@@ -90,5 +92,13 @@ public class Comment extends BaseModel {
 
 	public void setEmail(String email) {
 		this.email = email == null ? null : email.trim();
+	}
+
+	public String getUri() {
+		return uri;
+	}
+
+	public void setUri(String uri) {
+		this.uri = uri;
 	}
 }

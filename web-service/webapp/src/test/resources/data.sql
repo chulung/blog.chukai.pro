@@ -167,6 +167,7 @@ DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id`          INT(10)      NOT NULL AUTO_INCREMENT,
   `article_id`  INT(10)      NOT NULL  COMMENT '文章id',
+  `uri`  VARCHAR(200)      NOT NULL  COMMENT '文章uri',
   `reply_id`    INT(10)               DEFAULT NULL  COMMENT '回复的comment.id',
   `comment`     VARCHAR(500) NOT NULL DEFAULT '',
   `create_time` DATETIME     NOT NULL,
@@ -183,7 +184,7 @@ CREATE TABLE `comments` (
 -- ----------------------------
 -- Records of comments
 -- ----------------------------
-INSERT INTO comments VALUES (1, 1, NULL, 'comment', now(), 'test', '123@asda.com', 'N', NULL);
+INSERT INTO comments VALUES (1, 1, 'uri',NULL, 'comment', now(), 'test', '123@asda.com', 'N', NULL);
 -- ----------------------------
 -- Table structure for `config`
 -- ----------------------------

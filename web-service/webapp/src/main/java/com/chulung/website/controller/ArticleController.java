@@ -22,11 +22,11 @@ public class ArticleController extends BaseController {
     @Autowired
     private ColumnSevice columnSevice;
 
-    @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/article/{uri}", method = RequestMethod.GET)
     public
     @ResponseBody
-    Article getArticleById(@PathVariable String id) {
-        return articleService.findArticleByUri(id);
+    Article getArticleById(@PathVariable String uri) {
+        return articleService.findArticleByUri(uri);
     }
 
     @RequestMapping(value = "/article/relevancy/{id}")

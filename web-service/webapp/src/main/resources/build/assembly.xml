@@ -8,7 +8,7 @@
 
     <fileSets>
         <fileSet>
-            <directory>libs</directory>
+            <directory>${project.basedir}/../../libs</directory>
             <outputDirectory>\</outputDirectory>
         </fileSet>
     </fileSets>

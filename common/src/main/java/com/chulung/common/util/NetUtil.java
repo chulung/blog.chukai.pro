@@ -1,6 +1,5 @@
 package com.chulung.common.util;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -13,6 +12,7 @@ public class NetUtil {
 
     public final static String SESSION_ID = "session_id";
     public static final String USER_AGENT = "User-Agent";
+    private static final Pattern DOMAIN_PATTERN = Pattern.compile("\\w+\\.com");
 
     public static String getIpAddr() {
         HttpServletRequest request = getRequest();
@@ -61,9 +61,9 @@ public class NetUtil {
     }
 
     public static String getPrimaryDomain() {
-        Pattern p = Pattern.compile("\\w+\\.com");
         StringBuffer requestURL = getRequest().getRequestURL();
-        Matcher m = p.matcher(requestURL);
+        System.out.print(getRequest());
+        Matcher m = DOMAIN_PATTERN.matcher(requestURL);
         m.find();
         return m.group();
     }

@@ -125,6 +125,7 @@
         axios.get('/article/' + (this.$route.meta.id || this.$route.params.uri)).then(response => {
           this.article = response.data
           this.comment.articleId = this.article.id
+          this.comments.uri = this.article.uri
           this.loading = false
           document.title = `${this.article.title}-${config.name}`
           this.postUT()
