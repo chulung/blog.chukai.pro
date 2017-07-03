@@ -16,11 +16,7 @@
         <version>1.5.3.RELEASE</version>
     </parent>
     <modules>
-        <module>test</module>
-        <module>common</module>
-        <module>metaweblog</module>
-        <module>search</module>
-        <module>web-service</module>
+        <module>backend</module>
     </modules>
     <licenses>
         <license>

@@ -1,9 +1,9 @@
 /.idea
-common/target/
-rpc/target/
+backend/common/target/
+backend/rpc/target/
 node_modules/
 application-local.yml
 *.iml
-metaweblog/target/
-search/target/
-test/target/
+backend/metaweblog/target/
+backend/search/target/
+backend/test/target/

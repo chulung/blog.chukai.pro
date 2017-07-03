@@ -151,8 +151,6 @@
             self = self.parentElement
           }
         }
-
-
       },
       hideNav: function () {
         var container = document.getElementById('site-navigation')

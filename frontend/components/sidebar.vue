@@ -20,7 +20,7 @@
             </div><!-- .author-description -->
             <span class="author-subtitle">微信公众号</span>
             <div class="author-description">
-              <img src="/static/img/weixin.jpg" />
+              <img src="/img/weixin.jpg" />
               <router-link to="/about" class="more-link"><span class="moretext">More</span></router-link>
             </div><!-- .author-description -->
             <div class="author-footer">
