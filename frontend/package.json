@@ -9,7 +9,7 @@
     "js-cookie": "^2.1.4",
     "lscache": "^1.1.0",
     "nuxt": "latest",
-    "vee-validate": "^2.0.0-rc.6"
+    "vee-validate": "^2.0.0-rc.5"
   },
   "config": {
     "nuxt": {

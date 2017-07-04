@@ -11,4 +11,13 @@ function getSessionId () {
   }
   return sessionId
 }
-export default {getSessionId}
+function toParamString (param) {
+  let arr = []
+  for (const k of Object.keys(param)) {
+    if (!param[k]) continue
+    arr.push(`${k}=${param[k]}`)
+  }
+  return arr.join('&')
+}
+
+export default {getSessionId, toParamString}

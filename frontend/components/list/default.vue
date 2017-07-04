@@ -29,6 +29,7 @@
       </div><!-- .post-content -->
     </div><!-- .post-container -->
   </article><!-- .post -->
+
   </div>
 </template>
 <script>

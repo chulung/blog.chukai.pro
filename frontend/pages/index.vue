@@ -4,29 +4,38 @@
       <!-- 组件在 vm.currentview 变化时改变！展示不同样式的列表 -->
     </component>
     <nav class="navigation posts-navigation" role="navigation">
-      <div class="nav-links" style="z-index: -1">
-        <div class="nav-next" v-if="nextPage">
-          <a @click="loadMore">加载更多<i class="fa fa-spinner" :class="{'fa-pulse':loading}"></i></a>
+      <h2 class="screen-reader-text">Posts navigation</h2>
+      <div class="nav-links">
+        <div class="nav-previous" :class="{ none : !page.prePage}">
+          <a :href="preHref">上一页</a>
         </div>
+        <div class="nav-next" :class="{ none : !page.nextPage}"><a :href="nextHref">下一页</a></div>
       </div>
     </nav><!-- .navigation -->
   </div><!-- .col-md-8 -->
 </template>
 <script>
   import axios from '~plugins/axios'
-  import defaultView from '~components//list/default.vue'
-  import manualView from '~components//list/manual.vue'
-  import travelView from '~components//list/travel.vue'
+  import defaultView from '~components/list/default.vue'
+  import manualView from '~components/list/manual.vue'
+  import travelView from '~components/list/travel.vue'
+  import common from '~plugins/common'
   const paths = {
     'index': '/articles',
     'articles': '/articles',
-    'tag': '/tag/:tag',
-    'column': '/articles',
+    'column-columnName': '/articles',
     'search': '/search'
   }
   export default{
     data () {
-      return {currentView: 'defaultView', articles: [], nextPage: null, columnId: null, loading: false, preDelay: 0}
+      return {
+        currentView: 'defaultView',
+        articles: [],
+        columnId: null,
+        page: [],
+        preHref: '#',
+        nextHref: '#'
+      }
     },
     components: {defaultView, manualView, travelView},
     created () {
@@ -38,31 +47,34 @@
       }
     },
     methods: {
-      loadMore () {
-        this.fetchArticleData(true)
+      getPageUrl: function (params, page) {
+        params['page'] = page
+        if (this.$route.path.indexOf('/column/') > -1) {
+          params['column'] = ''
+        }
+        return `${this.$route.path}?${common.toParamString(params)}`
       },
-      fetchArticleData (loadMore) {
-        this.loading = true
-        let path = paths[this.$route.name].replace(':tag', this.$route.params.tag)
-        axios.get(path, {
-          params: {
-            page: loadMore ? this.nextPage : this.$route.query.page,
-            column: this.$route.params.column,
-            year: this.$route.query.year,
-            month: this.$route.query.month,
-            word: this.$route.query.word
-          }
+      fetchArticleData () {
+        axios.get(paths[this.$route.name], {
+          params: this.getParams()
         }).then(response => {
-          if (loadMore) {
-            this.articles.push.apply(this.articles, response.data.list)
-          } else {
-            this.articles = response.data.list
-          }
-          this.nextPage = response.data.nextPage
-          this.loading = false
+          this.articles = response.data.list
+          this.page = response.data
+          let params = this.getParams()
+          this.preHref = this.getPageUrl(params, this.page.prePage)
+          this.nextHref = this.getPageUrl(params, this.page.nextPage)
         }).catch(e => {
           console.log(e)
         })
+      },
+      getParams () {
+        return {
+          column: this.$route.params.columnName,
+          page: this.$route.query.page,
+          year: this.$route.query.year,
+          month: this.$route.query.month,
+          word: this.$route.query.word
+        }
       }
     }
   }

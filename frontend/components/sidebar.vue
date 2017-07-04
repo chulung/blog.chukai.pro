@@ -13,15 +13,15 @@
       <section class="widget danish_widget_about transition-item" key="about">
         <div class="about-author-container">
           <div class="about-author-info">
-            <h2 class="widget-title">chulung</h2>
+            <h2 class="widget-title">初龙(chulung)</h2>
             <span class="author-subtitle">Developer & Writer</span>
             <div class="author-description">
-              <p>初龙，Web开发者/作者，这是我的博客，不仅仅是技术博客，因为技术不再是我惟一的追求，也可以与你谈谈人生...</p>
+              <p>这是我的博客，不仅仅是技术博客，因为技术不再是我惟一的追求，也可以与你谈谈人生...</p>
             </div><!-- .author-description -->
             <span class="author-subtitle">微信公众号</span>
             <div class="author-description">
               <img src="/img/weixin.jpg" />
-              <router-link to="/about" class="more-link"><span class="moretext">More</span></router-link>
+              <router-link to="/article/about" class="more-link"><span class="moretext">More</span></router-link>
             </div><!-- .author-description -->
             <div class="author-footer">
               <div class="author-social">

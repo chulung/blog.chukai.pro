@@ -25,43 +25,22 @@
                   <li class="menu-item active">
                     <router-link to="/">首页</router-link>
                   </li>
-                  <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">深度</a>
-                    <ul class="sub-menu">
-                      <li class="menu-item">
-                        <router-link to="/column/tech">技术</router-link>
-                        <router-link to="/column/wiki">Wiki</router-link>
-                      </li>
-                    </ul>
+                  <li class="menu-item">
+                    <router-link to="/column/depth">深度</router-link>
+                  </li>
+                  <li class="menu-item">
+                    <router-link to="/column/breadth">广度</router-link>
                   </li>
                   <li class="menu-item">
                     <router-link to="/column/sensibility">心悟</router-link>
                   </li>
-                  <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">其他</a>
-                    <ul class="sub-menu">
-                      <li class="menu-item">
-                        <router-link to="/column/reprints">他山之石</router-link>
-                      </li>
-                      <li class="menu-item">
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">业余</a>
-                    <ul class="sub-menu">
-                      <li class="menu-item">
-                        <router-link to="/column/travel">旅行</router-link>
-                      </li>
-                      <li class="menu-item">
-                        <router-link to="/column/exercise">健身</router-link>
-                      </li>
-                      <li class="menu-item">
-                        <router-link to="/column/cooking ">烹饪</router-link>
-                      </li>
-                    </ul>
+                  <li class="menu-item">
+                    <router-link to="/column/amateur">生活</router-link>
                   </li>
                   <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">关于</a>
                     <ul class="sub-menu">
                       <li class="menu-item">
-                        <router-link to="/about">关于我</router-link>
+                        <router-link to="/article/about">关于我</router-link>
                       </li>
                       <li class="menu-item"><a href="#">简历</a></li>
                     </ul>
@@ -137,7 +116,6 @@
         }
         function toggleFocus () {
           var self = this
-
           // Move up through the ancestors of the current link until we hit .nav-menu.
           while (self.className.indexOf('nav-menu') === -1) {
             // On li elements toggle the class .focus.

@@ -72,7 +72,7 @@
           <div class="form-group">
             <div class="col-sm-4">
               <input v-model="comment.userName" name="userName" value="" class="form-control" placeholder="*名字 :"
-                     type="text" maxlength="20" v-validate="'required'" title="" >
+                     type="text" maxlength="20" v-validate="'required'" title="">
             </div>
             <div class="col-sm-4">
               <input name="email" value="" v-validate="'required|email'" class="form-control" placeholder="*邮箱 :"
@@ -84,7 +84,7 @@
             </div>
           </div>
           <p class="form-submit">
-            <input name="submit" @click="submitComment" class="btn btn-danish btn-lg btn-block" value="提交"
+            <input name="submit" @click="validateBeforeSubmit" class="btn btn-danish btn-lg btn-block" value="提交"
                    type="button">
           </p>
         </form><!-- #commentform -->
@@ -120,7 +120,7 @@
     },
     methods: {
       fetchArticleData () {
-        axios.get('/article/' + (this.$route.meta.id || this.$route.params.uri)).then(response => {
+        axios.get(`/article/${this.$route.params.uri}`).then(response => {
           this.article = response.data
           this.comment.articleId = this.article.id
           this.comments.uri = this.article.uri
@@ -149,29 +149,35 @@
           console.log(e)
         })
       },
-      submitComment () {
-        console.log(this.$validator)
-        this.$validator.validateAll().then(() => {
+      validateBeforeSubmit () {
+        this.$validator.validateAll().then(result => {
+          if (!result) {
+            for (const k of Object.keys(this.comment)) {
+              let msg = this.errors.first(k)
+              if (msg) {
+                window.$(document.getElementsByName(k)[0]).attr('title', msg).tooltip().focus()
+                break
+              }
+            }
+            return
+          }
+
           axios.post('/comments', JSON.parse(JSON.stringify(this.$data.comment))).then(response => {
             this.fetchComments()
           }).catch(e => {
+            if (e.response.status === 409) {
+              alert('操作太频繁！')
+            }
             console.log(e)
           })
-        }).catch(() => {
-          for (const k of Object.keys(this.comment)) {
-            let msg = this.errors.first(k)
-            if (msg) {
-              window.$(document.getElementsByName(k)[0]).attr('title', msg).tooltip().focus()
-              break
-            }
-          }
         })
       },
       defaultPic: function (pic) {
         return pic || '/img/logo.jpg'
       },
       postUT: function () {
-        if (!this.article.id) {
+        // 排除非浏览器环境
+        if (!process.BROWSER_BUILD || !this.article.id) {
           return
         }
         let articleKey = `art_${this.article.id}`
