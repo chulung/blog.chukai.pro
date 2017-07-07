@@ -7,3 +7,4 @@ application-local.yml
 backend/metaweblog/target/
 backend/search/target/
 backend/test/target/
+/frontend/yarn.lock

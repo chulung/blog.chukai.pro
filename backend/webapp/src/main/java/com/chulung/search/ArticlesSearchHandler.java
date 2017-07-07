@@ -98,7 +98,7 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
                 article.setVisitCount(ext.getVisitCount());
                 return new ArticleOut().buildFromModel(article);
             }).collect(Collectors.toList());
-            return new PageOut<ArticleOut>(1, list.size(), list);
+            return new PageOut<ArticleOut>(list);
         } catch (Exception e) {
             errorLog(e);
             return PageOut.EMPTY;

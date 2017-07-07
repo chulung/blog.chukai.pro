@@ -49,10 +49,10 @@ public class ArticleController extends BaseController {
         return articleService.findArticlePage(page, column, year, month);
     }
 
-    @RequestMapping(value = "/tag/{tagName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/tag", method = RequestMethod.GET)
     public
     @ResponseBody
-    PageOut<ArticleOut> getArticlesByTag(@PathVariable String tagName) {
-        return this.articleService.getArticlesByTagName(tagName);
+    PageOut<ArticleOut> getArticlesByTag(@RequestParam String tag) {
+        return this.articleService.getArticlesByTagName(tag);
     }
 }

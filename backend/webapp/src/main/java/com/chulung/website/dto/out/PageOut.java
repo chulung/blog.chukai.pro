@@ -32,8 +32,8 @@ public class PageOut<T> {
 
     }
 
-    public PageOut(int page, int size, List<T> list) {
-        this(page, size);
+    public PageOut(int page, int totalPage, List<T> list) {
+        this(page, totalPage);
         this.list = list;
     }
 

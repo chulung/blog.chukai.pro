@@ -1,4 +1,4 @@
 <script>
-  import column from '~pages/index'
-  export default column
+  import arts from '~pages/articles'
+  export default arts
 </script>

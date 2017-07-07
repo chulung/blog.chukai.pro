@@ -287,7 +287,7 @@ hr { border-top-color: rgb(247, 247, 247); }
 .entry-list .entry-list-title h2 { margin-top: 10px; margin-bottom: 15px; }
 .entry-list .entry-list-title h2 a { font-size: 28px; line-height: 28px; font-weight: 700; color: rgb(43, 43, 43); }
 .entry-list .entry-list-title h2 a:hover { color: rgb(107, 110, 128); }
-.more-link { display: block; margin-top: 30px; margin-left: auto; margin-right: auto; text-align: center; background-image: url("read_more.png"); background-repeat: repeat-x; background-position: 10px center; }
+.more-link { display: block; margin-top: 30px; margin-left: auto; margin-right: auto; text-align: center; background-image: url("/img/read_more.png"); background-repeat: repeat-x; background-position: 10px center; }
 .more-link:focus, .more-link:hover { color: rgb(60, 75, 120); }
 .more-link:focus > .moretext, .more-link:hover > .moretext { color: rgb(60, 75, 120); border-radius: 14px; transition: all 0.3s linear 0s; }
 .more-link .moretext { display: inline-block; padding: 0px 12px; font-size: 12px; text-transform: uppercase; color: rgb(107, 110, 128); border: 1px solid rgb(224, 224, 224); border-radius: 4px; background-color: rgb(255, 255, 255); transition: all 0.3s linear 0s; }

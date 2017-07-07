@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /markdown/examples
-Disallow: /backend
-Disallow: /dfs
-Disallow: /group1
-Disallow: /smelting
-Disallow: /error

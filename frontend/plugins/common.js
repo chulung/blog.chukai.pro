@@ -20,4 +20,8 @@ function toParamString (param) {
   return arr.join('&')
 }
 
-export default {getSessionId, toParamString}
+function toJson (vueData) {
+  return JSON.parse(JSON.stringify(vueData))
+}
+
+export default {getSessionId, toParamString, toJson}

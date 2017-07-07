@@ -319,7 +319,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         if (CollectionUtils.isEmpty(articleIds)) return new PageOut<>();
         ArticleIn art = new ArticleIn();
         art.setIds(articleIds);
-        return new PageOut<>(this.articleMapper.selectSummarys(art).stream().map(new ArticleOut()::buildFromModel).collect(Collectors.toList()));
+        return new PageOut<>(this.articleMapper.selectSummarys(art).stream().map(a->new ArticleOut().buildFromModel(a)).collect(Collectors.toList()));
     }
 
     @Override

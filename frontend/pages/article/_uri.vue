@@ -1,6 +1,9 @@
 <template>
   <div>
-    <article class="post format-standard hentry " v-if="article">
+    <header class="page-header" v-show="errorMsg">
+      <h1 class="page-title">{{errorMsg}}</h1>
+    </header>
+    <article class="post format-standard hentry " v-if="article.id">
       <header class="entry-header">
         <div class="heading-title">
           <h1 class="entry-title">{{article.title}}</h1>
@@ -22,7 +25,7 @@
       <p>原文链接:<a :href="'https://chulung.com/article/'+article.uri">https://chulung.com/article/{{article.uri}}</a>
       </p>
       <footer class="entry-footer">
-        <span class="cat-links">发表在 <a href="https://chulung.com">chulung's craft</a></span>
+        <span class="cat-links">发表在 <a href="https://chulung.com">初龙的博客</a></span>
         <template v-if="article.tags">
           <span class="tags-links">标签
           <template v-for="tag in article.tags.split(',')">
@@ -32,7 +35,7 @@
         </template>
       </footer><!-- .entry-footer -->
     </article><!-- .post -->
-    <div class="related-posts" :class="{none:loading}" key="related" v-if="relevancies">
+    <div class="related-posts" key="related" v-if="relevancies.length">
       <h3>相似文章</h3>
       <div class="row">
         <div class="col-md-3 col-sm-6" v-for="item in relevancies">
@@ -49,13 +52,13 @@
         </div><!-- .col-md-3 -->
       </div><!-- .row -->
     </div>
-    <div class="comments-area" :class="{none:loading}" key="comments">
+    <div class="comments-area" key="comments" v-show="!errorMsg">
       <div class="comment-respond">
         <h3 class="comment-reply-title">评论
           <small></small>
         </h3>
-        <section class="widget widget_recent_comments">
-          <ul v-if="comments">
+        <section class="widget widget_recent_comments" v-if="comments.length">
+          <ul>
             <li style="display: list-item;" v-for="item in comments"><span class="comment-author-link"><a
               :href="item.website || '#'">{{item.userName}}:</a></span>
               <p>{{item.comment}}</p></li>
@@ -97,39 +100,48 @@
   import common from '~plugins/common'
   import lscache from 'lscache'
   export default {
-    data () {
+    head () {
       return {
-        article: {},
-        comments: {},
-        relevancies: {},
-        loading: true,
-        comment: {comment: '', userName: '', email: '', website: '', articleId: ''}
+        title: this.article.title
       }
     },
-    created () {
-      this.fetchArticleData()
+    data () {
+      return {
+        article: {title: ' '},
+        comments: [],
+        relevancies: [],
+        comment: {},
+        errorMsg: ''
+      }
     },
     watch: {
       article (newValue, oldValue) {
         this.fetchComments()
         this.fetchRelevancy()
-      },
-      $route (to, from) {
-        this.fetchArticleData()
       }
     },
-    methods: {
-      fetchArticleData () {
-        axios.get(`/article/${this.$route.params.uri}`).then(response => {
-          this.article = response.data
-          this.comment.articleId = this.article.id
-          this.comments.uri = this.article.uri
-          this.loading = false
-          this.postUT()
-        }).catch(e => {
-          console.log(e)
+    asyncData ({params, error}) {
+      return axios.get(`/article/${params.uri}`)
+        .then((res) => {
+          return {
+            article: res.data,
+            comment: {
+              comment: '',
+              userName: '',
+              email: '',
+              articleId: res.data.id,
+              uri: res.data.uri
+            }
+          }
         })
-      },
+        .catch((e) => {
+          return {errorMsg: (e.response.status === 404 ? '哎呀！没有找到这篇文章。' : '查询文章出错了QAQ')}
+        })
+    },
+    mounted () {
+      this.postUT()
+    },
+    methods: {
       fetchComments () {
         axios.get('/comments', {
           params: {
@@ -162,7 +174,7 @@
             return
           }
 
-          axios.post('/comments', JSON.parse(JSON.stringify(this.$data.comment))).then(response => {
+          axios.post('/comments', common.toJson(this.$data.comment)).then(response => {
             this.fetchComments()
           }).catch(e => {
             if (e.response.status === 409) {

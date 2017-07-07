@@ -33,7 +33,7 @@
         <div class="col-sm-6">
           <section class="widget danish_widget_site_info">
             <div class="site-info">
-              <h3 class="site-brand"><i class="fa fa-user-circle"></i> chulung.</h3>
+              <h3 class="site-brand"><i class="fa fa-user-circle"></i> 初龙.</h3>
               <p>上海</p>
               <p>chulung@chulung.com</p>
             </div><!-- .site-info -->
