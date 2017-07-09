@@ -23,9 +23,9 @@
   const paths = {
     'index': '/articles',
     'articles': '/articles',
-    'column-columnName': '/articles',
+    'column-column_name': '/articles',
     'search': '/search',
-    'tag-tagName': '/tag'
+    'tag-tag_name': '/tag'
   }
   const columnNames = {
     'depth': '深度',
@@ -35,8 +35,8 @@
   }
   function getParams ({params, query}) {
     return {
-      column: params.columnName,
-      tag: params.tagName,
+      column: params.column_name,
+      tag: query.tag,
       page: query.page,
       year: query.year,
       month: query.month,
@@ -45,8 +45,7 @@
   }
   function getPageUrl ({path, name}, params, pageNum) {
     params['page'] = pageNum
-    if (name === 'column-columnName') {
-      console.log(name)
+    if (name === 'column-column_name') {
       params['column'] = ''
     }
     return `${path}?${common.toParamString(params)}`

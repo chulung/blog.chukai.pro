@@ -9,7 +9,7 @@
           <section class="widget widget_tag_cloud">
             <h3 class="widget-title">全部标签</h3>
             <div id="all-tag" class="tagcloud">
-              <router-link v-for="item in tags" :to="'/tag/' + item.tagName" key="item.id">
+              <router-link v-for="item in tags" :to="'/tag?tag=' + item.tagName" key="item.id">
                 {{item.tagName}}({{item.count}})
               </router-link>
             </div>
