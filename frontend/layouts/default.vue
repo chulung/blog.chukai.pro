@@ -23,10 +23,10 @@
 </template>
 
 <script>
-  import navigation from '~components/navigation.vue'
-  import sitefooter from '~components/sitefooter.vue'
-  import copyright from '~components/copyright.vue'
-  import sidebar from '~components/sidebar.vue'
+  import navigation from '../components/navigation.vue'
+  import sitefooter from '../components/sitefooter.vue'
+  import copyright from '../components/copyright.vue'
+  import sidebar from '../components/sidebar.vue'
 
   export default {
     components: {
