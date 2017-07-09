@@ -140,6 +140,8 @@
     },
     mounted () {
       this.postUT()
+      this.fetchComments()
+      this.fetchRelevancy()
     },
     methods: {
       fetchComments () {

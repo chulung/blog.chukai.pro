@@ -92,9 +92,8 @@
     },
     methods: {
       updateTitle () {
-        if (this.$route.name === 'column-columnName') {
-          console.log(this.$route.params.columnName)
-          this.title = columnNames[this.$route.params.columnName]
+        if (this.$route.name === 'column-column_name') {
+          this.title = columnNames[this.$route.params.column_name]
         }
       }
     }
