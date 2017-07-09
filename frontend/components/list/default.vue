@@ -1,9 +1,9 @@
 <template>
   <div>
-    <header class="page-header" v-show="this.$route.path==='/search' && articles.length">
+    <header class="page-header" v-show="this.$route.path==='/search' && articles && articles.length">
       <h1 class="page-title high-light">搜索结果: <em>{{this.$route.query.word}}</em></h1>
     </header>
-    <header class="page-header" v-show="!articles.length">
+    <header class="page-header" v-show="articles && !articles.length">
       <h1 class="page-title high-light" v-html="info()"></h1>
     </header>
     <article class="post format-standard hentry" v-for="article in articles">
