@@ -13,7 +13,7 @@
   },
   "config": {
     "nuxt": {
-      "host": "test.com",
+      "host": "https://chulung.com",
       "port": "8085"
     }
   },
