@@ -1,6 +1,7 @@
 module.exports = {
   env: {
-    baseUrl: process.env.NODE_ENV === 'development' ? 'http://test.com' : 'https://chulung.com'
+    // baseUrl: 'http://test.com'
+    baseUrl: 'https://chulung.com'
   },
   /*
    ** Headers of the page
