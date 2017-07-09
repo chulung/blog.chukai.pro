@@ -1,14 +1,16 @@
 import axios from 'axios'
-import Vuex from 'vuex'
-export default axios.create({
+const ax = axios.create({
   baseURL: process.env.baseUrl + '/api/cms'
 })
 // 登录拦截
-axios.interceptors.response.use(response => {
+ax.interceptors.response.use(response => {
   return response
 }, error => {
   if (error.response && error.response.status === 401) {
-    Vuex.Store.commit('changeLoginedStatus', false)
+    if (process.BROWSER_BUILD) {
+      window.$nuxt.$router.push(`/cms/login?path=${window.$nuxt.$route.path}`)
+    }
   }
   return Promise.reject(error)
 })
+export default ax

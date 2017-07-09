@@ -6,7 +6,6 @@
         <input class="title" type="text" v-validate="'required'" name="title" v-model="draft.title"/>
         <input type="checkbox" v-model="publishCheck">发布</input>
         <select v-model="draft.columnId">
-          <option value="">全部</option>
           <option v-for="item in columns" :value="item.id">{{item.cnName}}</option>
         </select>
         <input type="checkbox" v-model="pushBlog">推送</input>
@@ -23,6 +22,7 @@
 </template>
 <script>
   import axios from '~plugins/axios-cms'
+  import common from '~plugins/common'
   import md from '~plugins/markdown'
   let editor
   export default{
@@ -42,7 +42,8 @@
           isPublish: 'N',
           title: '',
           uri: '',
-          tags: ''
+          tags: '',
+          columnId: '1'
         },
         columns: {},
         pushBlog: false,
@@ -64,7 +65,7 @@
     methods: {
       initEditor (ed) {
         editor = ed
-        this.draft.id = this.$route.query.id
+        this.draft.id = this.$route.query.id || this.draft.id
         if (this.draft.id) {
           axios.get('/articleDraft/' + this.draft.id).then(response => {
             this.draft = response.data
@@ -84,11 +85,14 @@
             }
             return
           }
+          console.log(this.draft.id)
           this.draft.content = editor.getMarkdown()
           this.draft.htmlContent = editor.getHTML()
           const ajax = this.draft.id ? axios.put : axios.post
-          const param = axios.toJson(this.draft)
+          const param = common.toJson(this.draft)
           ajax('/articleDraft', param).then(response => {
+            this.draft.id = response.data.id || this.draft.id
+            console.log(this.draft.id)
             alert('保存成功')
           }).catch(error => {
             console.log(error)

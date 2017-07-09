@@ -1,16 +1,14 @@
 package com.chulung.website.session;
 
-import java.util.Optional;
-
-import javax.annotation.Resource;
-
+import com.chulung.common.util.NetUtil;
 import com.chulung.website.mapper.UserMapper;
 import com.chulung.website.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.stereotype.Component;
 
-import com.chulung.common.util.NetUtil;
+import javax.annotation.Resource;
+import java.util.Optional;
 
 /**
  * web 会话 请求支持，用于登陆拦截
@@ -49,6 +47,7 @@ public class WebSessionSupport{
 				// 缓存未登录则判断数据库
 				user = new User();
 				user.setSessionId(sessionId);
+				user.setRemember(1);
 				user = userMapper.selectOne(user);
 			}
 		}

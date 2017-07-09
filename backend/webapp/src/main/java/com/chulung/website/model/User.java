@@ -1,7 +1,5 @@
 package com.chulung.website.model;
 
-import com.chulung.website.enumerate.AuthorityEnum;
-
 public class User extends BaseModel {
 
 	private static final long serialVersionUID = -6451695282340873011L;
@@ -14,7 +12,7 @@ public class User extends BaseModel {
 
 	private String sessionId;
 
-	private AuthorityEnum authority;
+	private int remember;
 
 	public String getUserName() {
 		return userName;
@@ -48,12 +46,11 @@ public class User extends BaseModel {
 		this.sessionId = sessionId == null ? null : sessionId.trim();
 	}
 
-	public AuthorityEnum getAuthority() {
-		return authority;
+	public int getRemember() {
+		return remember;
 	}
 
-	public void setAuthority(AuthorityEnum authority) {
-		this.authority = authority;
+	public void setRemember(int remember) {
+		this.remember = remember;
 	}
-
 }

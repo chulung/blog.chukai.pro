@@ -1,5 +1,6 @@
-export default function ({store, redirect}) {
+export default function ({store, redirect, route}) {
   if (process.BROWSER_BUILD && !store.state.isAuthenticated) {
-    return redirect('/cms/login?refer=' + window.location.href)
+    let path = route.path === '/cms/login' ? '' : route.path
+    return redirect(`/cms/login?path=${path}`)
   }
 }

@@ -174,7 +174,7 @@
             return
           }
 
-          axios.post('/comments', common.toJson(this.$data.comment)).then(response => {
+          axios.post('/comments', common.toJson(this.comment)).then(response => {
             this.fetchComments()
           }).catch(e => {
             if (e.response.status === 409) {

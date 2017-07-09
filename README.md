@@ -33,7 +33,7 @@
 
 ## 表结构 
 
-[data.sql](/web-service/webapp/src/test/resources/data.sql)
+[data.sql](/backend/webapp/src/test/resources/data.sql)
 
 ## 致谢以下开源项目
 

@@ -16,5 +16,4 @@ public class MetaClBlogCronJob extends AbstractCronJob {
 
 	}
 
-
 }

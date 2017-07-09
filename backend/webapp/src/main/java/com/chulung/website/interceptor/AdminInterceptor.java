@@ -26,7 +26,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
         if (webSessionSupport.islogIn()) {
             return super.preHandle(request, response, handler);
         } else {
-            throw HttpStatusException.of(HttpStatus.FORBIDDEN);
+            throw HttpStatusException.of(HttpStatus.UNAUTHORIZED);
         }
     }
 

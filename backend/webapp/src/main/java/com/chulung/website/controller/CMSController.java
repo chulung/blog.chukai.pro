@@ -1,6 +1,7 @@
 package com.chulung.website.controller;
 
 import com.chulung.common.util.NetUtil;
+import com.chulung.website.dto.in.UserIn;
 import com.chulung.website.dto.out.ArticleDraftOut;
 import com.chulung.website.dto.out.PageOut;
 import com.chulung.website.model.ArticleDraft;
@@ -50,7 +51,7 @@ public class CMSController extends BaseController {
      * @return
      */
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
-    public ResponseEntity logIn(@RequestBody User user, @RequestParam(required = false) String reUrl,
+    public ResponseEntity logIn(@RequestBody UserIn user, @RequestParam(required = false) String reUrl,
                                 HttpServletResponse response) {
         User backend = userService.logInbackend(user);
         return success();
@@ -64,8 +65,8 @@ public class CMSController extends BaseController {
     @RequestMapping("/articleDrafts")
     public
     @ResponseBody
-    PageOut<ArticleDraftOut> articlesDrafts(@RequestParam(defaultValue = "1") Integer page, @RequestParam(required = false) Integer columnId) {
-        return this.articleService.findArticleDraftsList(page, columnId);
+    PageOut<ArticleDraftOut> articlesDrafts(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(required = false) Integer columnId) {
+        return this.articleService.findArticleDraftsList(pageNum, columnId);
     }
 
 

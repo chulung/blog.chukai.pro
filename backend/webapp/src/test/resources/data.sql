@@ -234,7 +234,7 @@ CREATE TABLE `user` (
   `password`   VARCHAR(50) NOT NULL,
   `nick_name`  VARCHAR(50) NOT NULL,
   `session_id` VARCHAR(50)          DEFAULT NULL  COMMENT '最后一次登陆时sessionid,用于自动登陆',
-  `authority`  CHAR(1)     NOT NULL DEFAULT '0'  COMMENT 'A:管理员 V:游客',
+  `remember`  INT(1)     NOT NULL DEFAULT '0'  ,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -244,7 +244,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'test', '123456', 'test', 'fbe4ed4e-d084-4d45-ba3a-3c1cea744e211', 'A');
+INSERT INTO `user` VALUES ('1', 'test', '123456', 'test', 'fbe4ed4e-d084-4d45-ba3a-3c1cea744e211', '0');
 
 -- ----------------------------
 -- Table structure for `user_tracker`

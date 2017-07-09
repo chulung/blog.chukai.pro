@@ -68,4 +68,12 @@ public class PageOut<T> {
     public void setNextPage(Integer nextPage) {
         this.nextPage = nextPage;
     }
+
+    public Integer getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(Integer totalPage) {
+        this.totalPage = totalPage;
+    }
 }

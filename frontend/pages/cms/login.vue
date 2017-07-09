@@ -1,6 +1,14 @@
 <template>
   <div>
     <form class="form-horizontal" role="form">
+      <div class="form-group" v-if="user.register">
+        <label for="firstname" class="col-sm-2 control-label">昵称</label>
+        <div class="col-sm-10">
+          <input type="text" id="nickName" v-validate="'required'" class="form-control" placeholder="昵称"
+                 name="nickName"
+                 v-model="user.nickName">
+        </div>
+      </div>
       <div class="form-group">
         <label for="firstname" class="col-sm-2 control-label">用户名</label>
         <div class="col-sm-10">
@@ -15,17 +23,20 @@
           <input type="password" id="password" v-validate="'required'" class="form-control" placeholder="Password"
                  name="password"
                  v-model="user.password">
-          <i v-show="error" class="fa fa-warning"></i>
-          <span v-show="error"
-                class="text-danger">用户名或密码错误！</span>
+          <i v-show="errorMsg" class="fa fa-warning"></i>
+          <span v-show="errorMsg"
+                class="text-danger">{{errorMsg}}</span>
         </div>
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
             <label>
-              <input type="checkbox">请记住我
-            </label>
+              <input type="checkbox" v-model="remember">记住我
+            </label> <label>
+            <input type="checkbox" v-model="user.register">初始化注册
+            <i class="fa fa-question-circle-o" aria-hidden="true" title="数据库没有任何帐号时，勾选此项将进行初始化注册"></i>
+          </label>
           </div>
         </div>
       </div>
@@ -43,26 +54,34 @@
   export default {
     layout: 'cms',
     data () {
-      return {user: {userName: '', password: ''}, error: false}
+      return {user: {userName: '', password: '', register: false, remember: 0}, errorMsg: '', remember: false}
     },
     created () {
       axios.get('/login').then(response => {
         this.$store.commit('changeLoginedStatus', response.data.logined)
-        if (response.data.logined && process.BROWSER_BUILD) {
-          this.$router.push('/cms')
+        if (response.data.logined) {
+          this.doDirect()
         }
       })
+    },
+    watch: {
+      remember (val) {
+        this.user.remember = val ? 1 : 0
+      }
     },
     methods: {
       postLogin () {
         axios.post('/login', common.toJson(this.user)).then(response => {
           this.$store.commit('changeLoginedStatus', true)
-          if (process.BROWSER_BUILD) {
-            this.$router.push(this.$route.query.refer || 'cms')
-          }
+          this.doDirect()
         }).catch(e => {
-          this.error = e.response.status === 401
+          this.errorMsg = e.response.status === 401 ? '用户名或密码错误！' : `系统异常(code=${e.response.status})`
         })
+      },
+      doDirect () {
+        if (process.BROWSER_BUILD) {
+          this.$router.push(this.$route.query.path || '/cms')
+        }
       },
       validateBeforeSubmit () {
         this.$validator.validateAll().then(result => {

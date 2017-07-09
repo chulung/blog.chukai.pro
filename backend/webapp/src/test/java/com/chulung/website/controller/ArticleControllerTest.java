@@ -29,7 +29,7 @@ public class ArticleControllerTest extends SpringBootMvcTest  {
 
     @Test
     public void getArticlesByTag() throws Exception {
-        mockMvc.perform(get("/api/tag/{tagName}","java")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/tag").param("tag","java")).andExpect(status().isOk());
     }
 
 }

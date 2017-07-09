@@ -41,8 +41,28 @@
           </tr>
           </tbody>
         </table>
+        <nav aria-label="Page navigation" class="page">
+          <ul class="pagination pagination-lg">
+            <li>
+              <router-link  v-show="page.prePage" :to="{path:'/cms/drafts',query:{columnId: columnId,pageNum:page.prePage}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </router-link >
+            </li>
+            <li>
+              <router-link :to="{path:'/cms/drafts',query:{columnId: columnId,pageNum:n}}" v-for="n in page.totalPage"
+                           :key="n">{{n}}
+              </router-link>
+            </li>
+            <li>
+              <router-link v-show="page.nextPage" :to="{path:'/cms/drafts',query:{columnId: columnId,pageNum:page.nextPage}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </router-link >
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
+
   </div>
 </template>
 <script>
@@ -51,7 +71,7 @@
     middleware: 'authenticated',
     layout: 'cms',
     data () {
-      return {articleDrafts: null, columns: {}, columnId: ''}
+      return {articleDrafts: null, columns: {}, columnId: '', page: {}}
     },
     created () {
       axios.get('/columns').then(response => {
@@ -60,7 +80,7 @@
       this.fetchArticleData()
     },
     watch: {
-      columnId () {
+      $route () {
         this.fetchArticleData()
       }
     },
@@ -68,10 +88,14 @@
       fetchArticleData () {
         axios.get('/articleDrafts', {
           params: {
-            columnId: this.columnId
+            columnId: this.columnId,
+            pageNum: this.$route.query.pageNum
           }
         }).then(response => {
           this.articleDrafts = response.data.list
+          this.page = response.data
+        }).catch((e) => {
+          console.log(e)
         })
       },
       changePublish () {
@@ -79,3 +103,8 @@
     }
   }
 </script>
+<style>
+  .page {
+    float: right;
+  }
+</style>
