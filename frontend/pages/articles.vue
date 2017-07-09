@@ -73,7 +73,7 @@
       }).then((res) => {
         let params = getParams(route)
         return {
-          articles: res.data.list,
+          articles: res.data.list || [],
           page: res.data,
           preHref: getPageUrl(route, params, res.data.prePage),
           nextHref: getPageUrl(route, params, res.data.nextPage)

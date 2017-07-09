@@ -74,6 +74,7 @@
       return {articleDrafts: null, columns: {}, columnId: '', page: {}}
     },
     created () {
+      if (!process.BROWSER_BUILD) return
       axios.get('/columns').then(response => {
         this.columns = response.data
       })
@@ -86,6 +87,7 @@
     },
     methods: {
       fetchArticleData () {
+        if (!process.BROWSER_BUILD) return
         axios.get('/articleDrafts', {
           params: {
             columnId: this.columnId,
