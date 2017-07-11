@@ -60,7 +60,7 @@
 		where a.id NOT IN(
 			SELECT article_id from meta_cl_blog_log m,article a 
 			where a.id=m.article_id and a.update_time < m.lastest_post_time and site=#{siteName}
-		) and column_id in(1,2) and a.is_delete='N'
+		) and column_id in(1,2,3) and a.is_delete='N'
 	 ]]>
 	</select>
 	<update id="incrementVisitCount" parameterType="integer">
