@@ -1,48 +1,67 @@
 [![Build Status](https://travis-ci.org/chulung/chulung.com.svg?branch=master)](https://travis-ci.org/chulung/chulung.com)[![codecov](https://codecov.io/gh/chulung/chulung.com/branch/master/graph/badge.svg)](https://codecov.io/gh/chulung/chulung.com)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.chulung:web-service)](https://sonarqube.com/dashboard/index/com.chulung:web-service)
 
 
-整站源码:[chulung's craft](https://chulung.com) 
+## 关于
 
-## chulung's craft v2.x
+这是我的博客:[初龙的博客 v2.0](https://chulung.com) 整站源码。
 
-我的博客第二版，比起上一版预计有这么些改动：
+前端:[Nuxt](https://zh.nuxtjs.org/)
 
-1. 框架全部转为springboot，配置注解化，不再使用xml配置。web服务器改为springboot的内嵌Tomcat。
+后端:[Spring Boot](http://projects.spring.io/spring-boot/)
 
-2. 搜索和博客同步模块改为内嵌，不再手动依赖其他模块。
+搜索:[Lucene](https://lucene.apache.org/)
 
-3. 缓存从自制轮子改用guava cache。
+数据库:[MySQL](https://www.mysql.com/)
 
-3. 前端从jquery+RequireJS+bootstrap+freemark逐渐转为vue.js+bootstrap+webpack,并为搜索引擎的SEO引入服务端渲染。
+文件系统:[FastDFS](https://code.google.com/archive/p/fastdfs/)
 
-4. 持续集成准备从自建jenkins改为Travis,自己的服务器性能不够，实在有点撑不住一个jenkins平台，并准备引入静态代码分析。
+博客同步API:[MetaWeblog](https://github.com/chulung/MetaCLblog)
 
-5. 补充基于Junit+assertj的单元测试。
+编辑器:[Markdown](http://pandao.github.io/editor.md/)
 
-6. 考虑引入RPC，将java后端完全service化，前端改为Node环境。
+JDK:1.8+
 
-7. 重构现有的栏目，分离出一个知识wiki。
+Node:v8.1.3+
 
-8. 重构后台管理，现在是在太难看了。
+## 构建&amp;启动
 
-9. JDK跟进升级1.9。
+初衷是给自己定制的博客网站。从15年开始开发，经过多次改版，依赖模块和定制化配置太多，
+短时间内无法提供完整的构建、配置、启动指南，实在感兴趣的同学请先自行摸索。
+掌握Nuxt及SpringBoot及相关技术就能启动本项目。
 
-目前完成了1，2，3，正在做4，5，6
+待补充。。。
 
-## Build setUp
+## 依赖项目清单
+[Bootstrap](https://github.com/twbs/bootstrap)：前端UI框架.
 
-## 表结构 
+[Vue.js](https://cn.vuejs.org/):渐进式JavaScript框架.
 
-[data.sql](/backend/webapp/src/test/resources/data.sql)
+[NUXT](https://zh.nuxtjs.org/):Vue.js 通用应用框架.
 
-## 致谢以下开源项目
+[axios](https://github.com/mzabriskie/axios)：Promise based HTTP client for the browser and node.js.
 
-markdown编辑器:[editor.md](https://github.com/pandao/editor.md)
+[lscache](https://github.com/pamelafox/lscache):A localStorage-based memcache-inspired client-side caching library. 
 
-基于Mybatis的通用mapper及分页插件:[Mapper & PageHelper](https://github.com/abel533/Mybatis-Spring)
+[Editor.md](https://github.com/pandao/editor.md):Markdown编辑器.
 
-FastDFS客户端:(java)[FastDFS_Client](https://github.com/tobato/FastDFS_Client)
+[Spring Boot](http://projects.spring.io/spring-boot/):Spring快速开发框架.
 
-##License
+[mybatis-spring-boot](http://www.mybatis.org/spring-boot-starter/):Spring Boot Support for MyBatis.
 
-The MIT License (MIT)
+[Mapper](https://github.com/abel533/Mapper):Mybatis通用Mapper插件.
+
+[PageHelper](https://github.com/pagehelper/Mybatis-PageHelper):Mybatis通用分页插件.
+
+[FastDFS_Client](https://github.com/tobato/FastDFS_Client):FastDFS客户端(java).
+
+[Lucene](https://lucene.apache.org/):全文检索引擎工具包.
+
+[HanLP](http://hanlp.linrunsoft.com/):开源自由的汉语言处理包,用于Lucene分词.
+
+[Guava](https://github.com/google/guava):Google java库，使用其缓存部分功能.
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2015-present, 初龙(chulung)
