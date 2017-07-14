@@ -10,7 +10,7 @@ public interface CommentService {
 	
 	boolean postComments(Comment comments);
 
-	PageOut<CommentsOut> listComments(int pageNum, int articleId);
+	PageOut<CommentsOut> listComments(int pageNum, Integer articleId);
 
 	List<Comment> findRecentlyComments();
 }

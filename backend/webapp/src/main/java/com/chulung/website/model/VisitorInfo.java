@@ -1,10 +1,9 @@
 package com.chulung.website.model;
 
-import java.time.LocalDateTime;
+import com.chulung.common.util.NetUtil;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.chulung.common.util.NetUtil;
+import java.time.LocalDateTime;
 
 public class VisitorInfo extends BaseModel {
 
@@ -21,23 +20,26 @@ public class VisitorInfo extends BaseModel {
 
     private String serverName;
 
-    private String tuid;
+    private String sessionId;
+
+    private String referer;
 
     public VisitorInfo(String ip, String userAgent, LocalDateTime accessTime, String accessUrl, String serverName,
-                       String tuid) {
+                       String sessionId, String referer) {
         super();
         this.ip = ip;
         this.userAgent = userAgent;
         this.accessTime = accessTime;
         this.accessUrl = accessUrl;
         this.setServerName(serverName);
-        this.tuid = tuid;
+        this.sessionId = sessionId;
+        this.referer = referer;
     }
 
     public VisitorInfo(HttpServletRequest request) {
         this(NetUtil.getIpAddr(), NetUtil.getUserAgent(),
                 LocalDateTime.now(), NetUtil.getAccessUrl(), request.getServerName(),
-                NetUtil.getCurSessionId());
+                NetUtil.getCurSessionId(), request.getHeader("Referer"));
     }
 
     public String getIp() {
@@ -80,11 +82,19 @@ public class VisitorInfo extends BaseModel {
         this.serverName = serverName;
     }
 
-    public String getTuid() {
-        return tuid;
+    public String getSessionId() {
+        return sessionId;
     }
 
-    public void setTuid(String tuid) {
-        this.tuid = tuid;
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public String getReferer() {
+        return referer;
+    }
+
+    public void setReferer(String referer) {
+        this.referer = referer;
     }
 }

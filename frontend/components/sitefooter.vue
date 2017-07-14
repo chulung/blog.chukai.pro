@@ -1,6 +1,6 @@
 <template>
   <!-- site-footer -->
-  <footer id="colophon" class="site-footer" :class="{none:none}"
+  <footer id="colophon" class="site-footer"
           style="background-image: url('https://chulung.github.io/assets/theme/img/footer-background.png');"
           role="contentinfo">
     <div class="container">
@@ -47,16 +47,13 @@
   import axios from '~plugins/axios'
   export default{
     data () {
-      return {tags: {}, recommendedArticles: {}, none: true}
+      return {tags: {}, recommendedArticles: {}}
     },
     created () {
       axios.get('siteFooterInfo').then((response) => {
         this.tags = response.data.tags
         this.recommendedArticles = response.data.recommendedArticles
       })
-      setTimeout(() => {
-        this.none = false
-      }, 2000)
     }
   }
 </script>

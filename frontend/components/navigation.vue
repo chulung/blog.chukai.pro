@@ -9,7 +9,7 @@
               <h1 class="site-title title-image"><a href="index.html" rel="home"><img src="assets/img/danish-image-logo.png" alt="Danish."></a></h1>
               -->
               <h1 class="site-title">
-                <router-link to="/cms" rel="home">初龙.</router-link>
+                <router-link to="/" rel="home">初龙.</router-link>
               </h1>
               <p class="site-description">Minecraft //</p>
             </div><!-- .site-branding -->

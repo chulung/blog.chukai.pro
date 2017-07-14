@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    // baseUrl: 'http://test.com'
+    // baseUrl: 'http://127.0.0.1'
     baseUrl: 'https://chulung.com'
   },
   /*

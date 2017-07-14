@@ -26,7 +26,7 @@ public class CommentsController extends BaseController {
     @RequestMapping(value = {""}, method = RequestMethod.GET)
     public
     @ResponseBody
-    PageOut<CommentsOut> get(Integer page, Integer articleId) {
+    PageOut<CommentsOut> get(int page, Integer articleId) {
         return commentsService.listComments(page, articleId);
     }
 

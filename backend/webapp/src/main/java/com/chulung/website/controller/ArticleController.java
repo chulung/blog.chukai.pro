@@ -52,7 +52,7 @@ public class ArticleController extends BaseController {
     @RequestMapping(value = "/tag", method = RequestMethod.GET)
     public
     @ResponseBody
-    PageOut<ArticleOut> getArticlesByTag(@RequestParam String tag) {
+    PageOut<ArticleOut> getArticlesByTag(@RequestParam(required = false) String tag) {
         return this.articleService.getArticlesByTagName(tag);
     }
 }

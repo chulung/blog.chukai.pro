@@ -29,7 +29,7 @@
         <template v-if="article.tags">
           <span class="tags-links">标签
           <template v-for="tag in article.tags.split(',')">
-                <router-link :to="'/tag/'+tag">{{tag}}</router-link>,
+                <router-link :to="'/tag?tag='+tag">{{tag}}</router-link>,
           </template>
           </span>
         </template>

@@ -311,6 +311,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
     @Override
     public PageOut<ArticleOut> getArticlesByTagName(String tagName) {
+        checkExistBlank(tagName);
         ArticleTag record = new ArticleTag();
         record.setTagName(tagName);
         List<Integer> articleIds = this.articleTagMapper.select(record).stream().map(t -> {

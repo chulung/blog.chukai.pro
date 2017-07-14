@@ -61,11 +61,12 @@ public class NetUtil {
     }
 
     public static String getPrimaryDomain() {
-        StringBuffer requestURL = getRequest().getRequestURL();
-        System.out.print(getRequest());
+        String requestURL = getRequest().getRequestURL().toString();
+        if (requestURL.startsWith("http://127.0.0.1")){
+            return "127.0.0.1";
+        }
         Matcher m = DOMAIN_PATTERN.matcher(requestURL);
-        m.find();
-        return m.group();
+        return m.find() ? m.group() : "";
     }
 
     public static String getAccessUrl() {

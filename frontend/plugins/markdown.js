@@ -25,7 +25,7 @@ function init (callBack) {
       sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
       imageUpload: true,
       imageFormats: ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'],
-      imageUploadURL: '/fileUpload/file',
+      imageUploadURL: process.env.baseUrl + '/api/fileUpload/file',
       onload: function () {
         callBack(this)
       }
