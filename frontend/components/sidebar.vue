@@ -61,7 +61,7 @@
       <ul id="recentcomments">
         <li style="display: list-item;" v-for="item in recentlyComments">
           <span class="comment-author-link">{{item.userName}}</span> :
-          <router-link :to="'/article/'+item.articleId">{{item.comment}}
+          <router-link :to="'/article/'+item.uri">{{item.comment}}
           </router-link>
         </li>
       </ul>
