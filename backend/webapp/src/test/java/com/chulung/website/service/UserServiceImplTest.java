@@ -1,5 +1,6 @@
 package com.chulung.website.service;
 
+import com.chulung.common.util.NetUtil;
 import com.chulung.test.SpringbootBaseTest;
 import com.chulung.website.dto.in.UserIn;
 import com.chulung.website.exception.HttpStatusException;
@@ -8,16 +9,20 @@ import com.chulung.website.model.User;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 /**
  * Created by chulung on 2017/7/9.
  */
 
+@PrepareForTest(NetUtil.class)
 public class UserServiceImplTest extends SpringbootBaseTest {
     @Autowired
     private UserService userService;
@@ -56,6 +61,8 @@ public class UserServiceImplTest extends SpringbootBaseTest {
 
     @Test
     public void logInbackendWithRegisterSucess() {
+        mockStatic(NetUtil.class);
+        when(NetUtil.getCurSessionId()).thenReturn("sdasdas");
         userMapper.delete(new User());
         UserIn user = new UserIn();
         user.setRegister(true);

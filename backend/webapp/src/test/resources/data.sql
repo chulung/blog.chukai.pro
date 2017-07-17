@@ -234,7 +234,7 @@ CREATE TABLE `user` (
   `password`   VARCHAR(50) NOT NULL,
   `nick_name`  VARCHAR(50) NOT NULL,
   `session_id` VARCHAR(50)          DEFAULT NULL  COMMENT '最后一次登陆时sessionid,用于自动登陆',
-  `remember`  INT(1)     NOT NULL DEFAULT '0'  ,
+  `remember`  INT(1)  DEFAULT 0  ,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
