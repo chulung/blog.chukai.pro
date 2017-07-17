@@ -12,7 +12,7 @@
         <span>tags</span>
         <input type="text" v-model="draft.tags" name="tags" v-validate="{ rules: { regex: /(\s+(,\s+)*)?$/} }"/>
         <span>uri</span>
-        <input type="text" v-validate="'required'" name="uri" v-model="draft.uri"/>
+        <input type="text" v-validate="'required'" name="uri" v-model="uri"/>
         <button @click="validateBeforeSubmit">保存</button>
       </div>
     </div>
@@ -47,7 +47,8 @@
         },
         columns: {},
         pushBlog: false,
-        publishCheck: false
+        publishCheck: false,
+        uri: ''
       }
     },
     mounted () {
@@ -60,6 +61,10 @@
     watch: {
       publishCheck: function (newVal) {
         this.draft.isPublish = newVal ? 'Y' : 'N'
+      },
+      uri: function (newVal) {
+        this.uri = newVal.trim().toLowerCase().replace(/\s+/, '-')
+        this.draft.uri = this.uri
       }
     },
     methods: {
@@ -69,6 +74,8 @@
         if (this.draft.id) {
           axios.get('/articleDraft/' + this.draft.id).then(response => {
             this.draft = response.data
+            this.publishCheck = this.draft.isPublish === 'Y'
+            this.uri = this.draft.uri
             editor.setMarkdown(this.draft.content)
           })
         }

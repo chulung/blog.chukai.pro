@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="page-header" v-show="errorMsg">
+    <header class="page-header" v-show="!article.id && errorMsg">
       <h1 class="page-title">{{errorMsg}}</h1>
     </header>
     <article class="post format-standard hentry " v-if="article.id">
@@ -131,11 +131,19 @@
               email: '',
               articleId: res.data.id,
               uri: res.data.uri
-            }
+            },
+            relevancies: [],
+            errorMsg: ''
           }
         })
         .catch((e) => {
-          return {errorMsg: (e.response.status === 404 ? '哎呀！没有找到这篇文章。' : '查询文章出错了QAQ')}
+          return {
+            article: {title: ' '},
+            comments: [],
+            relevancies: [],
+            comment: {},
+            errorMsg: (e.response.status === 404 ? '哎呀！没有找到这篇文章。' : '查询文章出错了QAQ')
+          }
         })
     },
     mounted () {

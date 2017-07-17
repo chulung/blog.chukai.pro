@@ -12,7 +12,7 @@ public class User extends BaseModel {
 
 	private String sessionId;
 
-	private int remember;
+	private Integer remember;
 
 	public String getUserName() {
 		return userName;
@@ -46,11 +46,11 @@ public class User extends BaseModel {
 		this.sessionId = sessionId == null ? null : sessionId.trim();
 	}
 
-	public int getRemember() {
+	public Integer getRemember() {
 		return remember;
 	}
 
-	public void setRemember(int remember) {
+	public void setRemember(Integer remember) {
 		this.remember = remember;
 	}
 }
