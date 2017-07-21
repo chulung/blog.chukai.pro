@@ -84,23 +84,10 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         if (a == null) {
             throw HttpStatusException.of(HttpStatus.NOT_FOUND);
         }
-        handleAboutMe(a);
         if (a.getColumnId() == 1) {
             a.setContent(a.getContent() + (a.getColumnId() != 3 && StringUtils.isBlank(a.getLicense()) ? configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()) : a.getLicense()));
         }
         return a;
-    }
-
-    private void handleAboutMe(Article a) {
-        if (a.getId() == 20) {
-            double wook = (Instant.now().getEpochSecond() - Instant.parse("2015-03-01T09:00:00.00Z").getEpochSecond())
-                    / 31536000.0;
-            wook = BigDecimal.valueOf(wook).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-
-            int pinyin = (int) ((Instant.now().getEpochSecond() - Instant.parse("1867-01-01T00:00:00.00Z").getEpochSecond())
-                    / 31536000);
-            a.setContent(String.format(a.getContent(), pinyin, wook));
-        }
     }
 
     @Override

@@ -69,7 +69,7 @@
 	</update>
 	
 	<select id="listRelevancy"  resultMap="BaseResultMap">
-		SELECT 	 id, title, create_time,pic from article
+		SELECT 	 id, uri,title, create_time,pic from article
 		where id in
 		(SELECT DISTINCT article_id from article_tag where tag_name in
 		(SELECT tag_name from article_tag where article_id=#{articleId})) and id !=#{articleId}

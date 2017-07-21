@@ -41,12 +41,12 @@
         <div class="col-md-3 col-sm-6" v-for="item in relevancies">
           <div class="post-container">
             <div class="post-thumbnail">
-              <router-link :to="'/article/'+item.id"><img :src="defaultPic(item.pic)" :alt="item.title"/>
+              <router-link :to="'/article/'+item.uri"><img :src="defaultPic(item.pic)" :alt="item.title"/>
               </router-link>
             </div><!-- .post-thumbnail -->
             <span class="post-meta">{{item.createTime}}</span>
             <h2 class="post-title">
-              <router-link :to="'/article/'+item.id">{{item.title}}</router-link>
+              <router-link :to="'/article/'+item.uri">{{item.title}}</router-link>
             </h2>
           </div><!-- .post-container -->
         </div><!-- .col-md-3 -->
