@@ -10,6 +10,7 @@ public interface Search {
 
     /**
      * 创建索引 会根据id删除已有的
+     *
      * @param doc 文档
      * @return
      */
@@ -17,6 +18,7 @@ public interface Search {
 
     /**
      * 批量创建索引 会根据id删除已有的
+     *
      * @param docs
      * @return
      */
@@ -28,9 +30,8 @@ public interface Search {
     void clearAll();
 
     /**
-     *
      * @param queryStr
-     * @param num 返回的最大条数
+     * @param num      返回的最大条数
      * @return
      * @throws Exception
      */
@@ -38,6 +39,7 @@ public interface Search {
 
     /**
      * 查询，默认最大10条
+     *
      * @param key
      * @return
      * @throws Exception

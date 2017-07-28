@@ -27,7 +27,7 @@ public class CommentServiceTest extends SpringbootBaseTest {
 
     @Test
     public void listComments() throws Exception {
-        assertThat(commentService.listComments(1,1).getList()).isNotEmpty();
+        assertThat(commentService.listComments(1, 1).getList()).isNotEmpty();
     }
 
     @Test

@@ -40,8 +40,8 @@ public class ReflectUtil {
                             ss[i] = arr[i].toString();
                         }
                         field.set(obj, ss);
-                    } else if (field.getType()== Date.class && value.getClass()==Long.class) {
-                        field.set(obj,new Date((long)value));
+                    } else if (field.getType() == Date.class && value.getClass() == Long.class) {
+                        field.set(obj, new Date((long) value));
                     } else {
                         field.set(obj, field.getType().getConstructor(value.getClass()).newInstance(value));
                     }

@@ -1,14 +1,13 @@
 package com.chulung.website.interceptor;
 
-import java.util.UUID;
+import com.chulung.common.util.NetUtil;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.chulung.common.util.NetUtil;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import java.util.UUID;
 
 
 /**

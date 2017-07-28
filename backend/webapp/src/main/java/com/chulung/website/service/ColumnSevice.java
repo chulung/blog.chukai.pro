@@ -12,7 +12,7 @@ public interface ColumnSevice {
 
     List<Column> getAllColumns();
 
-    Map<Integer,Column> getIdColumnMap();
+    Map<Integer, Column> getIdColumnMap();
 
-    Map<String,Column> getEnNameColumnMap();
+    Map<String, Column> getEnNameColumnMap();
 }

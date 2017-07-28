@@ -19,7 +19,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/** 博客同步至其他网站
+/**
+ * 博客同步至其他网站
  * Created by chulung on 2016/11/8.
  */
 @Service
@@ -38,6 +39,7 @@ public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogS
     private List<MetaWeblog> metaWeblogs;
     @Autowired
     private ConfigService configService;
+
     @Override
     public void pushBlog() throws XmlRpcException {
         for (MetaWeblog metaWeblog : metaWeblogs) {
@@ -79,7 +81,7 @@ public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogS
             metaWeBlogLogMapper.updateByPrimaryKeySelective(record);
             cronJobLogMapper.insertSelective(new AppLog(LogType.META_CK_BLOG_LOG, LogLevel.INFO,
                     String.format("博客《%s》更新推送成功", post.getTitle())));
-        } else if(article.getIsDelete()==IsDeleteEnum.N){
+        } else if (article.getIsDelete() == IsDeleteEnum.N) {
             // 发送新建博客请求
             String postId = metaWeblog.newPost(article.getId().toString(), post, true);
             MetaClBlogLog record = new MetaClBlogLog(postId, article.getId(), LocalDateTime.now(), site);
@@ -91,10 +93,11 @@ public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogS
 
     }
 
-    private class PushTask extends Thread{
-        private MetaWeblog metaWeblog ;
-        public PushTask(MetaWeblog metaWeblog ) {
-            this.metaWeblog=metaWeblog;
+    private class PushTask extends Thread {
+        private MetaWeblog metaWeblog;
+
+        public PushTask(MetaWeblog metaWeblog) {
+            this.metaWeblog = metaWeblog;
         }
 
         @Override

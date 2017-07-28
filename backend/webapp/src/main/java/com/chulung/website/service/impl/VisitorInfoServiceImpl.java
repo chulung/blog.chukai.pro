@@ -1,15 +1,14 @@
 package com.chulung.website.service.impl;
 
-import java.time.LocalDateTime;
-
 import com.chulung.website.mapper.ArticleMapper;
 import com.chulung.website.mapper.ArticleVisitMapper;
 import com.chulung.website.model.ArticleVisit;
+import com.chulung.website.service.VisitorInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
-import com.chulung.website.service.VisitorInfoService;
+import java.time.LocalDateTime;
 
 @Service
 public class VisitorInfoServiceImpl extends BaseService implements VisitorInfoService {

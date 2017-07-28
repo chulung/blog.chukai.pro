@@ -66,13 +66,13 @@ public class MetaWeblogTest extends BaseTest {
     public void editPost() throws Exception {
         post.setPostid("1");
         when(xmlRpcClient.execute(anyString(), any(Object[].class))).thenReturn(true);
-        assertThat(metaWeblog.editPost(post,true)).isTrue();
+        assertThat(metaWeblog.editPost(post, true)).isTrue();
     }
 
     @Test
     public void getPost() throws Exception {
-        when(xmlRpcClient.execute(anyString(),any(Objects[].class))).thenReturn(JsonUtil.readValue(JsonUtil.writeBytes(post), HashMap.class));
-        assertThat(metaWeblog.getPost("1")).isEqualToIgnoringGivenFields(post,"dateCreated");
+        when(xmlRpcClient.execute(anyString(), any(Objects[].class))).thenReturn(JsonUtil.readValue(JsonUtil.writeBytes(post), HashMap.class));
+        assertThat(metaWeblog.getPost("1")).isEqualToIgnoringGivenFields(post, "dateCreated");
     }
 
     @Test

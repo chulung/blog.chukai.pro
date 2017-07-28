@@ -5,8 +5,8 @@ package com.chulung.search.core;
  */
 public class SearchDocument {
     public static final String ID = "id";
-    public static  final  String TITLE="title";
-    public  static  final  String CONTEXT="content";
+    public static final String TITLE = "title";
+    public static final String CONTEXT = "content";
     /**
      * 唯一ID，创建前会根据id删除已有的
      */
@@ -20,12 +20,12 @@ public class SearchDocument {
      */
     private String content;
 
-    public SearchDocument(String id, String title, String content){
-        if (id==null) throw new IllegalArgumentException("id can't be null!");
-        if (title==null) throw new IllegalArgumentException("title can't be null!");
-        if (content ==null) throw new IllegalArgumentException("content can't be null!");
-        this.id=id;
-        this.title=title;
+    public SearchDocument(String id, String title, String content) {
+        if (id == null) throw new IllegalArgumentException("id can't be null!");
+        if (title == null) throw new IllegalArgumentException("title can't be null!");
+        if (content == null) throw new IllegalArgumentException("content can't be null!");
+        this.id = id;
+        this.title = title;
         this.content = content;
     }
 

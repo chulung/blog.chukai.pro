@@ -20,6 +20,6 @@ public class MessageDigestUtil {
     }
 
     public static boolean checkEquals(String str, String encoderStr) {
-       return encoderByMd5(str).equals(encoderStr);
+        return encoderByMd5(str).equals(encoderStr);
     }
 }

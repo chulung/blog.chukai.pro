@@ -1,7 +1,7 @@
 package com.chulung.website.mapper;
 
-import com.chulung.website.model.ArticleTag;
 import com.chulung.mybatis.mapper.BaseMapper;
+import com.chulung.website.model.ArticleTag;
 
 import java.util.List;
 

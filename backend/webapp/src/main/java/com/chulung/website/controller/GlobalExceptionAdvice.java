@@ -86,7 +86,7 @@ public class GlobalExceptionAdvice extends BaseController {
         }
         AppLog record = new AppLog(LogType.EXCEPTION, LogLevel.ERROR, expMessage, LocalDateTime.now());
         appLogMapper.insertSelective(record);
-        logger.error("",excetion);
+        logger.error("", excetion);
         return new ResponseEntity(MapUtils.EMPTY_MAP, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

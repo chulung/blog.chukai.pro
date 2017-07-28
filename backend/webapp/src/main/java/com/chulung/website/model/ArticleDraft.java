@@ -168,9 +168,11 @@ public class ArticleDraft extends BaseModel {
     public void setHtmlContent(String htmlContent) {
         this.htmlContent = htmlContent == null ? null : htmlContent.trim();
     }
+
     public String getUri() {
         return uri;
     }
+
     public void setUri(String uri) {
         this.uri = uri;
     }

@@ -15,12 +15,13 @@ public class Config {
     private String configValue;
 
     public Config(ConfigKeyEnum key, String value) {
-        this.configKey=key;
-        this.configValue=value;
+        this.configKey = key;
+        this.configValue = value;
     }
 
     public Config() {
     }
+
     public ConfigKeyEnum getConfigKey() {
         return configKey;
     }

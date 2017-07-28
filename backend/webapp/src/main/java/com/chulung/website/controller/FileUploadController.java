@@ -1,9 +1,9 @@
 package com.chulung.website.controller;
 
-import java.util.*;
-
 import com.chulung.website.exception.FileUploadExcetion;
 import com.chulung.website.service.FileUploadService;
+import com.chulung.website.session.WebSessionSupport;
+import com.github.tobato.fastdfs.domain.StorePath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.chulung.website.session.WebSessionSupport;
-import com.github.tobato.fastdfs.domain.StorePath;
+import java.util.HashMap;
+import java.util.Map;
 
 @RequestMapping("/api/fileUpload")
 @RestController

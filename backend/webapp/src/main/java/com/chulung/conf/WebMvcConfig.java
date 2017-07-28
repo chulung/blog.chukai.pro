@@ -48,8 +48,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        Assert.notNull(adminInterceptor,"bean backendInterceptor canot found");
-        Assert.notNull(cookieInterceptor,"bean cookieInterceptor canot found");
+        Assert.notNull(adminInterceptor, "bean backendInterceptor canot found");
+        Assert.notNull(cookieInterceptor, "bean cookieInterceptor canot found");
         registry.addInterceptor(cookieInterceptor).addPathPatterns("/**");
         registry.addInterceptor(adminInterceptor).addPathPatterns("/api/cms/**").excludePathPatterns("/api/cms/login");
         super.addInterceptors(registry);

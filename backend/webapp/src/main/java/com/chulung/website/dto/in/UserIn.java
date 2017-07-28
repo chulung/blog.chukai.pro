@@ -6,7 +6,7 @@ import com.chulung.website.model.User;
 /**
  * Created by chulung on 2017/7/9.
  */
-public class UserIn extends User implements BaseDto<UserIn,User> {
+public class UserIn extends User implements BaseDto<UserIn, User> {
     private boolean register;
 
     public boolean isRegister() {

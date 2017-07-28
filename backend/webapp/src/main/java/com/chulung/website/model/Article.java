@@ -1,17 +1,17 @@
 package com.chulung.website.model;
 
-import java.time.LocalDateTime;
-
 import com.chulung.common.databind.LocalDateTimeDeserializer;
-import com.chulung.website.enumerate.IsDeleteEnum;
 import com.chulung.common.databind.LocalDateTimeSerializer;
+import com.chulung.website.enumerate.IsDeleteEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import java.time.LocalDateTime;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Article extends BaseModel{
+public class Article extends BaseModel {
 
     private static final long serialVersionUID = -1692088776366835421L;
 
@@ -51,7 +51,7 @@ public class Article extends BaseModel{
 
     private String tags;
 
-    private  String columnName;
+    private String columnName;
 
     private String uri;
 
@@ -70,6 +70,7 @@ public class Article extends BaseModel{
     public void setColumnName(String columnName) {
         this.columnName = columnName;
     }
+
     public String getTags() {
         return tags;
     }

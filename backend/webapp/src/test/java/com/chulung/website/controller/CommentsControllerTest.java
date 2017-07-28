@@ -9,11 +9,9 @@ import org.springframework.http.MediaType;
 
 import javax.servlet.http.Cookie;
 
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Created by chulung on 2017/5/27.
@@ -29,7 +27,7 @@ public class CommentsControllerTest extends SpringBootMvcTest {
         comment.setUri("sdasd");
         comment.setComment("sdas");
         String json = JsonUtil.toJsonString(comment);
-        mockMvc.perform(post("/api/comments").cookie(new Cookie(NetUtil.SESSION_ID, "abc")).contentType(MediaType.APPLICATION_JSON).content(json).param("asd","asds")).andExpect(status().isOk());
+        mockMvc.perform(post("/api/comments").cookie(new Cookie(NetUtil.SESSION_ID, "abc")).contentType(MediaType.APPLICATION_JSON).content(json).param("asd", "asds")).andExpect(status().isOk());
     }
 
     @Test

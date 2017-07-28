@@ -26,7 +26,7 @@ public class SiteServiceImpl implements SiteService {
     private CommentService commentsService;
 
     @Override
-    @Cacheable(cacheNames = "halfhour",key = "'siteFooterInfo'")
+    @Cacheable(cacheNames = "halfhour", key = "'siteFooterInfo'")
     public SiteFooteInfo getSiteFooteInfo() {
         SiteFooteInfo siteFooteInfo = new SiteFooteInfo();
         siteFooteInfo.setTags(this.articleTagService.findAllArticleTag());
@@ -35,7 +35,7 @@ public class SiteServiceImpl implements SiteService {
     }
 
     @Override
-    @Cacheable(cacheNames = "halfhour",key = "'sideBarInfo'")
+    @Cacheable(cacheNames = "halfhour", key = "'sideBarInfo'")
     public SideBarInfo getSideBarInfo() {
         SideBarInfo sideBarInfo = new SideBarInfo();
         sideBarInfo.setArchives(this.articleService.getArchive());

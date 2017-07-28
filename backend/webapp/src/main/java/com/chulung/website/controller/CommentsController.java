@@ -2,12 +2,11 @@ package com.chulung.website.controller;
 
 import com.chulung.website.dto.out.CommentsOut;
 import com.chulung.website.dto.out.PageOut;
+import com.chulung.website.model.Comment;
+import com.chulung.website.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.chulung.website.model.Comment;
-import com.chulung.website.service.CommentService;
 
 @RequestMapping("/api/comments")
 @RestController

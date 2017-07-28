@@ -24,13 +24,13 @@ public class BaseDtoTest {
 
     @Test
     public void testBuildFromModel() {
-        ArticleOut out=new ArticleOut().buildFromModel(article);
+        ArticleOut out = new ArticleOut().buildFromModel(article);
         assertThat(out).isEqualToIgnoringNullFields(article);
     }
 
     @Test
-    public void testBuildModel(){
-        Article in=new ArticleIn().buildFromModel(article).buildModel();
+    public void testBuildModel() {
+        Article in = new ArticleIn().buildFromModel(article).buildModel();
         assertThat(in).isEqualToIgnoringNullFields(article);
     }
 }

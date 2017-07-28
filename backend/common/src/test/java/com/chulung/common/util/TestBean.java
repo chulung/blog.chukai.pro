@@ -11,7 +11,7 @@ public class TestBean {
     private String string;
     private Integer integer;
     private Long aLong;
-    private Map<Object,Object> map;
+    private Map<Object, Object> map;
 
     public String getString() {
         return string;
@@ -45,13 +45,13 @@ public class TestBean {
         this.map = map;
     }
 
-    public static TestBean getTestBean(){
-        TestBean testBean=new TestBean();
+    public static TestBean getTestBean() {
+        TestBean testBean = new TestBean();
         testBean.setaLong(111l);
         testBean.setInteger(111);
         testBean.setString("asdasd");
-        testBean.setMap(Maps.newHashMap("a",1));
-        return  testBean;
+        testBean.setMap(Maps.newHashMap("a", 1));
+        return testBean;
     }
 
     @Override

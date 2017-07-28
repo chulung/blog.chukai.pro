@@ -7,10 +7,10 @@ import com.chulung.website.model.Comment;
 import java.util.List;
 
 public interface CommentService {
-	
-	boolean postComments(Comment comments);
 
-	PageOut<CommentsOut> listComments(int pageNum, Integer articleId);
+    boolean postComments(Comment comments);
 
-	List<Comment> findRecentlyComments();
+    PageOut<CommentsOut> listComments(int pageNum, Integer articleId);
+
+    List<Comment> findRecentlyComments();
 }

@@ -1,12 +1,11 @@
 package com.chulung.website.service.impl;
 
 import com.chulung.website.enumerate.ConfigKeyEnum;
+import com.chulung.website.mapper.ConfigMapper;
+import com.chulung.website.model.Config;
 import com.chulung.website.service.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.chulung.website.mapper.ConfigMapper;
-import com.chulung.website.model.Config;
 
 import javax.persistence.Transient;
 
@@ -36,7 +35,7 @@ public class ConfigServiceImpl implements ConfigService {
     @Override
     @Transient
     public boolean updateByKey(Config config) {
-        return this.configMapper.updateByPrimaryKeySelective(config)>0;
+        return this.configMapper.updateByPrimaryKeySelective(config) > 0;
     }
 
 }

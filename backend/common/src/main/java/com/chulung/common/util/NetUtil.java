@@ -62,7 +62,7 @@ public class NetUtil {
 
     public static String getPrimaryDomain() {
         String requestURL = getRequest().getRequestURL().toString();
-        if (requestURL.startsWith("http://127.0.0.1")){
+        if (requestURL.startsWith("http://127.0.0.1")) {
             return "127.0.0.1";
         }
         Matcher m = DOMAIN_PATTERN.matcher(requestURL);

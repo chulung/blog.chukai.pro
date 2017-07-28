@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @SpringBootTest(classes = Application.class)
 @Rollback
-@PowerMockIgnore( {"javax.management.*"})
+@PowerMockIgnore({"javax.management.*"})
 public abstract class SpringbootBaseTest extends BaseTest {
     static {
         //使用测试环境配置 src/test/resources/application-test.yml
-        System.setProperty("spring.profiles.active","test");
+        System.setProperty("spring.profiles.active", "test");
     }
 }

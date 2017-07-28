@@ -30,7 +30,7 @@ public class ColumnTypeSeviceImpl implements ColumnSevice {
     }
 
     @Override
-    @Cacheable(cacheNames = "halfhour",key = "'idColumnMap'")
+    @Cacheable(cacheNames = "halfhour", key = "'idColumnMap'")
     public Map<Integer, Column> getIdColumnMap() {
         List<Column> columns = this.columnTypeMapper.selectAll();
         return columns.stream().collect(
@@ -39,7 +39,7 @@ public class ColumnTypeSeviceImpl implements ColumnSevice {
     }
 
     @Override
-    @Cacheable(cacheNames = "halfhour",key = "'enNameColumnMap'")
+    @Cacheable(cacheNames = "halfhour", key = "'enNameColumnMap'")
     public Map<String, Column> getEnNameColumnMap() {
         return this.columnTypeMapper.selectAll().stream().collect(Collectors.toMap(Column::getEnName, c -> c));
     }

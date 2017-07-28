@@ -2,7 +2,6 @@ package com.chulung.website.service.impl;
 
 import com.chulung.website.exception.HttpStatusException;
 import com.chulung.website.model.BaseComponent;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 

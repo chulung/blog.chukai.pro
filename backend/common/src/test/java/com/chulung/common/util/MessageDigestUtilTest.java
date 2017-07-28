@@ -13,7 +13,7 @@ public class MessageDigestUtilTest {
     public void encoderByMd5Test() {
         assertThat(MessageDigestUtil.encoderByMd5("0123456789")).isEqualTo("eB5eJF1ptWaXm4bijSPyxw==");
         assertThat(MessageDigestUtil.encoderByMd5("apple")).isEqualTo("HzhwvidPbEmz4xoMZyiVfw==");
-        assertThat(MessageDigestUtil.checkEquals("0123456789","eB5eJF1ptWaXm4bijSPyxw==")).isTrue();
+        assertThat(MessageDigestUtil.checkEquals("0123456789", "eB5eJF1ptWaXm4bijSPyxw==")).isTrue();
     }
 
 

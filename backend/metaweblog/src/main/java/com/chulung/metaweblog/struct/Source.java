@@ -1,39 +1,37 @@
 package com.chulung.metaweblog.struct;
 
 /**
- * 
  * @author chulung1
- *
  */
 public final class Source extends Struct<Source> {
 
-	private String name;
-	private String url;
-	
-	public Source() {
-	}
+    private String name;
+    private String url;
 
-	public String getName() {
-		return name;
-	}
+    public Source() {
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	@Override
-	public String toString() {
-		return "Source{" +
-				"name='" + name + '\'' +
-				", url='" + url + '\'' +
-				'}';
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Source{" +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

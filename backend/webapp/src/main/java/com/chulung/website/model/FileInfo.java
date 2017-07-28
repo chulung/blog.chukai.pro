@@ -3,7 +3,7 @@ package com.chulung.website.model;
 /**
  * Created by chulung on 2017/5/9.
  */
-public class FileInfo extends BaseModel{
+public class FileInfo extends BaseModel {
 
     private static final long serialVersionUID = -7242910934019103119L;
     private String fileName;

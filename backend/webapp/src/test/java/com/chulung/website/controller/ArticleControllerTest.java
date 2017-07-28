@@ -3,13 +3,13 @@ package com.chulung.website.controller;
 import com.chulung.test.SpringBootMvcTest;
 import org.junit.Test;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Created by chulung on 2017/5/26.
  */
-public class ArticleControllerTest extends SpringBootMvcTest  {
+public class ArticleControllerTest extends SpringBootMvcTest {
 
 
     @Test
@@ -19,7 +19,7 @@ public class ArticleControllerTest extends SpringBootMvcTest  {
 
     @Test
     public void relevancy() throws Exception {
-        mockMvc.perform(get("/api/article/relevancy/{id}",1)).andExpect(status().isOk());
+        mockMvc.perform(get("/api/article/relevancy/{id}", 1)).andExpect(status().isOk());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class ArticleControllerTest extends SpringBootMvcTest  {
 
     @Test
     public void getArticlesByTag() throws Exception {
-        mockMvc.perform(get("/api/tag").param("tag","java")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/tag").param("tag", "java")).andExpect(status().isOk());
     }
 
 }

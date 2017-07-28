@@ -14,8 +14,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
 /**
  * Created by chulung on 2017/5/26.
  */
@@ -25,15 +23,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @Transactional
 @SpringBootTest(classes = Application.class)
 @Rollback
-@PowerMockIgnore( {"javax.management.*"})
+@PowerMockIgnore({"javax.management.*"})
 public abstract class SpringBootMvcTest extends BaseTest implements ApplicationContextAware {
     protected MockMvc mockMvc;
+
     static {
         //使用测试环境配置 src/test/resources/application-test.yml
-        System.setProperty("spring.profiles.active","test");
+        System.setProperty("spring.profiles.active", "test");
     }
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
-        mockMvc= MockMvcBuilders.webAppContextSetup((WebApplicationContext) applicationContext).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup((WebApplicationContext) applicationContext).build();
     }
 }

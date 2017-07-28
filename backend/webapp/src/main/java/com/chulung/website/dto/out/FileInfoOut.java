@@ -6,5 +6,5 @@ import com.chulung.website.model.FileInfo;
 /**
  * Created by chulung on 2017/5/9.
  */
-public class FileInfoOut extends FileInfo implements BaseDto<FileInfoOut,FileInfo> {
+public class FileInfoOut extends FileInfo implements BaseDto<FileInfoOut, FileInfo> {
 }

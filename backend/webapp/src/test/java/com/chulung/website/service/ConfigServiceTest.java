@@ -30,7 +30,7 @@ public class ConfigServiceTest extends SpringbootBaseTest {
 
     @Test
     public void updateByKey() throws Exception {
-        this.configService.updateByKey(new Config(ConfigKeyEnum.RESET_SEARCH_INDEX,"true"));
+        this.configService.updateByKey(new Config(ConfigKeyEnum.RESET_SEARCH_INDEX, "true"));
         assertThat(this.configService.getValueBykey(ConfigKeyEnum.RESET_SEARCH_INDEX)).isEqualTo("true");
     }
 

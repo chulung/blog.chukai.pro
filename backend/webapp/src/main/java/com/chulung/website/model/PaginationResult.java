@@ -1,12 +1,12 @@
 package com.chulung.website.model;
 
-import java.io.Serializable;
-import java.util.List;
-
 import com.chulung.website.dto.in.PageIn;
 import com.github.pagehelper.Page;
 
-public class PaginationResult<T> implements Serializable{
+import java.io.Serializable;
+import java.util.List;
+
+public class PaginationResult<T> implements Serializable {
 
     private static final long serialVersionUID = 5557428226418690407L;
     private List<T> list;

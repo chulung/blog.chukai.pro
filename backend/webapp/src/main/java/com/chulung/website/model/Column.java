@@ -10,7 +10,7 @@ import javax.persistence.Table;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "columns")
-public class Column extends  BaseModel{
+public class Column extends BaseModel {
 
     private static final long serialVersionUID = -7378879291119999310L;
     private String cnName;

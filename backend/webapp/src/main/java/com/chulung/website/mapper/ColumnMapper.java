@@ -1,7 +1,7 @@
 package com.chulung.website.mapper;
 
-import com.chulung.website.model.Column;
 import com.chulung.mybatis.mapper.BaseMapper;
+import com.chulung.website.model.Column;
 
 /**
  * Created by chulung on 2016/11/6.

@@ -23,12 +23,12 @@ public class SearchConfig implements InitializingBean {
     /**
      * 高亮标签
      */
-    private String highlighterOpening="<em>";
+    private String highlighterOpening = "<em>";
 
     /**
      * 高亮标签
      */
-    private String highlighterClosing="</em>";
+    private String highlighterClosing = "</em>";
 
     /**
      * 搜索结果片段长度
@@ -88,14 +88,15 @@ public class SearchConfig implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if (!this.isRamDirectory() && StringUtils.isBlank(storePath)) throw  new IllegalArgumentException("storePath can't be empty");
-        this.highLighterFormatter=new SimpleHTMLFormatter(this.highlighterOpening,this.highlighterClosing);
-        if (fragmentSize==null){
-            fragmentSize=150;
+        if (!this.isRamDirectory() && StringUtils.isBlank(storePath))
+            throw new IllegalArgumentException("storePath can't be empty");
+        this.highLighterFormatter = new SimpleHTMLFormatter(this.highlighterOpening, this.highlighterClosing);
+        if (fragmentSize == null) {
+            fragmentSize = 150;
         }
     }
 
     private boolean isRamDirectory() {
-        return this.directoryType==DirectoryType.RAM;
+        return this.directoryType == DirectoryType.RAM;
     }
 }

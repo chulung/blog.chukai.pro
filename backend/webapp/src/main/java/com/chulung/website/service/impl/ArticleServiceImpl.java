@@ -1,8 +1,8 @@
 package com.chulung.website.service.impl;
 
 import com.chulung.search.ArticlesSearchHandler;
-import com.chulung.website.dto.out.Archive;
 import com.chulung.website.dto.in.ArticleIn;
+import com.chulung.website.dto.out.Archive;
 import com.chulung.website.dto.out.ArticleDraftOut;
 import com.chulung.website.dto.out.ArticleOut;
 import com.chulung.website.dto.out.PageOut;
@@ -29,8 +29,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
@@ -108,7 +106,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         return true;
     }
 
-    public Article updateArticle(ArticleDraft articleDraft) {
+    private Article updateArticle(ArticleDraft articleDraft) {
         if (articleDraft.getArticleId() != null) {
             //清除tag
             ArticleTag aTag = new ArticleTag();
@@ -130,7 +128,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
                 articleMapper.updateByPrimaryKeySelective(article);
             }
             if (StringUtils.isNotBlank(article.getTags())) {
-                Arrays.asList(article.getTags().split(",")).stream().forEach(t -> {
+                Arrays.stream(article.getTags().split(",")).forEach(t -> {
                     ArticleTag tag = new ArticleTag();
                     tag.setArticleId(article.getId());
                     tag.setTagName(t);
@@ -307,7 +305,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         if (CollectionUtils.isEmpty(articleIds)) return new PageOut<>();
         ArticleIn art = new ArticleIn();
         art.setIds(articleIds);
-        return new PageOut<>(this.articleMapper.selectSummarys(art).stream().map(a->new ArticleOut().buildFromModel(a)).collect(Collectors.toList()));
+        return new PageOut<>(this.articleMapper.selectSummarys(art).stream().map(a -> new ArticleOut().buildFromModel(a)).collect(Collectors.toList()));
     }
 
     @Override
@@ -342,7 +340,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         return article;
     }
 
-    public String generatingSummary(String content) {
+    private String generatingSummary(String content) {
         String replaceAll = content.replaceFirst("<h[1-9](.+)?</h[1-9]>", "").replaceAll("</?.*?>", "");
         return replaceAll.length() > 100 ? replaceAll.substring(0, 97) + "..." : replaceAll;
     }
