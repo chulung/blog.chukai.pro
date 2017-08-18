@@ -32,7 +32,7 @@
                     <router-link to="/column/breadth">广度</router-link>
                   </li>
                   <li class="menu-item">
-                    <router-link to="/column/sensibility">心悟</router-link>
+                    <router-link to="/column/cognition">认知</router-link>
                   </li>
                   <li class="menu-item">
                     <router-link to="/column/amateur">生活</router-link>
@@ -42,7 +42,7 @@
                       <li class="menu-item">
                         <router-link to="/article/about">关于我</router-link>
                       </li>
-                      <li class="menu-item"><a href="#">简历</a></li>
+                      <!--<li class="menu-item"><a href="#">知识体系</a></li>-->
                     </ul>
                   </li>
                 </ul>
