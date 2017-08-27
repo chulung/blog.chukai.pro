@@ -1,7 +1,7 @@
 module.exports = {
   env: {
-    // baseUrl: 'http://127.0.0.1'
-    baseUrl: 'https://chulung.com'
+    baseUrl: 'http://127.0.0.1'
+    // baseUrl: 'https://chulung.com'
   },
   /*
    ** Headers of the page
