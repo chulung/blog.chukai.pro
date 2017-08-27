@@ -43,6 +43,7 @@
                         <router-link to="/article/about">关于我</router-link>
                       </li>
                       <li class="menu-item"><a href="#"></a></li>
+                      <!--<li class="menu-item"><a href="#">知识体系</a></li>-->
                     </ul>
                   </li>
                 </ul>
