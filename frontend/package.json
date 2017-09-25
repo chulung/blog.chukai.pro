@@ -8,7 +8,7 @@
     "axios": "^0.16.2",
     "js-cookie": "^2.1.4",
     "lscache": "^1.1.0",
-    "nuxt": "^1.0.0-alpha.5",
+    "nuxt": "^1.0.0-rc11",
     "vee-validate": "^2.0.0-rc.5"
   },
   "config": {

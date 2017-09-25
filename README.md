@@ -62,6 +62,4 @@ Node:v8.1.3+
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT)
-
-Copyright (c) 2015-present, 初龙(chulung)
+[The MIT License](LICENSE)
