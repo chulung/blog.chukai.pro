@@ -69,7 +69,7 @@
   </div><!-- .col-md-4 -->
 </template>
 <script>
-  import axios from '~plugins/axios'
+  import axios from '~/plugins/axios'
   import lscache from 'lscache'
   export default{
     data () {

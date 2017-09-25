@@ -49,8 +49,8 @@
   </div>
 </template>
 <script>
-  import axios from '~plugins/axios-cms'
-  import common from '~plugins/common'
+  import axios from '~/plugins/axios-cms'
+  import common from '~/plugins/common'
   export default {
     layout: 'cms',
     data () {

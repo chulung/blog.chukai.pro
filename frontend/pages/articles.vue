@@ -15,11 +15,11 @@
   </div><!-- .col-md-8 -->
 </template>
 <script>
-  import axios from '~plugins/axios'
-  import defaultView from '~components/list/default.vue'
-  import manualView from '~components/list/manual.vue'
-  import travelView from '~components/list/travel.vue'
-  import common from '~plugins/common'
+  import axios from '~/plugins/axios'
+  import defaultView from '~/components/list/default.vue'
+  import manualView from '~/components/list/manual.vue'
+  import travelView from '~/components/list/travel.vue'
+  import common from '~/plugins/common'
   const paths = {
     'index': '/articles',
     'articles': '/articles',

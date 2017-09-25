@@ -66,7 +66,7 @@
   </div>
 </template>
 <script>
-  import axios from '~plugins/axios-cms'
+  import axios from '~/plugins/axios-cms'
   export default{
     middleware: 'authenticated',
     layout: 'cms',

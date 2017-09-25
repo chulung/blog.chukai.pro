@@ -96,8 +96,8 @@
   </div>
 </template>
 <script>
-  import axios from '~plugins/axios'
-  import common from '~plugins/common'
+  import axios from '~/plugins/axios'
+  import common from '~/plugins/common'
   import lscache from 'lscache'
   export default {
     head () {

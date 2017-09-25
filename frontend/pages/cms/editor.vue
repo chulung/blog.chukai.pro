@@ -21,9 +21,9 @@
   </div>
 </template>
 <script>
-  import axios from '~plugins/axios-cms'
-  import common from '~plugins/common'
-  import md from '~plugins/markdown'
+  import axios from '~/plugins/axios-cms'
+  import common from '~/plugins/common'
+  import md from '~/plugins/markdown'
   let editor
   export default{
     middleware: 'authenticated',

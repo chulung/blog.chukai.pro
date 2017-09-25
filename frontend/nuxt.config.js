@@ -40,5 +40,5 @@ module.exports = {
     },
     vendor: ['axios']
   },
-  plugins: [ '~plugins/vee-validate']
+  plugins: [ '~/plugins/vee-validate']
 }
