@@ -52,7 +52,7 @@
       }
     },
     mounted () {
-      if (!process.BROWSER_BUILD) return
+      if (!process.browser) return
       md.init(this.initEditor)
       axios.get('/columns').then(response => {
         this.columns = response.data

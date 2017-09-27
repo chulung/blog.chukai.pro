@@ -44,9 +44,11 @@
         <nav aria-label="Page navigation" class="page">
           <ul class="pagination pagination-lg">
             <li>
-              <router-link  v-show="page.prePage" :to="{path:'/cms/drafts',query:{columnId: columnId,pageNum:page.prePage}}" aria-label="Previous">
+              <router-link v-show="page.prePage"
+                           :to="{path:'/cms/drafts',query:{columnId: columnId,pageNum:page.prePage}}"
+                           aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
-              </router-link >
+              </router-link>
             </li>
             <li>
               <router-link :to="{path:'/cms/drafts',query:{columnId: columnId,pageNum:n}}" v-for="n in page.totalPage"
@@ -54,9 +56,11 @@
               </router-link>
             </li>
             <li>
-              <router-link v-show="page.nextPage" :to="{path:'/cms/drafts',query:{columnId: columnId,pageNum:page.nextPage}}" aria-label="Next">
+              <router-link v-show="page.nextPage"
+                           :to="{path:'/cms/drafts',query:{columnId: columnId,pageNum:page.nextPage}}"
+                           aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
-              </router-link >
+              </router-link>
             </li>
           </ul>
         </nav>
@@ -74,9 +78,11 @@
       return {articleDrafts: null, columns: {}, columnId: '', page: {}}
     },
     created () {
-      if (!process.BROWSER_BUILD) return
+      if (!process.browser) return
       axios.get('/columns').then(response => {
         this.columns = response.data
+      }).catch(e => {
+        console.log(e)
       })
       this.fetchArticleData()
     },
@@ -87,7 +93,7 @@
     },
     methods: {
       fetchArticleData () {
-        if (!process.BROWSER_BUILD) return
+        if (!process.browser) return
         axios.get('/articleDrafts', {
           params: {
             columnId: this.columnId,

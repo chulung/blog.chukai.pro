@@ -1,5 +1,5 @@
 function init (callBack) {
-  if (!process.BROWSER_BUILD) return
+  if (!process.browser) return
   function editorInit () {
     if (!window.editormd) {
       setTimeout(editorInit, 1000)

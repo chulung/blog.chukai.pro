@@ -79,7 +79,7 @@
         })
       },
       doDirect () {
-        if (process.BROWSER_BUILD) {
+        if (process.browser) {
           this.$router.push(this.$route.query.path || '/cms')
         }
       },

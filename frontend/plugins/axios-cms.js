@@ -7,7 +7,7 @@ ax.interceptors.response.use(response => {
   return response
 }, error => {
   if (error.response && error.response.status === 401) {
-    if (process.BROWSER_BUILD) {
+    if (process.browser) {
       window.$nuxt.$router.push(`/cms/login?path=${window.$nuxt.$route.path}`)
     }
   }

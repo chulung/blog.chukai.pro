@@ -81,7 +81,7 @@
       }
     },
     mounted () {
-      if (process.BROWSER_BUILD && lscache.get('sidebarInfo')) {
+      if (process.browser && lscache.get('sidebarInfo')) {
         this.bindData(lscache.get('sidebarInfo'))
         return
       }

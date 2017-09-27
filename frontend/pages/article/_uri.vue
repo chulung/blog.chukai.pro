@@ -199,7 +199,7 @@
       },
       postUT: function () {
         // 排除非浏览器环境
-        if (!process.BROWSER_BUILD || !this.article.id) {
+        if (!process.browser || !this.article.id) {
           return
         }
         let articleKey = `art_${this.article.id}`
