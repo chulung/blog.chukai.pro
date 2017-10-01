@@ -7,7 +7,7 @@ server:
 
 logging:
     level:
-        com.chulung.mapper: info
+        com.wchukai.mapper: info
 
 spring:
     jmx :
@@ -20,8 +20,8 @@ spring:
 
 # mybatis start
 mybatis:
-    type-aliases-package: com.chulung.website.model
-    type-handlers-package: com.chulung.mybatis.typehandler
+    type-aliases-package: com.wchukai.webel
+    type-handlers-package: com.wchukai.mybatis.typehandler
     mapper-locations: classpath:mapper/*.xml
 
 mapper:
@@ -55,7 +55,7 @@ metaweblog:
       siteName: CNBLOGS
       userName:
       password:
-      serverUrl: http://rpc.cnblogs.com/metaweblog/chulung
+      serverUrl: http://rpc.cnblogs.com/metaweblog/wchukai
     #oschina
     -
       siteName: OSCHINA

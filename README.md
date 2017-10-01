@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/chulung/chulung.com.svg?branch=master)](https://travis-ci.org/chulung/chulung.com)[![codecov](https://codecov.io/gh/chulung/chulung.com/branch/master/graph/badge.svg)](https://codecov.io/gh/chulung/chulung.com)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.chulung:web-service)](https://sonarqube.com/dashboard/index/com.chulung:web-service)
+[![Build Status](https://travis-ci.org/wchukai/wchukai.com.svg?branch=master)](https://travis-ci.org/wchukai/wchukai.com)[![codecov](https://codecov.io/gh/wchukai/wchukai.com/branch/master/graph/badge.svg)](https://codecov.io/gh/wchukai/wchukai.com)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.wchukai:web-service)](https://sonarqube.com/dashboard/index/com.wchukai:web-service)
 
 
 ## 关于
 
-这是我的博客:[初龙的博客 v2.0](https://chulung.com) 整站源码。
+这是我的博客:[初龙的博客 v2.0](https://wchukai.com) 整站源码。
 
 前端:[Nuxt](https://zh.nuxtjs.org/)
 
@@ -15,7 +15,7 @@
 
 文件系统:[FastDFS](https://code.google.com/archive/p/fastdfs/)
 
-博客同步API:[MetaWeblog](https://github.com/chulung/MetaCLblog)
+博客同步API:[MetaWeblog](https://github.com/wchukai/MetaCLblog)
 
 编辑器:[Markdown](http://pandao.github.io/editor.md/)
 

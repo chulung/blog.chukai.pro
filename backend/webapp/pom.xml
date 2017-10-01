@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     <name>webapp</name>
     <parent>
-        <groupId>com.chulung</groupId>
+        <groupId>com.wchukai</groupId>
         <artifactId>backend</artifactId>
         <version>1.0-snapshot</version>
     </parent>
@@ -97,19 +97,19 @@
         </dependency>
 
         <dependency>
-            <groupId>com.chulung</groupId>
+            <groupId>com.wchukai</groupId>
             <artifactId>metaweblog</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.chulung</groupId>
+            <groupId>com.wchukai</groupId>
             <artifactId>search</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.chulung</groupId>
+            <groupId>com.wchukai</groupId>
             <artifactId>common</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.chulung</groupId>
+            <groupId>com.wchukai</groupId>
             <artifactId>test</artifactId>
             <scope>test</scope>
         </dependency>
@@ -158,7 +158,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.chulung.Application</mainClass>
+                            <mainClass>com.wchukai.Application</mainClass>
                         </manifest>
                         <manifestEntries>
                             <Class-Path>hanlp-solr-plugin-1.0.3.jar</Class-Path>

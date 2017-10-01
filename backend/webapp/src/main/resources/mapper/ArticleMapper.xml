@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.chulung.website.mapper.ArticleMapper">
-    <resultMap id="BaseResultMap" type="com.chulung.website.model.Article">
+<mapper namespace="com.wchukai.web.mapper.ArticleMapper">
+    <resultMap id="BaseResultMap" type="com.wchukai.web.model.Article">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"
-                typeHandler="com.chulung.mybatis.typehandler.LocalDateTimeTypeHandler"/>
+                typeHandler="com.wchukai.mybatis.typehandler.LocalDateTimeTypeHandler"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"
-                typeHandler="com.chulung.mybatis.typehandler.LocalDateTimeTypeHandler"/>
+                typeHandler="com.wchukai.mybatis.typehandler.LocalDateTimeTypeHandler"/>
         <result column="author" property="author" jdbcType="VARCHAR"/>
         <result column="pic" property="pic" jdbcType="VARCHAR"/>
         <result column="column_name" property="columnName" jdbcType="VARCHAR"/>
@@ -40,9 +40,9 @@
         </if>
         <if test="createTimeStart != null and createTimeEnd!=null">
             and create_time between
-            #{createTimeStart,jdbcType=TIMESTAMP,typeHandler=com.chulung.mybatis.typehandler.LocalDateTimeTypeHandler}
+            #{createTimeStart,jdbcType=TIMESTAMP,typeHandler=com.wchukai.mybatis.typehandler.LocalDateTimeTypeHandler}
             and
-            #{createTimeEnd,jdbcType=TIMESTAMP,typeHandler=com.chulung.mybatis.typehandler.LocalDateTimeTypeHandler}
+            #{createTimeEnd,jdbcType=TIMESTAMP,typeHandler=com.wchukai.mybatis.typehandler.LocalDateTimeTypeHandler}
         </if>
         <if test="ids != null">
             and id in

@@ -1,6 +1,6 @@
 # frontend
 
-> frontend of https://chulung.com
+> frontend of https://wchukai.com
 
 ## Build Setup
 

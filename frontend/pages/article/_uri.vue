@@ -15,17 +15,17 @@
           <span class="meta-viewer">{{article.visitCount}} 点击</span>
           <span class="reading-estimation">{{article.commentCount||0}} 评论</span>
           <span class="">分享至:<a
-            :href="'http://service.weibo.com/share/share.php?url=https://chulung.com/article/'+article.uri+'&appkey=2897075133&title=【'+article.title+'】'+article.summary+'&pic='+article.pic"
+            :href="'http://service.weibo.com/share/share.php?url=https://wchukai.com/article/'+article.uri+'&appkey=2897075133&title=【'+article.title+'】'+article.summary+'&pic='+article.pic"
             target="_blank">
                 <i class="fa fa-weibo"></i></a></span>
         </div><!-- .entry-meta -->
       </header><!-- .entry-header -->
       <div class="entry-content" v-html="article.content">
       </div><!-- .entry-content -->
-      <p>原文链接:<a :href="'https://chulung.com/article/'+article.uri">https://chulung.com/article/{{article.uri}}</a>
+      <p>原文链接:<a :href="'https://wchukai.com/article/'+article.uri">https://wchukai.com/article/{{article.uri}}</a>
       </p>
       <footer class="entry-footer">
-        <span class="cat-links">发表在 <a href="https://chulung.com">初龙的博客</a></span>
+        <span class="cat-links">发表在 <a href="https://wchukai.com">初龙的博客</a></span>
         <template v-if="article.tags">
           <span class="tags-links">标签
           <template v-for="tag in article.tags.split(',')">

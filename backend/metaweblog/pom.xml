@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.chulung</groupId>
+        <groupId>com.wchukai</groupId>
         <artifactId>backend</artifactId>
         <version>1.0-snapshot</version>
     </parent>
 
-    <groupId>com.chulung</groupId>
+    <groupId>com.wchukai</groupId>
     <artifactId>metaweblog</artifactId>
     <version>1.0-snapshot</version>
     <dependencies>
@@ -27,12 +27,12 @@
         </dependency>
 
         <dependency>
-            <groupId>com.chulung</groupId>
+            <groupId>com.wchukai</groupId>
             <artifactId>test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.chulung</groupId>
+            <groupId>com.wchukai</groupId>
             <artifactId>common</artifactId>
             <scope>test</scope>
         </dependency>

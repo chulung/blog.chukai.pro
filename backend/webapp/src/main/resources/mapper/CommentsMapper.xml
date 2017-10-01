@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.chulung.website.mapper.CommentMapper">
-    <resultMap id="BaseResultMap" type="com.chulung.website.model.Comment">
+<mapper namespace="com.wchukai.web.mapper.CommentMapper">
+    <resultMap id="BaseResultMap" type="com.wchukai.web.model.Comment">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="article_id" property="articleId" jdbcType="INTEGER"/>
         <result column="reply_id" property="replyId" jdbcType="INTEGER"/>
         <result column="comment" property="comment" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"
-                typeHandler="com.chulung.mybatis.typehandler.LocalDateTimeTypeHandler"/>
+                typeHandler="com.wchukai.mybatis.typehandler.LocalDateTimeTypeHandler"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
     </resultMap>

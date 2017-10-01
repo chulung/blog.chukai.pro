@@ -1,8 +1,8 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "frontend of https://chulung.com",
-  "author": "chulung <chulung@chulung.com>",
+  "description": "frontend of https://wchukai.com",
+  "author": "wchukai <chukai@wchukai.com>",
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",

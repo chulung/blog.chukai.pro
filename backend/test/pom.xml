@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.chulung</groupId>
+        <groupId>com.wchukai</groupId>
         <artifactId>backend</artifactId>
         <version>1.0-snapshot</version>
     </parent>
 
-    <groupId>com.chulung</groupId>
+    <groupId>com.wchukai</groupId>
     <artifactId>test</artifactId>
     <version>1.0-snapshot</version>
     <dependencies>

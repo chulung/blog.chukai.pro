@@ -30,10 +30,10 @@
     layout: 'cms',
     head: {
       script: [
-        {src: 'https://static.chulung.com/assets/markdown/editormd.min.js'}
+        {src: 'https://static.wchukai.com/assets/markdown/editormd.min.js'}
       ],
       link: [
-        {rel: 'stylesheet', href: 'https://static.chulung.com/assets/markdown/css/editormd.min.css'}
+        {rel: 'stylesheet', href: 'https://static.wchukai.com/assets/markdown/css/editormd.min.css'}
       ]
     },
     data () {

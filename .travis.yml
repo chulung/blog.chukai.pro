@@ -5,7 +5,7 @@ jdk:
 
 addons:
   sonarqube:
-    organization: "chulung"
+    organization: "wchukai"
     token:
       secure: ${SONAR_TOKEN}
 

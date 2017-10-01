@@ -8,7 +8,7 @@ function init (callBack) {
     window.editormd('editor-div', {
       width: '100%',
       height: 740,
-      path: 'https://static.chulung.com/assets/markdown/lib/',
+      path: 'https://static.wchukai.com/assets/markdown/lib/',
       theme: 'dark',
       previewTheme: '',
       editorTheme: 'eclipse',

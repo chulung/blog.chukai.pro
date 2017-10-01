@@ -1,7 +1,7 @@
 <template>
   <!-- site-footer -->
   <footer id="colophon" class="site-footer"
-          style="background-image: url('https://chulung.github.io/assets/theme/img/footer-background.png');"
+          style="background-image: url('https://wchukai.github.io/assets/theme/img/footer-background.png');"
           role="contentinfo">
     <div class="container">
       <div class="row">
@@ -35,7 +35,7 @@
             <div class="site-info">
               <h3 class="site-brand"><i class="fa fa-user-circle"></i> 初龙.</h3>
               <p>上海</p>
-              <p>chulung@chulung.com</p>
+              <p>chukai@wchukai.com</p>
             </div><!-- .site-info -->
           </section><!-- .danish_widget_site_info -->
         </div><!-- .col-sm-6 -->
