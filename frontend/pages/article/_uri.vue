@@ -25,7 +25,7 @@
       <p>原文链接:<a :href="'https://wchukai.com/article/'+article.uri">https://wchukai.com/article/{{article.uri}}</a>
       </p>
       <footer class="entry-footer">
-        <span class="cat-links">发表在 <a href="https://wchukai.com">初龙的博客</a></span>
+        <span class="cat-links">发表在 <a href="https://wchukai.com">初开的博客</a></span>
         <template v-if="article.tags">
           <span class="tags-links">标签
           <template v-for="tag in article.tags.split(',')">

@@ -7,11 +7,11 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    titleTemplate: '%s - 初龙的博客',
+    titleTemplate: '%s - 初开的博客',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: '初龙的博客'}
+      {hid: 'description', name: 'description', content: '初开的博客'}
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/img/favicon.ico'}

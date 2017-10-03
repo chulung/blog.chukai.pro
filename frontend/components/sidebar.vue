@@ -13,7 +13,7 @@
     <section class="widget danish_widget_about transition-item" key="about">
       <div class="about-author-container">
         <div class="about-author-info">
-          <h2 class="widget-title">初龙(wchukai)</h2>
+          <h2 class="widget-title">初开(wchukai)</h2>
           <span class="author-subtitle">Developer & Writer</span>
           <div class="author-description">
             <p>这是我的博客，不仅仅是技术博客，因为技术不再是我惟一的追求，也可以与你谈谈人生...</p>

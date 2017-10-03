@@ -3,7 +3,7 @@
 
 ## 关于
 
-这是我的博客:[初龙的博客 v2.0](https://wchukai.com) 整站源码。
+这是我的博客:[初开的博客 v2.0](https://wchukai.com) 整站源码。
 
 前端:[Nuxt](https://zh.nuxtjs.org/)
 
