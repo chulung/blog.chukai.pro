@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wchukai/wchukai.com.svg?branch=master)](https://travis-ci.org/wchukai/wchukai.com)[![codecov](https://codecov.io/gh/wchukai/wchukai.com/branch/master/graph/badge.svg)](https://codecov.io/gh/wchukai/wchukai.com)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.wchukai:web-service)](https://sonarqube.com/dashboard/index/com.wchukai:web-service)
+[![Build Status](https://travis-ci.org/wchukai/wchukai.com.svg?branch=master)](https://travis-ci.org/wchukai/wchukai.com)[![codecov](https://codecov.io/gh/wchukai/wchukai.com/branch/master/graph/badge.svg)](https://codecov.io/gh/wchukai/wchukai.com)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.wchukai:parent-pom)](https://sonarqube.com/dashboard/index/com.wchukai:parent-pom)
 
 
 ## 关于
