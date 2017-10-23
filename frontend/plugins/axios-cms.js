@@ -1,6 +1,10 @@
-import axios from 'axios'
+import axios from "axios";
+import https from "https";
 const ax = axios.create({
-  baseURL: process.env.baseUrl + '/api/cms'
+  baseURL: process.env.baseUrl + '/api/cms',
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+  })
 })
 // 登录拦截
 ax.interceptors.response.use(response => {
