@@ -12,15 +12,14 @@
     </section><!-- .widget_search -->
     <section class="widget danish_widget_about transition-item" key="about">
       <div class="about-author-container">
+        <img src="//static.wchukai.com/group1/M00/00/01/cHx_F1n4QzmAbvgsAABU085jjSE894.jpg" alt="Chukai">
         <div class="about-author-info">
-          <h2 class="widget-title">初开(wchukai)</h2>
-          <span class="author-subtitle">Developer & Writer</span>
+          <h2 class="widget-title">初开</h2>
+          <span class="author-subtitle">Crossover Developer</span>
           <div class="author-description">
-            <p>这是我的博客，不仅仅是技术博客，因为技术不再是我惟一的追求，也可以与你谈谈人生...</p>
+            <p>理性认知，深度与广度，致力于在三年内成为一名跨界开发者。</p>
           </div><!-- .author-description -->
-          <span class="author-subtitle">微信公众号</span>
           <div class="author-description">
-            <img src="/img/weixin.jpg"/>
             <router-link to="/article/about" class="more-link"><span class="moretext">More</span></router-link>
           </div><!-- .author-description -->
           <div class="author-footer">
@@ -29,10 +28,19 @@
                 class="fa fa-github"></i></a>
               <a href="mailto:chukai@wchukai.com" rel="external nofollow" target="_blank"><i
                 class="fa fa-envelope"></i></a>
-              <a href="http://weibo.com/wchukai" target="_blank" rel="external nofollow"><i
-                class="fa fa-weibo"></i></a>
             </div><!-- .author-social -->
           </div><!-- .author-footer -->
+        </div><!-- .about-author-info -->
+      </div><!-- .about-author-container -->
+    </section><!-- .danish_widget_about -->
+    <section class="widget danish_widget_about transition-item" key="about">
+      <div class="about-author-container">
+        <div class="about-author-info">
+          <h2 class="widget-title">微信公众号</h2>
+          <span class="author-subtitle">初开之道</span>
+          <div class="author-description">
+            <img src="/img/weixin.jpg"/>
+          </div><!-- .author-description -->
         </div><!-- .about-author-info -->
       </div><!-- .about-author-container -->
     </section><!-- .danish_widget_about -->
@@ -47,15 +55,6 @@
         </router-link>
       </select>
     </section><!-- .widget_archive -->
-    <section class="widget widget_text transition-item" key="text">
-      <h2 class="widget-title">常用网址</h2>
-      <div class="textwidget">
-        <ul>
-          <li><a href="https://github.com/wchukai" rel="external nofollow" target="_blank">GitHub</a></li>
-          <li><a href="http://www.cnblogs.com/wchukai/" rel="external nofollow" target="_blank">博客园</a></li>
-        </ul>
-      </div><!-- .textwidget -->
-    </section>
     <section class="widget widget_recent_comments transition-item" key="comments">
       <h2 class="widget-title">最新评论</h2>
       <ul id="recentcomments">

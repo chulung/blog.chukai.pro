@@ -8,3 +8,4 @@ backend/metaweblog/target/
 backend/search/target/
 backend/test/target/
 frontend/yarn-error.log
+*.log

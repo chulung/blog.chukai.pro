@@ -9,9 +9,9 @@
               <h1 class="site-title title-image"><a href="index.html" rel="home"><img src="assets/img/danish-image-logo.png" alt="Danish."></a></h1>
               -->
               <h1 class="site-title">
-                <router-link to="/" rel="home">初开.</router-link>
+                <router-link to="/" rel="home">初开之道.</router-link>
               </h1>
-              <p class="site-description">Minecraft //</p>
+              <p class="site-description">记录我的人生之道。//</p>
             </div><!-- .site-branding -->
           </div><!-- .col-sm-4 -->
 
