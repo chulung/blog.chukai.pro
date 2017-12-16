@@ -12,5 +12,10 @@ public enum ConfigKeyEnum {
     /**
      * 推荐文章id字符串 1,2,3
      */
-    RECOMMENDED_ARTICLE_IDS
+    RECOMMENDED_ARTICLE_IDS,
+
+    /**
+     * 是否同步博客
+     */
+    PUSH_BLOG
 }

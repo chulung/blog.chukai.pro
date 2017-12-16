@@ -26,6 +26,7 @@ import java.util.List;
 @Service
 public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogService {
     public static final String METACKBLOG_COMMENTS = "<p>作者：初开</p><p>原文链接:<a href=\"https://wchukai.com/article/%s\">https://wchukai.com/article/%s</a></p><p>本文由<a href=\"https://github.com/wchukai/MetaCLblog\">MetaCLBlog</a>于%s自动同步至%s</p>";
+    public static final String PUSH_BLOG_DEFAULT = "0";
 
     @Autowired
     protected AppLogMapper cronJobLogMapper;
@@ -42,6 +43,10 @@ public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogS
 
     @Override
     public void pushBlog() throws XmlRpcException {
+        String value = configService.getValueBykey(ConfigKeyEnum.PUSH_BLOG, PUSH_BLOG_DEFAULT);
+        if (PUSH_BLOG_DEFAULT.equals(value)) {
+            return;
+        }
         for (MetaWeblog metaWeblog : metaWeblogs) {
             new PushTask(metaWeblog).start();
         }
