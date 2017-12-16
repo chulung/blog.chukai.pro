@@ -17,7 +17,7 @@
           <h2 class="widget-title">初开</h2>
           <span class="author-subtitle">Crossover Developer</span>
           <div class="author-description">
-            <p>理性认知，深度与广度，致力于在三年内成为一名跨界开发者。</p>
+            <p>致力于成为一名具备多元化思维，能够洞察事物本质，喜欢讲故事的跨界专家。</p>
           </div><!-- .author-description -->
           <div class="author-description">
             <router-link to="/article/about" class="more-link"><span class="moretext">More</span></router-link>
