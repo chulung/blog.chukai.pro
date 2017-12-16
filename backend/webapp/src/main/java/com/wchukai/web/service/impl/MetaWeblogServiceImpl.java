@@ -25,8 +25,9 @@ import java.util.List;
  */
 @Service
 public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogService {
-    public static final String METACKBLOG_COMMENTS = "<p>作者：初开</p><p>原文链接:<a href=\"https://wchukai.com/article/%s\">https://wchukai.com/article/%s</a></p><p>本文由<a href=\"https://github.com/wchukai/MetaCLblog\">MetaCLBlog</a>于%s自动同步至%s</p>";
     public static final String PUSH_BLOG_DEFAULT = "0";
+    public static final String AUTHOR_INFO = "<p>作者：<a href=\"https://wchukai.com\">初开</a></p>\n" +
+            "<p>发表于：<a href=\"http://www.cnblogs.com/wchukai\">博客园</a></p>";
 
     @Autowired
     protected AppLogMapper cronJobLogMapper;
@@ -52,6 +53,14 @@ public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogS
         }
     }
 
+    @Override
+    public void pushBlog(Integer id) throws XmlRpcException {
+        Article article=articleMapper.selectByPrimaryKey(id);
+        for (MetaWeblog metaWeblog : metaWeblogs) {
+            pushArticle(article,metaWeblog);
+        }
+    }
+
 
     /**
      * 推送博客文章至其他网站
@@ -67,9 +76,7 @@ public class MetaWeblogServiceImpl extends BaseService implements MetaClBlogLogS
         Post post = new Post();
         post.setTitle(article.getTitle());
         post.setDateCreated(DateUtils.toDate(article.getCreateTime()));
-        String description = article.getContent()
-                + String.format(METACKBLOG_COMMENTS, article.getUri(), article.getUri(),
-                DateUtils.format(LocalDateTime.now()), site.getDedcription()) + configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, "");
+        String description = article.getContent() + AUTHOR_INFO + configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, "");
         post.setDescription(description);
         post.setMt_keywords(article.getTags());
         if (metaCLBlogLog != null) {

@@ -62,6 +62,9 @@
       publishCheck: function (newVal) {
         this.draft.isPublish = newVal ? 'Y' : 'N'
       },
+      pushBlog: function (newVal) {
+        this.draft.pushBlog = newVal ? '1' : '0'
+      },
       uri: function (newVal) {
         this.uri = newVal.trim().toLowerCase().replace(/\s+/, '-')
         this.draft.uri = this.uri

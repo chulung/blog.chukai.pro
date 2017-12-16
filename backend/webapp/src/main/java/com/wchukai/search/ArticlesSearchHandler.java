@@ -1,5 +1,6 @@
 package com.wchukai.search;
 
+import com.github.pagehelper.PageHelper;
 import com.wchukai.search.core.Search;
 import com.wchukai.search.core.SearchDocument;
 import com.wchukai.web.dto.in.ArticleIn;
@@ -9,7 +10,7 @@ import com.wchukai.web.mapper.ArticleMapper;
 import com.wchukai.web.model.Article;
 import com.wchukai.web.model.BaseComponent;
 import com.wchukai.web.service.ConfigService;
-import com.github.pagehelper.PageHelper;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationListener;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -30,6 +32,7 @@ import java.util.stream.Collectors;
 public class ArticlesSearchHandler extends BaseComponent implements ApplicationListener<ContextRefreshedEvent> {
 
     private boolean lazy;
+    private Pattern pattern = Pattern.compile("^[\u4e00-\u9fa5\\w]+$");
 
     @Autowired
     private ArticleMapper articleMapper;
@@ -73,14 +76,22 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
     public void index(Integer articleId) {
         checkLazyLoad();
         Article article = this.articleMapper.selectByPrimaryKey(articleId);
-        if (article == null) return;
+        if (article == null) {
+            return;
+        }
         this.search.createIndex(new SearchDocument(article.getId().toString(), article.getTitle(), replaceHtmlTag(article)));
     }
 
     public PageOut<ArticleOut> search(String key) {
         checkLazyLoad();
         try {
+            if (!pattern.matcher(key).matches()) {
+                return PageOut.EMPTY;
+            }
             List<SearchDocument> search = this.search.search(key);
+            if (CollectionUtils.isEmpty(search)) {
+                return PageOut.EMPTY;
+            }
             ArticleIn record = new ArticleIn();
             record.setIds(search.stream().map(a -> Integer.parseInt(a.getId())).collect(Collectors.toList()));
             Map<Integer, Article> map = this.articleMapper.selectSummarys(record).stream().collect(Collectors.toMap(Article::getId, Function.identity()));
@@ -122,7 +133,9 @@ public class ArticlesSearchHandler extends BaseComponent implements ApplicationL
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        if (lazy) return;
+        if (lazy) {
+            return;
+        }
         new Thread(() -> {
             this.resetIndex();
         }).start();

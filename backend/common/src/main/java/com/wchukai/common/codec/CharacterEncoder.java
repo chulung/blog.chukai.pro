@@ -3,6 +3,9 @@ package com.wchukai.common.codec;
 import java.io.*;
 import java.nio.ByteBuffer;
 
+/**
+ * @author chukai
+ */
 public abstract class CharacterEncoder {
     protected PrintStream pStream;
 

@@ -17,7 +17,9 @@ public class SearchController extends BaseController {
     public
     @ResponseBody
     PageOut<ArticleOut> search(@RequestParam(defaultValue = "CSearch") String word) {
-        if (word.length() > 20) word = word.substring(0, 20);
+        if (word.length() > 20) {
+            word = word.substring(0, 20);
+        }
         return this.articlesSearchHandler.search(word);
     }
 }

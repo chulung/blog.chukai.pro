@@ -21,9 +21,15 @@ public class SearchDocument {
     private String content;
 
     public SearchDocument(String id, String title, String content) {
-        if (id == null) throw new IllegalArgumentException("id can't be null!");
-        if (title == null) throw new IllegalArgumentException("title can't be null!");
-        if (content == null) throw new IllegalArgumentException("content can't be null!");
+        if (id == null) {
+            throw new IllegalArgumentException("id can't be null!");
+        }
+        if (title == null) {
+            throw new IllegalArgumentException("title can't be null!");
+        }
+        if (content == null) {
+            throw new IllegalArgumentException("content can't be null!");
+        }
         this.id = id;
         this.title = title;
         this.content = content;

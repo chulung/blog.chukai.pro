@@ -11,7 +11,7 @@ import java.io.UncheckedIOException;
 
 public class ImageUtil {
     private static final String MICROSOFT_YA_HEI = "Microsoft YaHei";
-    private static final String waterMarkContent = "wchukai.com";
+    private static final String WATER_MARK_CONTENT = "wchukai.com";
 
     /**
      * 图片添加水印
@@ -35,9 +35,9 @@ public class ImageUtil {
         Font font = new Font(MICROSOFT_YA_HEI, Font.BOLD, 16);
         g.setColor(new Color(91, 192, 222)); // 根据图片的背景设置水印颜色
         g.setFont(font);
-        int x = srcImgWidth - getWatermarkLength(waterMarkContent, g) - 3;
+        int x = srcImgWidth - getWatermarkLength(WATER_MARK_CONTENT, g) - 3;
         int y = srcImgHeight - 3;
-        g.drawString(waterMarkContent, x, y);
+        g.drawString(WATER_MARK_CONTENT, x, y);
         g.dispose();
         // 输出图片
         ByteArrayOutputStream bs = new ByteArrayOutputStream();

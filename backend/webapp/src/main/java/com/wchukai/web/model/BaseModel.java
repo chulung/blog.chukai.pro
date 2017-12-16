@@ -27,6 +27,7 @@ public class BaseModel implements Serializable {
         this.id = id;
     }
 
+    @Override
     public String toString() {
         StringBuffer propBuffer = new StringBuffer();
         Field[] fields = this.getClass().getDeclaredFields();

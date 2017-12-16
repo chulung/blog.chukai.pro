@@ -7,4 +7,6 @@ import org.apache.xmlrpc.XmlRpcException;
  */
 public interface MetaClBlogLogService {
     void pushBlog() throws XmlRpcException;
+
+    void pushBlog(Integer id) throws XmlRpcException;
 }

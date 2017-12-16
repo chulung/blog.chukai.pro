@@ -68,7 +68,9 @@ public class CommonCronJob extends AbstractCronJob {
      * @param arr 将arr归一化
      */
     private void normalization(double[] arr) {
-        if (ArrayUtils.isEmpty(arr)) return;
+        if (ArrayUtils.isEmpty(arr)) {
+            return;
+        }
         double max = arr[0];
         double min = arr[0];
         for (int i = 1; i < arr.length; i++) {

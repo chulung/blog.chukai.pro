@@ -48,7 +48,9 @@ public class NetUtil {
 
     private static Cookie getCookie(String name) {
         HttpServletRequest request = getRequest();
-        if (request == null) return null;
+        if (request == null) {
+            return null;
+        }
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {

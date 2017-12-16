@@ -88,8 +88,9 @@ public class SearchConfig implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if (!this.isRamDirectory() && StringUtils.isBlank(storePath))
+        if (!this.isRamDirectory() && StringUtils.isBlank(storePath)) {
             throw new IllegalArgumentException("storePath can't be empty");
+        }
         this.highLighterFormatter = new SimpleHTMLFormatter(this.highlighterOpening, this.highlighterClosing);
         if (fragmentSize == null) {
             fragmentSize = 150;

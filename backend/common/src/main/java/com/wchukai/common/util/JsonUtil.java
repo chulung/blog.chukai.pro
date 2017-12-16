@@ -12,11 +12,11 @@ import java.io.InputStream;
  * Created by wchukai on 2017/3/5.
  */
 public class JsonUtil {
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public static String toJsonString(Object obj) {
         try {
-            return objectMapper.writeValueAsString(obj);
+            return OBJECT_MAPPER.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
             throw new RuntimeJsonMappingException(JsonMappingException.fromUnexpectedIOE(e));
         }
@@ -24,7 +24,7 @@ public class JsonUtil {
 
     public static <T> T readValue(InputStream inputStream, Class<T> clazz) {
         try {
-            return objectMapper.readValue(inputStream, clazz);
+            return OBJECT_MAPPER.readValue(inputStream, clazz);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -32,7 +32,7 @@ public class JsonUtil {
 
     public static <T> T readValue(byte[] bytes, Class<T> clazz) {
         try {
-            return objectMapper.readValue(bytes, clazz);
+            return OBJECT_MAPPER.readValue(bytes, clazz);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -40,7 +40,7 @@ public class JsonUtil {
 
     public static byte[] writeBytes(Object object) {
         try {
-            return objectMapper.writeValueAsBytes(object);
+            return OBJECT_MAPPER.writeValueAsBytes(object);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

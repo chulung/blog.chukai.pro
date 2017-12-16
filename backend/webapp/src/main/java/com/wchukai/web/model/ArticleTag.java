@@ -25,10 +25,12 @@ public class ArticleTag extends BaseModel implements Serializable {
         this.count = count;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }

@@ -24,6 +24,7 @@
       </div><!-- .entry-content -->
       <p>原文链接:<a :href="'https://wchukai.com/article/'+article.uri">https://wchukai.com/article/{{article.uri}}</a>
       </p>
+      <p>本文基于 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">知识共享-署名-非商业性使用-禁止演绎 4.0 国际</a>许可协议发布，转载必须保留署名及链接。</p>
       <footer class="entry-footer">
         <span class="cat-links">发表在 <a href="https://wchukai.com">初开的博客</a></span>
         <template v-if="article.tags">

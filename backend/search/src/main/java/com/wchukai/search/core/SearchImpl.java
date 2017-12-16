@@ -87,19 +87,21 @@ public class SearchImpl implements Search, InitializingBean, DisposableBean {
             }
         } catch (Exception e) {
             try {
-                if (writer != null)
+                if (writer != null) {
                     writer.rollback();
+                }
             } catch (Exception e1) {
                 logger.error("", e1);
             }
             return false;
         } finally {
-            if (writer != null)
+            if (writer != null) {
                 try {
                     writer.commit();
                 } catch (Exception e) {
                     logger.error("", e);
                 }
+            }
 
         }
         return true;

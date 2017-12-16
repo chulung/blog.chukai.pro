@@ -40,6 +40,7 @@ public class EscapeFilter implements Filter {
             super(request);
         }
 
+        @Override
         public String getParameter(String name) {
             String value = super.getParameter(name);
             if (value == null) {
@@ -48,6 +49,7 @@ public class EscapeFilter implements Filter {
             return StringEscapeUtils.escapeHtml4(value);
         }
 
+        @Override
         public String[] getParameterValues(String name) {
             String[] values = super.getParameterValues(name);
             if (values == null) {

@@ -25,7 +25,9 @@ public class MetaWeBlogConfiguration {
 
     @Bean
     public List<MetaWeblog> metaWeblogs() {
-        if (CollectionUtils.isEmpty(configInfos)) return Collections.emptyList();
+        if (CollectionUtils.isEmpty(configInfos)) {
+            return Collections.emptyList();
+        }
         return configInfos.stream().map(c -> {
             MetaWeblog metaWeblog = new MetaWeblog();
             metaWeblog.setConfigInfo(c);

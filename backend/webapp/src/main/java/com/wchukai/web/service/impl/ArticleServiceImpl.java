@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ArticleServiceImpl extends BaseService implements ArticleService {
-    private static final int PAGE_SIZE = 5;
+    private static final int PAGE_SIZE = 6;
 
     @Resource
     private WebSessionSupport webSessionSupport;
@@ -69,6 +69,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     @Autowired
     private ArticleTagMapper articleTagMapper;
 
+    private  Pattern domianPattern = Pattern.compile("(https:)?//(\\w+\\.)?wchukai.com.+?(\\.\\w{3})");
     @Override
     public Article findArticleById(Integer id) {
         Article record = new Article();
@@ -155,7 +156,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     private void pushBlog(ArticleDraft articleDraft) {
         if (articleDraft.getArticleId() != null && articleDraft.getPushBlog() == 1) {
             try {
-                metaClBlogLogService.pushBlog();
+                metaClBlogLogService.pushBlog(articleDraft.getArticleId());
             } catch (Exception e) {
                 logger.error("同步文章失败 articleDraftId={},err={})", articleDraft.getId(), e);
             }
@@ -225,7 +226,11 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         bean.setIsDelete(IsDeleteEnum.N);
         if (column != null) {
             Column c = this.columnSevice.getEnNameColumnMap().get(column);
-            if (c == null) throw HttpStatusException.of(HttpStatus.NOT_FOUND);
+            if (c == null) {
+                {
+                    throw HttpStatusException.of(HttpStatus.NOT_FOUND);
+                }
+            }
             bean.setColumnId(c.getId());
         }
         if (year != null && Range.atLeast(2014).contains(year)) {
@@ -302,7 +307,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         List<Integer> articleIds = this.articleTagMapper.select(record).stream().map(t -> {
             return t.getArticleId();
         }).collect(Collectors.toList());
-        if (CollectionUtils.isEmpty(articleIds)) return new PageOut<>();
+        if (CollectionUtils.isEmpty(articleIds)) {
+            return new PageOut<>();
+        }
         ArticleIn art = new ArticleIn();
         art.setIds(articleIds);
         return new PageOut<>(this.articleMapper.selectSummarys(art).stream().map(a -> new ArticleOut().buildFromModel(a)).collect(Collectors.toList()));
@@ -311,7 +318,9 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
     @Override
     public List<Article> findRelevancyByArticleId(Integer id) {
         List<Article> list = this.articleMapper.listRelevancy(id);
-        if (list.size() <= 4) return list;
+        if (list.size() <= 4) {
+            return list;
+        }
         Collections.shuffle(list);
         return list.subList(0, 4);
     }
@@ -320,8 +329,8 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         Article article = new Article();
         article.setId(articleDraft.getArticleId());
         String htmlContent = articleDraft.getHtmlContent();
-        Pattern p = Pattern.compile("(https:)?//(\\w+\\.)?wchukai.com.+?(\\.\\w{3})");
-        Matcher m = p.matcher(htmlContent);
+
+        Matcher m = domianPattern.matcher(htmlContent);
         if (m.find()) {
             article.setPic(m.group());
         }
