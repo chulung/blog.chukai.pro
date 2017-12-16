@@ -54,7 +54,7 @@
   export default {
     layout: 'cms',
     data () {
-      return {user: {userName: '', password: '', register: false, remember: 0}, errorMsg: '', remember: false}
+      return {user: {userName: '', password: '', register: false, remember: 1}, errorMsg: '', remember: true}
     },
     created () {
       axios.get('/login').then(response => {
