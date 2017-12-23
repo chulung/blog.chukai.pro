@@ -83,9 +83,6 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
         if (a == null) {
             throw HttpStatusException.of(HttpStatus.NOT_FOUND);
         }
-        if (a.getColumnId() == 1) {
-            a.setContent(a.getContent() + (a.getColumnId() != 3 && StringUtils.isBlank(a.getLicense()) ? configService.getValueBykey(ConfigKeyEnum.ARTICLE_LICENSE, ConfigKeyEnum.ARTICLE_LICENSE.name()) : a.getLicense()));
-        }
         return a;
     }
 
