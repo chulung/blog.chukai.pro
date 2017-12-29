@@ -1,7 +1,9 @@
 package com.wchukai.web.service.impl;
 
 import com.wchukai.web.mapper.ColumnMapper;
+import com.wchukai.web.mapper.FieldMapper;
 import com.wchukai.web.model.Column;
+import com.wchukai.web.model.Field;
 import com.wchukai.web.service.ColumnSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -23,6 +25,8 @@ public class ColumnTypeSeviceImpl implements ColumnSevice {
     @Autowired
     private ColumnMapper columnTypeMapper;
 
+    @Autowired
+    private FieldMapper fieldMapper;
 
     @Override
     public List<Column> getAllColumns() {

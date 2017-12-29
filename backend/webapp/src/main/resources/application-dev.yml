@@ -23,7 +23,7 @@ spring:
 
 # mybatis start
 mybatis:
-    type-aliases-package: com.wchukai.webel
+    type-aliases-package: com.wchukai.web.model
     type-handlers-package: com.wchukai.mybatis.typehandler
     mapper-locations: classpath:mapper/*.xml
 

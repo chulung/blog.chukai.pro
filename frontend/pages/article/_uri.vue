@@ -1,7 +1,7 @@
 <template>
   <div>
-    <header class="page-header" v-show="!article.id && errorMsg">
-      <h1 class="page-title">{{errorMsg}}</h1>
+    <header class="page-header" v-show="!article.id && msg">
+      <h1 class="page-title">{{msg}}</h1>
     </header>
     <article class="post format-standard hentry " v-if="article.id">
       <header class="entry-header">
@@ -55,7 +55,7 @@
         </div><!-- .col-md-3 -->
       </div><!-- .row -->
     </div>
-    <div class="comments-area" key="comments" v-show="!errorMsg">
+    <div class="comments-area" key="comments" v-show="!msg">
       <div class="comment-respond">
         <h3 class="comment-reply-title">评论
           <small></small>
@@ -114,7 +114,7 @@
         comments: [],
         relevancies: [],
         comment: {},
-        errorMsg: ''
+        msg: ''
       }
     },
     watch: {
@@ -136,7 +136,7 @@
               uri: res.data.uri
             },
             relevancies: [],
-            errorMsg: ''
+            msg: ''
           }
         })
         .catch((e) => {
@@ -145,7 +145,7 @@
             comments: [],
             relevancies: [],
             comment: {},
-            errorMsg: (e.response.status === 404 ? '哎呀！没有找到这篇文章。' : '查询文章出错了QAQ')
+            msg: (e.response.status === 404 ? '哎呀！没有找到这篇文章。' : '查询文章出错了QAQ')
           }
         })
     },
