@@ -66,3 +66,7 @@ metaweblog:
       password:
       serverUrl: https://my.oschina.net/action/xmlrpc
 
+
+githooks:
+  portfolio:
+    shell: /var/www/chukai.pro/build_portfolio.sh
