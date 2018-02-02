@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/wchukai/wchukai.com.svg?branch=master)](https://travis-ci.org/wchukai/wchukai.com)[![codecov](https://codecov.io/gh/wchukai/wchukai.com/branch/master/graph/badge.svg)](https://codecov.io/gh/wchukai/wchukai.com)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.wchukai:parent-pom)](https://sonarqube.com/dashboard/index/com.wchukai:parent-pom)
+[![Build Status](https://travis-ci.org/ichukai/chukai.pro.svg?branch=master)](https://travis-ci.org/ichukai/chukai.pro)[![codecov](https://codecov.io/gh/ichukai/chukai.pro/branch/master/graph/badge.svg)](https://codecov.io/gh/ichukai/chukai.pro)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=pro.chukai:parent-pom)](https://sonarqube.com/dashboard/index/pro.chukai:website)
 
 
 ## 关于
 
-这是我的博客:[初开的博客 v2.0](https://wchukai.com) 整站源码。
+这是我的博客:[初开之道](https://chukai.pro) 整站源码。
 
 前端:[Nuxt](https://zh.nuxtjs.org/)
 
@@ -15,7 +15,7 @@
 
 文件系统:[FastDFS](https://code.google.com/archive/p/fastdfs/)
 
-博客同步API:[MetaWeblog](https://github.com/wchukai/MetaCLblog)
+博客同步API:[MetaWeblog](https://github.com/ichukai/MetaCLblog)
 
 编辑器:[Markdown](http://pandao.github.io/editor.md/)
 

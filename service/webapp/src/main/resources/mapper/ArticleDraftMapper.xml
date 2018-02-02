@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pro.chukai.web.mapper.ArticleDraftMapper">
+    <resultMap id="BaseResultMap" type="pro.chukai.web.model.ArticleDraft">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="article_Id" property="articleId" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"
+                typeHandler="pro.chukai.mybatis.typehandler.LocalDateTimeTypeHandler"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"
+                typeHandler="pro.chukai.mybatis.typehandler.LocalDateTimeTypeHandler"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="is_publish" property="isPublish" jdbcType="CHAR"/>
+        <result column="column_id" property="columnId" jdbcType="INTEGER"/>
+        <result column="is_delete" property="isDelete" jdbcType="CHAR"/>
+        <result column="version" property="version" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+        <result column="html_content" property="htmlContent" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <select id="selectTileList" resultMap="BaseResultMap" parameterType="pro.chukai.web.model.ArticleDraft">
+        select id,article_id, title, create_time, update_time, author,is_publish,column_id,
+        version
+        from article_draft
+        <where>
+            <if test="columnId != null">
+                column_id= #{columnId,jdbcType=INTEGER}
+            </if>
+        </where>
+        ORDER BY id desc
+    </select>
+</mapper>

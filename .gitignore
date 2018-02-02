@@ -1,11 +1,10 @@
 /.idea
-backend/common/target/
-backend/rpc/target/
+service/common/target/
 node_modules/
 application-local.yml
 *.iml
-backend/metaweblog/target/
-backend/search/target/
-backend/test/target/
-frontend/yarn-error.log
+service/metaweblog/target/
+service/search/target/
+service/test/target/
+blog/yarn-error.log
 *.log

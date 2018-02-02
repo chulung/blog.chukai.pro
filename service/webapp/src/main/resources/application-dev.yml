@@ -1,0 +1,68 @@
+
+# mybatis
+server:
+    port: 8080
+    #context-path:
+
+logging:
+    level:
+        pro.chukai.mapper: info
+
+spring:
+    jmx :
+      enabled: false
+    datasource:
+      type: org.apache.commons.dbcp.BasicDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/craft?useUnicode=true&characterEncoding=UTF-8
+      username: testuser
+      password: 123456
+      dbcp2:
+        validation-query: SELECT NOW() FROM DUAL
+        test-on-borrow: true
+
+# mybatis start
+mybatis:
+    type-aliases-package: pro.chukai.web.model
+    type-handlers-package: pro.chukai.mybatis.typehandler
+    mapper-locations: classpath:mapper/*.xml
+
+mapper:
+    not-empty: false
+    identity: MYSQL
+
+pagehelper:
+    supportMethodsArguments: true
+
+#FASTDFS start
+fdfs:
+    soTimeout: 1501
+    connectTimeout: 601
+    thumbImage:             #缩略图生成参数
+         width: 150
+         height: 150
+    trackerList:            #TrackerList参数,支持多个
+         - 198.123.10.15:10121
+
+#搜索 start
+#索引存储目录
+search:
+      directoryType : RAM # RAM 内存索引 FILE 文件索引
+      storePath: /indexstore  # 文件索引路径
+
+#metaweblog 可选
+metaweblog:
+    configInfos :
+    #cnblogs
+    -
+      siteName: CNBLOGS
+      userName:
+      password:
+      serverUrl: http://rpc.cnblogs.com/metaweblog/wchukai
+    #oschina
+    -
+      siteName: OSCHINA
+      userName:
+      password:
+      serverUrl: https://my.oschina.net/action/xmlrpc
+

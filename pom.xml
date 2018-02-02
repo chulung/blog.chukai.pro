@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.wchukai</groupId>
-    <artifactId>parent-pom</artifactId>
+    <groupId>pro.chukai</groupId>
+    <artifactId>website</artifactId>
     <version>1.0-snapshot</version>
 
     <packaging>pom</packaging>
-    <name>parent-pom</name>
-    <description>https://wchukai.com sources</description>
-    <url>https://github.com/wchukai/wchukai.com</url>
+    <name>website</name>
+    <description>https://chukai.pro sources</description>
+    <url>https://github.com/ichukai/chukai.pro</url>
     <!-- Inherit defaults from Spring Boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -16,7 +16,7 @@
         <version>1.5.3.RELEASE</version>
     </parent>
     <modules>
-        <module>backend</module>
+        <module>service</module>
     </modules>
     <licenses>
         <license>
@@ -26,8 +26,8 @@
     </licenses>
     <developers>
         <developer>
-            <name>wchukai</name>
-            <email>chukai@wchukai.com</email>
+            <name>chukai</name>
+            <email>chukai@chukai.pro</email>
         </developer>
     </developers>
     <properties>
@@ -42,8 +42,6 @@
         <commons-httpclient.version>3.1</commons-httpclient.version>
         <hanlp.version>portable-1.2.8</hanlp.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
-        <wchukai-common.version>1.0-snapshot</wchukai-common.version>
-        <wchukai-rpc.version>1.0-snapshot</wchukai-rpc.version>
         <curator.version>2.8.0</curator.version>
         <powermock.version>1.6.6</powermock.version>
         <commons-lang3.version>3.5</commons-lang3.version>
@@ -100,22 +98,22 @@
             </dependency>
 
             <dependency>
-                <groupId>com.wchukai</groupId>
+                <groupId>pro.chukai</groupId>
                 <artifactId>metaweblog</artifactId>
                 <version>1.0-snapshot</version>
             </dependency>
             <dependency>
-                <groupId>com.wchukai</groupId>
+                <groupId>pro.chukai</groupId>
                 <artifactId>common</artifactId>
                 <version>1.0-snapshot</version>
             </dependency>
             <dependency>
-                <groupId>com.wchukai</groupId>
+                <groupId>pro.chukai</groupId>
                 <artifactId>test</artifactId>
                 <version>1.0-snapshot</version>
             </dependency>
             <dependency>
-                <groupId>com.wchukai</groupId>
+                <groupId>pro.chukai</groupId>
                 <artifactId>search</artifactId>
                 <version>1.0-snapshot</version>
             </dependency>
@@ -166,8 +164,8 @@
                 <version>0.7.7.201606060606</version>
                 <configuration>
                     <excludes>
-                        <exclude>com/wchukai/website/model/*</exclude>
-                        <exclude>com/wchukai/metaweblog/struct/*</exclude>
+                        <exclude>pro/chukai/website/model/*</exclude>
+                        <exclude>pro/chukai/metaweblog/struct/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
