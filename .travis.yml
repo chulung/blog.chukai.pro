@@ -5,7 +5,7 @@ jdk:
 
 addons:
   sonarcloud:
-    organization: "chukai-pro"
+    organization: "ichukai-github"
     token:
       secure: ${SONAR_TOKEN}
 
