@@ -12,7 +12,7 @@ public class NetUtil {
 
     public final static String SESSION_ID = "session_id";
     public static final String USER_AGENT = "User-Agent";
-    private static final Pattern DOMAIN_PATTERN = Pattern.compile("\\w+\\.com");
+    private static final Pattern DOMAIN_PATTERN = Pattern.compile("\\w+\\.pro");
 
     public static String getIpAddr() {
         HttpServletRequest request = getRequest();
