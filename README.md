@@ -3,7 +3,7 @@
 
 ## 关于
 
-这是我的博客:[初开之道](https://chukai.pro) 整站源码。
+这是我的博客:[初开之道](http://blog.chukai.pro) 整站源码。
 
 前端:[Nuxt](https://zh.nuxtjs.org/)
 
