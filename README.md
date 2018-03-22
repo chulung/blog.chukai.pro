@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ichukai/chukai.pro.svg?branch=master)](https://travis-ci.org/ichukai/chukai.pro)[![codecov](https://codecov.io/gh/ichukai/chukai.pro/branch/master/graph/badge.svg)](https://codecov.io/gh/ichukai/chukai.pro)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=pro.chukai:parent-pom)](https://sonarqube.com/dashboard/index/pro.chukai:website)
+[![Build Status](https://travis-ci.org/ichukai/blog.chukai.pro.svg?branch=master)](https://travis-ci.org/ichukai/blog.chukai.pro)[![codecov](https://codecov.io/gh/ichukai/blog.chukai.pro/branch/master/graph/badge.svg)](https://codecov.io/gh/ichukai/blog.chukai.pro)[![Quality Gate](https://sonarqube.com/api/badges/gate?key=pro.chukai:parent-pom)](https://sonarqube.com/dashboard/index/pro.chukai:website)
 
 ## 停止更新
 由于认知升级，此博客不再更新，重定向为作品集:[http://chukai.link](http://chukai.link)

@@ -43,7 +43,7 @@ public class FileUploadController extends BaseController {
         StorePath path = fileUploadService.upload(file);
         Map<Object, Object> responseBody = new HashMap();
         responseBody.put("success", 1);
-        responseBody.put("url", "https://cdn.chukai.pro/" + path.getFullPath());
+        responseBody.put("url", "https://blog.chukai.pro/" + path.getFullPath());
         return success(responseBody);
     }
 }

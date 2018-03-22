@@ -8,7 +8,7 @@ function init (callBack) {
     window.editormd('editor-div', {
       width: '100%',
       height: 740,
-      path: 'https://cdn.chukai.pro/assets/markdown/lib/',
+      path: 'https://blog.chukai.pro/assets/markdown/lib/',
       theme: 'dark',
       previewTheme: '',
       editorTheme: 'eclipse',

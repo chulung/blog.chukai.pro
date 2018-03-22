@@ -30,10 +30,10 @@
     layout: 'cms',
     head: {
       script: [
-        {src: 'https://cdn.chukai.pro/assets/markdown/editormd.min.js'}
+        {src: 'https://blog.chukai.pro/assets/markdown/editormd.min.js'}
       ],
       link: [
-        {rel: 'stylesheet', href: 'https://cdn.chukai.pro/assets/markdown/css/editormd.min.css'}
+        {rel: 'stylesheet', href: 'https://blog.chukai.pro/assets/markdown/css/editormd.min.css'}
       ]
     },
     data () {

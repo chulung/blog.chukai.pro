@@ -12,7 +12,7 @@
     </section><!-- .widget_search -->
     <section class="widget danish_widget_about transition-item" key="about">
       <div class="about-author-container">
-        <img src="//cdn.chukai.pro/group1/M00/00/01/cHx_F1n4QzmAbvgsAABU085jjSE894.jpg" alt="Chukai">
+        <img src="//blog.chukai.pro/group1/M00/00/01/cHx_F1n4QzmAbvgsAABU085jjSE894.jpg" alt="Chukai">
         <div class="about-author-info">
           <h2 class="widget-title">初开</h2>
           <span class="author-subtitle">Crossover Developer</span>
