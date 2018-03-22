@@ -17,10 +17,10 @@
           <h2 class="widget-title">初开</h2>
           <span class="author-subtitle">Crossover Developer</span>
           <div class="author-description">
-            <p>致力于成为一名具备多元化思维，能够洞察事物本质，喜欢讲故事的跨界专家。</p>
+            <p>致力于成为一名具备多元化思维、能洞察事物本质、喜欢讲故事的领域专家和价值投资人。</p>
           </div><!-- .author-description -->
           <div class="author-description">
-            <router-link to="/article/about" class="more-link"><span class="moretext">More</span></router-link>
+            <a href="http://chukai.link/resume" class="more-link"><span class="moretext">More</span></a>
           </div><!-- .author-description -->
           <div class="author-footer">
             <div class="author-social">

@@ -11,7 +11,7 @@
               <h1 class="site-title">
                 <router-link to="/" rel="home">初开之道.</router-link>
               </h1>
-              <p class="site-description">记录我的人生之道。//(博客停止维护，查看作品库：http://chukai.link)</p>
+              <p class="site-description">记录我的人生之道。</p>
             </div><!-- .site-branding -->
           </div><!-- .col-sm-4 -->
 
@@ -40,7 +40,7 @@
                   <li class="menu-item menu-item-has-children" aria-haspopup="true"><a href="#">关于</a>
                     <ul class="sub-menu">
                       <li class="menu-item">
-                        <router-link to="/article/about">关于我</router-link>
+                        <a href="http://chukai.link/resume">关于我</a>
                       </li>
                       <li class="menu-item"><a href="#"></a></li>
                       <!--<li class="menu-item"><a href="#">知识体系</a></li>-->
