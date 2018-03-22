@@ -11,7 +11,7 @@
               <h1 class="site-title">
                 <router-link to="/" rel="home">初开之道.</router-link>
               </h1>
-              <p class="site-description">记录我的人生之道。//(本博客已不再维护，请查看我的作品库：http://chukai.link)</p>
+              <p class="site-description">记录我的人生之道。//(博客停止维护，查看作品库：http://chukai.link)</p>
             </div><!-- .site-branding -->
           </div><!-- .col-sm-4 -->
 
