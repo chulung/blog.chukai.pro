@@ -1,15 +1,12 @@
 package pro.chukai.web.service.impl;
 
 import pro.chukai.web.mapper.ColumnMapper;
-import pro.chukai.web.mapper.FieldMapper;
 import pro.chukai.web.model.Column;
-import pro.chukai.web.model.Field;
 import pro.chukai.web.service.ColumnSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import pro.chukai.web.model.Column;
 
 import java.util.List;
 import java.util.Map;
@@ -25,9 +22,6 @@ public class ColumnTypeSeviceImpl implements ColumnSevice {
 
     @Autowired
     private ColumnMapper columnTypeMapper;
-
-    @Autowired
-    private FieldMapper fieldMapper;
 
     @Override
     public List<Column> getAllColumns() {
