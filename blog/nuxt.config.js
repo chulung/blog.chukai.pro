@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    baseUrl: 'https://blog.chukai.pro'
+    baseUrl: 'http://blog.chukai.pro'
   },
   /*
    ** Headers of the page
